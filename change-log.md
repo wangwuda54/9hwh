@@ -149,6 +149,41 @@
 ### 验收结果
 - 待确认。
 
+## 2026-04-30 - 阶段 3：官网静态生成系统重建
+
+### 变更类型
+- 类型：结构 / 内容 / 工程化 / 索引。
+
+### 变更原因
+- 阶段 2B 已建立新官网页面结构，但继续手写 `site/public/*.html` 会造成导航、页脚、sitemap 和服务边界维护成本过高。
+- 需要升级为 Python 标准库驱动的静态站生成系统，让后续维护优先修改数据和模板。
+
+### 变更范围
+- 涉及文件：`site_src/`、`scripts/build_site.py`、`scripts/check_static_site.py`、`site/public/`、`docs/stage-3-static-generator.md`、`docs/build-and-maintenance.md`、`project-status.md`、`docs/stage-2b-content-structure.md`、`docs/stage-2-site-build-plan.md`、`change-log.md`
+- 是否影响旧 service 页面：否
+- 是否影响索引：是，由生成器自动生成新官网 `sitemap.xml`
+
+### 具体变更
+- 建立 Python 静态生成器。
+- 建立 `site_src` 数据和模板。
+- 自动生成 `site/public`。
+- 自动生成 `sitemap.xml` 和 `robots.txt`。
+- 保留 `blog` 入口，不生成文章正文。
+- 未处理旧 service 页面。
+- 未进入 Cloudflare Pages 部署阶段。
+- 未 push。
+
+### 风险判断
+- 风险等级：中
+- 主要风险：后续如果绕过生成器直接手改 `site/public`，会造成源文件和生成结果不一致。
+- 风险控制方式：新增构建与维护文档，明确后续维护优先修改 `site_src/`。
+
+### 回滚点
+- 回退 `site_src/`、脚本、生成结果和本次文档修订即可恢复到阶段 2B 手写静态站状态。
+
+### 验收结果
+- 待确认。
+
 ## 2026-04-30 - 阶段 2B：站内内容与关键词承接体系建设
 
 ### 变更类型

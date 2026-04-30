@@ -8,21 +8,21 @@ AGENTS.md、project-rules.md、indexing-policy.md 不再写死临时阶段限制
 
 ## 2. 当前阶段
 
-- 当前阶段：阶段 2B，新官网站内内容与关键词承接体系建设。
-- 当前目标：大范围重写新官网页面，建立服务页、平台页、topics 关键词承接页、市场页、内容中心和联系页的内链结构。
-- 当前推进状态：已大范围重写新官网页面，已新增 topics 关键词承接页面，已更新 sitemap。
-- 当前性质：继续推进站内内容、页面结构、关键词承接和内链体系；当前不进入 Cloudflare Pages 部署阶段。
+- 当前阶段：阶段 3，官网静态生成系统重建。
+- 当前目标：将手写静态页面升级为 Python 标准库驱动的静态站生成系统。
+- 当前推进状态：已建立 `site_src/` 数据、模板和样式源文件；已建立 `scripts/build_site.py` 和 `scripts/check_static_site.py`；已自动生成 `site/public/`。
+- 当前性质：继续推进官网工程化维护能力，当前未进入 Cloudflare Pages 部署阶段，当前未处理旧 service 页面。
 
 ## 3. 当前允许事项
 
 当前允许：
 
-- 重写和加深 `site/public/` 下的新官网页面。
-- 新增和维护 `/topics/` 关键词承接页面。
-- 更新新官网 `sitemap.xml`。
-- 更新根目录规范文件、阶段记录文档和 change-log。
-- 围绕海外推广、引流获客、广告投放支持、拉新买量、投流代投和代运营协助编写页面内容。
-- 用克制、正式、可长期维护的方式承接虚拟币推广、交友引流、游戏推广、金融咨询获客、贷款获客、保险获客、移民咨询获客、网赚与兼职获客等主题。
+- 维护 `site_src/data/` 数据文件。
+- 维护 `site_src/templates/` 模板文件。
+- 维护 `site_src/assets/css/styles.css`。
+- 运行 `python scripts/build_site.py` 生成 `site/public/`。
+- 运行 `python scripts/check_static_site.py` 检查生成结果。
+- 更新构建和维护文档。
 
 ## 4. 当前禁止事项
 
@@ -38,18 +38,18 @@ AGENTS.md、project-rules.md、indexing-policy.md 不再写死临时阶段限制
 - 不批量 noindex。
 - 不批量 410。
 - 不创建 `docs/9hwh-rescue`。
-- 不创建成人 / 色粉专题页。
-- 不写保证过审、保证不限号、绕过平台政策、规避审核、抗风控等高风险承诺。
+- 不使用 Node / React / Next / Astro。
+- 不写保证过审、保证不限号、保证效果、保证转化、保证收益等高风险承诺。
 
 ## 5. 当前输出范围
 
 当前阶段允许输出：
 
-- 新官网静态页面。
-- 页面统一样式文件。
-- topics 关键词承接页面。
-- 新官网 `sitemap.xml`。
-- 阶段 2B 内容结构文档。
+- `site_src/` 源文件。
+- Python 标准库构建脚本。
+- Python 标准库检查脚本。
+- `site/public/` 生成结果。
+- 构建与维护文档。
 - 项目状态和变更记录。
 
 当前阶段不输出：
@@ -61,15 +61,17 @@ AGENTS.md、project-rules.md、indexing-policy.md 不再写死临时阶段限制
 - noindex / 301 / 410 批量执行配置。
 - legacy-source 归档内容的 Git 提交。
 
-## 6. 阶段 2B 完成条件
+## 6. 阶段 3 完成条件
 
-阶段 2B 完成需要满足：
+阶段 3 完成需要满足：
 
-- 已大范围重写首页、服务页、平台页、市场页、内容中心和联系页。
-- 已新增 `/topics/` 及主题详情页。
-- 所有公开页面使用统一导航、统一页脚和统一 CSS。
-- `sitemap.xml` 包含全部新官网正式页面。
-- 页面主文案未引入高风险承诺。
+- 已建立 Python 静态站生成器。
+- 已建立 `site_src/data/` 数据文件。
+- 已建立 `site_src/templates/` 模板文件。
+- 已建立 `site_src/assets/css/styles.css`。
+- 已可自动生成 `site/public/`。
+- 已可自动生成 sitemap 和 robots。
+- 检查脚本通过。
 - 未处理旧 service 页面。
 - 未进入 Cloudflare Pages 部署阶段。
 
@@ -78,10 +80,10 @@ AGENTS.md、project-rules.md、indexing-policy.md 不再写死临时阶段限制
 当前阶段继续完善前，需要提供或确认：
 
 - 正式联系方式。
-- 是否继续加深服务页与 topics 页面内容。
+- 是否继续扩充 services、platforms、topics 数据。
+- 是否优化模板结构。
 - 是否进入视觉强化。
-- 是否开始规划博客正文批次。
-- 旧 service 页面盘点批次安排。
+- 后续博客正文生成与审核流程。
 
 ## 8. 状态更新规则
 

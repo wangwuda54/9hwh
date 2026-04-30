@@ -1,0 +1,17 @@
+[
+  {
+    "slug": "tk", "url": "/platforms/tk/", "title": "TK 推广支持", "h1": "面向短视频流量、项目曝光和冷启动的 TK 推广", "description": "TK 推广支持覆盖短视频流量、信息流测试、项目曝光、冷启动和引流获客。", "summary": "适合短视频流量、信息流测试、项目曝光、冷启动和引流获客。",
+    "suitable_for": ["项目冷启动", "内容曝光测试", "信息流测试", "引流获客和拉新"], "traffic_scenes": ["短视频流量", "内容曝光", "素材反馈", "社交流量承接"], "preparation": ["目标市场", "素材方向", "落地页或承接路径", "测试预算和周期"],
+    "related_services": [{"title": "广告投放支持", "url": "/services/ad-campaign-support/", "summary": "投放前准备。"}], "related_topics": [{"title": "交友引流", "url": "/topics/dating-traffic/", "summary": "社交流量增长。"}], "related_platforms": [{"title": "FB 推广支持", "url": "/platforms/fb/", "summary": "兴趣人群测试。"}], "boundaries": ["执行前需确认平台政策与项目限制"], "cta": "如果你希望先用内容和信息流测试市场反馈，可以从 TK 推广支持开始。"
+  },
+  {
+    "slug": "fb", "url": "/platforms/fb/", "title": "FB 推广支持", "h1": "面向社交流量、兴趣人群和获客测试的 FB 推广", "description": "FB 推广支持覆盖社交流量、兴趣人群、广告投放、再营销方向和获客测试。", "summary": "适合社交流量、兴趣人群、广告投放、再营销方向和获客测试。",
+    "suitable_for": ["社交流量推广", "兴趣人群测试", "广告投放和再营销方向", "获客测试和拉新"], "traffic_scenes": ["兴趣人群", "社交流量", "再营销方向", "咨询线索获取"], "preparation": ["目标人群描述", "素材与页面承接", "预算区间", "历史投放记录"],
+    "related_services": [{"title": "引流获客服务", "url": "/services/traffic-acquisition/", "summary": "获客方案。"}], "related_topics": [{"title": "保险获客", "url": "/topics/insurance-leads/", "summary": "保险咨询引流。"}], "related_platforms": [{"title": "Google 推广支持", "url": "/platforms/google/", "summary": "搜索承接。"}], "boundaries": ["执行前需确认平台政策与项目限制"], "cta": "如果项目适合社交流量和人群测试，可以从 FB 推广支持进入沟通。"
+  },
+  {
+    "slug": "google", "url": "/platforms/google/", "title": "Google 推广支持", "h1": "面向搜索需求、关键词流量和长期获客的 Google 推广", "description": "Google 推广支持覆盖搜索需求承接、关键词流量、展示广告、长期获客和落地页承接。", "summary": "适合搜索需求承接、关键词流量、展示广告、长期获客和落地页承接。",
+    "suitable_for": ["搜索需求承接", "关键词流量获取", "展示广告补充", "长期获客和页面承接"], "traffic_scenes": ["搜索需求", "关键词流量", "展示广告", "落地页承接"], "preparation": ["关键词方向", "目标市场语言", "落地页和转化路径", "预算和投放周期"],
+    "related_services": [{"title": "广告投放支持", "url": "/services/ad-campaign-support/", "summary": "投放前准备。"}], "related_topics": [{"title": "贷款获客", "url": "/topics/loan-leads/", "summary": "贷款咨询引流。"}], "related_platforms": [{"title": "FB 推广支持", "url": "/platforms/fb/", "summary": "社交流量。"}], "boundaries": ["执行前需确认平台政策与项目限制"], "cta": "如果项目有明确搜索需求和落地页承接，可以从 Google 推广支持开始。"
+  }
+]

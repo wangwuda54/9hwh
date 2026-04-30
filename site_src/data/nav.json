@@ -1,0 +1,9 @@
+[
+  {"label": "首页", "url": "/"},
+  {"label": "服务", "url": "/services/"},
+  {"label": "平台", "url": "/platforms/"},
+  {"label": "主题", "url": "/topics/"},
+  {"label": "市场", "url": "/markets/"},
+  {"label": "内容中心", "url": "/blog/"},
+  {"label": "联系", "url": "/contact/"}
+]

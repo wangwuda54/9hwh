@@ -64,3 +64,13 @@
 - 补齐正式联系方式。
 - 之后再考虑博客正文批次。
 - 再之后才进入 GitHub remote / Cloudflare Pages 相关工作。
+
+## 9. 阶段 3 生成系统接管
+
+- 已建立 Python 静态生成器。
+- 已建立 `site_src/` 数据、模板和样式源文件。
+- `site/public/` 当前作为生成结果。
+- 后续内容结构维护优先修改 `site_src/data/`。
+- blog 仍只保留入口，不批量生成文章正文。
+- 未处理旧 service 页面。
+- 未进入 Cloudflare Pages 部署阶段。

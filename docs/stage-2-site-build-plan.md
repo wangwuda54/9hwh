@@ -100,3 +100,14 @@
 - 未新增 `_redirects`。
 - 未处理旧 service 页面。
 - 未做 301 / noindex / 410。
+
+## 11. 阶段 3 生成系统记录
+
+- 已建立 Python 静态生成器 `scripts/build_site.py`。
+- 已建立检查脚本 `scripts/check_static_site.py`。
+- 已建立 `site_src/data/` 和 `site_src/templates/`。
+- 已由生成器自动生成 `site/public/`。
+- 已自动生成 `sitemap.xml` 和 `robots.txt`。
+- 保留 `blog/` 入口，不生成文章正文。
+- 未处理旧 service 页面。
+- 未进入 Cloudflare Pages 部署阶段。
