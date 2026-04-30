@@ -87,3 +87,15 @@ sitemap 由 `scripts/build_site.py` 自动生成。正式页面需要进入 site
 - 不新增 `_headers`。
 - 不新增 `_redirects`。
 - 不 push。
+
+## 12. 阶段 4 升级说明
+
+阶段 4 已在阶段 3 基础上继续增强：
+
+- 新增 `contact.json`、`faqs.json`、`seo.json`、`schema.json`、`content_blocks.json`。
+- 新增 partial 模板组件，用于页脚、面包屑、FAQ、CTA、服务边界和卡片网格。
+- `scripts/build_site.py` 已支持 JSON-LD、sitemap lastmod、URL inventory、canonical 检查和 sitemap 收录检查。
+- `scripts/check_static_site.py` 已支持站内链接、服务边界、联系页准备清单、robots、sitemap 和高风险承诺检查。
+- `docs/site-url-inventory.md` 由构建器自动生成。
+
+阶段 4 仍然不进入 Cloudflare Pages 部署，不处理旧 service 页面。

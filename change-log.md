@@ -149,6 +149,42 @@
 ### 验收结果
 - 待确认。
 
+## 2026-04-30 - 阶段 4：生成系统增强与内容数据升级
+
+### 变更类型
+- 类型：工程 / 内容数据 / SEO / 自动质检。
+
+### 变更原因
+- 阶段 3 已完成 Python 静态生成系统基础版，但仍需要增强数据结构、模板组件、结构化数据、URL 清单和质量检查，降低后续维护成本。
+
+### 变更范围
+- 涉及文件：`site_src/`、`scripts/build_site.py`、`scripts/check_static_site.py`、`site/public/`、`docs/site-url-inventory.md`、`docs/stage-4-generator-upgrade.md`、`docs/build-and-maintenance.md`、`docs/stage-3-static-generator.md`、`project-status.md`、`change-log.md`
+- 是否影响旧 service 页面：否
+- 是否影响索引：仅更新新官网正式页面 sitemap，不包含旧 service 页面。
+
+### 具体变更
+- 完成阶段 4 生成系统增强。
+- 新增 contact / FAQ / SEO / schema / content_blocks 数据。
+- 升级 services / platforms / topics / markets 内容数据字段。
+- 升级模板组件，新增面包屑、FAQ、CTA、服务边界和卡片网格 partial。
+- 升级 `build_site.py`，自动生成 JSON-LD、sitemap lastmod、robots 和 URL inventory。
+- 升级 `check_static_site.py`，增强 canonical、站内链接、sitemap、robots、服务边界和高风险词检查。
+- 自动生成 `docs/site-url-inventory.md`。
+- 未处理旧 service 页面。
+- 未进入 Cloudflare Pages 部署。
+- 未 push。
+
+### 风险判断
+- 风险等级：中低
+- 当前变更涉及生成系统和全站生成结果，但仍只在新官网目录内，不触碰旧 service 页面和部署配置。
+
+### 回滚点
+- 回退本次提交即可恢复阶段 3 生成系统。
+
+### 验收结果
+- `python scripts/build_site.py` 通过。
+- `python scripts/check_static_site.py` 通过。
+
 ## 2026-04-30 - 阶段 3：官网静态生成系统重建
 
 ### 变更类型

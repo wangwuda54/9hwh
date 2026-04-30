@@ -79,13 +79,55 @@ site_src/data/topics.json
 优先修改：
 
 ```text
-site_src/data/site.json
-site_src/data/pages.json
+site_src/data/contact.json
 ```
 
-联系方式占位字段在 `site.json` 中。
+联系方式占位、咨询准备清单、响应说明和联系页服务边界都在 `contact.json` 中。不要编造邮箱、电话、微信或 Telegram。
 
-## 8. 如何避免直接手改 site/public
+## 8. 如何修改 FAQ
+
+优先修改：
+
+```text
+site_src/data/faqs.json
+```
+
+FAQ 分为 `global`、`services`、`platforms`、`topics`、`markets`、`contact`。新增 FAQ 时不要写高风险承诺，不要写“保证过审、保证效果、保证收益”等表达。
+
+## 9. 如何修改服务边界
+
+优先修改：
+
+```text
+site_src/data/content_blocks.json
+site_src/data/site.json
+site_src/data/contact.json
+```
+
+服务边界必须保持克制、清楚，强调平台政策、地区法规、行业限制和项目表达边界。
+
+## 10. 如何查看 URL inventory
+
+构建后查看：
+
+```text
+docs/site-url-inventory.md
+```
+
+该文件由 `scripts/build_site.py` 自动生成，不建议手工长期维护。
+
+## 11. 如何处理构建失败
+
+先运行：
+
+```powershell
+python scripts/build_site.py
+python scripts/check_static_site.py
+```
+
+如果构建失败，优先检查 JSON 格式、URL 重复、模板占位符和必填字段。如果检查失败，优先看 `[FAIL]` 行，修复 canonical、站内链接、sitemap、robots 或高风险词问题。
+
+## 12. 如何避免直接手改 site/public
 
 `site/public/` 是生成结果。长期维护时应优先修改：
 
@@ -96,7 +138,7 @@ site_src/data/pages.json
 
 然后重新构建。
 
-## 9. 什么时候才进入 Cloudflare Pages
+## 13. 什么时候才进入 Cloudflare Pages
 
 只有当站内内容结构、联系方式、视觉基线、sitemap 和旧 service 页面盘点策略都稳定后，才进入 Cloudflare Pages 部署准备。
 

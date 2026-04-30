@@ -8,10 +8,10 @@ AGENTS.md、project-rules.md、indexing-policy.md 不再写死临时阶段限制
 
 ## 2. 当前阶段
 
-- 当前阶段：阶段 3，官网静态生成系统重建。
-- 当前目标：将手写静态页面升级为 Python 标准库驱动的静态站生成系统。
-- 当前推进状态：已建立 `site_src/` 数据、模板和样式源文件；已建立 `scripts/build_site.py` 和 `scripts/check_static_site.py`；已自动生成 `site/public/`。
-- 当前性质：继续推进官网工程化维护能力，当前未进入 Cloudflare Pages 部署阶段，当前未处理旧 service 页面。
+- 当前阶段：阶段 4，生成系统增强与内容数据升级。
+- 当前目标：将 Python 静态站生成系统升级为数据化内容、组件化模板、自动 URL 清单、结构化数据和严格质量检查体系。
+- 当前推进状态：已完成 Python 静态生成系统基础版；当前已升级 FAQ、contact、SEO、schema、content blocks 数据，已生成 JSON-LD、sitemap lastmod 和 URL inventory。
+- 当前性质：继续推进官网长期维护能力，当前未进入 Cloudflare Pages 部署阶段，当前未处理旧 service 页面。
 
 ## 3. 当前允许事项
 
@@ -22,6 +22,8 @@ AGENTS.md、project-rules.md、indexing-policy.md 不再写死临时阶段限制
 - 维护 `site_src/assets/css/styles.css`。
 - 运行 `python scripts/build_site.py` 生成 `site/public/`。
 - 运行 `python scripts/check_static_site.py` 检查生成结果。
+- 维护 `site_src/data/contact.json`、`faqs.json`、`seo.json`、`schema.json`、`content_blocks.json`。
+- 查看自动生成的 `docs/site-url-inventory.md`。
 - 更新构建和维护文档。
 
 ## 4. 当前禁止事项
@@ -61,17 +63,19 @@ AGENTS.md、project-rules.md、indexing-policy.md 不再写死临时阶段限制
 - noindex / 301 / 410 批量执行配置。
 - legacy-source 归档内容的 Git 提交。
 
-## 6. 阶段 3 完成条件
+## 6. 阶段 4 完成条件
 
-阶段 3 完成需要满足：
+阶段 4 完成需要满足：
 
-- 已建立 Python 静态站生成器。
-- 已建立 `site_src/data/` 数据文件。
-- 已建立 `site_src/templates/` 模板文件。
-- 已建立 `site_src/assets/css/styles.css`。
-- 已可自动生成 `site/public/`。
-- 已可自动生成 sitemap 和 robots。
-- 检查脚本通过。
+- 已升级内容数据结构。
+- 已建立组件化模板 partial。
+- 已生成面包屑、FAQ、CTA、服务边界和相关链接模块。
+- 已生成 Organization、WebSite、BreadcrumbList、FAQPage、Service JSON-LD。
+- 已自动生成带 lastmod 的 sitemap 和 robots。
+- 已自动生成 `docs/site-url-inventory.md`。
+- 已升级站内链接、canonical、sitemap、robots 和高风险承诺检查。
+- `python scripts/build_site.py` 通过。
+- `python scripts/check_static_site.py` 通过。
 - 未处理旧 service 页面。
 - 未进入 Cloudflare Pages 部署阶段。
 

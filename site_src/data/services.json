@@ -6,18 +6,98 @@
     "h1": "为出海项目梳理海外推广路径和渠道组合",
     "description": "海外推广服务覆盖出海项目推广、海外市场推广、渠道组合、项目冷启动和推广路径梳理。",
     "summary": "梳理海外市场推广路径、渠道组合和项目冷启动节奏。",
-    "keywords": ["海外推广", "出海项目推广", "海外市场推广", "渠道组合", "项目冷启动"],
-    "suitable_for": ["准备进入海外市场的产品或服务", "需要从零梳理推广路径的团队", "希望组合 TK、FB、Google 的项目"],
-    "common_needs": ["推广路径梳理", "市场方向判断", "渠道组合建议", "项目冷启动"],
-    "support_items": ["目标市场分析", "平台优先级建议", "素材与落地页准备", "执行节奏建议"],
-    "process": ["需求沟通", "市场判断", "渠道建议", "准备清单", "执行协助", "反馈调整"],
-    "preparation": ["项目介绍", "目标市场", "预算区间", "素材和落地页现状"],
-    "not_suitable_for": ["无法说明项目内容的合作", "不愿确认平台政策和地区法规的合作"],
-    "boundaries": ["提供路径梳理和渠道建议", "不承诺任何平台审核结果或投放结果"],
-    "related_topics": [{"title": "虚拟币推广", "url": "/topics/crypto-promotion/", "summary": "加密货币推广和交易所拉新准备。"}, {"title": "游戏推广", "url": "/topics/game-promotion/", "summary": "游戏买量和游戏拉新准备。"}],
-    "related_platforms": [{"title": "TK 推广支持", "url": "/platforms/tk/", "summary": "短视频流量和内容曝光。"}, {"title": "Google 推广支持", "url": "/platforms/google/", "summary": "搜索需求和关键词流量承接。"}],
-    "related_services": [{"title": "引流获客服务", "url": "/services/traffic-acquisition/", "summary": "拉新和用户来源判断。"}],
-    "cta": "如果项目还处于市场和渠道判断阶段，可以先从海外推广服务开始沟通。"
+    "keywords": [
+      "海外推广",
+      "出海项目推广",
+      "海外市场推广",
+      "渠道组合",
+      "项目冷启动"
+    ],
+    "suitable_for": [
+      "准备进入海外市场的产品或服务",
+      "需要从零梳理推广路径的团队",
+      "希望组合 TK、FB、Google 的项目"
+    ],
+    "common_needs": [
+      "推广路径梳理",
+      "市场方向判断",
+      "渠道组合建议",
+      "项目冷启动"
+    ],
+    "support_items": [
+      "目标市场分析",
+      "平台优先级建议",
+      "素材与落地页准备",
+      "执行节奏建议"
+    ],
+    "process": [
+      "需求沟通",
+      "市场判断",
+      "渠道建议",
+      "准备清单",
+      "执行协助",
+      "反馈调整"
+    ],
+    "preparation": [
+      "项目介绍",
+      "目标市场",
+      "预算区间",
+      "素材和落地页现状"
+    ],
+    "not_suitable_for": [
+      "无法说明项目内容的合作",
+      "不愿确认平台政策和地区法规的合作"
+    ],
+    "boundaries": [
+      "提供路径梳理和渠道建议",
+      "不承诺任何平台审核结果或投放结果"
+    ],
+    "related_topics": [
+      {
+        "title": "虚拟币推广",
+        "url": "/topics/crypto-promotion/",
+        "summary": "加密货币推广和交易所拉新准备。"
+      },
+      {
+        "title": "游戏推广",
+        "url": "/topics/game-promotion/",
+        "summary": "游戏买量和游戏拉新准备。"
+      }
+    ],
+    "related_platforms": [
+      {
+        "title": "TK 推广支持",
+        "url": "/platforms/tk/",
+        "summary": "短视频流量和内容曝光。"
+      },
+      {
+        "title": "Google 推广支持",
+        "url": "/platforms/google/",
+        "summary": "搜索需求和关键词流量承接。"
+      }
+    ],
+    "related_services": [
+      {
+        "title": "引流获客服务",
+        "url": "/services/traffic-acquisition/",
+        "summary": "拉新和用户来源判断。"
+      }
+    ],
+    "cta": "如果项目还处于市场和渠道判断阶段，可以先从海外推广服务开始沟通。",
+    "intro": "梳理海外市场推广路径、渠道组合和项目冷启动节奏。",
+    "not_suitable": [
+      "无法说明项目内容的合作",
+      "不愿确认平台政策和地区法规的合作"
+    ],
+    "faq_refs": [
+      "services-start",
+      "services-delivery",
+      "services-material",
+      "services-boundary",
+      "services-budget"
+    ],
+    "cta_title": "海外推广服务",
+    "cta_text": "如果项目还处于市场和渠道判断阶段，可以先从海外推广服务开始沟通。"
   },
   {
     "slug": "traffic-acquisition",
@@ -26,18 +106,100 @@
     "h1": "围绕拉新、精准获客和转化路径建立获客方案",
     "description": "引流获客服务覆盖精准获客、拉新、用户来源判断、转化路径建议、交友引流、游戏推广、贷款获客、保险获客和移民获客。",
     "summary": "围绕用户来源、拉新节奏、转化路径和精准获客做方案。",
-    "keywords": ["引流获客", "精准获客", "拉新", "交友引流", "贷款获客", "保险获客", "移民获客"],
-    "suitable_for": ["需要海外用户增长的 App 或工具", "社交流量、游戏推广、贷款获客等咨询场景", "需要测试不同获客渠道的项目"],
-    "common_needs": ["用户来源判断", "拉新路径设计", "转化承接建议", "咨询线索获取"],
-    "support_items": ["获客方案", "渠道建议", "落地页承接建议", "执行协助"],
-    "process": ["项目判断", "用户画像", "渠道选择", "承接准备", "测试执行", "复盘调整"],
-    "preparation": ["目标用户", "目标市场", "转化路径", "历史投放记录"],
-    "not_suitable_for": ["要求固定转化数量的合作", "无法提供真实承接路径的项目"],
-    "boundaries": ["提供获客方案和执行协助", "不作固定转化或固定成本承诺"],
-    "related_topics": [{"title": "交友引流", "url": "/topics/dating-traffic/", "summary": "社交流量和交友 App 注册。"}, {"title": "贷款获客", "url": "/topics/loan-leads/", "summary": "贷款咨询引流。"}],
-    "related_platforms": [{"title": "FB 推广支持", "url": "/platforms/fb/", "summary": "社交流量和兴趣人群。"}, {"title": "TK 推广支持", "url": "/platforms/tk/", "summary": "短视频流量和冷启动。"}],
-    "related_services": [{"title": "买量投流支持", "url": "/services/media-buying/", "summary": "买量测试和数据反馈。"}],
-    "cta": "如果目标是海外用户增长、注册拉新或咨询线索获取，可以从引流获客服务进入。"
+    "keywords": [
+      "引流获客",
+      "精准获客",
+      "拉新",
+      "交友引流",
+      "贷款获客",
+      "保险获客",
+      "移民获客"
+    ],
+    "suitable_for": [
+      "需要海外用户增长的 App 或工具",
+      "社交流量、游戏推广、贷款获客等咨询场景",
+      "需要测试不同获客渠道的项目"
+    ],
+    "common_needs": [
+      "用户来源判断",
+      "拉新路径设计",
+      "转化承接建议",
+      "咨询线索获取"
+    ],
+    "support_items": [
+      "获客方案",
+      "渠道建议",
+      "落地页承接建议",
+      "执行协助"
+    ],
+    "process": [
+      "项目判断",
+      "用户画像",
+      "渠道选择",
+      "承接准备",
+      "测试执行",
+      "复盘调整"
+    ],
+    "preparation": [
+      "目标用户",
+      "目标市场",
+      "转化路径",
+      "历史投放记录"
+    ],
+    "not_suitable_for": [
+      "要求固定转化数量的合作",
+      "无法提供真实承接路径的项目"
+    ],
+    "boundaries": [
+      "提供获客方案和执行协助",
+      "不作固定转化或固定成本承诺"
+    ],
+    "related_topics": [
+      {
+        "title": "交友引流",
+        "url": "/topics/dating-traffic/",
+        "summary": "社交流量和交友 App 注册。"
+      },
+      {
+        "title": "贷款获客",
+        "url": "/topics/loan-leads/",
+        "summary": "贷款咨询引流。"
+      }
+    ],
+    "related_platforms": [
+      {
+        "title": "FB 推广支持",
+        "url": "/platforms/fb/",
+        "summary": "社交流量和兴趣人群。"
+      },
+      {
+        "title": "TK 推广支持",
+        "url": "/platforms/tk/",
+        "summary": "短视频流量和冷启动。"
+      }
+    ],
+    "related_services": [
+      {
+        "title": "买量投流支持",
+        "url": "/services/media-buying/",
+        "summary": "买量测试和数据反馈。"
+      }
+    ],
+    "cta": "如果目标是海外用户增长、注册拉新或咨询线索获取，可以从引流获客服务进入。",
+    "intro": "围绕用户来源、拉新节奏、转化路径和精准获客做方案。",
+    "not_suitable": [
+      "要求固定转化数量的合作",
+      "无法提供真实承接路径的项目"
+    ],
+    "faq_refs": [
+      "services-start",
+      "services-delivery",
+      "services-material",
+      "services-boundary",
+      "services-budget"
+    ],
+    "cta_title": "引流获客服务",
+    "cta_text": "如果目标是海外用户增长、注册拉新或咨询线索获取，可以从引流获客服务进入。"
   },
   {
     "slug": "ad-campaign-support",
@@ -46,18 +208,100 @@
     "h1": "从投放前准备到执行协助，建立更稳的广告测试路径",
     "description": "广告投放支持覆盖广告投放、广告代投、TK 投放、FB 投放、Google 投放、素材方向、落地页检查和投放前准备。",
     "summary": "支持 TK、FB、Google 投放前准备、素材方向和落地页检查。",
-    "keywords": ["广告投放", "广告代投", "TK 投放", "FB 投放", "Google 投放", "素材方向", "落地页检查"],
-    "suitable_for": ["已有初步预算和素材方向", "需要投放前准备和落地页检查", "需要广告代投或过程沟通支持"],
-    "common_needs": ["投放前准备", "素材方向建议", "落地页检查", "执行协助"],
-    "support_items": ["平台选择", "素材建议", "页面承接检查", "过程沟通"],
-    "process": ["需求确认", "平台判断", "素材准备", "页面检查", "执行协助", "反馈调整"],
-    "preparation": ["预算区间", "目标平台", "素材", "落地页"],
-    "not_suitable_for": ["要求平台政策规避操作的合作", "没有真实产品或承接路径的项目"],
-    "boundaries": ["提供投放准备和执行协助", "不提供平台政策规避操作"],
-    "related_topics": [{"title": "游戏推广", "url": "/topics/game-promotion/", "summary": "游戏买量和拉新。"}, {"title": "金融咨询获客", "url": "/topics/finance-leads/", "summary": "咨询类获客准备。"}],
-    "related_platforms": [{"title": "TK 推广支持", "url": "/platforms/tk/", "summary": "信息流测试。"}, {"title": "Google 推广支持", "url": "/platforms/google/", "summary": "搜索需求承接。"}],
-    "related_services": [{"title": "买量投流支持", "url": "/services/media-buying/", "summary": "投流代投和买量测试。"}],
-    "cta": "如果项目已经准备进入广告测试，可以先整理素材、落地页和预算区间。"
+    "keywords": [
+      "广告投放",
+      "广告代投",
+      "TK 投放",
+      "FB 投放",
+      "Google 投放",
+      "素材方向",
+      "落地页检查"
+    ],
+    "suitable_for": [
+      "已有初步预算和素材方向",
+      "需要投放前准备和落地页检查",
+      "需要广告代投或过程沟通支持"
+    ],
+    "common_needs": [
+      "投放前准备",
+      "素材方向建议",
+      "落地页检查",
+      "执行协助"
+    ],
+    "support_items": [
+      "平台选择",
+      "素材建议",
+      "页面承接检查",
+      "过程沟通"
+    ],
+    "process": [
+      "需求确认",
+      "平台判断",
+      "素材准备",
+      "页面检查",
+      "执行协助",
+      "反馈调整"
+    ],
+    "preparation": [
+      "预算区间",
+      "目标平台",
+      "素材",
+      "落地页"
+    ],
+    "not_suitable_for": [
+      "要求平台政策规避操作的合作",
+      "没有真实产品或承接路径的项目"
+    ],
+    "boundaries": [
+      "提供投放准备和执行协助",
+      "不提供平台政策规避操作"
+    ],
+    "related_topics": [
+      {
+        "title": "游戏推广",
+        "url": "/topics/game-promotion/",
+        "summary": "游戏买量和拉新。"
+      },
+      {
+        "title": "金融咨询获客",
+        "url": "/topics/finance-leads/",
+        "summary": "咨询类获客准备。"
+      }
+    ],
+    "related_platforms": [
+      {
+        "title": "TK 推广支持",
+        "url": "/platforms/tk/",
+        "summary": "信息流测试。"
+      },
+      {
+        "title": "Google 推广支持",
+        "url": "/platforms/google/",
+        "summary": "搜索需求承接。"
+      }
+    ],
+    "related_services": [
+      {
+        "title": "买量投流支持",
+        "url": "/services/media-buying/",
+        "summary": "投流代投和买量测试。"
+      }
+    ],
+    "cta": "如果项目已经准备进入广告测试，可以先整理素材、落地页和预算区间。",
+    "intro": "支持 TK、FB、Google 投放前准备、素材方向和落地页检查。",
+    "not_suitable": [
+      "要求平台政策规避操作的合作",
+      "没有真实产品或承接路径的项目"
+    ],
+    "faq_refs": [
+      "services-start",
+      "services-delivery",
+      "services-material",
+      "services-boundary",
+      "services-budget"
+    ],
+    "cta_title": "广告投放支持",
+    "cta_text": "如果项目已经准备进入广告测试，可以先整理素材、落地页和预算区间。"
   },
   {
     "slug": "media-buying",
@@ -66,17 +310,99 @@
     "h1": "围绕买量、投流和拉新测试推进执行协助",
     "description": "买量投流支持覆盖买量、投流、拉新、测试预算、渠道评估、执行协助和数据反馈。",
     "summary": "围绕买量测试、投流代投、渠道评估和数据反馈推进执行。",
-    "keywords": ["买量", "投流", "拉新", "测试预算", "渠道评估", "执行协助", "数据反馈"],
-    "suitable_for": ["需要做海外买量的项目", "希望评估不同渠道获客质量的团队", "需要投流代投和推广代运营协助的项目"],
-    "common_needs": ["买量测试", "投流代投", "渠道评估", "数据反馈"],
-    "support_items": ["测试预算建议", "渠道组合", "执行协助", "阶段复盘"],
-    "process": ["预算确认", "渠道评估", "投流准备", "执行协助", "数据反馈", "调整建议"],
-    "preparation": ["预算区间", "目标市场", "素材", "落地页和转化路径"],
-    "not_suitable_for": ["要求固定 ROI 的合作", "无法接受测试和反馈过程的合作"],
-    "boundaries": ["提供买量测试与反馈协助", "不承诺 ROI 或固定回收结果"],
-    "related_topics": [{"title": "游戏推广", "url": "/topics/game-promotion/", "summary": "游戏买量和拉新。"}, {"title": "网赚与兼职获客", "url": "/topics/online-work-leads/", "summary": "在线项目推广。"}],
-    "related_platforms": [{"title": "FB 推广支持", "url": "/platforms/fb/", "summary": "社交流量测试。"}, {"title": "TK 推广支持", "url": "/platforms/tk/", "summary": "短视频流量。"}],
-    "related_services": [{"title": "广告投放支持", "url": "/services/ad-campaign-support/", "summary": "投放前准备和执行协助。"}],
-    "cta": "如果项目已经准备做预算测试，可以从买量投流支持进入沟通。"
+    "keywords": [
+      "买量",
+      "投流",
+      "拉新",
+      "测试预算",
+      "渠道评估",
+      "执行协助",
+      "数据反馈"
+    ],
+    "suitable_for": [
+      "需要做海外买量的项目",
+      "希望评估不同渠道获客质量的团队",
+      "需要投流代投和推广代运营协助的项目"
+    ],
+    "common_needs": [
+      "买量测试",
+      "投流代投",
+      "渠道评估",
+      "数据反馈"
+    ],
+    "support_items": [
+      "测试预算建议",
+      "渠道组合",
+      "执行协助",
+      "阶段复盘"
+    ],
+    "process": [
+      "预算确认",
+      "渠道评估",
+      "投流准备",
+      "执行协助",
+      "数据反馈",
+      "调整建议"
+    ],
+    "preparation": [
+      "预算区间",
+      "目标市场",
+      "素材",
+      "落地页和转化路径"
+    ],
+    "not_suitable_for": [
+      "要求固定 ROI 的合作",
+      "无法接受测试和反馈过程的合作"
+    ],
+    "boundaries": [
+      "提供买量测试与反馈协助",
+      "不承诺 ROI 或固定回收结果"
+    ],
+    "related_topics": [
+      {
+        "title": "游戏推广",
+        "url": "/topics/game-promotion/",
+        "summary": "游戏买量和拉新。"
+      },
+      {
+        "title": "网赚与兼职获客",
+        "url": "/topics/online-work-leads/",
+        "summary": "在线项目推广。"
+      }
+    ],
+    "related_platforms": [
+      {
+        "title": "FB 推广支持",
+        "url": "/platforms/fb/",
+        "summary": "社交流量测试。"
+      },
+      {
+        "title": "TK 推广支持",
+        "url": "/platforms/tk/",
+        "summary": "短视频流量。"
+      }
+    ],
+    "related_services": [
+      {
+        "title": "广告投放支持",
+        "url": "/services/ad-campaign-support/",
+        "summary": "投放前准备和执行协助。"
+      }
+    ],
+    "cta": "如果项目已经准备做预算测试，可以从买量投流支持进入沟通。",
+    "intro": "围绕买量测试、投流代投、渠道评估和数据反馈推进执行。",
+    "not_suitable": [
+      "要求固定 ROI 的合作",
+      "无法接受测试和反馈过程的合作"
+    ],
+    "faq_refs": [
+      "services-start",
+      "services-delivery",
+      "services-material",
+      "services-boundary",
+      "services-budget"
+    ],
+    "cta_title": "买量投流支持",
+    "cta_text": "如果项目已经准备做预算测试，可以从买量投流支持进入沟通。"
   }
 ]

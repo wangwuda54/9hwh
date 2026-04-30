@@ -1,0 +1,7 @@
+{
+  "organization_schema": true,
+  "website_schema": true,
+  "breadcrumb_schema": true,
+  "faq_schema": true,
+  "service_schema": true
+}
