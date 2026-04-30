@@ -1,0 +1,30 @@
+{
+  "total_keywords": 3036,
+  "status_counts": {
+    "future_blog": 216,
+    "internal_only": 1263,
+    "public_primary": 19,
+    "public_secondary": 1522,
+    "blocked": 16
+  },
+  "cluster_count": 16,
+  "url_mapping_count": 24,
+  "target_url_counts": {
+    "/markets/": 672,
+    "/platforms/fb/": 77,
+    "/platforms/google/": 109,
+    "/platforms/tk/": 174,
+    "/services/ad-campaign-support/": 373,
+    "/services/media-buying/": 157,
+    "/services/overseas-promotion/": 73,
+    "/services/traffic-acquisition/": 392,
+    "/topics/crypto-promotion/": 376,
+    "/topics/dating-traffic/": 372,
+    "/topics/finance-leads/": 21,
+    "/topics/game-promotion/": 3,
+    "/topics/immigration-leads/": 3,
+    "/topics/insurance-leads/": 3,
+    "/topics/loan-leads/": 3,
+    "/topics/online-work-leads/": 49
+  }
+}

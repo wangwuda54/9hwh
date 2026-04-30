@@ -1,0 +1,22 @@
+# 关键词聚类统计
+
+| cluster_id | target_url | keyword_count | public_count | internal_count | future_blog_count | blocked_count | notes |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| ad-campaign-support | /services/ad-campaign-support/ | 373 | 255 | 82 | 36 | 0 | 承接广告投放和代投相关词。 |
+| blocked |  | 16 | 0 | 0 | 0 | 16 |  |
+| crypto-promotion | /topics/crypto-promotion/ | 376 | 330 | 10 | 36 | 0 | 公开承接，但表达需克制。 |
+| dating-traffic | /topics/dating-traffic/ | 372 | 128 | 208 | 36 | 0 | 不承接成人类公开表达。 |
+| fb-promotion | /platforms/fb/ | 77 | 67 | 10 | 0 | 0 | 承接 FB 平台方向词。 |
+| finance-leads | /topics/finance-leads/ | 21 | 21 | 0 | 0 | 0 | 不写收益承诺。 |
+| game-promotion | /topics/game-promotion/ | 3 | 3 | 0 | 0 | 0 | 不承接博彩表达。 |
+| google-promotion | /platforms/google/ | 109 | 99 | 10 | 0 | 0 | 承接 Google 和谷歌平台方向词。 |
+| immigration-leads | /topics/immigration-leads/ | 3 | 3 | 0 | 0 | 0 | 不承诺申请结果。 |
+| insurance-leads | /topics/insurance-leads/ | 3 | 3 | 0 | 0 | 0 | 强调合规边界。 |
+| loan-leads | /topics/loan-leads/ | 3 | 3 | 0 | 0 | 0 | 强调合规边界。 |
+| markets | /markets/ | 672 | 32 | 640 | 0 | 0 | 承接国家和地区方向，不生成大量国家页。 |
+| media-buying | /services/media-buying/ | 157 | 71 | 62 | 24 | 0 | 承接买量投流类服务词，不承诺 ROI。 |
+| online-work-leads | /topics/online-work-leads/ | 49 | 49 | 0 | 0 | 0 | 不写虚假收益承诺。 |
+| overseas-promotion | /services/overseas-promotion/ | 73 | 33 | 40 | 0 | 0 | 海外推广服务页承接宽泛服务词，首页只展示主词入口。 |
+| tk-promotion | /platforms/tk/ | 174 | 164 | 10 | 0 | 0 | 承接 TK 平台方向词。 |
+| traffic-acquisition | /services/traffic-acquisition/ | 392 | 280 | 40 | 72 | 0 | 承接服务型获客词，敏感类别不公开展示。 |
+| unmapped |  | 163 | 0 | 151 | 12 | 0 |  |

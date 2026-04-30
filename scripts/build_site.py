@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import html
+import csv
 import json
 import re
 import shutil
@@ -15,10 +16,20 @@ TEMPLATES = SRC / "templates"
 PARTIALS = TEMPLATES / "partials"
 PUBLIC = ROOT / "site" / "public"
 DOCS = ROOT / "docs"
+KEYWORD_DATA = DATA / "keywords"
+KEYWORD_ASSETS = ROOT / "data" / "keyword-assets"
 
 
 def load_json(name: str):
     with (DATA / name).open("r", encoding="utf-8-sig") as fh:
+        return json.load(fh)
+
+
+def load_keyword_json(name: str):
+    path = KEYWORD_DATA / name
+    if not path.exists():
+        return [] if name.endswith(".json") else {}
+    with path.open("r", encoding="utf-8-sig") as fh:
         return json.load(fh)
 
 
@@ -172,6 +183,47 @@ def boundary_html(text: str) -> str:
     return partial("boundary.html", {"text": esc(text)})
 
 
+def keyword_context() -> dict:
+    clusters = load_keyword_json("clusters.json")
+    url_map = load_keyword_json("url_map.json")
+    rules_path = KEYWORD_DATA / "rules.json"
+    rules = json.loads(rules_path.read_text(encoding="utf-8-sig")) if rules_path.exists() else {}
+    by_url: dict[str, list[str]] = {}
+    for item in url_map:
+        if item.get("status") in {"public_primary", "public_secondary"}:
+            by_url.setdefault(item["target_url"], []).append(item["keyword"])
+    for cluster in clusters:
+        target = cluster.get("target_url")
+        if not target:
+            continue
+        for term in cluster.get("include_actions", []) + cluster.get("include_categories", []) + cluster.get("include_platforms", []) + cluster.get("include_countries", []):
+            by_url.setdefault(target, []).append(term)
+    summary = {}
+    summary_path = KEYWORD_ASSETS / "cluster_summary.csv"
+    if summary_path.exists():
+        with summary_path.open("r", encoding="utf-8-sig", newline="") as fh:
+            for row in csv.DictReader(fh):
+                summary[row["cluster_id"]] = row
+    return {"clusters": clusters, "url_map": url_map, "rules": rules, "by_url": by_url, "summary": summary}
+
+
+def keyword_block(path: str, context: dict, title: str = "关键词承接方向") -> str:
+    terms = context.get("by_url", {}).get(path, [])
+    blocked = set(context.get("rules", {}).get("sensitive_internal_categories", []) + context.get("rules", {}).get("blocked_promise_terms", []))
+    visible = []
+    for term in terms:
+        if not term or term in visible:
+            continue
+        if any(blocked_term and blocked_term in term for blocked_term in blocked):
+            continue
+        visible.append(term)
+    visible = visible[:12]
+    if not visible:
+        return ""
+    pills = "".join(f'<span class="pill">{esc(term)}</span>' for term in visible)
+    return f'<article class="card keyword-block"><h2>{esc(title)}</h2><p>本页只展示代表性搜索方向，完整关键词先进入内部资产库和聚类映射，不直接生成大量公开页面。</p><div class="pill-list">{pills}</div></article>'
+
+
 def resolve_faqs(faq_data: dict, refs: list[str] | None, fallback_group: str) -> list[dict]:
     pool = []
     for group in ("global", fallback_group):
@@ -195,7 +247,7 @@ def sections_html(sections: list[tuple[str, str]]) -> str:
     return "".join(f'<article class="card"><h2>{esc(title)}</h2>{content}</article>' for title, content in sections)
 
 
-def detail_content(item: dict, item_type: str, faq_data: dict, blocks: dict) -> tuple[str, list[dict]]:
+def detail_content(item: dict, item_type: str, faq_data: dict, blocks: dict, keyword_ctx: dict) -> tuple[str, list[dict]]:
     if item_type == "service":
         sections = [
             ("服务说明", f"<p>{esc(item.get('intro', item.get('summary', '')))}</p>"),
@@ -240,6 +292,7 @@ def detail_content(item: dict, item_type: str, faq_data: dict, blocks: dict) -> 
             "related_services": card_grid(item.get("related_services", []), 2),
             "related_topics": card_grid(item.get("related_topics", []), 2),
             "related_platforms": card_grid(item.get("related_platforms", []), 2),
+            "keyword_block": keyword_block(item["url"], keyword_ctx),
             "faq": faq_html(faqs),
             "boundary": boundary_html(blocks["service_boundary"]),
             "cta": cta_html(item.get("cta_title", "联系咨询"), item.get("cta_text", item.get("cta", ""))),
@@ -303,6 +356,7 @@ def build() -> None:
     seo = load_json("seo.json")
     schema_flags = load_json("schema.json")
     blocks = load_json("content_blocks.json")
+    keyword_ctx = keyword_context()
     today = date.today().isoformat()
 
     clean_public()
@@ -329,6 +383,7 @@ def build() -> None:
             "market_pills": "".join(f'<span class="pill">{esc(m)}</span>' for m in markets["market_list"]),
             "process": list_items(blocks["process_steps"], "process-list"),
             "why_9hwh": list_items(blocks["why_9hwh"]),
+            "keyword_block": keyword_block("/", keyword_ctx, "首页关键词承接方向"),
             "boundary": boundary_html(blocks["service_boundary"]),
             "faq": faq_html(home_faqs),
             "cta": cta_html("准备开始沟通？", "如果你正在准备海外推广、引流获客、广告投放或买量测试，可以先整理项目资料，再进入咨询。"),
@@ -336,29 +391,30 @@ def build() -> None:
     )
     emit("/", pages["home"], home_content, site, nav, global_schemas + [faq_schema(home_faqs)], records, "pages.json:home", "home")
 
-    services_extra = boundary_html(blocks["service_boundary"]) + faq_html(resolve_faqs(faqs, None, "services"))
+    services_extra = keyword_block("/services/traffic-acquisition/", keyword_ctx, "服务词承接方向") + boundary_html(blocks["service_boundary"]) + faq_html(resolve_faqs(faqs, None, "services"))
     emit("/services/", pages["services"], listing_content(pages["services"], services, services_extra), site, nav, global_schemas, records, "pages.json:services", "listing")
     for item in services:
-        content, item_faqs = detail_content(item, "service", faqs, blocks)
+        content, item_faqs = detail_content(item, "service", faqs, blocks, keyword_ctx)
         schemas = global_schemas + [faq_schema(item_faqs), service_schema(item, site)]
         emit(item["url"], item, content, site, nav, schemas, records, f"services.json:{item['slug']}", "service")
 
-    emit("/platforms/", pages["platforms"], listing_content(pages["platforms"], platforms, faq_html(resolve_faqs(faqs, None, "platforms"))), site, nav, global_schemas, records, "pages.json:platforms", "listing")
+    platforms_extra = keyword_block("/platforms/tk/", keyword_ctx, "平台词承接方向") + faq_html(resolve_faqs(faqs, None, "platforms"))
+    emit("/platforms/", pages["platforms"], listing_content(pages["platforms"], platforms, platforms_extra), site, nav, global_schemas, records, "pages.json:platforms", "listing")
     for item in platforms:
-        content, item_faqs = detail_content(item, "platform", faqs, blocks)
+        content, item_faqs = detail_content(item, "platform", faqs, blocks, keyword_ctx)
         emit(item["url"], item, content, site, nav, global_schemas + [faq_schema(item_faqs)], records, f"platforms.json:{item['slug']}", "platform")
 
-    topics_extra = boundary_html(blocks["service_boundary"]) + faq_html(resolve_faqs(faqs, None, "topics"))
+    topics_extra = keyword_block("/topics/crypto-promotion/", keyword_ctx, "细分类目承接方向") + boundary_html(blocks["service_boundary"]) + faq_html(resolve_faqs(faqs, None, "topics"))
     emit("/topics/", pages["topics"], listing_content(pages["topics"], topics, topics_extra), site, nav, global_schemas, records, "pages.json:topics", "listing")
     for item in topics:
-        content, item_faqs = detail_content(item, "topic", faqs, blocks)
+        content, item_faqs = detail_content(item, "topic", faqs, blocks, keyword_ctx)
         emit(item["url"], item, content, site, nav, global_schemas + [faq_schema(item_faqs)], records, f"topics.json:{item['slug']}", "topic")
 
     market_cards = [{"title": item["title"], "url": "/markets/", "summary": item["summary"]} for item in markets["evaluation_dimensions"]]
-    market_extra = '<div class="pill-list">' + "".join(f'<span class="pill">{esc(m)}</span>' for m in markets["market_list"]) + "</div>" + card_grid(market_cards, 3) + faq_html(resolve_faqs(faqs, markets.get("faq_refs"), "markets"))
+    market_extra = '<div class="pill-list">' + "".join(f'<span class="pill">{esc(m)}</span>' for m in markets["market_list"]) + "</div>" + card_grid(market_cards, 3) + keyword_block("/markets/", keyword_ctx, "市场词承接方向") + faq_html(resolve_faqs(faqs, markets.get("faq_refs"), "markets"))
     emit("/markets/", pages["markets"], listing_content(pages["markets"], [], market_extra), site, nav, global_schemas, records, "pages.json:markets", "markets")
 
-    blog_extra = card_grid(pages["blog"]["categories"], 3) + '<p class="note">当前不批量生成文章正文，后续文章正文默认由 DeepSeek 负责。</p>'
+    blog_extra = card_grid(pages["blog"]["categories"], 3) + '<article class="card"><h2>长尾问答词处理方式</h2><p>带有怎么做、费用、价格、渠道、平台等后缀的长尾词先进入 future_blog 队列，后续再按 GSC 反馈和内容质量要求规划正文。</p></article><p class="note">当前不批量生成文章正文，后续文章正文默认由 DeepSeek 负责。</p>'
     emit("/blog/", pages["blog"], listing_content(pages["blog"], [], blog_extra), site, nav, global_schemas, records, "pages.json:blog", "blog")
 
     contact_extra = partial("boundary.html", {"text": esc(contact["boundary_note"])}) + '<div class="grid grid-2"><article class="card"><h2>咨询前需要提供</h2>' + list_items(contact["required_info"]) + '</article><article class="card"><h2>' + esc(contact["contact_title"]) + '</h2><p>' + esc(contact["contact_intro"]) + '</p><p>' + esc(contact["contact_placeholder"]) + '</p><p>' + esc(contact["response_note"]) + "</p></article></div>" + faq_html(resolve_faqs(faqs, None, "contact"))

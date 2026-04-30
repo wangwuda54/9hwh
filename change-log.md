@@ -185,6 +185,46 @@
 - `python scripts/build_site.py` 通过。
 - `python scripts/check_static_site.py` 通过。
 
+## 2026-04-30 - 阶段 5：关键词资产库与 URL 映射系统
+
+### 变更类型
+- 类型：关键词 / 结构 / SEO / 自动质检。
+
+### 变更原因
+- 9HWH 官网需要承接大量海外推广、引流获客、投放买量相关关键词，但不能把几万个关键词直接生成几万个公开页面。
+- 需要建立关键词资产库、聚类规则、URL 映射和页面承接系统。
+
+### 变更范围
+- 涉及文件：`site_src/data/keywords/`、`scripts/build_keyword_assets.py`、`scripts/build_site.py`、`scripts/check_static_site.py`、`data/keyword-assets/`、`site/public/`、`docs/stage-5-keyword-asset-system.md`、`docs/keyword-to-url-map.md`、`docs/keyword-cluster-summary.md`、`project-status.md`、`docs/build-and-maintenance.md`、`docs/stage-4-generator-upgrade.md`、`change-log.md`
+- 是否影响旧 service 页面：否
+- 是否影响索引：只更新现有正式承接页 sitemap，不收录原始关键词列表。
+
+### 具体变更
+- 建立关键词资产库。
+- 建立 keyword seed / rules / clusters / url_map。
+- 新增 `scripts/build_keyword_assets.py`。
+- 生成 keyword assets。
+- 接入 `build_site.py`，在页面展示少量关键词承接方向。
+- 升级 `check_static_site.py`，检查关键词资产、cluster target、首页敏感词和 blocked promise。
+- 新增 keyword-to-url-map 和 cluster summary 文档。
+- 未生成几万个公开页面。
+- 未处理旧 service 页面。
+- 未进入 Cloudflare Pages 部署。
+- 未 push。
+
+### 风险判断
+- 风险等级：中
+- 主要风险：关键词资产中包含内部敏感类目，因此必须通过 rules、cluster 和 check 脚本控制，不允许进入首页、导航、sitemap 或公开页面。
+- 风险控制方式：敏感类目标记为 `internal_only`，blocked promise 标记为 `blocked`，公开页面只展示少量代表性关键词承接方向。
+
+### 回滚点
+- 回退本次提交即可恢复阶段 4 生成系统。
+
+### 验收结果
+- `python scripts/build_keyword_assets.py` 通过。
+- `python scripts/build_site.py` 通过。
+- `python scripts/check_static_site.py` 通过。
+
 ## 2026-04-30 - 阶段 3：官网静态生成系统重建
 
 ### 变更类型

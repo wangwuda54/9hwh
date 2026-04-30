@@ -8,10 +8,10 @@ AGENTS.md、project-rules.md、indexing-policy.md 不再写死临时阶段限制
 
 ## 2. 当前阶段
 
-- 当前阶段：阶段 4，生成系统增强与内容数据升级。
-- 当前目标：将 Python 静态站生成系统升级为数据化内容、组件化模板、自动 URL 清单、结构化数据和严格质量检查体系。
-- 当前推进状态：已完成 Python 静态生成系统基础版；当前已升级 FAQ、contact、SEO、schema、content blocks 数据，已生成 JSON-LD、sitemap lastmod 和 URL inventory。
-- 当前性质：继续推进官网长期维护能力，当前未进入 Cloudflare Pages 部署阶段，当前未处理旧 service 页面。
+- 当前阶段：阶段 5，关键词资产库与 URL 映射系统。
+- 当前目标：建立关键词种子库、聚类规则、URL 映射和关键词资产生成脚本，让大量关键词先进入内部资产，再映射到少量高质量承接页。
+- 当前推进状态：已建立 `site_src/data/keywords/`、`scripts/build_keyword_assets.py`、`data/keyword-assets/` 输出、关键词到 URL 映射文档和聚类统计文档。
+- 当前性质：关键词不会直接等于公开页面；当前未进入 Cloudflare Pages 部署阶段，当前未处理旧 service 页面。
 
 ## 3. 当前允许事项
 
@@ -23,7 +23,10 @@ AGENTS.md、project-rules.md、indexing-policy.md 不再写死临时阶段限制
 - 运行 `python scripts/build_site.py` 生成 `site/public/`。
 - 运行 `python scripts/check_static_site.py` 检查生成结果。
 - 维护 `site_src/data/contact.json`、`faqs.json`、`seo.json`、`schema.json`、`content_blocks.json`。
+- 维护 `site_src/data/keywords/` 关键词 seed、rules、clusters、url_map。
+- 运行 `python scripts/build_keyword_assets.py` 生成内部关键词资产。
 - 查看自动生成的 `docs/site-url-inventory.md`。
+- 查看 `docs/keyword-to-url-map.md` 和 `docs/keyword-cluster-summary.md`。
 - 更新构建和维护文档。
 
 ## 4. 当前禁止事项
@@ -42,6 +45,8 @@ AGENTS.md、project-rules.md、indexing-policy.md 不再写死临时阶段限制
 - 不创建 `docs/9hwh-rescue`。
 - 不使用 Node / React / Next / Astro。
 - 不写保证过审、保证不限号、保证效果、保证转化、保证收益等高风险承诺。
+- 不把几万个关键词直接生成几万个公开页面。
+- 不把敏感内部关键词放入首页、导航或 sitemap。
 
 ## 5. 当前输出范围
 
@@ -51,6 +56,7 @@ AGENTS.md、project-rules.md、indexing-policy.md 不再写死临时阶段限制
 - Python 标准库构建脚本。
 - Python 标准库检查脚本。
 - `site/public/` 生成结果。
+- `data/keyword-assets/` 内部关键词资产输出。
 - 构建与维护文档。
 - 项目状态和变更记录。
 
@@ -62,18 +68,21 @@ AGENTS.md、project-rules.md、indexing-policy.md 不再写死临时阶段限制
 - 批量跳转规则。
 - noindex / 301 / 410 批量执行配置。
 - legacy-source 归档内容的 Git 提交。
+- 原始关键词列表公开页面。
+- 大批低质量关键词页。
 
-## 6. 阶段 4 完成条件
+## 6. 阶段 5 完成条件
 
-阶段 4 完成需要满足：
+阶段 5 完成需要满足：
 
-- 已升级内容数据结构。
-- 已建立组件化模板 partial。
-- 已生成面包屑、FAQ、CTA、服务边界和相关链接模块。
-- 已生成 Organization、WebSite、BreadcrumbList、FAQPage、Service JSON-LD。
-- 已自动生成带 lastmod 的 sitemap 和 robots。
-- 已自动生成 `docs/site-url-inventory.md`。
-- 已升级站内链接、canonical、sitemap、robots 和高风险承诺检查。
+- 已建立关键词种子库。
+- 已建立 public / internal / future blog / blocked 规则。
+- 已建立关键词聚类定义。
+- 已建立关键词到 URL 映射。
+- 已生成关键词资产和统计。
+- 已在页面中展示少量代表性关键词承接方向。
+- 已升级检查脚本，检查关键词资产、cluster target、敏感词和 blocked promise。
+- `python scripts/build_keyword_assets.py` 通过。
 - `python scripts/build_site.py` 通过。
 - `python scripts/check_static_site.py` 通过。
 - 未处理旧 service 页面。
@@ -84,10 +93,10 @@ AGENTS.md、project-rules.md、indexing-policy.md 不再写死临时阶段限制
 当前阶段继续完善前，需要提供或确认：
 
 - 正式联系方式。
-- 是否继续扩充 services、platforms、topics 数据。
-- 是否优化模板结构。
-- 是否进入视觉强化。
-- 后续博客正文生成与审核流程。
+- 是否继续扩充高质量 topics 页。
+- 是否从 `future_blog` 队列挑选词交给 DeepSeek 写正文。
+- 是否根据后续 GSC 反馈调整 URL 映射。
+- 后续部署准备节奏。
 
 ## 8. 状态更新规则
 

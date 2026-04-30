@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import csv
+import json
 import re
 import sys
 from html.parser import HTMLParser
@@ -9,6 +11,8 @@ from urllib.parse import urlparse
 
 ROOT = Path(__file__).resolve().parents[1]
 PUBLIC = ROOT / "site" / "public"
+KEYWORDS = ROOT / "site_src" / "data" / "keywords"
+KEYWORD_ASSETS = ROOT / "data" / "keyword-assets"
 BASE_URL = "https://www.9hwh.com"
 FAILURES: list[str] = []
 WARNINGS: list[str] = []
@@ -210,6 +214,90 @@ def check_robots() -> None:
     ok("robots checks completed")
 
 
+def load_keyword_json(name: str):
+    path = KEYWORDS / name
+    if not path.exists():
+        fail(f"missing keyword data: {path.relative_to(ROOT).as_posix()}")
+        return [] if name in {"clusters.json", "url_map.json"} else {}
+    return json.loads(path.read_text(encoding="utf-8-sig"))
+
+
+def check_keyword_assets(sitemap: set[str]) -> None:
+    summary_path = KEYWORD_ASSETS / "keyword_summary.json"
+    cluster_path = KEYWORDS / "clusters.json"
+    url_map_path = KEYWORDS / "url_map.json"
+    for path in (summary_path, cluster_path, url_map_path):
+        if not path.exists():
+            fail(f"missing keyword asset file: {path.relative_to(ROOT).as_posix()}")
+
+    rules = load_keyword_json("rules.json")
+    clusters = load_keyword_json("clusters.json")
+    url_map = load_keyword_json("url_map.json")
+    if not clusters:
+        return
+
+    cluster_targets = {cluster["target_url"] for cluster in clusters if cluster.get("public_page")}
+    known_pages = {
+        "/",
+        "/services/",
+        "/platforms/",
+        "/topics/",
+        "/markets/",
+        "/blog/",
+        "/contact/",
+    }
+    for url in sitemap:
+        path = url.replace(BASE_URL, "")
+        if path not in cluster_targets and path not in known_pages:
+            fail(f"sitemap URL has no cluster or page type note: {url}")
+
+    sensitive = rules.get("sensitive_internal_categories", [])
+    home_text = (PUBLIC / "index.html").read_text(encoding="utf-8")
+    for term in sensitive:
+        if term in home_text:
+            fail(f"homepage contains sensitive internal keyword: {term}")
+
+    blocked = rules.get("blocked_promise_terms", [])
+    for path in PUBLIC.rglob("*.html"):
+        text = path.read_text(encoding="utf-8")
+        rel = path.relative_to(PUBLIC).as_posix()
+        for term in blocked:
+            if term in text:
+                fail(f"{rel} contains blocked promise term from keyword rules: {term}")
+        keyword_count = text.count('class="pill"')
+        if keyword_count > 48:
+            warn(f"{rel} displays many keyword pills: {keyword_count}")
+
+    for cluster in clusters:
+        target = cluster.get("target_url", "")
+        if target and not path_to_file(target).exists():
+            fail(f"cluster target missing local file: {cluster['cluster_id']} -> {target}")
+        if cluster.get("page_type") in {"topic", "service"} and not target:
+            fail(f"cluster missing target URL: {cluster['cluster_id']}")
+
+    topic_targets = {cluster["target_url"] for cluster in clusters if cluster.get("page_type") == "topic"}
+    service_targets = {cluster["target_url"] for cluster in clusters if cluster.get("page_type") == "service"}
+    for required in REQUIRED_PATHS:
+        if required.startswith("/topics/") and required != "/topics/" and required not in topic_targets:
+            fail(f"topic page missing cluster: {required}")
+        if required.startswith("/services/") and required != "/services/" and required not in service_targets:
+            fail(f"service page missing cluster: {required}")
+
+    for item in url_map:
+        if item.get("target_url") and not path_to_file(item["target_url"]).exists():
+            fail(f"url_map target missing local file: {item['keyword']} -> {item['target_url']}")
+
+    if summary_path.exists():
+        summary = json.loads(summary_path.read_text(encoding="utf-8-sig"))
+        if summary.get("total_keywords", 0) <= 0:
+            fail("keyword summary has no keywords")
+    pool_path = KEYWORD_ASSETS / "keyword_pool.jsonl"
+    if pool_path.exists() and pool_path.stat().st_size > 20 * 1024 * 1024:
+        warn("keyword_pool.jsonl exceeds 20MB")
+
+    ok("keyword asset checks completed")
+
+
 def main() -> int:
     if not PUBLIC.exists():
         fail("site/public does not exist")
@@ -221,6 +309,7 @@ def main() -> int:
     check_sitemap(sitemap)
     check_robots()
     check_html(sitemap)
+    check_keyword_assets(sitemap)
     if FAILURES:
         print(f"[FAIL] {len(FAILURES)} issue(s) found")
         return 1

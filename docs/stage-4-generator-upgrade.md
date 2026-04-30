@@ -81,3 +81,15 @@
 - 继续加深 topics 内容。
 - 继续强化视觉和内容层级。
 - 最后再进入 GitHub remote / Cloudflare Pages 部署准备。
+
+## 阶段 5 接入说明
+
+阶段 5 已在阶段 4 生成系统基础上接入关键词资产系统：
+
+- 新增 `site_src/data/keywords/`。
+- 新增 `scripts/build_keyword_assets.py`。
+- 自动生成 `data/keyword-assets/`。
+- 生成器读取关键词聚类和 URL 映射，在页面中展示少量关键词承接方向。
+- 检查脚本已增加关键词资产、cluster target、首页敏感词和 blocked promise 检查。
+
+阶段 5 仍然不进入 Cloudflare Pages 部署，不处理旧 service 页面，不生成大量关键词页。

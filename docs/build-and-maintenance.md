@@ -149,3 +149,67 @@ python scripts/check_static_site.py
 - Cloudflare Pages 配置
 - push
 - 旧 service 页面处理
+
+## 14. 如何更新关键词 seed
+
+修改：
+
+```text
+site_src/data/keywords/seed.json
+```
+
+`seed.json` 只保存关键词维度，包括国家、平台、类目、动作词和长尾后缀。不要把几万个原始词直接写进公开页面。
+
+## 15. 如何更新 cluster
+
+修改：
+
+```text
+site_src/data/keywords/clusters.json
+```
+
+每个 cluster 必须有 `cluster_id`、`target_url`、`intent`、`public_page` 和 `sitemap`。搜索意图相近的一组关键词应映射到一个高质量承接页。
+
+## 16. 如何重新生成 keyword assets
+
+执行：
+
+```powershell
+python scripts/build_keyword_assets.py
+python scripts/build_site.py
+python scripts/check_static_site.py
+```
+
+生成结果位于：
+
+```text
+data/keyword-assets/
+docs/keyword-to-url-map.md
+docs/keyword-cluster-summary.md
+```
+
+## 17. 如何检查关键词映射
+
+优先查看：
+
+```text
+docs/keyword-to-url-map.md
+docs/keyword-cluster-summary.md
+data/keyword-assets/keyword_summary.json
+```
+
+如果检查脚本报 cluster target 缺失，说明某个 cluster 映射到了不存在的页面。
+
+## 18. 为什么不要直接新增几万个页面
+
+关键词库是资产，不是页面清单。几万个关键词直接生成公开页面会造成重复、低质量、维护失控和索引风险。当前规则是先聚类、再映射 URL、再用高质量页面承接。
+
+## 19. 如何决定关键词是否进入公开页面
+
+判断顺序：
+
+- 是否属于 `blocked`：如果是，不公开。
+- 是否属于 `internal_only`：如果是，只保留内部资产。
+- 是否属于 `future_blog`：如果是，后续按内容质量和 GSC 反馈规划文章。
+- 是否已有对应承接页：如果有，映射到现有 URL。
+- 是否需要新页面：只有搜索意图明显独立、低风险、可写出高质量内容时才新增。
