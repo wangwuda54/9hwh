@@ -47,6 +47,7 @@ python scripts/generate_deepseek_drafts_api.py --batch batch-001 --run-import-re
 - `data/deepseek-inbox/<batch-id>-deepseek-output.md`
 - `data/content-assets/deepseek_api_generation_report.json`
 - `docs/deepseek-api-generation-report.md`
+- `data/deepseek-reviewed/` keeps imported source copies only and is not a content status source
 
 ## 7. Import And Review Flow
 
@@ -58,6 +59,7 @@ python scripts/review_content_drafts.py
 ```
 
 `--run-import-review` is available for convenience, but default behavior does not auto-run import or review.
+`data/deepseek-reviewed/` is only an import archive directory. It does not mean a draft has entered `reviewed`. Official status must be checked in `site_src/data/content/content_status.json`.
 
 ## 8. Hard Boundaries
 

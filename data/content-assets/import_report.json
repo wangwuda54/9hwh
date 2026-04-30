@@ -1,13 +1,67 @@
 {
-  "generated_at": "2026-04-30T23:05:25",
-  "imported": [],
-  "skipped": [
+  "generated_at": "2026-04-30T23:18:41",
+  "imported": [
+    {
+      "file": "c001-ad-campaign-support-how-to-17e66750.md",
+      "article": 1,
+      "content_id": "c001-ad-campaign-support-how-to-17e66750",
+      "target": "site_src/content_drafts/c001-ad-campaign-support-how-to-17e66750.md"
+    },
+    {
+      "file": "c004-crypto-promotion-exchange-acquisition-how-to-efd74e87.md",
+      "article": 1,
+      "content_id": "c004-crypto-promotion-exchange-acquisition-how-to-efd74e87",
+      "target": "site_src/content_drafts/c004-crypto-promotion-exchange-acquisition-how-to-efd74e87.md"
+    },
+    {
+      "file": "c007-dating-traffic-dating-how-to-002063ad.md",
+      "article": 1,
+      "content_id": "c007-dating-traffic-dating-how-to-002063ad",
+      "target": "site_src/content_drafts/c007-dating-traffic-dating-how-to-002063ad.md"
+    },
+    {
+      "file": "c010-media-buying-part-time-how-to-5875d40e.md",
+      "article": 1,
+      "content_id": "c010-media-buying-part-time-how-to-5875d40e",
+      "target": "site_src/content_drafts/c010-media-buying-part-time-how-to-5875d40e.md"
+    },
     {
       "file": "c012-traffic-acquisition-dating-app-how-to-f56b0dad.md",
       "article": 1,
       "content_id": "c012-traffic-acquisition-dating-app-how-to-f56b0dad",
-      "reason": "draft file already exists"
+      "target": "site_src/content_drafts/c012-traffic-acquisition-dating-app-how-to-f56b0dad.md"
+    },
+    {
+      "file": "c031-fb-promotion-fb-dating-traffic-5035e1c0.md",
+      "article": 1,
+      "content_id": "c031-fb-promotion-fb-dating-traffic-5035e1c0",
+      "target": "site_src/content_drafts/c031-fb-promotion-fb-dating-traffic-5035e1c0.md"
+    },
+    {
+      "file": "c043-game-promotion-fb-game-promotion-eec369fd.md",
+      "article": 1,
+      "content_id": "c043-game-promotion-fb-game-promotion-eec369fd",
+      "target": "site_src/content_drafts/c043-game-promotion-fb-game-promotion-eec369fd.md"
+    },
+    {
+      "file": "c051-immigration-leads-fb-immigration-leads-b33be086.md",
+      "article": 1,
+      "content_id": "c051-immigration-leads-fb-immigration-leads-b33be086",
+      "target": "site_src/content_drafts/c051-immigration-leads-fb-immigration-leads-b33be086.md"
+    },
+    {
+      "file": "c053-insurance-leads-fb-insurance-leads-b01d5372.md",
+      "article": 1,
+      "content_id": "c053-insurance-leads-fb-insurance-leads-b01d5372",
+      "target": "site_src/content_drafts/c053-insurance-leads-fb-insurance-leads-b01d5372.md"
+    },
+    {
+      "file": "c055-loan-leads-fb-loan-leads-60d3dc0c.md",
+      "article": 1,
+      "content_id": "c055-loan-leads-fb-loan-leads-60d3dc0c",
+      "target": "site_src/content_drafts/c055-loan-leads-fb-loan-leads-60d3dc0c.md"
     }
   ],
+  "skipped": [],
   "failed": []
 }

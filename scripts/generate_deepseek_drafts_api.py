@@ -72,6 +72,7 @@ SYSTEM_PROMPT = """项目定位：
 - 不要输出 HTML
 - 不要使用代码块包裹输出
 - 不要编造案例、团队、办公室、联系方式
+- 不要出现微信、WhatsApp、Telegram 或任何具体联系方式
 - 不要写保证过审、保证效果、保证转化、保证收益
 - 不要写绕过平台政策、规避审核、抗风控
 - 不要写违法违规承诺
@@ -79,6 +80,7 @@ SYSTEM_PROMPT = """项目定位：
 - 上述禁用词不要以正面、反面、举例、提醒或复述清单的形式出现在最终成文中，统一改写为“受限或违规项目”“不合规承诺”等泛化表述
 - 内容适合长期官网，不要像灰色落地页
 - 每篇必须包含服务边界和咨询准备建议
+- 至少加入 2 个来自任务包内链建议的站内 Markdown 链接
 - 不要额外解释
 - 不要输出任务分析
 - 不要输出总结
@@ -300,6 +302,7 @@ def write_report(
     generated: list[dict],
     skipped: list[dict],
     failed: list[dict],
+    available_outputs: list[Path],
     dry_run: bool,
     combined_path: Path | None,
     import_result: dict | None,
@@ -323,6 +326,8 @@ def write_report(
         "generated": generated,
         "skipped": skipped,
         "failed": failed,
+        "available_output_count": len(available_outputs),
+        "available_outputs": [path.relative_to(ROOT).as_posix() for path in available_outputs],
         "combined_output": str(combined_path) if combined_path else "",
         "run_import_review": import_result or {},
     }
@@ -343,6 +348,7 @@ def write_report(
         f"- generated: {len(generated)}",
         f"- skipped: {len(skipped)}",
         f"- failed: {len(failed)}",
+        f"- available_output_count: {len(available_outputs)}",
         "",
         "## Generated",
         "",
@@ -352,6 +358,8 @@ def write_report(
     rows.extend(f"- {item['content_id']}: {item['reason']}" for item in skipped)
     rows.extend(["", "## Failed", ""])
     rows.extend(f"- {item['content_id']}: {item['reason']}" for item in failed)
+    rows.extend(["", "## Available Outputs", ""])
+    rows.extend(f"- {path.relative_to(ROOT).as_posix()}" for path in available_outputs)
     if combined_path:
         rows.extend(["", "## Combined Output", "", f"- {combined_path}"])
     if import_result:
@@ -422,6 +430,7 @@ python scripts/generate_deepseek_drafts_api.py --batch batch-001 --run-import-re
 - `data/deepseek-inbox/<batch-id>-deepseek-output.md`
 - `data/content-assets/deepseek_api_generation_report.json`
 - `docs/deepseek-api-generation-report.md`
+- `data/deepseek-reviewed/` keeps imported source copies only and is not a content status source
 
 ## 7. Import And Review Flow
 
@@ -433,6 +442,7 @@ python scripts/review_content_drafts.py
 ```
 
 `--run-import-review` is available for convenience, but default behavior does not auto-run import or review.
+`data/deepseek-reviewed/` is only an import archive directory. It does not mean a draft has entered `reviewed`. Official status must be checked in `site_src/data/content/content_status.json`.
 
 ## 8. Hard Boundaries
 
@@ -484,7 +494,7 @@ def main() -> int:
 
     if args.dry_run:
         write_stage_doc()
-        write_report(args.batch, config_path, config_fields, selected, [], [], [], True, None, None)
+        write_report(args.batch, config_path, config_fields, selected, [], [], [], [], True, None, None)
         print(f"[OK] dry-run ready for {args.batch}, selected {len(selected)} items")
         return 0
 
@@ -552,8 +562,21 @@ def main() -> int:
         combined_path.unlink()
 
     import_result = maybe_run_import_review() if args.run_import_review else None
+    available_outputs = sorted(batch_dir.glob("*.md"))
     write_stage_doc()
-    write_report(args.batch, config_path, config_fields, selected, generated, skipped, failed, False, combined_path if combined_parts else None, import_result)
+    write_report(
+        args.batch,
+        config_path,
+        config_fields,
+        selected,
+        generated,
+        skipped,
+        failed,
+        available_outputs,
+        False,
+        combined_path if combined_parts else None,
+        import_result,
+    )
 
     print(f"[OK] generated {len(generated)} drafts, skipped {len(skipped)}, failed {len(failed)}")
     return 1 if failed else 0

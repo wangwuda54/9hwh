@@ -42,18 +42,19 @@ FORBIDDEN_TERMS = [
     "任何行业都能投",
 ]
 FABRICATION_PATTERNS = [
-    "办公室",
-    "办公地址",
-    "总部位于",
-    "团队规模",
-    "上百人团队",
-    "客户案例",
-    "成功案例",
-    "联系电话",
-    "手机号",
-    "微信",
-    "WhatsApp",
-    "Telegram",
+    r"办公室",
+    r"办公地址",
+    r"总部位于",
+    r"团队规模",
+    r"上百人团队",
+    r"(我们的|本团队的|公司已做过的)客户案例",
+    r"(我们的|本团队的|公司已做过的)成功案例",
+    r"联系电话",
+    r"联系.*手机号",
+    r"手机号.{0,8}(联系|咨询|添加|提交)",
+    r"微信.{0,8}(联系|咨询|添加)",
+    r"WhatsApp.{0,8}(contact|message|consult|chat|number)",
+    r"Telegram.{0,8}(contact|message|consult|group|channel)",
 ]
 HIGH_RISK_MARKERS = [
     "虚拟币",
@@ -200,9 +201,9 @@ def review_one(path: Path, queue_by_id: dict[str, dict]) -> dict:
     for term in rules.get("blocked_terms", []):
         if term and term in full_text:
             issues.append(f"blocked term from content_rules: {term}")
-    for term in FABRICATION_PATTERNS:
-        if term in body:
-            issues.append(f"possible fabricated company/contact claim: {term}")
+    for pattern in FABRICATION_PATTERNS:
+        if re.search(pattern, body, flags=re.IGNORECASE):
+            issues.append(f"possible fabricated company/contact claim: {pattern}")
     if "service_" in body or "/service_" in body:
         issues.append("contains old service link")
     internal_links = len(re.findall(r"\]\(/", body))

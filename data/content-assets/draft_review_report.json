@@ -1,13 +1,87 @@
 {
-  "draft_count": 1,
-  "pass_count": 1,
-  "warning_count": 0,
+  "draft_count": 10,
+  "pass_count": 9,
+  "warning_count": 1,
   "fail_count": 0,
   "articles": [
+    {
+      "file": "c001-ad-campaign-support-how-to-17e66750.md",
+      "content_id": "c001-ad-campaign-support-how-to-17e66750",
+      "target_url": "/blog/crypto-promotion-how-to-17e66750/",
+      "status": "pass",
+      "issues": [],
+      "warnings": []
+    },
+    {
+      "file": "c004-crypto-promotion-exchange-acquisition-how-to-efd74e87.md",
+      "content_id": "c004-crypto-promotion-exchange-acquisition-how-to-efd74e87",
+      "target_url": "/blog/exchange-acquisition-how-to-efd74e87/",
+      "status": "warning",
+      "issues": [],
+      "warnings": [
+        "less than 2 internal links"
+      ]
+    },
+    {
+      "file": "c007-dating-traffic-dating-how-to-002063ad.md",
+      "content_id": "c007-dating-traffic-dating-how-to-002063ad",
+      "target_url": "/blog/dating-how-to-002063ad/",
+      "status": "pass",
+      "issues": [],
+      "warnings": []
+    },
+    {
+      "file": "c010-media-buying-part-time-how-to-5875d40e.md",
+      "content_id": "c010-media-buying-part-time-how-to-5875d40e",
+      "target_url": "/blog/part-time-how-to-5875d40e/",
+      "status": "pass",
+      "issues": [],
+      "warnings": []
+    },
     {
       "file": "c012-traffic-acquisition-dating-app-how-to-f56b0dad.md",
       "content_id": "c012-traffic-acquisition-dating-app-how-to-f56b0dad",
       "target_url": "/blog/dating-app-how-to-f56b0dad/",
+      "status": "pass",
+      "issues": [],
+      "warnings": []
+    },
+    {
+      "file": "c031-fb-promotion-fb-dating-traffic-5035e1c0.md",
+      "content_id": "c031-fb-promotion-fb-dating-traffic-5035e1c0",
+      "target_url": "/blog/topics/fb-dating-traffic-5035e1c0/",
+      "status": "pass",
+      "issues": [],
+      "warnings": []
+    },
+    {
+      "file": "c043-game-promotion-fb-game-promotion-eec369fd.md",
+      "content_id": "c043-game-promotion-fb-game-promotion-eec369fd",
+      "target_url": "/blog/topics/fb-game-promotion-eec369fd/",
+      "status": "pass",
+      "issues": [],
+      "warnings": []
+    },
+    {
+      "file": "c051-immigration-leads-fb-immigration-leads-b33be086.md",
+      "content_id": "c051-immigration-leads-fb-immigration-leads-b33be086",
+      "target_url": "/blog/topics/fb-immigration-leads-b33be086/",
+      "status": "pass",
+      "issues": [],
+      "warnings": []
+    },
+    {
+      "file": "c053-insurance-leads-fb-insurance-leads-b01d5372.md",
+      "content_id": "c053-insurance-leads-fb-insurance-leads-b01d5372",
+      "target_url": "/blog/topics/fb-insurance-leads-b01d5372/",
+      "status": "pass",
+      "issues": [],
+      "warnings": []
+    },
+    {
+      "file": "c055-loan-leads-fb-loan-leads-60d3dc0c.md",
+      "content_id": "c055-loan-leads-fb-loan-leads-60d3dc0c",
+      "target_url": "/blog/topics/fb-loan-leads-60d3dc0c/",
       "status": "pass",
       "issues": [],
       "warnings": []

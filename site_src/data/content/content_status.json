@@ -1,8 +1,8 @@
 {
   "total_planned": 60,
-  "prompt_ready": 20,
+  "prompt_ready": 15,
   "writing": 0,
-  "draft_received": 0,
+  "draft_received": 10,
   "reviewed": 0,
   "published": 0,
   "paused": 0,

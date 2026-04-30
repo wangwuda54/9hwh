@@ -4,6 +4,7 @@ import argparse
 import json
 import re
 import shutil
+from collections import Counter
 from datetime import datetime
 from pathlib import Path
 
@@ -13,6 +14,7 @@ INBOX = ROOT / "data" / "deepseek-inbox"
 ARCHIVE = ROOT / "data" / "deepseek-reviewed"
 DRAFTS = ROOT / "site_src" / "content_drafts"
 QUEUE_PATH = ROOT / "site_src" / "data" / "content" / "content_queue.json"
+STATUS_PATH = ROOT / "site_src" / "data" / "content" / "content_status.json"
 BATCH_ROOT = ROOT / "data" / "deepseek-batches"
 ASSETS = ROOT / "data" / "content-assets"
 DOCS = ROOT / "docs"
@@ -71,6 +73,21 @@ def load_queue() -> list[dict]:
     if not QUEUE_PATH.exists():
         return []
     return json.loads(QUEUE_PATH.read_text(encoding="utf-8-sig"))
+
+
+def write_status_summary(queue: list[dict]) -> None:
+    counts = Counter(item.get("status", "") for item in queue)
+    summary = {
+        "total_planned": len(queue),
+        "prompt_ready": counts.get("prompt_ready", 0),
+        "writing": counts.get("writing", 0),
+        "draft_received": counts.get("draft_received", 0),
+        "reviewed": counts.get("reviewed", 0),
+        "published": counts.get("published", 0),
+        "paused": counts.get("paused", 0),
+        "last_generated_at": datetime.now().date().isoformat(),
+    }
+    STATUS_PATH.write_text(json.dumps(summary, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n")
 
 
 def load_batch_specs() -> dict[str, dict]:
@@ -201,6 +218,7 @@ def main() -> int:
             shutil.copyfile(path, ARCHIVE / path.name)
 
     QUEUE_PATH.write_text(json.dumps(queue, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n")
+    write_status_summary(queue)
     report = {
         "generated_at": datetime.now().isoformat(timespec="seconds"),
         "imported": imported,
