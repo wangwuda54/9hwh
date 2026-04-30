@@ -268,6 +268,47 @@
 - `python scripts/build_site.py` 通过。
 - `python scripts/check_static_site.py` 通过。
 
+## 2026-04-30 - 阶段 7：DeepSeek 第一批内容生产任务与回稿接入
+
+### 变更类型
+- 类型：内容生产 / 任务批次 / 审核流程。
+
+### 变更原因
+- 需要将阶段 6 的内容任务系统推进到可执行生产状态，生成第一批 DeepSeek 写作任务，并建立回稿导入、审核和状态管理工具。
+
+### 变更范围
+- 涉及文件：`data/deepseek-batches/`、`scripts/build_deepseek_batch.py`、`scripts/import_deepseek_drafts.py`、`scripts/review_content_drafts.py`、`scripts/update_content_status.py`、`scripts/build_site.py`、`scripts/check_static_site.py`、`site/public/`、`docs/stage-7-deepseek-batch-001.md`、`docs/deepseek-output-format.md`、`docs/content-review-rules.md`、`docs/content-production-workflow.md`、`project-status.md`、`change-log.md`
+- 是否影响旧 service 页面：否
+- 是否影响索引：否；未审核正文不进入 sitemap。
+
+### 具体变更
+- 生成 DeepSeek batch-001 写作任务包。
+- 新增 `scripts/build_deepseek_batch.py`。
+- 新增 `scripts/import_deepseek_drafts.py`。
+- 新增 `scripts/review_content_drafts.py`。
+- 新增 `scripts/update_content_status.py`。
+- 新增 DeepSeek 输出格式文档。
+- 新增内容审核规则。
+- 更新内容生产工作流。
+- 未直接写正文。
+- 未生成未审核内容页。
+- 未处理旧 service 页面。
+- 未进入 Cloudflare Pages 部署。
+- 未 push。
+
+### 风险判断
+- 风险等级：中
+- 主要风险：DeepSeek 回稿如果未审核直接发布，会造成风险表达、低质量内容或索引失控。
+- 风险控制方式：回稿先进入 inbox，经导入和审核脚本检查，再手动更新状态，只有 ready_to_publish 或 published 才生成页面。
+
+### 回滚点
+- 回退本次提交即可恢复阶段 6 内容生产系统。
+
+### 验收结果
+- `python scripts/build_deepseek_batch.py` 通过。
+- `python scripts/build_site.py` 通过。
+- `python scripts/check_static_site.py` 通过。
+
 ## 2026-04-30 - 阶段 3：官网静态生成系统重建
 
 ### 变更类型

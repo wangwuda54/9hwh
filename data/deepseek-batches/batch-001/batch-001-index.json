@@ -1,0 +1,173 @@
+[
+  {
+    "batch_id": "batch-001",
+    "content_id": "c012-traffic-acquisition-dating-app-how-to-f56b0dad",
+    "target_url": "/blog/dating-app-how-to-f56b0dad/",
+    "title": "交友App注册怎么做：推广路径、渠道判断和准备清单",
+    "h1": "交友App注册怎么做：推广路径、渠道判断和准备清单",
+    "primary_keyword": "交友App注册怎么做",
+    "secondary_keywords": [
+      "交友App注册",
+      "怎么做"
+    ],
+    "cluster_id": "traffic-acquisition",
+    "status": "prompt_ready",
+    "task_file": "data/deepseek-batches/batch-001/tasks/012-c012-traffic-acquisition-dating-app-how-to-f56b0dad.md"
+  },
+  {
+    "batch_id": "batch-001",
+    "content_id": "c001-ad-campaign-support-how-to-17e66750",
+    "target_url": "/blog/how-to-17e66750/",
+    "title": "加密货币怎么做：推广路径、渠道判断和准备清单",
+    "h1": "加密货币怎么做：推广路径、渠道判断和准备清单",
+    "primary_keyword": "加密货币怎么做",
+    "secondary_keywords": [
+      "加密货币",
+      "怎么做"
+    ],
+    "cluster_id": "ad-campaign-support",
+    "status": "prompt_ready",
+    "task_file": "data/deepseek-batches/batch-001/tasks/001-c001-ad-campaign-support-how-to-17e66750.md"
+  },
+  {
+    "batch_id": "batch-001",
+    "content_id": "c010-media-buying-part-time-how-to-5875d40e",
+    "target_url": "/blog/part-time-how-to-5875d40e/",
+    "title": "兼职怎么做：推广路径、渠道判断和准备清单",
+    "h1": "兼职怎么做：推广路径、渠道判断和准备清单",
+    "primary_keyword": "兼职怎么做",
+    "secondary_keywords": [
+      "兼职",
+      "怎么做"
+    ],
+    "cluster_id": "media-buying",
+    "status": "prompt_ready",
+    "task_file": "data/deepseek-batches/batch-001/tasks/010-c010-media-buying-part-time-how-to-5875d40e.md"
+  },
+  {
+    "batch_id": "batch-001",
+    "content_id": "c004-crypto-promotion-exchange-acquisition-how-to-efd74e87",
+    "target_url": "/blog/exchange-acquisition-how-to-efd74e87/",
+    "title": "交易所拉新怎么做：推广路径、渠道判断和准备清单",
+    "h1": "交易所拉新怎么做：推广路径、渠道判断和准备清单",
+    "primary_keyword": "交易所拉新怎么做",
+    "secondary_keywords": [
+      "交易所拉新",
+      "怎么做"
+    ],
+    "cluster_id": "crypto-promotion",
+    "status": "prompt_ready",
+    "task_file": "data/deepseek-batches/batch-001/tasks/004-c004-crypto-promotion-exchange-acquisition-how-to-efd74e87.md"
+  },
+  {
+    "batch_id": "batch-001",
+    "content_id": "c007-dating-traffic-dating-how-to-002063ad",
+    "target_url": "/blog/dating-how-to-002063ad/",
+    "title": "交友私聊怎么做：推广路径、渠道判断和准备清单",
+    "h1": "交友私聊怎么做：推广路径、渠道判断和准备清单",
+    "primary_keyword": "交友私聊怎么做",
+    "secondary_keywords": [
+      "交友私聊",
+      "怎么做"
+    ],
+    "cluster_id": "dating-traffic",
+    "status": "prompt_ready",
+    "task_file": "data/deepseek-batches/batch-001/tasks/007-c007-dating-traffic-dating-how-to-002063ad.md"
+  },
+  {
+    "batch_id": "batch-001",
+    "content_id": "c043-game-promotion-fb-game-promotion-eec369fd",
+    "target_url": "/blog/topics/fb-game-promotion-eec369fd/",
+    "title": "FB游戏推广：海外推广与获客准备指南",
+    "h1": "FB游戏推广：海外推广与获客准备指南",
+    "primary_keyword": "FB游戏推广",
+    "secondary_keywords": [
+      "游戏",
+      "FB",
+      "推广"
+    ],
+    "cluster_id": "game-promotion",
+    "status": "planned",
+    "task_file": "data/deepseek-batches/batch-001/tasks/043-c043-game-promotion-fb-game-promotion-eec369fd.md"
+  },
+  {
+    "batch_id": "batch-001",
+    "content_id": "c055-loan-leads-fb-loan-leads-60d3dc0c",
+    "target_url": "/blog/topics/fb-loan-leads-60d3dc0c/",
+    "title": "FB贷款获客：海外推广与获客准备指南",
+    "h1": "FB贷款获客：海外推广与获客准备指南",
+    "primary_keyword": "FB贷款获客",
+    "secondary_keywords": [
+      "贷款",
+      "FB",
+      "获客"
+    ],
+    "cluster_id": "loan-leads",
+    "status": "planned",
+    "task_file": "data/deepseek-batches/batch-001/tasks/055-c055-loan-leads-fb-loan-leads-60d3dc0c.md"
+  },
+  {
+    "batch_id": "batch-001",
+    "content_id": "c053-insurance-leads-fb-insurance-leads-b01d5372",
+    "target_url": "/blog/topics/fb-insurance-leads-b01d5372/",
+    "title": "FB保险获客：海外推广与获客准备指南",
+    "h1": "FB保险获客：海外推广与获客准备指南",
+    "primary_keyword": "FB保险获客",
+    "secondary_keywords": [
+      "保险",
+      "FB",
+      "获客"
+    ],
+    "cluster_id": "insurance-leads",
+    "status": "planned",
+    "task_file": "data/deepseek-batches/batch-001/tasks/053-c053-insurance-leads-fb-insurance-leads-b01d5372.md"
+  },
+  {
+    "batch_id": "batch-001",
+    "content_id": "c051-immigration-leads-fb-immigration-leads-b33be086",
+    "target_url": "/blog/topics/fb-immigration-leads-b33be086/",
+    "title": "FB移民获客：海外推广与获客准备指南",
+    "h1": "FB移民获客：海外推广与获客准备指南",
+    "primary_keyword": "FB移民获客",
+    "secondary_keywords": [
+      "移民",
+      "FB",
+      "获客"
+    ],
+    "cluster_id": "immigration-leads",
+    "status": "planned",
+    "task_file": "data/deepseek-batches/batch-001/tasks/051-c051-immigration-leads-fb-immigration-leads-b33be086.md"
+  },
+  {
+    "batch_id": "batch-001",
+    "content_id": "c031-fb-promotion-fb-dating-traffic-5035e1c0",
+    "target_url": "/blog/topics/fb-dating-traffic-5035e1c0/",
+    "title": "FB交友引流：海外推广与获客准备指南",
+    "h1": "FB交友引流：海外推广与获客准备指南",
+    "primary_keyword": "FB交友引流",
+    "secondary_keywords": [
+      "交友引流",
+      "FB",
+      "引流"
+    ],
+    "cluster_id": "fb-promotion",
+    "status": "planned",
+    "task_file": "data/deepseek-batches/batch-001/tasks/031-c031-fb-promotion-fb-dating-traffic-5035e1c0.md"
+  },
+  {
+    "batch_id": "batch-001",
+    "content_id": "c045-google-promotion-tk-immigration-ads-bcb960fd",
+    "target_url": "/blog/topics/tk-immigration-ads-bcb960fd/",
+    "title": "TK移民投放：海外推广与获客准备指南",
+    "h1": "TK移民投放：海外推广与获客准备指南",
+    "primary_keyword": "TK移民投放",
+    "secondary_keywords": [
+      "移民",
+      "TK",
+      "投放"
+    ],
+    "cluster_id": "google-promotion",
+    "status": "planned",
+    "task_file": "data/deepseek-batches/batch-001/tasks/045-c045-google-promotion-tk-immigration-ads-bcb960fd.md"
+  }
+]

@@ -3,6 +3,7 @@ from __future__ import annotations
 import csv
 import json
 import re
+import subprocess
 import sys
 from html.parser import HTMLParser
 from pathlib import Path
@@ -15,6 +16,8 @@ KEYWORDS = ROOT / "site_src" / "data" / "keywords"
 KEYWORD_ASSETS = ROOT / "data" / "keyword-assets"
 CONTENT_DATA = ROOT / "site_src" / "data" / "content"
 DEEPSEEK_TASKS = ROOT / "data" / "deepseek-tasks"
+BATCH_001 = ROOT / "data" / "deepseek-batches" / "batch-001"
+DRAFTS = ROOT / "site_src" / "content_drafts"
 BASE_URL = "https://www.9hwh.com"
 FAILURES: list[str] = []
 WARNINGS: list[str] = []
@@ -361,6 +364,44 @@ def check_content_pipeline(sitemap: set[str]) -> None:
     ok("content pipeline checks completed")
 
 
+def check_deepseek_batch(sitemap: set[str]) -> None:
+    tasks_path = BATCH_001 / "batch-001-tasks.md"
+    index_path = BATCH_001 / "batch-001-index.json"
+    if not tasks_path.exists():
+        fail("missing batch-001-tasks.md")
+        return
+    if not index_path.exists():
+        fail("missing batch-001-index.json")
+        return
+    queue = {item["content_id"]: item for item in json.loads((CONTENT_DATA / "content_queue.json").read_text(encoding="utf-8-sig"))}
+    batch = json.loads(index_path.read_text(encoding="utf-8-sig"))
+    if not 10 <= len(batch) <= 15:
+        fail(f"batch-001 task count must be 10-15, got {len(batch)}")
+    batch_text = tasks_path.read_text(encoding="utf-8-sig")
+    required = ["content_id:", "status: draft_received", "不要省略 front matter", "不要合并多篇文章"]
+    for token in required:
+        if token not in batch_text:
+            fail(f"batch-001 missing DeepSeek output instruction: {token}")
+    for item in batch:
+        cid = item.get("content_id", "")
+        if cid not in queue:
+            fail(f"batch task missing from content_queue: {cid}")
+        task_file = ROOT / item.get("task_file", "")
+        if not task_file.exists():
+            fail(f"batch task file missing: {item.get('task_file')}")
+        elif "status: draft_received" not in task_file.read_text(encoding="utf-8-sig"):
+            fail(f"batch task missing output front matter template: {task_file.name}")
+    if DRAFTS.exists() and any(path.name.upper() != "README.MD" for path in DRAFTS.glob("*.md")):
+        result = subprocess.run([sys.executable, str(ROOT / "scripts" / "review_content_drafts.py")], cwd=ROOT, text=True, capture_output=True)
+        if result.returncode != 0:
+            fail("review_content_drafts.py failed")
+    for item in queue.values():
+        full_url = BASE_URL + item.get("target_url", "").lstrip("/")
+        if item.get("status") in {"draft_received", "reviewed"} and full_url in sitemap:
+            fail(f"draft/reviewed content entered sitemap: {item['content_id']}")
+    ok("DeepSeek batch checks completed")
+
+
 def main() -> int:
     if not PUBLIC.exists():
         fail("site/public does not exist")
@@ -374,6 +415,7 @@ def main() -> int:
     check_html(sitemap)
     check_keyword_assets(sitemap)
     check_content_pipeline(sitemap)
+    check_deepseek_batch(sitemap)
     if FAILURES:
         print(f"[FAIL] {len(FAILURES)} issue(s) found")
         return 1
