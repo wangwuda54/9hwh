@@ -240,7 +240,7 @@ def content_status_html(queue: list[dict]) -> str:
     total = sum(counts.values())
     return (
         '<article class="card"><h2>内容生产状态</h2>'
-        f"<p>当前已规划内容任务 {total} 条：planned {counts.get('planned', 0)} 条，prompt_ready {counts.get('prompt_ready', 0)} 条，draft_received {counts.get('draft_received', 0)} 条，ready_to_publish {counts.get('ready_to_publish', 0)} 条，published {counts.get('published', 0)} 条。</p>"
+        f"<p>当前已规划内容任务 {total} 条：planned {counts.get('planned', 0)} 条，prompt_ready {counts.get('prompt_ready', 0)} 条，draft_received {counts.get('draft_received', 0)} 条，reviewed {counts.get('reviewed', 0)} 条，published {counts.get('published', 0)} 条。</p>"
         "<p>第一批 DeepSeek batch-001 已作为写作任务包准备。未完成正文不会生成公开页面，也不会进入 sitemap。正文后续由 DeepSeek 生成，再由 Codex 审核接入。</p></article>"
     )
 
@@ -259,7 +259,11 @@ def parse_draft(path: Path) -> tuple[dict, str]:
 
 
 def load_publishable_drafts(queue: list[dict]) -> list[tuple[dict, str]]:
-    publishable = {item["content_id"]: item for item in queue if item["status"] in {"ready_to_publish", "published"}}
+    publishable = {
+        item["content_id"]: item
+        for item in queue
+        if item.get("status") == "published" and not item.get("internal_only")
+    }
     result = []
     if not DRAFTS.exists():
         return result

@@ -198,7 +198,7 @@ def write_outputs(queue: list[dict]) -> None:
         "prompt_ready": status_counts.get("prompt_ready", 0),
         "writing": status_counts.get("writing", 0),
         "draft_received": status_counts.get("draft_received", 0),
-        "ready_to_publish": status_counts.get("ready_to_publish", 0),
+        "reviewed": status_counts.get("reviewed", 0),
         "published": status_counts.get("published", 0),
         "paused": status_counts.get("paused", 0),
         "last_generated_at": date.today().isoformat()

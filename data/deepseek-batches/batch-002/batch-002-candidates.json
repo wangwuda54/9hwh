@@ -1,0 +1,354 @@
+[
+  {
+    "batch_id": "batch-002",
+    "candidate_only": true,
+    "content_id": "c005-crypto-promotion-crypto-traffic-how-to-a32df87d",
+    "target_url": "/blog/crypto-traffic-how-to-a32df87d/",
+    "title": "币圈引流怎么做：推广路径、渠道判断和准备清单",
+    "primary_keyword": "币圈引流怎么做",
+    "secondary_keywords": [
+      "币圈引流",
+      "怎么做"
+    ],
+    "cluster_id": "crypto-promotion",
+    "status": "prompt_ready",
+    "risk_level": "low",
+    "page_type": "blog_article",
+    "internal_links": [
+      "/topics/crypto-promotion/",
+      "/services/",
+      "/topics/",
+      "/contact/"
+    ],
+    "reason": "candidate for next DeepSeek batch; not a formal task package"
+  },
+  {
+    "batch_id": "batch-002",
+    "candidate_only": true,
+    "content_id": "c006-crypto-promotion-crypto-promotion-how-to-1b5b5379",
+    "target_url": "/blog/crypto-promotion-how-to-1b5b5379/",
+    "title": "虚拟币推广怎么做：推广路径、渠道判断和准备清单",
+    "primary_keyword": "虚拟币推广怎么做",
+    "secondary_keywords": [
+      "虚拟币推广",
+      "怎么做"
+    ],
+    "cluster_id": "crypto-promotion",
+    "status": "prompt_ready",
+    "risk_level": "low",
+    "page_type": "blog_article",
+    "internal_links": [
+      "/topics/crypto-promotion/",
+      "/services/",
+      "/topics/",
+      "/contact/"
+    ],
+    "reason": "candidate for next DeepSeek batch; not a formal task package"
+  },
+  {
+    "batch_id": "batch-002",
+    "candidate_only": true,
+    "content_id": "c008-dating-traffic-dating-how-to-e74a54f4",
+    "target_url": "/blog/dating-how-to-e74a54f4/",
+    "title": "交友聊天怎么做：推广路径、渠道判断和准备清单",
+    "primary_keyword": "交友聊天怎么做",
+    "secondary_keywords": [
+      "交友聊天",
+      "怎么做"
+    ],
+    "cluster_id": "dating-traffic",
+    "status": "prompt_ready",
+    "risk_level": "low",
+    "page_type": "blog_article",
+    "internal_links": [
+      "/topics/dating-traffic/",
+      "/services/",
+      "/topics/",
+      "/contact/"
+    ],
+    "reason": "candidate for next DeepSeek batch; not a formal task package"
+  },
+  {
+    "batch_id": "batch-002",
+    "candidate_only": true,
+    "content_id": "c009-dating-traffic-dating-how-to-ad9ee1af",
+    "target_url": "/blog/dating-how-to-ad9ee1af/",
+    "title": "真人交友怎么做：推广路径、渠道判断和准备清单",
+    "primary_keyword": "真人交友怎么做",
+    "secondary_keywords": [
+      "真人交友",
+      "怎么做"
+    ],
+    "cluster_id": "dating-traffic",
+    "status": "prompt_ready",
+    "risk_level": "low",
+    "page_type": "blog_article",
+    "internal_links": [
+      "/topics/dating-traffic/",
+      "/services/",
+      "/topics/",
+      "/contact/"
+    ],
+    "reason": "candidate for next DeepSeek batch; not a formal task package"
+  },
+  {
+    "batch_id": "batch-002",
+    "candidate_only": true,
+    "content_id": "c013-traffic-acquisition-dating-traffic-how-to-a23563ce",
+    "target_url": "/blog/dating-traffic-how-to-a23563ce/",
+    "title": "交友引流怎么做：推广路径、渠道判断和准备清单",
+    "primary_keyword": "交友引流怎么做",
+    "secondary_keywords": [
+      "交友引流",
+      "怎么做"
+    ],
+    "cluster_id": "traffic-acquisition",
+    "status": "prompt_ready",
+    "risk_level": "low",
+    "page_type": "blog_article",
+    "internal_links": [
+      "/services/traffic-acquisition/",
+      "/services/",
+      "/topics/",
+      "/contact/"
+    ],
+    "reason": "candidate for next DeepSeek batch; not a formal task package"
+  },
+  {
+    "batch_id": "batch-002",
+    "candidate_only": true,
+    "content_id": "c014-traffic-acquisition-insurance-how-to-1d0e89ba",
+    "target_url": "/blog/insurance-how-to-1d0e89ba/",
+    "title": "保险怎么做：推广路径、渠道判断和准备清单",
+    "primary_keyword": "保险怎么做",
+    "secondary_keywords": [
+      "保险",
+      "怎么做"
+    ],
+    "cluster_id": "traffic-acquisition",
+    "status": "prompt_ready",
+    "risk_level": "low",
+    "page_type": "blog_article",
+    "internal_links": [
+      "/services/traffic-acquisition/",
+      "/services/",
+      "/topics/",
+      "/contact/"
+    ],
+    "reason": "candidate for next DeepSeek batch; not a formal task package"
+  },
+  {
+    "batch_id": "batch-002",
+    "candidate_only": true,
+    "content_id": "c011-media-buying-online-work-how-to-60caf548",
+    "target_url": "/blog/online-work-how-to-60caf548/",
+    "title": "网赚怎么做：推广路径、渠道判断和准备清单",
+    "primary_keyword": "网赚怎么做",
+    "secondary_keywords": [
+      "网赚",
+      "怎么做"
+    ],
+    "cluster_id": "media-buying",
+    "status": "prompt_ready",
+    "risk_level": "low",
+    "page_type": "blog_article",
+    "internal_links": [
+      "/services/media-buying/",
+      "/services/",
+      "/topics/",
+      "/contact/"
+    ],
+    "reason": "candidate for next DeepSeek batch; not a formal task package"
+  },
+  {
+    "batch_id": "batch-002",
+    "candidate_only": true,
+    "content_id": "c027-media-buying-part-time-cost-03f7eb1a",
+    "target_url": "/blog/part-time-cost-03f7eb1a/",
+    "title": "兼职费用：影响因素、预算准备和沟通要点",
+    "primary_keyword": "兼职费用",
+    "secondary_keywords": [
+      "兼职",
+      "费用"
+    ],
+    "cluster_id": "media-buying",
+    "status": "planned",
+    "risk_level": "low",
+    "page_type": "blog_article",
+    "internal_links": [
+      "/services/media-buying/",
+      "/services/",
+      "/topics/",
+      "/contact/"
+    ],
+    "reason": "candidate for next DeepSeek batch; not a formal task package"
+  },
+  {
+    "batch_id": "batch-002",
+    "candidate_only": true,
+    "content_id": "c044-game-promotion-google-game-promotion-0d865324",
+    "target_url": "/blog/topics/google-game-promotion-0d865324/",
+    "title": "谷歌游戏推广：海外推广与获客准备指南",
+    "primary_keyword": "谷歌游戏推广",
+    "secondary_keywords": [
+      "游戏",
+      "谷歌",
+      "推广"
+    ],
+    "cluster_id": "game-promotion",
+    "status": "planned",
+    "risk_level": "medium",
+    "page_type": "topic_expansion",
+    "internal_links": [
+      "/topics/game-promotion/",
+      "/services/",
+      "/topics/",
+      "/contact/"
+    ],
+    "reason": "candidate for next DeepSeek batch; not a formal task package"
+  },
+  {
+    "batch_id": "batch-002",
+    "candidate_only": true,
+    "content_id": "c056-loan-leads-google-loan-traffic-ef51241c",
+    "target_url": "/blog/topics/google-loan-traffic-ef51241c/",
+    "title": "谷歌贷款引流：海外推广与获客准备指南",
+    "primary_keyword": "谷歌贷款引流",
+    "secondary_keywords": [
+      "贷款",
+      "谷歌",
+      "引流"
+    ],
+    "cluster_id": "loan-leads",
+    "status": "planned",
+    "risk_level": "medium",
+    "page_type": "topic_expansion",
+    "internal_links": [
+      "/topics/loan-leads/",
+      "/services/",
+      "/topics/",
+      "/contact/"
+    ],
+    "reason": "candidate for next DeepSeek batch; not a formal task package"
+  },
+  {
+    "batch_id": "batch-002",
+    "candidate_only": true,
+    "content_id": "c054-insurance-leads-google-insurance-traffic-7dc33881",
+    "target_url": "/blog/topics/google-insurance-traffic-7dc33881/",
+    "title": "谷歌保险引流：海外推广与获客准备指南",
+    "primary_keyword": "谷歌保险引流",
+    "secondary_keywords": [
+      "保险",
+      "谷歌",
+      "引流"
+    ],
+    "cluster_id": "insurance-leads",
+    "status": "planned",
+    "risk_level": "medium",
+    "page_type": "topic_expansion",
+    "internal_links": [
+      "/topics/insurance-leads/",
+      "/services/",
+      "/topics/",
+      "/contact/"
+    ],
+    "reason": "candidate for next DeepSeek batch; not a formal task package"
+  },
+  {
+    "batch_id": "batch-002",
+    "candidate_only": true,
+    "content_id": "c052-immigration-leads-google-immigration-traffic-31aff535",
+    "target_url": "/blog/topics/google-immigration-traffic-31aff535/",
+    "title": "谷歌移民引流：海外推广与获客准备指南",
+    "primary_keyword": "谷歌移民引流",
+    "secondary_keywords": [
+      "移民",
+      "谷歌",
+      "引流"
+    ],
+    "cluster_id": "immigration-leads",
+    "status": "planned",
+    "risk_level": "medium",
+    "page_type": "topic_expansion",
+    "internal_links": [
+      "/topics/immigration-leads/",
+      "/services/",
+      "/topics/",
+      "/contact/"
+    ],
+    "reason": "candidate for next DeepSeek batch; not a formal task package"
+  },
+  {
+    "batch_id": "batch-002",
+    "candidate_only": true,
+    "content_id": "c032-fb-promotion-fb-dating-traffic-promotion-8c6d82f2",
+    "target_url": "/blog/topics/fb-dating-traffic-promotion-8c6d82f2/",
+    "title": "FB交友引流推广：海外推广与获客准备指南",
+    "primary_keyword": "FB交友引流推广",
+    "secondary_keywords": [
+      "交友引流",
+      "FB",
+      "推广"
+    ],
+    "cluster_id": "fb-promotion",
+    "status": "planned",
+    "risk_level": "medium",
+    "page_type": "topic_expansion",
+    "internal_links": [
+      "/platforms/fb/",
+      "/services/",
+      "/topics/",
+      "/contact/"
+    ],
+    "reason": "candidate for next DeepSeek batch; not a formal task package"
+  },
+  {
+    "batch_id": "batch-002",
+    "candidate_only": true,
+    "content_id": "c033-fb-promotion-fb-insurance-traffic-13b27c41",
+    "target_url": "/blog/topics/fb-insurance-traffic-13b27c41/",
+    "title": "FB保险引流：海外推广与获客准备指南",
+    "primary_keyword": "FB保险引流",
+    "secondary_keywords": [
+      "保险",
+      "FB",
+      "引流"
+    ],
+    "cluster_id": "fb-promotion",
+    "status": "planned",
+    "risk_level": "medium",
+    "page_type": "topic_expansion",
+    "internal_links": [
+      "/platforms/fb/",
+      "/services/",
+      "/topics/",
+      "/contact/"
+    ],
+    "reason": "candidate for next DeepSeek batch; not a formal task package"
+  },
+  {
+    "batch_id": "batch-002",
+    "candidate_only": true,
+    "content_id": "c046-google-promotion-promotion-588fc030",
+    "target_url": "/blog/topics/promotion-588fc030/",
+    "title": "中东理财推广：海外推广与获客准备指南",
+    "primary_keyword": "中东理财推广",
+    "secondary_keywords": [
+      "理财",
+      "中东",
+      "推广"
+    ],
+    "cluster_id": "google-promotion",
+    "status": "planned",
+    "risk_level": "medium",
+    "page_type": "topic_expansion",
+    "internal_links": [
+      "/platforms/google/",
+      "/services/",
+      "/topics/",
+      "/contact/"
+    ],
+    "reason": "candidate for next DeepSeek batch; not a formal task package"
+  }
+]

@@ -81,7 +81,7 @@ def task_body(task: dict, rules: dict, site: dict, blocks: dict) -> str:
 - 不要编造联系方式。
 - 不要写违法违规承诺。
 - 不要像灰色落地页。
-- 标题层级从 `##` 开始，正文后续由 Codex 接入 front matter。
+- 必须完整输出 front matter。front matter 后正文标题层级从 `##` 开始。Codex 后续会按 front matter 接入和检查，不要省略 front matter。
 """
 
 
@@ -97,7 +97,7 @@ def main() -> int:
     index_rows = ["# DeepSeek Task Index", "", "| content_id | title | target_url | primary_keyword | cluster_id | status | task_file |", "| --- | --- | --- | --- | --- | --- | --- |"]
     count = 0
     for task in queue:
-        if task["status"] not in {"planned", "prompt_ready"}:
+        if task.get("internal_only") or task["status"] not in {"planned", "prompt_ready"}:
             continue
         filename = f"{task['priority']:03d}-{task['content_id']}.md"
         (OUTPUT / filename).write_text(task_body(task, rules, site, blocks), encoding="utf-8", newline="\n")

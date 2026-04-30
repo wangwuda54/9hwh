@@ -333,9 +333,11 @@ def check_content_pipeline(sitemap: set[str]) -> None:
             fail(f"content task missing primary_keyword: {content_id}")
         status = item.get("status")
         full_url = BASE_URL + target_url.lstrip("/")
-        if status in {"planned", "prompt_ready", "writing", "draft_received", "paused"} and full_url in sitemap:
+        if item.get("internal_only") and full_url in sitemap:
+            fail(f"internal_only content entered sitemap: {content_id}")
+        if status in {"planned", "prompt_ready", "writing", "draft_received", "reviewed", "paused"} and full_url in sitemap:
             fail(f"unfinished content entered sitemap: {content_id}")
-        if status in {"ready_to_publish", "published"} and full_url not in sitemap:
+        if status == "published" and full_url not in sitemap:
             warn(f"publishable content not in sitemap, likely missing draft: {content_id}")
         public_text_targets = list(PUBLIC.rglob("*.html"))
         for term in rules.get("blocked_terms", []):

@@ -9,7 +9,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 QUEUE_PATH = ROOT / "site_src" / "data" / "content" / "content_queue.json"
 LOG_PATH = ROOT / "data" / "content-assets" / "status_update_log.jsonl"
-ALLOWED = ["planned", "prompt_ready", "writing", "draft_received", "reviewed", "ready_to_publish", "published", "paused"]
+ALLOWED = ["planned", "prompt_ready", "writing", "draft_received", "reviewed", "published", "paused"]
 ORDER = {status: index for index, status in enumerate(ALLOWED)}
 
 
@@ -23,10 +23,10 @@ def main() -> int:
         if item["content_id"] != args.content_id:
             continue
         old = item["status"]
-        if old == "planned" and args.status == "published":
-            raise SystemExit("[FAIL] cannot jump planned -> published")
-        if args.status == "published" and old not in {"ready_to_publish", "published"}:
-            raise SystemExit("[FAIL] published requires ready_to_publish first")
+        if args.status == "published" and old not in {"reviewed", "published"}:
+            raise SystemExit("[FAIL] published requires manual reviewed status first")
+        if args.status == "reviewed" and old not in {"draft_received", "reviewed"}:
+            raise SystemExit("[FAIL] reviewed requires imported draft_received content first")
         if args.status != "paused" and ORDER[args.status] < ORDER.get(old, 0):
             raise SystemExit("[FAIL] cannot move status backwards unless pausing manually")
         item["status"] = args.status

@@ -52,7 +52,13 @@ def score(task: dict) -> tuple[int, int, int]:
 
 
 def select_batch(queue: list[dict], limit: int = 12) -> list[dict]:
-    eligible = [task for task in queue if task["status"] in {"prompt_ready", "planned"} and task_file_for(task["content_id"])]
+    eligible = [
+        task
+        for task in queue
+        if task["status"] in {"prompt_ready", "planned"}
+        and not task.get("internal_only")
+        and task_file_for(task["content_id"])
+    ]
     by_cluster: dict[str, list[dict]] = {}
     for task in sorted(eligible, key=score, reverse=True):
         by_cluster.setdefault(task["cluster_id"], []).append(task)
