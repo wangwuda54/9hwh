@@ -1,11 +1,10 @@
 # Content Draft Review Report
 
-- drafts: 0
-- pass: 0
+- drafts: 1
+- pass: 1
 - warning: 0
 - fail: 0
 
 | File | content_id | Result | Issues | Warnings |
 | --- | --- | --- | --- | --- |
-
-No content drafts found. Review gate is ready for imported DeepSeek drafts.
+| c012-traffic-acquisition-dating-app-how-to-f56b0dad.md | c012-traffic-acquisition-dating-app-how-to-f56b0dad | pass | - | - |

@@ -1,7 +1,16 @@
 {
-  "draft_count": 0,
-  "pass_count": 0,
+  "draft_count": 1,
+  "pass_count": 1,
   "warning_count": 0,
   "fail_count": 0,
-  "articles": []
+  "articles": [
+    {
+      "file": "c012-traffic-acquisition-dating-app-how-to-f56b0dad.md",
+      "content_id": "c012-traffic-acquisition-dating-app-how-to-f56b0dad",
+      "target_url": "/blog/dating-app-how-to-f56b0dad/",
+      "status": "pass",
+      "issues": [],
+      "warnings": []
+    }
+  ]
 }

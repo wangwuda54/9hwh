@@ -357,7 +357,7 @@
       "交友App注册怎么做"
     ],
     "page_type": "blog_article",
-    "status": "prompt_ready",
+    "status": "draft_received",
     "priority": 12,
     "word_count_target": 1800,
     "deepseek_required": true,

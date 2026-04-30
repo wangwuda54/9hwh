@@ -139,6 +139,19 @@ def should_skip_existing(target: Path, queue_item: dict | None, allow_overwrite:
     return ""
 
 
+def iter_inbox_files() -> list[Path]:
+    files: list[Path] = []
+    for path in sorted(INBOX.rglob("*.md")):
+        if path.name.lower() == "readme.md":
+            continue
+        if path.name.endswith("-deepseek-output.md"):
+            continue
+        if "failed" in {part.lower() for part in path.parts}:
+            continue
+        files.append(path)
+    return files
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Import DeepSeek Markdown drafts into site_src/content_drafts.")
     parser.add_argument("--allow-overwrite", action="store_true", help="Allow replacing existing draft files and reviewed queue items. Published items are still protected.")
@@ -157,7 +170,7 @@ def main() -> int:
     skipped: list[dict] = []
     failed: list[dict] = []
 
-    inbox_files = [path for path in sorted(INBOX.glob("*.md")) if path.name.lower() != "readme.md"]
+    inbox_files = iter_inbox_files()
     for path in inbox_files:
         text = path.read_text(encoding="utf-8-sig")
         articles = split_articles(text)
