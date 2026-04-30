@@ -1,4 +1,4 @@
-# DeepSeek 写作任务：加密货币怎么做：推广路径、渠道判断和准备清单
+# DeepSeek 写作任务：加密货币推广怎么做：渠道判断、投放准备和服务边界
 
 ## 写作目标
 
@@ -6,15 +6,15 @@
 
 ## 页面 URL
 
-/blog/how-to-17e66750/
+/blog/crypto-promotion-how-to-17e66750/
 
 ## 主关键词
 
-加密货币怎么做
+加密货币推广怎么做
 
 ## 次关键词
 
-加密货币, 怎么做
+加密货币推广, 加密货币, 推广怎么做
 
 ## 搜索意图
 
@@ -88,7 +88,7 @@ long_tail_question
 - 不要编造联系方式。
 - 不要写违法违规承诺。
 - 不要像灰色落地页。
-- 标题层级从 `##` 开始，正文后续由 Codex 接入 front matter。
+- 必须完整输出 front matter。front matter 后正文标题层级从 `##` 开始。Codex 后续会按 front matter 接入和检查，不要省略 front matter。
 
 
 ## DeepSeek 输出 front matter 模板
@@ -96,11 +96,11 @@ long_tail_question
 ```md
 ---
 content_id: c001-ad-campaign-support-how-to-17e66750
-title: 加密货币怎么做：推广路径、渠道判断和准备清单
+title: 加密货币推广怎么做：渠道判断、投放准备和服务边界
 description: 请填写 80-150 字页面描述
-target_url: /blog/how-to-17e66750/
-primary_keyword: 加密货币怎么做
-secondary_keywords: 加密货币, 怎么做
+target_url: /blog/crypto-promotion-how-to-17e66750/
+primary_keyword: 加密货币推广怎么做
+secondary_keywords: 加密货币推广, 加密货币, 推广怎么做
 status: draft_received
 ---
 ```

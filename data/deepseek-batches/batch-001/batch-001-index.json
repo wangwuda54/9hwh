@@ -17,13 +17,14 @@
   {
     "batch_id": "batch-001",
     "content_id": "c001-ad-campaign-support-how-to-17e66750",
-    "target_url": "/blog/how-to-17e66750/",
-    "title": "加密货币怎么做：推广路径、渠道判断和准备清单",
-    "h1": "加密货币怎么做：推广路径、渠道判断和准备清单",
-    "primary_keyword": "加密货币怎么做",
+    "target_url": "/blog/crypto-promotion-how-to-17e66750/",
+    "title": "加密货币推广怎么做：渠道判断、投放准备和服务边界",
+    "h1": "加密货币推广怎么做：渠道判断、投放准备和服务边界",
+    "primary_keyword": "加密货币推广怎么做",
     "secondary_keywords": [
+      "加密货币推广",
       "加密货币",
-      "怎么做"
+      "推广怎么做"
     ],
     "cluster_id": "ad-campaign-support",
     "status": "prompt_ready",
@@ -153,21 +154,5 @@
     "cluster_id": "fb-promotion",
     "status": "planned",
     "task_file": "data/deepseek-batches/batch-001/tasks/031-c031-fb-promotion-fb-dating-traffic-5035e1c0.md"
-  },
-  {
-    "batch_id": "batch-001",
-    "content_id": "c045-google-promotion-tk-immigration-ads-bcb960fd",
-    "target_url": "/blog/topics/tk-immigration-ads-bcb960fd/",
-    "title": "TK移民投放：海外推广与获客准备指南",
-    "h1": "TK移民投放：海外推广与获客准备指南",
-    "primary_keyword": "TK移民投放",
-    "secondary_keywords": [
-      "移民",
-      "TK",
-      "投放"
-    ],
-    "cluster_id": "google-promotion",
-    "status": "planned",
-    "task_file": "data/deepseek-batches/batch-001/tasks/045-c045-google-promotion-tk-immigration-ads-bcb960fd.md"
   }
 ]

@@ -2,7 +2,7 @@
 
 ## 本批次数量
 
-11 篇。
+10 篇。
 
 ## 总体要求
 
@@ -127,7 +127,7 @@ long_tail_question
 - 不要编造联系方式。
 - 不要写违法违规承诺。
 - 不要像灰色落地页。
-- 标题层级从 `##` 开始，正文后续由 Codex 接入 front matter。
+- 必须完整输出 front matter。front matter 后正文标题层级从 `##` 开始。Codex 后续会按 front matter 接入和检查，不要省略 front matter。
 
 
 ## DeepSeek 输出 front matter 模板
@@ -149,7 +149,7 @@ status: draft_received
 
 # 任务：c001-ad-campaign-support-how-to-17e66750
 
-# DeepSeek 写作任务：加密货币怎么做：推广路径、渠道判断和准备清单
+# DeepSeek 写作任务：加密货币推广怎么做：渠道判断、投放准备和服务边界
 
 ## 写作目标
 
@@ -157,15 +157,15 @@ status: draft_received
 
 ## 页面 URL
 
-/blog/how-to-17e66750/
+/blog/crypto-promotion-how-to-17e66750/
 
 ## 主关键词
 
-加密货币怎么做
+加密货币推广怎么做
 
 ## 次关键词
 
-加密货币, 怎么做
+加密货币推广, 加密货币, 推广怎么做
 
 ## 搜索意图
 
@@ -239,7 +239,7 @@ long_tail_question
 - 不要编造联系方式。
 - 不要写违法违规承诺。
 - 不要像灰色落地页。
-- 标题层级从 `##` 开始，正文后续由 Codex 接入 front matter。
+- 必须完整输出 front matter。front matter 后正文标题层级从 `##` 开始。Codex 后续会按 front matter 接入和检查，不要省略 front matter。
 
 
 ## DeepSeek 输出 front matter 模板
@@ -247,11 +247,11 @@ long_tail_question
 ```md
 ---
 content_id: c001-ad-campaign-support-how-to-17e66750
-title: 加密货币怎么做：推广路径、渠道判断和准备清单
+title: 加密货币推广怎么做：渠道判断、投放准备和服务边界
 description: 请填写 80-150 字页面描述
-target_url: /blog/how-to-17e66750/
-primary_keyword: 加密货币怎么做
-secondary_keywords: 加密货币, 怎么做
+target_url: /blog/crypto-promotion-how-to-17e66750/
+primary_keyword: 加密货币推广怎么做
+secondary_keywords: 加密货币推广, 加密货币, 推广怎么做
 status: draft_received
 ---
 ```
@@ -351,7 +351,7 @@ long_tail_question
 - 不要编造联系方式。
 - 不要写违法违规承诺。
 - 不要像灰色落地页。
-- 标题层级从 `##` 开始，正文后续由 Codex 接入 front matter。
+- 必须完整输出 front matter。front matter 后正文标题层级从 `##` 开始。Codex 后续会按 front matter 接入和检查，不要省略 front matter。
 
 
 ## DeepSeek 输出 front matter 模板
@@ -463,7 +463,7 @@ long_tail_question
 - 不要编造联系方式。
 - 不要写违法违规承诺。
 - 不要像灰色落地页。
-- 标题层级从 `##` 开始，正文后续由 Codex 接入 front matter。
+- 必须完整输出 front matter。front matter 后正文标题层级从 `##` 开始。Codex 后续会按 front matter 接入和检查，不要省略 front matter。
 
 
 ## DeepSeek 输出 front matter 模板
@@ -575,7 +575,7 @@ long_tail_question
 - 不要编造联系方式。
 - 不要写违法违规承诺。
 - 不要像灰色落地页。
-- 标题层级从 `##` 开始，正文后续由 Codex 接入 front matter。
+- 必须完整输出 front matter。front matter 后正文标题层级从 `##` 开始。Codex 后续会按 front matter 接入和检查，不要省略 front matter。
 
 
 ## DeepSeek 输出 front matter 模板
@@ -687,7 +687,7 @@ FB游戏推广
 - 不要编造联系方式。
 - 不要写违法违规承诺。
 - 不要像灰色落地页。
-- 标题层级从 `##` 开始，正文后续由 Codex 接入 front matter。
+- 必须完整输出 front matter。front matter 后正文标题层级从 `##` 开始。Codex 后续会按 front matter 接入和检查，不要省略 front matter。
 
 
 ## DeepSeek 输出 front matter 模板
@@ -799,7 +799,7 @@ FB贷款获客
 - 不要编造联系方式。
 - 不要写违法违规承诺。
 - 不要像灰色落地页。
-- 标题层级从 `##` 开始，正文后续由 Codex 接入 front matter。
+- 必须完整输出 front matter。front matter 后正文标题层级从 `##` 开始。Codex 后续会按 front matter 接入和检查，不要省略 front matter。
 
 
 ## DeepSeek 输出 front matter 模板
@@ -911,7 +911,7 @@ FB保险获客
 - 不要编造联系方式。
 - 不要写违法违规承诺。
 - 不要像灰色落地页。
-- 标题层级从 `##` 开始，正文后续由 Codex 接入 front matter。
+- 必须完整输出 front matter。front matter 后正文标题层级从 `##` 开始。Codex 后续会按 front matter 接入和检查，不要省略 front matter。
 
 
 ## DeepSeek 输出 front matter 模板
@@ -1023,7 +1023,7 @@ FB移民获客
 - 不要编造联系方式。
 - 不要写违法违规承诺。
 - 不要像灰色落地页。
-- 标题层级从 `##` 开始，正文后续由 Codex 接入 front matter。
+- 必须完整输出 front matter。front matter 后正文标题层级从 `##` 开始。Codex 后续会按 front matter 接入和检查，不要省略 front matter。
 
 
 ## DeepSeek 输出 front matter 模板
@@ -1135,7 +1135,7 @@ FB 社交流量和获客测试
 - 不要编造联系方式。
 - 不要写违法违规承诺。
 - 不要像灰色落地页。
-- 标题层级从 `##` 开始，正文后续由 Codex 接入 front matter。
+- 必须完整输出 front matter。front matter 后正文标题层级从 `##` 开始。Codex 后续会按 front matter 接入和检查，不要省略 front matter。
 
 
 ## DeepSeek 输出 front matter 模板
@@ -1153,113 +1153,3 @@ status: draft_received
 ```
 
 
----
-
-# 任务：c045-google-promotion-tk-immigration-ads-bcb960fd
-
-# DeepSeek 写作任务：TK移民投放：海外推广与获客准备指南
-
-## 写作目标
-
-正文由 DeepSeek 生成。请为 9HWH 官网撰写一篇长期可维护的内容草稿，用于后续 Codex 审核、接入和构建。
-
-## 页面 URL
-
-/blog/topics/tk-immigration-ads-bcb960fd/
-
-## 主关键词
-
-TK移民投放
-
-## 次关键词
-
-移民, TK, 投放
-
-## 搜索意图
-
-Google 搜索和展示推广
-
-## 目标读者
-
-正在评估海外推广、引流获客、广告投放支持、买量投流或相关项目获客路径的出海团队、个人团队和项目负责人。
-
-## 推荐结构
-
-- 搜索意图判断
-- 适合什么项目
-- 推广前准备
-- 渠道建议
-- 常见问题
-- 服务边界
-- 联系咨询
-
-## 必须覆盖的问题
-
-- 这个关键词背后的真实需求是什么？
-- 适合什么项目类型？
-- 推广前需要准备哪些资料？
-- 可考虑哪些渠道？
-- 哪些表达和承诺不能写？
-- 如何联系 9HWH 做进一步沟通？
-
-## 内链建议
-
-- /platforms/google/
-- /services/
-- /topics/
-- /contact/
-
-## 禁止表达
-
-- 保证过审
-- 保证不限号
-- 保证效果
-- 保证转化
-- 保证收益
-- 绕过平台政策
-- 规避审核
-- 抗风控
-- Cloak
-- 仿牌
-- 博彩
-- 黑五类
-- 三不限
-- 违规业务也能做
-- 任何平台都能过
-- 任何行业都能投
-
-## 服务边界
-
-9HWH 不承诺避开平台审核，不提供规避平台政策的操作，不保证任何平台审核结果或投放结果。涉及平台政策、地区法规、行业限制的项目，需要在合作前进行确认。
-
-## 风格要求
-
-- 正文由 DeepSeek 生成，Codex 只负责任务包、接入、构建和检查。
-- 不要写保证过审、保证效果、保证收益、绕过平台政策、规避审核等承诺。
-- 内容要适合长期官网，不要像灰色落地页。
-- 表达要克制、正式、可维护。
-- 必须包含服务边界和咨询准备建议。
-
-## 输出格式要求
-
-- 输出 Markdown 正文。
-- 不要输出 HTML。
-- 不要编造联系方式。
-- 不要写违法违规承诺。
-- 不要像灰色落地页。
-- 标题层级从 `##` 开始，正文后续由 Codex 接入 front matter。
-
-
-## DeepSeek 输出 front matter 模板
-
-```md
----
-content_id: c045-google-promotion-tk-immigration-ads-bcb960fd
-title: TK移民投放：海外推广与获客准备指南
-description: 请填写 80-150 字页面描述
-target_url: /blog/topics/tk-immigration-ads-bcb960fd/
-primary_keyword: TK移民投放
-secondary_keywords: 移民, TK, 投放
-status: draft_received
----
-```

@@ -88,7 +88,7 @@ FB贷款获客
 - 不要编造联系方式。
 - 不要写违法违规承诺。
 - 不要像灰色落地页。
-- 标题层级从 `##` 开始，正文后续由 Codex 接入 front matter。
+- 必须完整输出 front matter。front matter 后正文标题层级从 `##` 开始。Codex 后续会按 front matter 接入和检查，不要省略 front matter。
 
 
 ## DeepSeek 输出 front matter 模板
