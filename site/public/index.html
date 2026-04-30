@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>9HWH | 面向出海项目的海外流量推广与获客支持</title>
+  <meta name="description" content="9HWH 面向出海项目，围绕 TK、FB、Google 等主流渠道，提供推广咨询、广告投放、引流获客、拉新买量和代运营协助。">
+  <style>
+    :root {
+      --bg: #f4f0e8;
+      --paper: #fffdf8;
+      --ink: #1f1b16;
+      --muted: #64584b;
+      --line: #d9cdbd;
+      --brand: #b4512d;
+      --brand-dark: #7d3418;
+      --accent: #294a63;
+      --soft: #efe5d7;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: linear-gradient(180deg, #f6f1e8 0%, #efe7da 100%);
+      color: var(--ink);
+      line-height: 1.65;
+    }
+    a { color: inherit; text-decoration: none; }
+    .shell { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 22px 0;
+      gap: 16px;
+    }
+    .brand {
+      font-size: 1.2rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+    }
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+    .hero {
+      padding: 48px 0 28px;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 28px;
+      align-items: stretch;
+    }
+    .hero-card,
+    .panel {
+      background: rgba(255, 253, 248, 0.92);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      box-shadow: 0 18px 40px rgba(64, 40, 18, 0.08);
+    }
+    .hero-card { padding: 42px; }
+    .eyebrow {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: var(--soft);
+      color: var(--brand-dark);
+      font-weight: 700;
+      font-size: 0.86rem;
+      margin-bottom: 16px;
+    }
+    h1 {
+      margin: 0 0 18px;
+      font-size: clamp(2rem, 4vw, 3.6rem);
+      line-height: 1.1;
+    }
+    .hero p {
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 26px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 0 18px;
+      border-radius: 999px;
+      font-weight: 700;
+      border: 1px solid transparent;
+    }
+    .btn-primary {
+      background: var(--brand);
+      color: #fff;
+    }
+    .btn-secondary {
+      border-color: var(--line);
+      color: var(--accent);
+      background: #fff;
+    }
+    .panel {
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .panel h2,
+    .section h2 {
+      margin: 0 0 14px;
+      font-size: 1.45rem;
+    }
+    .panel ul,
+    .cards,
+    .market-list,
+    .faq-list,
+    .footer-links {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .panel li {
+      padding: 10px 0;
+      border-bottom: 1px dashed var(--line);
+      color: var(--muted);
+    }
+    .panel li:last-child { border-bottom: 0; }
+    main { padding-bottom: 54px; }
+    .section { padding: 22px 0; }
+    .section-copy {
+      margin: 0 0 18px;
+      color: var(--muted);
+    }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+    .card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 22px;
+    }
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 1.08rem;
+    }
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+    .market-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .market-list li {
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      color: var(--accent);
+      font-size: 0.93rem;
+    }
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .step {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 18px;
+    }
+    .step strong {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--brand-dark);
+    }
+    .boundary {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+    .boundary .card {
+      background: #fff8f2;
+    }
+    .faq-list {
+      display: grid;
+      gap: 12px;
+    }
+    .faq-item {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 18px 20px;
+    }
+    .faq-item strong {
+      display: block;
+      margin-bottom: 8px;
+    }
+    .contact-box {
+      background: linear-gradient(135deg, #244761 0%, #163449 100%);
+      color: #f7f3ec;
+      border-radius: 24px;
+      padding: 28px;
+    }
+    .contact-box p {
+      color: rgba(247, 243, 236, 0.82);
+      margin: 0 0 16px;
+    }
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 22px 0 40px;
+      color: var(--muted);
+    }
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 12px;
+    }
+    @media (max-width: 960px) {
+      .hero,
+      .cards,
+      .timeline,
+      .boundary {
+        grid-template-columns: 1fr;
+      }
+      .hero-card { padding: 28px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="shell">
+    <nav class="nav" aria-label="主导航">
+      <a class="brand" href="/">9HWH</a>
+      <div class="nav-links">
+        <a href="/services/">服务</a>
+        <a href="/platforms/">平台</a>
+        <a href="/markets/">市场</a>
+        <a href="/blog/">内容中心</a>
+        <a href="/contact">联系</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="shell">
+    <section class="hero">
+      <div class="hero-card">
+        <span class="eyebrow">阶段 1 首页草稿</span>
+        <h1>面向出海项目的海外流量推广与获客支持</h1>
+        <p>围绕 TK、FB、Google 等主流渠道，提供推广咨询、广告投放、引流获客、拉新买量和代运营协助。</p>
+        <p>当前首页只使用更宽、更稳、更可调整的表达，为后续业务变化保留空间，不继续沿用开户/BM/单国家广告账户服务的窄定位。</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="/contact">联系 9HWH</a>
+          <a class="btn btn-secondary" href="/services/">查看服务方向</a>
+        </div>
+      </div>
+      <aside class="panel" aria-label="服务摘要">
+        <div>
+          <h2>当前服务重点</h2>
+          <ul>
+            <li>海外流量推广</li>
+            <li>广告投放支持</li>
+            <li>引流获客方案</li>
+            <li>拉新买量支持</li>
+            <li>代投与代运营协助</li>
+            <li>海外市场推广咨询</li>
+          </ul>
+        </div>
+      </aside>
+    </section>
+
+    <section class="section" id="services">
+      <h2>核心服务</h2>
+      <p class="section-copy">围绕出海项目的流量获取、投放准备、执行协助和过程沟通支持，先帮助项目判断方向，再进入具体渠道动作。</p>
+      <ul class="cards">
+        <li class="card">
+          <h3>海外推广咨询</h3>
+          <p>根据项目目标、推广阶段和市场方向，梳理更适合的推广路径与沟通节奏。</p>
+        </li>
+        <li class="card">
+          <h3>广告投放支持</h3>
+          <p>围绕素材准备、落地页检查、投放流程和执行沟通提供支持，不把首页锁死在开户表达上。</p>
+        </li>
+        <li class="card">
+          <h3>引流获客方案</h3>
+          <p>帮助项目建立更清晰的引流与获客思路，便于测试不同市场和不同渠道组合。</p>
+        </li>
+        <li class="card">
+          <h3>拉新买量支持</h3>
+          <p>适合需要用户增长、推广测试和多市场投放准备的项目，强调过程支持与反馈调整。</p>
+        </li>
+        <li class="card">
+          <h3>代投与代运营协助</h3>
+          <p>提供执行协助、过程沟通和阶段复盘，帮助团队降低试错成本并保持推进节奏。</p>
+        </li>
+        <li class="card">
+          <h3>海外市场推广</h3>
+          <p>结合不同市场方向做节奏判断、渠道建议和准备事项说明，不直接承诺具体审核或投放结果。</p>
+        </li>
+      </ul>
+    </section>
+
+    <section class="section" id="platforms">
+      <h2>平台方向</h2>
+      <p class="section-copy">当前首页只保留更中性的渠道支持表达，方便后续按平台扩展，而不是写成单一开户或 BM 服务页集合。</p>
+      <ul class="cards">
+        <li class="card">
+          <h3><a href="/platforms/tk">TK 推广支持</a></h3>
+          <p>适合需要海外流量测试、内容分发配合和推广协助的项目方向。</p>
+        </li>
+        <li class="card">
+          <h3><a href="/platforms/fb">FB 推广支持</a></h3>
+          <p>适合需要多渠道触达、获客路径梳理和投放沟通支持的项目方向。</p>
+        </li>
+        <li class="card">
+          <h3><a href="/platforms/google">Google 推广支持</a></h3>
+          <p>适合需要搜索与展示流量测试、投放准备和执行配合的项目方向。</p>
+        </li>
+      </ul>
+    </section>
+
+    <section class="section" id="markets">
+      <h2>重点关注市场方向</h2>
+      <p class="section-copy">以下是当前优先关注的海外市场方向。这里只做市场范围表达，不表示这些市场已经全部建立正式独立服务页。</p>
+      <ul class="market-list">
+        <li>美国</li>
+        <li>英国</li>
+        <li>加拿大</li>
+        <li>澳大利亚</li>
+        <li>欧洲</li>
+        <li>日本</li>
+        <li>韩国</li>
+        <li>台湾</li>
+        <li>新加坡</li>
+        <li>马来西亚</li>
+        <li>泰国</li>
+        <li>越南</li>
+        <li>印度</li>
+        <li>俄罗斯</li>
+        <li>巴西</li>
+        <li>中东</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>适合项目类型</h2>
+      <p class="section-copy">首页保持中性表达，只描述推广与获客支持适配的项目类型，不把高风险历史细分类目写进主文案。</p>
+      <ul class="cards">
+        <li class="card"><h3>出海推广项目</h3><p>适合需要明确海外市场方向、测试推广路径和建立基础投放协作流程的项目。</p></li>
+        <li class="card"><h3>App 与工具产品</h3><p>适合需要拉新测试、市场验证和流量获取节奏支持的产品团队。</p></li>
+        <li class="card"><h3>社交流量项目</h3><p>适合需要不同渠道配合、内容分发与用户获取支持的项目类型。</p></li>
+        <li class="card"><h3>游戏与线上娱乐项目</h3><p>适合需要阶段性买量测试、推广沟通和执行支持的项目方向。</p></li>
+        <li class="card"><h3>咨询类项目</h3><p>适合先做路径梳理、市场判断和推广准备的服务型或咨询型业务。</p></li>
+        <li class="card"><h3>海外获客测试项目</h3><p>适合仍在试市场、试渠道、试转化链路阶段的出海团队。</p></li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>服务流程</h2>
+      <div class="timeline">
+        <div class="step"><strong>需求沟通</strong><span>了解项目阶段、目标市场、现有准备和当前问题。</span></div>
+        <div class="step"><strong>项目和市场判断</strong><span>先判断适合推进的国家、市场方向和阶段目标。</span></div>
+        <div class="step"><strong>渠道建议</strong><span>围绕 TK、FB、Google 等方向给出更合适的渠道建议。</span></div>
+        <div class="step"><strong>投放准备</strong><span>梳理素材、落地页、沟通信息和执行前准备事项。</span></div>
+        <div class="step"><strong>执行协助</strong><span>配合推进投放支持、引流获客和代投代运营协助。</span></div>
+        <div class="step"><strong>数据反馈和调整</strong><span>根据执行反馈和阶段结果继续调整路径与节奏。</span></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>服务边界</h2>
+      <div class="boundary">
+        <div class="card">
+          <h3>我们提供的支持</h3>
+          <p>服务重点是推广路径梳理、投放准备、渠道建议、执行协助和过程沟通支持。</p>
+        </div>
+        <div class="card">
+          <h3>我们不承诺的内容</h3>
+          <p>9HWH 不承诺绕过平台审核，不提供规避平台政策的操作，不保证任何平台审核结果或投放结果。涉及平台政策、地区法规、行业限制的项目需提前确认。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>常见问题</h2>
+      <ul class="faq-list">
+        <li class="faq-item">
+          <strong>支持哪些平台？</strong>
+          <span>当前重点围绕 TK、FB、Google 等主流渠道，后续会根据项目阶段和市场方向继续扩展。</span>
+        </li>
+        <li class="faq-item">
+          <strong>是否适合个人团队？</strong>
+          <span>适合。尤其是需要先梳理市场、测试渠道和建立推广协作流程的个人或小团队。</span>
+        </li>
+        <li class="faq-item">
+          <strong>是否保证效果？</strong>
+          <span>不保证。我们不承诺审核结果或投放结果，重点在于准备、协助、执行支持和过程反馈。</span>
+        </li>
+        <li class="faq-item">
+          <strong>是否支持不同国家市场？</strong>
+          <span>支持多个重点市场方向，但会先判断项目阶段、市场目标和准备情况，再建议推进顺序。</span>
+        </li>
+        <li class="faq-item">
+          <strong>咨询前需要准备什么？</strong>
+          <span>建议先准备项目简介、目标市场、当前推广状态、已有素材与落地页信息，以及希望测试的渠道方向。</span>
+        </li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <div class="contact-box">
+        <h2>联系 9HWH</h2>
+        <p>如果你正在评估出海推广路径、流量获取方向或多市场投放测试，可以先从项目现状和目标开始沟通。</p>
+        <a class="btn btn-primary" href="/contact">前往联系入口</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="shell">
+    <ul class="footer-links">
+      <li><a href="/services/">服务</a></li>
+      <li><a href="/platforms/">平台</a></li>
+      <li><a href="/markets/">市场</a></li>
+      <li><a href="/blog/">内容中心</a></li>
+      <li><a href="/contact">联系</a></li>
+    </ul>
+    <div>9HWH 首页草稿仅用于阶段 1 重做准备，不代表已上线结构。</div>
+  </footer>
+</body>
+</html>

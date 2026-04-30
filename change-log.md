@@ -218,3 +218,39 @@
 
 ### 验收结果
 - 待确认。
+
+## 2026-04-30 - 阶段 1：首页定位修正与首页草稿
+
+### 变更类型
+- 类型：规范 / 内容 / 结构。
+
+### 变更原因
+- 当前业务定位已从“广告账户开户/BM 服务商”修正为“海外流量推广与获客支持”。
+- 需要把首页结构、首页文案方向和 URL 规划同步修正为更宽、更稳、更可调整的表达。
+
+### 变更范围
+- 涉及文件：`site/public/index.html`、`project-status.md`、`docs/stage-1-homepage-plan.md`、`docs/stage-1-homepage-inputs.md`、`change-log.md`
+- 是否影响旧 service 页面：否
+- 是否影响索引：否
+
+### 具体变更
+- 将首页方向修正为海外流量推广、引流获客、广告投放支持、拉新买量和代投代运营协助。
+- 将首页 URL 规划修正为 `/services/`、`/platforms/`、`/markets/`、`/blog/`、`/contact` 方向。
+- 新增首页草稿文件 `site/public/index.html`。
+- 明确首页服务边界，不承诺绕过平台审核，不保证审核或投放结果。
+- 未改 sitemap
+- 未改 robots
+- 未改 `_headers`
+- 未改 `_redirects`
+- 未处理 service 页面
+- 未 push
+
+### 风险判断
+- 风险等级：低
+- 当前变更仅涉及首页草稿和阶段文档，不触碰旧站线上文件
+
+### 回滚点
+- 删除或回退 `site/public/index.html` 及本次文档修订即可回滚
+
+### 验收结果
+- 待确认。
