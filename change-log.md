@@ -149,6 +149,42 @@
 ### 验收结果
 - 待确认。
 
+## 2026-04-30 - 阶段 2：创建新官网静态站第一版
+
+### 变更类型
+- 类型：结构 / 内容 / 索引。
+
+### 变更原因
+- 阶段 1 首页草稿已完成，需要继续推进为可本地预览的新官网静态站第一版。
+- 需要建立首页、服务页、平台页、市场页、内容中心、联系页和统一样式基线。
+
+### 变更范围
+- 涉及文件：`site/public/index.html`、`site/public/services/index.html`、`site/public/services/overseas-promotion/index.html`、`site/public/services/traffic-acquisition/index.html`、`site/public/services/ad-campaign-support/index.html`、`site/public/services/media-buying/index.html`、`site/public/platforms/index.html`、`site/public/platforms/tk/index.html`、`site/public/platforms/fb/index.html`、`site/public/platforms/google/index.html`、`site/public/markets/index.html`、`site/public/blog/index.html`、`site/public/contact/index.html`、`site/public/404.html`、`site/public/assets/css/styles.css`、`site/public/sitemap.xml`、`site/public/robots.txt`、`project-status.md`、`docs/stage-1-homepage-plan.md`、`docs/stage-2-site-build-plan.md`、`change-log.md`
+- 是否影响旧 service 页面：否
+- 是否影响索引：是，仅新增新官网版本的 `sitemap.xml` 与 `robots.txt`
+
+### 具体变更
+- 创建新官网静态站第一版。
+- 创建首页、服务页、平台页、市场页、内容中心、联系页和 404 页面。
+- 创建统一样式文件 `site/public/assets/css/styles.css`。
+- 创建 `sitemap.xml` 和 `robots.txt`。
+- `sitemap.xml` 只包含新官网正式页面。
+- `robots.txt` 未屏蔽 `/service_`。
+- 未处理旧 service 页面。
+- 未提交 `site/legacy-source`。
+- 未 push。
+
+### 风险判断
+- 风险等级：中
+- 主要风险：当前联系方式仍为占位内容，Cloudflare Pages 构建与部署目录尚未确认。
+- 风险控制方式：先以本地静态预览为基线，不对旧 service 页面和 legacy-source 做任何处理。
+
+### 回滚点
+- 回退 `site/public/` 相关文件和阶段 2 文档即可恢复到首页草稿阶段。
+
+### 验收结果
+- 待确认。
+
 ## 2026-04-30 - 阶段 0 收尾：独立重建工作区初始化
 
 ### 变更类型
