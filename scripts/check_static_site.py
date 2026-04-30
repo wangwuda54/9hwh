@@ -13,6 +13,8 @@ ROOT = Path(__file__).resolve().parents[1]
 PUBLIC = ROOT / "site" / "public"
 KEYWORDS = ROOT / "site_src" / "data" / "keywords"
 KEYWORD_ASSETS = ROOT / "data" / "keyword-assets"
+CONTENT_DATA = ROOT / "site_src" / "data" / "content"
+DEEPSEEK_TASKS = ROOT / "data" / "deepseek-tasks"
 BASE_URL = "https://www.9hwh.com"
 FAILURES: list[str] = []
 WARNINGS: list[str] = []
@@ -298,6 +300,67 @@ def check_keyword_assets(sitemap: set[str]) -> None:
     ok("keyword asset checks completed")
 
 
+def check_content_pipeline(sitemap: set[str]) -> None:
+    queue_path = CONTENT_DATA / "content_queue.json"
+    rules_path = CONTENT_DATA / "content_rules.json"
+    if not queue_path.exists():
+        fail("missing content_queue.json")
+        return
+    if not rules_path.exists():
+        fail("missing content_rules.json")
+        return
+    queue = json.loads(queue_path.read_text(encoding="utf-8-sig"))
+    rules = json.loads(rules_path.read_text(encoding="utf-8-sig"))
+    if len(queue) > 100:
+        warn(f"content_queue has more than 100 tasks: {len(queue)}")
+    ids = set()
+    urls = set()
+    for item in queue:
+        content_id = item.get("content_id", "")
+        target_url = item.get("target_url", "")
+        if not content_id:
+            fail("content task missing content_id")
+        if content_id in ids:
+            fail(f"duplicate content_id: {content_id}")
+        ids.add(content_id)
+        if target_url in urls:
+            fail(f"duplicate content target_url: {target_url}")
+        urls.add(target_url)
+        if not item.get("primary_keyword"):
+            fail(f"content task missing primary_keyword: {content_id}")
+        status = item.get("status")
+        full_url = BASE_URL + target_url.lstrip("/")
+        if status in {"planned", "prompt_ready", "writing", "draft_received", "paused"} and full_url in sitemap:
+            fail(f"unfinished content entered sitemap: {content_id}")
+        if status in {"ready_to_publish", "published"} and full_url not in sitemap:
+            warn(f"publishable content not in sitemap, likely missing draft: {content_id}")
+        public_text_targets = list(PUBLIC.rglob("*.html"))
+        for term in rules.get("blocked_terms", []):
+            if term and term in item.get("primary_keyword", ""):
+                fail(f"content task uses blocked primary keyword: {content_id}")
+    if DEEPSEEK_TASKS.exists():
+        task_files = list(DEEPSEEK_TASKS.glob("*.md"))
+    else:
+        task_files = []
+    if not task_files:
+        warn("data/deepseek-tasks is empty")
+    for path in task_files:
+        text = path.read_text(encoding="utf-8-sig")
+        if "禁止表达" not in text:
+            fail(f"DeepSeek task missing forbidden expression section: {path.name}")
+        if "服务边界" not in text:
+            fail(f"DeepSeek task missing service boundary: {path.name}")
+    blog_text = (PUBLIC / "blog" / "index.html").read_text(encoding="utf-8")
+    if blog_text.count("<article") > 30:
+        warn("blog page may show too many unfinished content cards")
+    for path in PUBLIC.rglob("*.html"):
+        text = path.read_text(encoding="utf-8")
+        for term in rules.get("blocked_terms", []) + rules.get("sensitive_terms", []):
+            if term and term in text:
+                fail(f"public page contains content blocked/internal term: {path.relative_to(PUBLIC).as_posix()} -> {term}")
+    ok("content pipeline checks completed")
+
+
 def main() -> int:
     if not PUBLIC.exists():
         fail("site/public does not exist")
@@ -310,6 +373,7 @@ def main() -> int:
     check_robots()
     check_html(sitemap)
     check_keyword_assets(sitemap)
+    check_content_pipeline(sitemap)
     if FAILURES:
         print(f"[FAIL] {len(FAILURES)} issue(s) found")
         return 1

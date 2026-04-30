@@ -1,0 +1,10 @@
+{
+  "total_planned": 60,
+  "prompt_ready": 20,
+  "writing": 0,
+  "draft_received": 0,
+  "ready_to_publish": 0,
+  "published": 0,
+  "paused": 0,
+  "last_generated_at": "2026-04-30"
+}

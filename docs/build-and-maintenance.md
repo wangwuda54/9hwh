@@ -213,3 +213,60 @@ data/keyword-assets/keyword_summary.json
 - 是否属于 `future_blog`：如果是，后续按内容质量和 GSC 反馈规划文章。
 - 是否已有对应承接页：如果有，映射到现有 URL。
 - 是否需要新页面：只有搜索意图明显独立、低风险、可写出高质量内容时才新增。
+
+## 20. 如何生成内容任务队列
+
+执行：
+
+```powershell
+python scripts/build_content_queue.py
+```
+
+内容任务来自 keyword assets，但任务不等于公开页面。默认每批最多生成有限数量任务，避免批量低质页面。
+
+## 21. 如何生成 DeepSeek 任务包
+
+执行：
+
+```powershell
+python scripts/generate_deepseek_tasks.py
+```
+
+任务包输出到：
+
+```text
+data/deepseek-tasks/
+```
+
+正文由 DeepSeek 生成，Codex 不直接批量写文章正文。
+
+## 22. 如何接入 DeepSeek 正文
+
+将 DeepSeek 产出的 Markdown 放入：
+
+```text
+site_src/content_drafts/{content_id}.md
+```
+
+格式说明见：
+
+```text
+site_src/content_drafts/README.md
+```
+
+## 23. 如何判断内容是否进入 sitemap
+
+只有同时满足以下条件才进入 sitemap：
+
+- `content_queue.json` 中状态为 `ready_to_publish` 或 `published`。
+- `site_src/content_drafts/{content_id}.md` 存在。
+- 构建和检查通过。
+
+`planned`、`prompt_ready`、`writing`、`draft_received`、`reviewed`、`paused` 都不能进入 sitemap。
+
+## 24. 如何避免批量低质页面
+
+- 不把关键词池直接转成页面。
+- 不把 content_queue 直接转成公开页面。
+- 每批先生成任务包，再人工或模型写正文，再审核。
+- 没有正文、没有审核、没有服务边界的内容不能发布。

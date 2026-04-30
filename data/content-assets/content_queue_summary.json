@@ -1,0 +1,23 @@
+{
+  "total": 60,
+  "status_counts": {
+    "prompt_ready": 20,
+    "planned": 40
+  },
+  "cluster_counts": {
+    "ad-campaign-support": 6,
+    "crypto-promotion": 6,
+    "dating-traffic": 6,
+    "media-buying": 6,
+    "traffic-acquisition": 6,
+    "fb-promotion": 6,
+    "finance-leads": 6,
+    "game-promotion": 2,
+    "google-promotion": 6,
+    "immigration-leads": 2,
+    "insurance-leads": 2,
+    "loan-leads": 2,
+    "markets": 4
+  },
+  "last_generated_at": "2026-04-30"
+}

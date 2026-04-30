@@ -18,6 +18,8 @@ PUBLIC = ROOT / "site" / "public"
 DOCS = ROOT / "docs"
 KEYWORD_DATA = DATA / "keywords"
 KEYWORD_ASSETS = ROOT / "data" / "keyword-assets"
+CONTENT_DATA = DATA / "content"
+DRAFTS = SRC / "content_drafts"
 
 
 def load_json(name: str):
@@ -224,6 +226,72 @@ def keyword_block(path: str, context: dict, title: str = "关键词承接方向"
     return f'<article class="card keyword-block"><h2>{esc(title)}</h2><p>本页只展示代表性搜索方向，完整关键词先进入内部资产库和聚类映射，不直接生成大量公开页面。</p><div class="pill-list">{pills}</div></article>'
 
 
+def load_content_queue() -> list[dict]:
+    path = CONTENT_DATA / "content_queue.json"
+    if not path.exists():
+        return []
+    return json.loads(path.read_text(encoding="utf-8-sig"))
+
+
+def content_status_html(queue: list[dict]) -> str:
+    counts: dict[str, int] = {}
+    for item in queue:
+        counts[item["status"]] = counts.get(item["status"], 0) + 1
+    total = sum(counts.values())
+    return (
+        '<article class="card"><h2>内容生产状态</h2>'
+        f"<p>当前已规划内容任务 {total} 条，其中 prompt_ready {counts.get('prompt_ready', 0)} 条，planned {counts.get('planned', 0)} 条。</p>"
+        "<p>未完成正文不会生成公开页面，也不会进入 sitemap。正文后续由 DeepSeek 生成，再由 Codex 审核接入。</p></article>"
+    )
+
+
+def parse_draft(path: Path) -> tuple[dict, str]:
+    text = path.read_text(encoding="utf-8-sig")
+    if not text.startswith("---"):
+        return {}, text
+    _, front, body = text.split("---", 2)
+    meta = {}
+    for line in front.splitlines():
+        if ":" in line:
+            key, value = line.split(":", 1)
+            meta[key.strip()] = value.strip()
+    return meta, body.strip()
+
+
+def load_publishable_drafts(queue: list[dict]) -> list[tuple[dict, str]]:
+    publishable = {item["content_id"]: item for item in queue if item["status"] in {"ready_to_publish", "published"}}
+    result = []
+    if not DRAFTS.exists():
+        return result
+    for path in DRAFTS.glob("*.md"):
+        if path.name.upper() == "README.MD":
+            continue
+        meta, body = parse_draft(path)
+        content_id = meta.get("content_id")
+        if content_id in publishable:
+            task = publishable[content_id].copy()
+            task.update({key: value for key, value in meta.items() if value})
+            result.append((task, body))
+    return result
+
+
+def markdown_to_html(markdown: str) -> str:
+    blocks = []
+    for raw in markdown.splitlines():
+        line = raw.strip()
+        if not line:
+            continue
+        if line.startswith("### "):
+            blocks.append(f"<h3>{esc(line[4:])}</h3>")
+        elif line.startswith("## "):
+            blocks.append(f"<h2>{esc(line[3:])}</h2>")
+        elif line.startswith("- "):
+            blocks.append(f"<p>• {esc(line[2:])}</p>")
+        else:
+            blocks.append(f"<p>{esc(line)}</p>")
+    return "".join(blocks)
+
+
 def resolve_faqs(faq_data: dict, refs: list[str] | None, fallback_group: str) -> list[dict]:
     pool = []
     for group in ("global", fallback_group):
@@ -357,6 +425,7 @@ def build() -> None:
     schema_flags = load_json("schema.json")
     blocks = load_json("content_blocks.json")
     keyword_ctx = keyword_context()
+    content_queue = load_content_queue()
     today = date.today().isoformat()
 
     clean_public()
@@ -414,8 +483,24 @@ def build() -> None:
     market_extra = '<div class="pill-list">' + "".join(f'<span class="pill">{esc(m)}</span>' for m in markets["market_list"]) + "</div>" + card_grid(market_cards, 3) + keyword_block("/markets/", keyword_ctx, "市场词承接方向") + faq_html(resolve_faqs(faqs, markets.get("faq_refs"), "markets"))
     emit("/markets/", pages["markets"], listing_content(pages["markets"], [], market_extra), site, nav, global_schemas, records, "pages.json:markets", "markets")
 
-    blog_extra = card_grid(pages["blog"]["categories"], 3) + '<article class="card"><h2>长尾问答词处理方式</h2><p>带有怎么做、费用、价格、渠道、平台等后缀的长尾词先进入 future_blog 队列，后续再按 GSC 反馈和内容质量要求规划正文。</p></article><p class="note">当前不批量生成文章正文，后续文章正文默认由 DeepSeek 负责。</p>'
+    blog_extra = card_grid(pages["blog"]["categories"], 3) + content_status_html(content_queue) + '<article class="card"><h2>长尾问答词处理方式</h2><p>带有怎么做、费用、价格、渠道、平台等后缀的长尾词先进入 future_blog 队列，后续再按 GSC 反馈和内容质量要求规划正文。</p></article><p class="note">当前不批量生成文章正文，后续文章正文默认由 DeepSeek 负责。</p>'
     emit("/blog/", pages["blog"], listing_content(pages["blog"], [], blog_extra), site, nav, global_schemas, records, "pages.json:blog", "blog")
+
+    for task, body in load_publishable_drafts(content_queue):
+        page = {
+            "title": task["title"],
+            "h1": task.get("h1", task["title"]),
+            "description": task.get("description", task.get("intent", task["title"])),
+            "eyebrow": "内容中心",
+        }
+        content = render(read_text(TEMPLATES / "listing.html"), {
+            "eyebrow": "内容中心",
+            "h1": esc(page["h1"]),
+            "description": esc(page["description"]),
+            "cards": "",
+            "extra": '<article class="card">' + markdown_to_html(body) + "</article>" + boundary_html(blocks["service_boundary"]) + cta_html("需要进一步沟通？", "如果你正在评估相关推广路径，可以整理项目资料后联系 9HWH。"),
+        })
+        emit(task["target_url"], page, content, site, nav, global_schemas, records, f"content_queue:{task['content_id']}", task.get("page_type", "blog_article"))
 
     contact_extra = partial("boundary.html", {"text": esc(contact["boundary_note"])}) + '<div class="grid grid-2"><article class="card"><h2>咨询前需要提供</h2>' + list_items(contact["required_info"]) + '</article><article class="card"><h2>' + esc(contact["contact_title"]) + '</h2><p>' + esc(contact["contact_intro"]) + '</p><p>' + esc(contact["contact_placeholder"]) + '</p><p>' + esc(contact["response_note"]) + "</p></article></div>" + faq_html(resolve_faqs(faqs, None, "contact"))
     emit("/contact/", pages["contact"], listing_content(pages["contact"], [], contact_extra), site, nav, global_schemas, records, "pages.json:contact", "contact")

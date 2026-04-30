@@ -122,3 +122,15 @@
 - 未 push。
 - 未批量生成博客正文。
 - 未生成大量关键词页面。
+
+## 阶段 6 接入说明
+
+阶段 6 已基于关键词资产库建立内容生产流水线：
+
+- `scripts/build_content_queue.py` 从 keyword assets 中挑选内容机会。
+- `site_src/data/content/content_queue.json` 管理内容任务状态。
+- `scripts/generate_deepseek_tasks.py` 生成 DeepSeek 写作任务包。
+- `site_src/content_drafts/` 用于后续接入 DeepSeek 正文。
+- `build_site.py` 只发布 `ready_to_publish` 或 `published` 且有正文草稿的内容页。
+
+阶段 6 仍然不直接批量写正文，不生成几千个公开页面，不处理旧 service 页面。

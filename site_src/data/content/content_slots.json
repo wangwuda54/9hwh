@@ -1,0 +1,22 @@
+{
+  "blog": {
+    "base_path": "/blog/",
+    "publish_when": ["ready_to_publish", "published"],
+    "purpose": "承接长尾问答词和内容型搜索意图"
+  },
+  "topic_expansion": {
+    "base_path": "/topics/",
+    "publish_when": ["ready_to_publish", "published"],
+    "purpose": "在已有 topics 下扩展高质量说明页"
+  },
+  "service_support": {
+    "base_path": "/services/",
+    "publish_when": ["ready_to_publish", "published"],
+    "purpose": "为核心服务页提供辅助内容"
+  },
+  "platform_support": {
+    "base_path": "/platforms/",
+    "publish_when": ["ready_to_publish", "published"],
+    "purpose": "为平台方向提供辅助内容"
+  }
+}

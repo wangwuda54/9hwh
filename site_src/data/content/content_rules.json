@@ -1,0 +1,21 @@
+{
+  "max_new_content_per_batch": 60,
+  "default_word_count": 1800,
+  "high_priority_intents": ["long_tail_question", "获客、拉新、用户来源判断", "投放前准备和执行协助", "虚拟币、币圈、交易所拉新", "交友项目获客和注册拉新"],
+  "blocked_terms": ["保证过审", "保证不限号", "保证效果", "保证转化", "保证收益", "绕过平台政策", "规避审核", "抗风控", "Cloak", "仿牌", "博彩", "黑五类", "三不限", "违规业务也能做", "任何平台都能过", "任何行业都能投"],
+  "sensitive_terms": ["色粉", "精准色粉", "成人粉", "成人兴趣粉", "充值色粉", "Slot", "维权", "债务", "索赔"],
+  "homepage_forbidden_terms": ["色粉", "精准色粉", "成人粉", "成人兴趣粉", "充值色粉", "Slot", "保证过审", "保证不限号", "保证效果", "保证收益"],
+  "article_required_sections": ["搜索意图判断", "适合什么项目", "推广前准备", "渠道建议", "常见问题", "服务边界", "联系咨询"],
+  "internal_link_rules": {
+    "required_links": ["/services/", "/topics/", "/contact/"],
+    "max_links_per_article": 8,
+    "avoid_links": ["service_", "legacy-source"]
+  },
+  "deepseek_prompt_rules": [
+    "正文由 DeepSeek 生成，Codex 只负责任务包、接入、构建和检查。",
+    "不要写保证过审、保证效果、保证收益、绕过平台政策、规避审核等承诺。",
+    "内容要适合长期官网，不要像灰色落地页。",
+    "表达要克制、正式、可维护。",
+    "必须包含服务边界和咨询准备建议。"
+  ]
+}

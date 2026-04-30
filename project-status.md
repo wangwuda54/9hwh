@@ -8,10 +8,10 @@ AGENTS.md、project-rules.md、indexing-policy.md 不再写死临时阶段限制
 
 ## 2. 当前阶段
 
-- 当前阶段：阶段 5，关键词资产库与 URL 映射系统。
-- 当前目标：建立关键词种子库、聚类规则、URL 映射和关键词资产生成脚本，让大量关键词先进入内部资产，再映射到少量高质量承接页。
-- 当前推进状态：已建立 `site_src/data/keywords/`、`scripts/build_keyword_assets.py`、`data/keyword-assets/` 输出、关键词到 URL 映射文档和聚类统计文档。
-- 当前性质：关键词不会直接等于公开页面；当前未进入 Cloudflare Pages 部署阶段，当前未处理旧 service 页面。
+- 当前阶段：阶段 6，内容生产流水线与 DeepSeek 写作任务包。
+- 当前目标：基于关键词资产库建立内容任务队列、DeepSeek 写作任务包、内容状态管理和正文接入格式。
+- 当前推进状态：已建立 `site_src/data/content/`、`scripts/build_content_queue.py`、`scripts/generate_deepseek_tasks.py`、`data/deepseek-tasks/` 和 `site_src/content_drafts/README.md`。
+- 当前性质：Codex 不直接批量写文章正文；正文后续由 DeepSeek 生成，再由 Codex 接入和检查；当前未进入 Cloudflare Pages 部署阶段，当前未处理旧 service 页面。
 
 ## 3. 当前允许事项
 
@@ -25,8 +25,12 @@ AGENTS.md、project-rules.md、indexing-policy.md 不再写死临时阶段限制
 - 维护 `site_src/data/contact.json`、`faqs.json`、`seo.json`、`schema.json`、`content_blocks.json`。
 - 维护 `site_src/data/keywords/` 关键词 seed、rules、clusters、url_map。
 - 运行 `python scripts/build_keyword_assets.py` 生成内部关键词资产。
+- 运行 `python scripts/build_content_queue.py` 生成内容任务队列。
+- 运行 `python scripts/generate_deepseek_tasks.py` 生成 DeepSeek 写作任务包。
+- 接入已审核的 DeepSeek 正文草稿。
 - 查看自动生成的 `docs/site-url-inventory.md`。
 - 查看 `docs/keyword-to-url-map.md` 和 `docs/keyword-cluster-summary.md`。
+- 查看 `docs/content-opportunity-report.md` 和 `docs/deepseek-task-index.md`。
 - 更新构建和维护文档。
 
 ## 4. 当前禁止事项
@@ -47,6 +51,8 @@ AGENTS.md、project-rules.md、indexing-policy.md 不再写死临时阶段限制
 - 不写保证过审、保证不限号、保证效果、保证转化、保证收益等高风险承诺。
 - 不把几万个关键词直接生成几万个公开页面。
 - 不把敏感内部关键词放入首页、导航或 sitemap。
+- 不让 Codex 直接批量写文章正文。
+- 不把 `planned` 或 `prompt_ready` 内容任务生成公开页面。
 
 ## 5. 当前输出范围
 
@@ -57,6 +63,9 @@ AGENTS.md、project-rules.md、indexing-policy.md 不再写死临时阶段限制
 - Python 标准库检查脚本。
 - `site/public/` 生成结果。
 - `data/keyword-assets/` 内部关键词资产输出。
+- `data/content-assets/` 内容任务统计。
+- `data/deepseek-tasks/` DeepSeek 写作任务包。
+- `site_src/content_drafts/README.md` 正文接入规范。
 - 构建与维护文档。
 - 项目状态和变更记录。
 
@@ -70,18 +79,21 @@ AGENTS.md、project-rules.md、indexing-policy.md 不再写死临时阶段限制
 - legacy-source 归档内容的 Git 提交。
 - 原始关键词列表公开页面。
 - 大批低质量关键词页。
+- 未审核正文页面。
+- 未完成内容进入 sitemap。
 
-## 6. 阶段 5 完成条件
+## 6. 阶段 6 完成条件
 
-阶段 5 完成需要满足：
+阶段 6 完成需要满足：
 
-- 已建立关键词种子库。
-- 已建立 public / internal / future blog / blocked 规则。
-- 已建立关键词聚类定义。
-- 已建立关键词到 URL 映射。
-- 已生成关键词资产和统计。
-- 已在页面中展示少量代表性关键词承接方向。
-- 已升级检查脚本，检查关键词资产、cluster target、敏感词和 blocked promise。
+- 已建立内容任务队列。
+- 已建立内容生产规则。
+- 已生成 DeepSeek 写作任务包。
+- 已建立 content_drafts 接入规范。
+- 已升级 `build_site.py`，只发布 `ready_to_publish` 或 `published` 内容。
+- 已升级 `check_static_site.py`，检查内容任务状态、DeepSeek 任务包和 sitemap 控制。
+- `python scripts/build_content_queue.py` 通过。
+- `python scripts/generate_deepseek_tasks.py` 通过。
 - `python scripts/build_keyword_assets.py` 通过。
 - `python scripts/build_site.py` 通过。
 - `python scripts/check_static_site.py` 通过。
@@ -96,6 +108,7 @@ AGENTS.md、project-rules.md、indexing-policy.md 不再写死临时阶段限制
 - 是否继续扩充高质量 topics 页。
 - 是否从 `future_blog` 队列挑选词交给 DeepSeek 写正文。
 - 是否根据后续 GSC 反馈调整 URL 映射。
+- 是否开始接入第一批 DeepSeek 正文。
 - 后续部署准备节奏。
 
 ## 8. 状态更新规则

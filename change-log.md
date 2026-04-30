@@ -225,6 +225,49 @@
 - `python scripts/build_site.py` 通过。
 - `python scripts/check_static_site.py` 通过。
 
+## 2026-04-30 - 阶段 6：内容生产流水线与 DeepSeek 写作任务包
+
+### 变更类型
+- 类型：内容 / 生产流程 / 自动质检。
+
+### 变更原因
+- 需要把关键词资产转化为可控的内容生产任务，而不是直接生成大量低质量公开页面。
+- 后续正文默认由 DeepSeek 负责，Codex 负责任务包、接入、构建和检查。
+
+### 变更范围
+- 涉及文件：`site_src/data/content/`、`site_src/content_drafts/README.md`、`scripts/build_content_queue.py`、`scripts/generate_deepseek_tasks.py`、`scripts/build_site.py`、`scripts/check_static_site.py`、`data/content-assets/`、`data/deepseek-tasks/`、`docs/stage-6-content-pipeline.md`、`docs/content-production-workflow.md`、`docs/content-opportunity-report.md`、`docs/deepseek-task-index.md`、`docs/stage-5-keyword-asset-system.md`、`docs/build-and-maintenance.md`、`project-status.md`、`change-log.md`
+- 是否影响旧 service 页面：否
+- 是否影响索引：否；未完成内容不进入 sitemap。
+
+### 具体变更
+- 建立内容任务队列。
+- 新增 content_queue / content_rules / content_status / content_slots。
+- 新增 `scripts/build_content_queue.py`。
+- 新增 `scripts/generate_deepseek_tasks.py`。
+- 生成 DeepSeek 写作任务包。
+- 新增 content_drafts 接入规范。
+- 升级 `build_site.py` 内容接入逻辑，仅发布 `ready_to_publish` 或 `published` 内容。
+- 升级 `check_static_site.py` 内容状态检查。
+- 未直接批量写文章正文。
+- 未生成几千个公开页面。
+- 未处理旧 service 页面。
+- 未进入 Cloudflare Pages 部署。
+- 未 push。
+
+### 风险判断
+- 风险等级：中
+- 主要风险：内容任务数量增加后，如果缺少状态控制，容易误生成未审核页面。
+- 风险控制方式：planned / prompt_ready 不进入 sitemap；只有 ready_to_publish / published 且有 draft 才可生成公开页面。
+
+### 回滚点
+- 回退本次提交即可恢复阶段 5 关键词资产系统。
+
+### 验收结果
+- `python scripts/build_content_queue.py` 通过。
+- `python scripts/generate_deepseek_tasks.py` 通过。
+- `python scripts/build_site.py` 通过。
+- `python scripts/check_static_site.py` 通过。
+
 ## 2026-04-30 - 阶段 3：官网静态生成系统重建
 
 ### 变更类型
