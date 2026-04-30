@@ -29,6 +29,7 @@ build/
 
 # Local backups
 backups/
+site/legacy-source/
 
 # Env
 .env

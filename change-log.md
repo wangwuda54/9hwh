@@ -180,3 +180,41 @@
 
 ### 验收结果
 - 待确认。
+
+## 2026-04-30 - 阶段 1 准备：恢复并审计旧官网源码
+
+### 变更类型
+- 类型：规范 / 结构 / 回滚。
+
+### 变更原因
+- 需要从 GitHub 恢复旧官网源码，建立 `legacy-source` 归档，并为首页重做生成可执行的文件级计划。
+
+### 变更范围
+- 旧源码仓库：https://github.com/wangwuda54/9hwh
+- 旧源码恢复目录：`E:\9HWH-source`
+- 旧源码归档目录：`E:\9HWH\site\legacy-source`
+- 涉及文件：`docs/current-source-audit.md`、`docs/stage-1-homepage-plan.md`、`docs/stage-1-homepage-inputs.md`、`change-log.md`
+- 是否影响旧 service 页面：否
+- 是否影响索引：否
+
+### 具体变更
+- 从 GitHub 恢复旧官网源码到 `E:\9HWH-source`
+- 将旧源码完整归档到 `site/legacy-source`
+- 新增 `current-source-audit.md`
+- 新增 `stage-1-homepage-plan.md`
+- 更新 `stage-1-homepage-inputs.md`
+- 未改首页
+- 未改 sitemap
+- 未改 robots
+- 未处理 service 页面
+- 未 push
+
+### 风险判断
+- 风险等级：低
+- 当前变更仅涉及源码恢复、归档和文档审计，不触碰线上文件
+
+### 回滚点
+- 删除 `E:\9HWH\site\legacy-source` 归档目录和本次新增文档即可回滚
+
+### 验收结果
+- 待确认。

@@ -13,19 +13,28 @@
 
 ## 2. 进入阶段 1 前必须提供的信息
 
-- 当前官网源码所在目录。
-- 当前首页文件路径。
-- 当前是否纯静态 HTML。
-- 是否使用框架。
-- Cloudflare Pages 构建命令。
-- Cloudflare Pages 输出目录。
-- 当前 sitemap.xml 内容。
-- 当前 robots.txt 内容。
-- 当前 `_headers` 内容。
-- 当前 `_redirects` 内容。
-- 当前 service 页面生成脚本位置。
-- 当前首页是否自动插入 service 链接池。
-- 当前导航和页脚文件位置。
+- 当前官网源码所在目录：`E:\9HWH-source`
+- 旧源码恢复目录：`E:\9HWH-source`
+- legacy 归档目录：`E:\9HWH\site\legacy-source`
+- 当前首页文件路径：`E:\9HWH-source\index.html`
+- 当前是否纯静态 HTML：是
+- 是否使用框架：未发现，当前判断为否
+- Cloudflare Pages 构建命令：未确认
+- Cloudflare Pages 输出目录：未确认
+- 当前 sitemap.xml 内容：根目录存在 `E:\9HWH-source\sitemap.xml`，内容为 `18000` 个 `service_*.html` URL 列表
+- sitemap.xml 路径：`E:\9HWH-source\sitemap.xml`
+- 当前 robots.txt 内容：根目录存在 `E:\9HWH-source\robots.txt`，内容为 `Googlebot Allow /`、`User-agent: * Disallow: /`，并声明 `Sitemap: https://www.9hwh.com/sitemap.xml`
+- robots.txt 路径：`E:\9HWH-source\robots.txt`
+- 当前 `_headers` 内容：未确认，旧源码目录内未发现 `_headers`
+- `_headers` 路径：未确认
+- 当前 `_redirects` 内容：未确认，旧源码目录内未发现 `_redirects`
+- `_redirects` 路径：未确认
+- 构建配置路径：未确认，旧源码目录内未发现 `package.json`、`wrangler.toml` 或前端框架配置
+- 当前 service 页面生成脚本位置：未确认
+- service 页面样例：`E:\9HWH-source\service_0.html`、`E:\9HWH-source\service_7904.html`、`E:\9HWH-source\service_17996.html`
+- 当前首页是否自动插入 service 链接池：否，当前判断为直接写死在 `index.html`
+- service 链接池来源判断：写死在 HTML；依据是 `index.html` 中直接存在 `100` 个 `href="service_*.html"` 链接，未发现 JS 动态生成或 Python 脚本
+- 当前导航和页脚文件位置：未发现独立文件；当前页脚位于 `E:\9HWH-source\index.html`，导航未确认
 
 ## 3. 首页重做方向
 
