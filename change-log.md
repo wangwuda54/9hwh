@@ -149,6 +149,43 @@
 ### 验收结果
 - 待确认。
 
+## 2026-04-30 - 阶段 2B：站内内容与关键词承接体系建设
+
+### 变更类型
+- 类型：结构 / 内容 / 关键词 / 索引。
+
+### 变更原因
+- 当前处于官网重建期，重点应继续推进站内内容、页面结构、关键词承接和内链体系，而不是进入 Cloudflare Pages 部署配置。
+- 需要为细分业务关键词建立克制、正式、可长期维护的 topics 承接页。
+
+### 变更范围
+- 涉及文件：`site/public/` 下现有页面、`site/public/topics/` 新增页面、`site/public/assets/css/styles.css`、`site/public/sitemap.xml`、`project-status.md`、`docs/stage-2-site-build-plan.md`、`docs/stage-2b-content-structure.md`、`change-log.md`
+- 是否影响旧 service 页面：否
+- 是否影响索引：是，仅更新新官网 `sitemap.xml`
+
+### 具体变更
+- 大范围重写新官网第一版内容。
+- 新增 `/topics/` 关键词承接页面。
+- 新增虚拟币推广、交友引流、游戏推广、金融咨询获客、贷款获客、保险获客、移民咨询获客、网赚与兼职获客主题页。
+- 更新 sitemap，加入全部新官网正式页面。
+- 强化全站导航、页脚、服务页、平台页、topics 页之间的内链。
+- 未处理旧 service 页面。
+- 未做 Cloudflare Pages 部署配置。
+- 未新增 `_headers`。
+- 未新增 `_redirects`。
+- 未 push。
+
+### 风险判断
+- 风险等级：中
+- 主要风险：topics 页面涉及更细分的业务关键词，需要持续保持克制表达，避免进入高风险承诺。
+- 风险控制方式：所有主题页使用路径梳理、渠道建议、投放准备、执行协助、合作前确认政策和法规边界的表达。
+
+### 回滚点
+- 回退 `site/public/` 页面、`site/public/sitemap.xml`、阶段 2B 文档和本次 change-log 记录即可回到阶段 2 新站第一版。
+
+### 验收结果
+- 待确认。
+
 ## 2026-04-30 - 阶段 2：创建新官网静态站第一版
 
 ### 变更类型

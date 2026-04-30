@@ -68,3 +68,35 @@
 - 本阶段明确未处理旧 service 页面。
 - 本阶段未提交 `site/legacy-source`。
 - 本阶段没有把旧 service 页面加入新站 `sitemap.xml`。
+
+## 7. 阶段 2B 页面清单
+
+- 已重写首页 `/`。
+- 已重写服务页 `/services/`、`/services/overseas-promotion/`、`/services/traffic-acquisition/`、`/services/ad-campaign-support/`、`/services/media-buying/`。
+- 已重写平台页 `/platforms/`、`/platforms/tk/`、`/platforms/fb/`、`/platforms/google/`。
+- 已新增 topics 页面 `/topics/`、`/topics/crypto-promotion/`、`/topics/dating-traffic/`、`/topics/game-promotion/`、`/topics/finance-leads/`、`/topics/loan-leads/`、`/topics/insurance-leads/`、`/topics/immigration-leads/`、`/topics/online-work-leads/`。
+- 已重写市场页 `/markets/`、内容中心 `/blog/`、联系页 `/contact/` 和 `404.html`。
+
+## 8. 全站内链结构
+
+- 首页链接到服务、平台、topics、市场、联系页。
+- 服务页链接到对应服务详情、平台页和 topics 页。
+- 平台页链接到对应服务页和相关 topics 页。
+- topics 页链接到推荐服务入口和联系页。
+- 市场页链接到服务与 topics。
+- 内容中心暂不生成文章正文，只承接未来内容分类。
+
+## 9. sitemap 更新
+
+- `site/public/sitemap.xml` 已加入全部新官网正式页面。
+- sitemap 未包含旧 service 页面。
+- sitemap 未包含 `legacy-source`。
+- sitemap 未包含 `404.html`。
+
+## 10. 本阶段未做事项
+
+- 未做 Cloudflare Pages 部署配置。
+- 未新增 `_headers`。
+- 未新增 `_redirects`。
+- 未处理旧 service 页面。
+- 未做 301 / noindex / 410。
