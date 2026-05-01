@@ -1,7 +1,7 @@
 {
   "draft_count": 10,
-  "pass_count": 9,
-  "warning_count": 1,
+  "pass_count": 10,
+  "warning_count": 0,
   "fail_count": 0,
   "articles": [
     {
@@ -16,11 +16,9 @@
       "file": "c004-crypto-promotion-exchange-acquisition-how-to-efd74e87.md",
       "content_id": "c004-crypto-promotion-exchange-acquisition-how-to-efd74e87",
       "target_url": "/blog/exchange-acquisition-how-to-efd74e87/",
-      "status": "warning",
+      "status": "pass",
       "issues": [],
-      "warnings": [
-        "less than 2 internal links"
-      ]
+      "warnings": []
     },
     {
       "file": "c007-dating-traffic-dating-how-to-002063ad.md",

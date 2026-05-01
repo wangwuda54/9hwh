@@ -8,6 +8,8 @@
   "article_required_sections": ["搜索意图判断", "适合什么项目", "推广前准备", "渠道建议", "常见问题", "服务边界", "联系咨询"],
   "internal_link_rules": {
     "required_links": ["/services/", "/topics/", "/contact/"],
+    "minimum_article_links": 4,
+    "required_article_link_types": ["platform_or_service", "topic", "listing", "contact"],
     "max_links_per_article": 8,
     "avoid_links": ["service_", "legacy-source"]
   },

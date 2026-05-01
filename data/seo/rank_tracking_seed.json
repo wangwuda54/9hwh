@@ -1,0 +1,17 @@
+[
+  {
+    "content_id": "",
+    "target_url": "",
+    "primary_keyword": "",
+    "secondary_keywords": [],
+    "cluster": "",
+    "published_date": "",
+    "index_status": "not_published",
+    "impressions": 0,
+    "clicks": 0,
+    "avg_position": null,
+    "conversions": 0,
+    "checked_at": "",
+    "notes": "Seed schema only. Search Console data will be connected in a later stage."
+  }
+]

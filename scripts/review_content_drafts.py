@@ -118,6 +118,39 @@ def contains_html(body: str) -> bool:
     return any(tag not in allowed_inline for tag in parser.tags)
 
 
+def extract_internal_links(body: str) -> list[str]:
+    return re.findall(r"\]\((/[^)\s]+)\)", body)
+
+
+def is_article_draft(meta: dict[str, str]) -> bool:
+    return meta.get("target_url", "").startswith("/blog/")
+
+
+def review_internal_links(meta: dict[str, str], queue_item: dict | None, body: str) -> list[str]:
+    if not is_article_draft(meta):
+        return []
+    links = list(dict.fromkeys(extract_internal_links(body)))
+    warnings: list[str] = []
+    if len(links) < 4:
+        warnings.append("less than 4 internal links")
+    if not any(link.startswith("/platforms/") or (link.startswith("/services/") and link != "/services/") for link in links):
+        warnings.append("missing platform or service internal link")
+    if not any(link.startswith("/topics/") and link != "/topics/" for link in links):
+        warnings.append("missing topic internal link")
+    if not any(link in {"/services/", "/topics/"} for link in links):
+        warnings.append("missing services/topics listing internal link")
+    if "/contact/" not in links:
+        warnings.append("missing contact internal link")
+    if queue_item:
+        target_service = (queue_item.get("target_service") or "").strip()
+        target_topic = (queue_item.get("target_topic") or "").strip()
+        if target_service and target_service not in links:
+            warnings.append(f"missing preferred service link: {target_service}")
+        if target_topic and target_topic not in links:
+            warnings.append(f"missing preferred topic link: {target_topic}")
+    return warnings
+
+
 def has_service_boundary(meta: dict[str, str], body: str) -> bool:
     text = " ".join([meta.get("title", ""), meta.get("description", ""), body])
     return any(marker in text for marker in SERVICE_BOUNDARY_MARKERS)
@@ -206,9 +239,7 @@ def review_one(path: Path, queue_by_id: dict[str, dict]) -> dict:
             issues.append(f"possible fabricated company/contact claim: {pattern}")
     if "service_" in body or "/service_" in body:
         issues.append("contains old service link")
-    internal_links = len(re.findall(r"\]\(/", body))
-    if internal_links < 2:
-        warnings.append("less than 2 internal links")
+    warnings.extend(review_internal_links(meta, queue_item, body))
     if is_high_risk(meta, queue_item) and not has_service_boundary(meta, body):
         issues.append("high-risk topic missing service boundary wording")
     elif not has_service_boundary(meta, body):

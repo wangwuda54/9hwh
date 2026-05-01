@@ -1,0 +1,102 @@
+[
+  {
+    "category": "owned_platform_links",
+    "task_id": "owned-homepage-links",
+    "title": "其他自有平台主页增加 9HWH 官网链接",
+    "target_url": "https://www.9hwh.com/",
+    "recommended_destination": "/",
+    "status": "planned",
+    "priority": "high",
+    "notes": "优先放在账号简介、主页导航或站点入口位，避免隐藏链接。"
+  },
+  {
+    "category": "owned_platform_links",
+    "task_id": "video-description-topic-links",
+    "title": "视频简介补专题页链接",
+    "target_url": "https://www.9hwh.com/topics/",
+    "recommended_destination": "/topics/",
+    "status": "planned",
+    "priority": "high",
+    "notes": "按视频主题指向对应 topic hub 或专题文章，不要全部堆到首页。"
+  },
+  {
+    "category": "owned_platform_links",
+    "task_id": "social-pinned-service-links",
+    "title": "社媒置顶内容增加服务页链接",
+    "target_url": "https://www.9hwh.com/services/",
+    "recommended_destination": "/services/",
+    "status": "planned",
+    "priority": "high",
+    "notes": "置顶内容更适合链接服务总页或核心服务页。"
+  },
+  {
+    "category": "industry_content_links",
+    "task_id": "overseas-launch-checklist",
+    "title": "海外推广准备清单内容外链任务",
+    "target_url": "https://www.9hwh.com/blog/",
+    "recommended_destination": "/blog/",
+    "status": "planned",
+    "priority": "medium",
+    "notes": "优先寻找真实行业内容合作位、资源页或知识库引用位。"
+  },
+  {
+    "category": "industry_content_links",
+    "task_id": "channel-comparison-links",
+    "title": "TK/FB/Google 渠道对比内容外链任务",
+    "target_url": "https://www.9hwh.com/platforms/",
+    "recommended_destination": "/platforms/",
+    "status": "planned",
+    "priority": "medium",
+    "notes": "适合在渠道对比、媒介投放、出海营销经验文中争取引用。"
+  },
+  {
+    "category": "industry_content_links",
+    "task_id": "creative-checklist-links",
+    "title": "投放素材检查表外链任务",
+    "target_url": "https://www.9hwh.com/services/ad-campaign-support/",
+    "recommended_destination": "/services/ad-campaign-support/",
+    "status": "planned",
+    "priority": "medium",
+    "notes": "优先锚定素材准备、落地页检查、广告执行支持相关页面。"
+  },
+  {
+    "category": "partner_links",
+    "task_id": "partner-collaboration-page",
+    "title": "合作伙伴合作页链接任务",
+    "target_url": "https://www.9hwh.com/services/overseas-promotion/",
+    "recommended_destination": "/services/overseas-promotion/",
+    "status": "planned",
+    "priority": "medium",
+    "notes": "争取合作介绍、能力互补、联合方案页中的自然链接。"
+  },
+  {
+    "category": "partner_links",
+    "task_id": "partner-interview-page",
+    "title": "合作伙伴访谈页链接任务",
+    "target_url": "https://www.9hwh.com/topics/",
+    "recommended_destination": "/topics/",
+    "status": "planned",
+    "priority": "low",
+    "notes": "访谈内容可链接专题页或高相关文章，而不是泛链首页。"
+  },
+  {
+    "category": "partner_links",
+    "task_id": "partner-resource-page",
+    "title": "合作伙伴资源页链接任务",
+    "target_url": "https://www.9hwh.com/contact/",
+    "recommended_destination": "/contact/",
+    "status": "planned",
+    "priority": "low",
+    "notes": "资源页更适合导向服务总页、专题页或联系页。"
+  },
+  {
+    "category": "do_not_do",
+    "task_id": "avoid-spam-links",
+    "title": "禁止垃圾外链、PBN、批量目录站、同内容多域名互链",
+    "target_url": "",
+    "recommended_destination": "",
+    "status": "policy",
+    "priority": "critical",
+    "notes": "所有外链增长任务必须坚持真实内容、真实合作和自然锚文本。"
+  }
+]

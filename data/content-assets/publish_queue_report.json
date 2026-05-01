@@ -1,0 +1,13 @@
+{
+  "start_date": "2026-05-01",
+  "days": 30,
+  "daily_limit": 12,
+  "hard_limit": 20,
+  "eligible_reviewed": 0,
+  "scheduled_count": 0,
+  "unscheduled_count": 0,
+  "published_preserved": 0,
+  "skipped_preserved": 0,
+  "queue_preview": [],
+  "dry_run": true
+}

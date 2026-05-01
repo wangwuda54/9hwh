@@ -119,6 +119,10 @@ def card_grid(items: list[dict], columns: int = 3) -> str:
     return f'<div class="grid grid-{columns}">' + "".join(cards) + "</div>"
 
 
+def extract_markdown_links(markdown: str) -> list[str]:
+    return re.findall(r"\]\((/[^)\s]+)\)", markdown)
+
+
 def breadcrumb_items(path: str, title: str, base_url: str) -> list[dict]:
     path = url_path(path)
     items = [{"name": "首页", "url": canonical("/", base_url)}]
@@ -279,20 +283,70 @@ def load_publishable_drafts(queue: list[dict]) -> list[tuple[dict, str]]:
     return result
 
 
+def article_card(task: dict) -> dict:
+    return {
+        "title": task.get("title", ""),
+        "url": task.get("target_url", "#"),
+        "summary": task.get("description", task.get("intent", "")),
+    }
+
+
+def aggregate_published_articles(published_drafts: list[tuple[dict, str]]) -> dict[str, dict[str, list[dict]]]:
+    grouped = {"topics": {}, "services": {}, "platforms": {}}
+    for task, body in published_drafts:
+        card = article_card(task)
+        if task.get("target_topic"):
+            grouped["topics"].setdefault(task["target_topic"], []).append(card)
+        if task.get("target_service"):
+            grouped["services"].setdefault(task["target_service"], []).append(card)
+        internal_links = set(task.get("internal_links", [])) | set(extract_markdown_links(body))
+        for link in sorted(internal_links):
+            if link.startswith("/platforms/") and link != "/platforms/":
+                grouped["platforms"].setdefault(link, []).append(card)
+    for group in grouped.values():
+        for cards in group.values():
+            cards.sort(key=lambda item: item["title"])
+    return grouped
+
+
 def markdown_to_html(markdown: str) -> str:
+    def inline_html(text: str) -> str:
+        escaped = esc(text)
+        escaped = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", escaped)
+        escaped = re.sub(r"\[(.+?)\]\((/[^)\s]+)\)", lambda match: f'<a href="{esc(match.group(2))}">{match.group(1)}</a>', escaped)
+        return escaped
+
     blocks = []
+    in_list = False
     for raw in markdown.splitlines():
         line = raw.strip()
         if not line:
+            if in_list:
+                blocks.append("</ul>")
+                in_list = False
             continue
         if line.startswith("### "):
-            blocks.append(f"<h3>{esc(line[4:])}</h3>")
+            if in_list:
+                blocks.append("</ul>")
+                in_list = False
+            blocks.append(f"<h3>{inline_html(line[4:])}</h3>")
         elif line.startswith("## "):
-            blocks.append(f"<h2>{esc(line[3:])}</h2>")
+            if in_list:
+                blocks.append("</ul>")
+                in_list = False
+            blocks.append(f"<h2>{inline_html(line[3:])}</h2>")
         elif line.startswith("- "):
-            blocks.append(f"<p>• {esc(line[2:])}</p>")
+            if not in_list:
+                blocks.append("<ul>")
+                in_list = True
+            blocks.append(f"<li>{inline_html(line[2:])}</li>")
         else:
-            blocks.append(f"<p>{esc(line)}</p>")
+            if in_list:
+                blocks.append("</ul>")
+                in_list = False
+            blocks.append(f"<p>{inline_html(line)}</p>")
+    if in_list:
+        blocks.append("</ul>")
     return "".join(blocks)
 
 
@@ -319,7 +373,7 @@ def sections_html(sections: list[tuple[str, str]]) -> str:
     return "".join(f'<article class="card"><h2>{esc(title)}</h2>{content}</article>' for title, content in sections)
 
 
-def detail_content(item: dict, item_type: str, faq_data: dict, blocks: dict, keyword_ctx: dict) -> tuple[str, list[dict]]:
+def detail_content(item: dict, item_type: str, faq_data: dict, blocks: dict, keyword_ctx: dict, published_articles: list[dict] | None = None) -> tuple[str, list[dict]]:
     if item_type == "service":
         sections = [
             ("服务说明", f"<p>{esc(item.get('intro', item.get('summary', '')))}</p>"),
@@ -353,6 +407,8 @@ def detail_content(item: dict, item_type: str, faq_data: dict, blocks: dict, key
             ("服务边界", list_items(item.get("boundaries", []))),
         ]
         faq_group = "topics"
+    if published_articles:
+        sections.append(("已发布相关文章", card_grid(published_articles, 2)))
     faqs = resolve_faqs(faq_data, item.get("faq_refs"), faq_group)
     content = render(
         read_text(TEMPLATES / "page.html"),
@@ -430,6 +486,8 @@ def build() -> None:
     blocks = load_json("content_blocks.json")
     keyword_ctx = keyword_context()
     content_queue = load_content_queue()
+    published_drafts = load_publishable_drafts(content_queue)
+    published_aggregates = aggregate_published_articles(published_drafts)
     today = date.today().isoformat()
 
     clean_public()
@@ -467,20 +525,20 @@ def build() -> None:
     services_extra = keyword_block("/services/traffic-acquisition/", keyword_ctx, "服务词承接方向") + boundary_html(blocks["service_boundary"]) + faq_html(resolve_faqs(faqs, None, "services"))
     emit("/services/", pages["services"], listing_content(pages["services"], services, services_extra), site, nav, global_schemas, records, "pages.json:services", "listing")
     for item in services:
-        content, item_faqs = detail_content(item, "service", faqs, blocks, keyword_ctx)
+        content, item_faqs = detail_content(item, "service", faqs, blocks, keyword_ctx, published_aggregates["services"].get(item["url"], []))
         schemas = global_schemas + [faq_schema(item_faqs), service_schema(item, site)]
         emit(item["url"], item, content, site, nav, schemas, records, f"services.json:{item['slug']}", "service")
 
     platforms_extra = keyword_block("/platforms/tk/", keyword_ctx, "平台词承接方向") + faq_html(resolve_faqs(faqs, None, "platforms"))
     emit("/platforms/", pages["platforms"], listing_content(pages["platforms"], platforms, platforms_extra), site, nav, global_schemas, records, "pages.json:platforms", "listing")
     for item in platforms:
-        content, item_faqs = detail_content(item, "platform", faqs, blocks, keyword_ctx)
+        content, item_faqs = detail_content(item, "platform", faqs, blocks, keyword_ctx, published_aggregates["platforms"].get(item["url"], []))
         emit(item["url"], item, content, site, nav, global_schemas + [faq_schema(item_faqs)], records, f"platforms.json:{item['slug']}", "platform")
 
     topics_extra = keyword_block("/topics/crypto-promotion/", keyword_ctx, "细分类目承接方向") + boundary_html(blocks["service_boundary"]) + faq_html(resolve_faqs(faqs, None, "topics"))
     emit("/topics/", pages["topics"], listing_content(pages["topics"], topics, topics_extra), site, nav, global_schemas, records, "pages.json:topics", "listing")
     for item in topics:
-        content, item_faqs = detail_content(item, "topic", faqs, blocks, keyword_ctx)
+        content, item_faqs = detail_content(item, "topic", faqs, blocks, keyword_ctx, published_aggregates["topics"].get(item["url"], []))
         emit(item["url"], item, content, site, nav, global_schemas + [faq_schema(item_faqs)], records, f"topics.json:{item['slug']}", "topic")
 
     market_cards = [{"title": item["title"], "url": "/markets/", "summary": item["summary"]} for item in markets["evaluation_dimensions"]]
@@ -490,7 +548,7 @@ def build() -> None:
     blog_extra = card_grid(pages["blog"]["categories"], 3) + content_status_html(content_queue) + '<article class="card"><h2>长尾问答词处理方式</h2><p>带有怎么做、费用、价格、渠道、平台等后缀的长尾词先进入 future_blog 队列，后续再按 GSC 反馈和内容质量要求规划正文。</p></article><p class="note">当前不批量生成文章正文，后续文章正文默认由 DeepSeek 负责。</p>'
     emit("/blog/", pages["blog"], listing_content(pages["blog"], [], blog_extra), site, nav, global_schemas, records, "pages.json:blog", "blog")
 
-    for task, body in load_publishable_drafts(content_queue):
+    for task, body in published_drafts:
         page = {
             "title": task["title"],
             "h1": task.get("h1", task["title"]),

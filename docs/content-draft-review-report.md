@@ -1,14 +1,14 @@
 # Content Draft Review Report
 
 - drafts: 10
-- pass: 9
-- warning: 1
+- pass: 10
+- warning: 0
 - fail: 0
 
 | File | content_id | Result | Issues | Warnings |
 | --- | --- | --- | --- | --- |
 | c001-ad-campaign-support-how-to-17e66750.md | c001-ad-campaign-support-how-to-17e66750 | pass | - | - |
-| c004-crypto-promotion-exchange-acquisition-how-to-efd74e87.md | c004-crypto-promotion-exchange-acquisition-how-to-efd74e87 | warning | - | less than 2 internal links |
+| c004-crypto-promotion-exchange-acquisition-how-to-efd74e87.md | c004-crypto-promotion-exchange-acquisition-how-to-efd74e87 | pass | - | - |
 | c007-dating-traffic-dating-how-to-002063ad.md | c007-dating-traffic-dating-how-to-002063ad | pass | - | - |
 | c010-media-buying-part-time-how-to-5875d40e.md | c010-media-buying-part-time-how-to-5875d40e | pass | - | - |
 | c012-traffic-acquisition-dating-app-how-to-f56b0dad.md | c012-traffic-acquisition-dating-app-how-to-f56b0dad | pass | - | - |
