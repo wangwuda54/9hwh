@@ -1,0 +1,18 @@
+{
+  "status": "pass",
+  "sitemap_exists": true,
+  "robots_exists": true,
+  "robots_has_sitemap": true,
+  "expected_sitemap_url": "https://www.9hwh.com/sitemap.xml",
+  "sitemap_url_count": 22,
+  "queue_url_count": 60,
+  "published_queue_url_count": 0,
+  "queue_urls_in_sitemap": [],
+  "non_published_queue_urls_in_sitemap": [],
+  "reviewed_urls_in_sitemap": [],
+  "draft_urls_in_sitemap": [],
+  "internal_only_urls_in_sitemap": [],
+  "only_published_content_in_sitemap": true,
+  "warnings": [],
+  "issues": []
+}

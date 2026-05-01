@@ -5,7 +5,7 @@ description: 面向出海团队，解析交友App注册获客的关键环节，�
 target_url: /blog/dating-app-how-to-f56b0dad/
 primary_keyword: 交友App注册怎么做
 secondary_keywords: 交友App注册, 怎么做
-status: draft_received
+status: reviewed
 ---
 
 ## 交友App注册怎么做：推广路径、渠道判断和准备清单

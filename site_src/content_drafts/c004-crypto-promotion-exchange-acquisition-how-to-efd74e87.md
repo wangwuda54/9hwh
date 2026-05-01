@@ -5,7 +5,7 @@ description: 了解交易所拉新的核心推广路径、渠道选择逻辑与�
 target_url: /blog/exchange-acquisition-how-to-efd74e87/
 primary_keyword: 交易所拉新怎么做
 secondary_keywords: 交易所拉新, 怎么做
-status: draft_received
+status: reviewed
 ---
 
 ## 搜索意图判断

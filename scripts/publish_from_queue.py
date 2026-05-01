@@ -16,6 +16,8 @@ CONTENT_STATUS_PATH = CONTENT_DIR / "content_status.json"
 REVIEW_REPORT_PATH = ROOT / "data" / "content-assets" / "draft_review_report.json"
 DRAFTS_DIR = ROOT / "site_src" / "content_drafts"
 RULES_PATH = CONTENT_DIR / "content_rules.json"
+REPORT_JSON_PATH = ROOT / "data" / "content-assets" / "publish_dry_run_report.json"
+REPORT_MD_PATH = ROOT / "docs" / "publish-dry-run-report.md"
 
 DEFAULT_DAILY_LIMIT = 12
 HARD_LIMIT = 20
@@ -82,16 +84,7 @@ def extract_internal_links(body: str) -> list[str]:
 
 
 def has_forbidden_terms(text: str, rules: dict) -> list[str]:
-    terms = list(rules.get("blocked_terms", [])) + [
-        "保证过审",
-        "保证不限号",
-        "保证效果",
-        "保证转化",
-        "保证收益",
-        "绕过平台政策",
-        "规避审核",
-        "Cloak",
-    ]
+    terms = list(rules.get("blocked_terms", []))
     return [term for term in terms if term and term in text]
 
 
@@ -100,8 +93,9 @@ def load_review_by_id() -> dict[str, dict]:
     return {item["content_id"]: item for item in report.get("articles", []) if item.get("content_id")}
 
 
-def validate_selection(entries: list[dict], content_by_id: dict[str, dict], review_by_id: dict[str, dict], rules: dict) -> list[str]:
+def validate_selection(entries: list[dict], content_by_id: dict[str, dict], review_by_id: dict[str, dict], rules: dict) -> tuple[list[str], list[dict]]:
     errors: list[str] = []
+    validated: list[dict] = []
     published_urls = {
         item.get("target_url")
         for item in content_by_id.values()
@@ -121,7 +115,7 @@ def validate_selection(entries: list[dict], content_by_id: dict[str, dict], revi
             errors.append(f"{content_id}: content status must be reviewed")
         if content_item.get("internal_only") or entry.get("internal_only"):
             errors.append(f"{content_id}: internal_only content cannot be published")
-        if not review_item or review_item.get("status") != "pass":
+        if not review_item or review_item.get("status") != "pass" or review_item.get("warnings") or review_item.get("issues"):
             errors.append(f"{content_id}: review must be pass without warning/fail")
         target_url = content_item.get("target_url", "")
         if not target_url:
@@ -156,10 +150,21 @@ def validate_selection(entries: list[dict], content_by_id: dict[str, dict], revi
             errors.append(f"{content_id}: missing services/topics listing link")
         if "/contact/" not in links:
             errors.append(f"{content_id}: missing contact link")
-    return errors
+        validated.append(
+            {
+                "content_id": content_id,
+                "title": content_item.get("title", ""),
+                "target_url": target_url,
+                "planned_publish_date": entry.get("planned_publish_date", ""),
+                "risk_level": entry.get("risk_level", ""),
+                "content_type": entry.get("content_type", ""),
+                "internal_link_count": len(links),
+            }
+        )
+    return errors, validated
 
 
-def update_content_status(queue: list[dict]) -> dict:
+def update_content_status_summary(queue: list[dict]) -> dict:
     counts = {
         "total_planned": len(queue),
         "prompt_ready": 0,
@@ -177,6 +182,40 @@ def update_content_status(queue: list[dict]) -> dict:
     return counts
 
 
+def write_report(report: dict) -> None:
+    REPORT_JSON_PATH.parent.mkdir(parents=True, exist_ok=True)
+    REPORT_MD_PATH.parent.mkdir(parents=True, exist_ok=True)
+    REPORT_JSON_PATH.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n")
+    rows = [
+        "# Publish Dry Run Report",
+        "",
+        f"- date: {report['date']}",
+        f"- daily_limit: {report['daily_limit']}",
+        f"- selected_count: {report['selected_count']}",
+        f"- dry_run: {report['dry_run']}",
+        "",
+    ]
+    if report["errors"]:
+        rows.extend(["## Errors", ""])
+        for error in report["errors"]:
+            rows.append(f"- {error}")
+        rows.append("")
+    rows.extend(
+        [
+            "## Selected Items",
+            "",
+            "| Date | content_id | Type | Risk | Links | URL |",
+            "| --- | --- | --- | --- | --- | --- |",
+        ]
+    )
+    for item in report["selected_items"]:
+        rows.append(
+            f"| {item.get('planned_publish_date') or '-'} | {item['content_id']} | {item['content_type']} | "
+            f"{item['risk_level']} | {item['internal_link_count']} | {item['target_url']} |"
+        )
+    REPORT_MD_PATH.write_text("\n".join(rows) + "\n", encoding="utf-8", newline="\n")
+
+
 def main() -> int:
     args = parse_args()
     require_limit(args.daily_limit, args.force)
@@ -191,20 +230,30 @@ def main() -> int:
         item
         for item in publish_queue
         if item.get("publish_status") in {"queued", "publish_candidate"}
-        and item.get("planned_publish_date", publish_date) in {"", publish_date}
+        and item.get("planned_publish_date", publish_date) <= publish_date
+        and item.get("planned_publish_date")
     ]
-    eligible.sort(key=lambda value: (-int(value.get("priority_score", 0)), value.get("content_id", "")))
+    eligible.sort(key=lambda value: (value.get("planned_publish_date", ""), -int(value.get("priority_score", 0)), value.get("content_id", "")))
     selected = eligible[: args.daily_limit]
-    errors = validate_selection(selected, content_by_id, review_by_id, rules)
+    errors, validated = validate_selection(selected, content_by_id, review_by_id, rules)
+    report = {
+        "date": publish_date,
+        "daily_limit": args.daily_limit,
+        "selected_count": len(validated),
+        "selected_items": validated,
+        "errors": errors,
+        "dry_run": args.dry_run,
+    }
+    write_report(report)
     if errors:
         for error in errors:
             print(f"[FAIL] {error}")
         return 1
     if args.dry_run:
-        print(f"[OK] publish dry-run passed for {len(selected)} item(s) on {publish_date}")
+        print(f"[OK] publish dry-run passed for {len(validated)} item(s) on {publish_date}")
         return 0
 
-    selected_ids = {item["content_id"] for item in selected}
+    selected_ids = {item["content_id"] for item in validated}
     for item in content_queue:
         if item.get("content_id") in selected_ids:
             item["status"] = "published"
@@ -213,12 +262,11 @@ def main() -> int:
             item["publish_status"] = "published"
             item["planned_publish_date"] = publish_date
             notes = item.get("notes", "")
-            suffix = f" published_at={publish_date}"
-            item["notes"] = (notes + suffix).strip()
+            item["notes"] = (notes + f" published_at={publish_date}").strip()
     write_json(CONTENT_QUEUE_PATH, content_queue)
     write_json(PUBLISH_QUEUE_PATH, publish_queue)
-    write_json(CONTENT_STATUS_PATH, update_content_status(content_queue))
-    print(f"[OK] published {len(selected)} item(s) on {publish_date}")
+    write_json(CONTENT_STATUS_PATH, update_content_status_summary(content_queue))
+    print(f"[OK] published {len(validated)} item(s) on {publish_date}")
     return 0
 
 

@@ -1,0 +1,18 @@
+{
+  "date": "2026-05-01",
+  "daily_limit": 12,
+  "selected_count": 1,
+  "selected_items": [
+    {
+      "content_id": "c031-fb-promotion-fb-dating-traffic-5035e1c0",
+      "title": "FB交友引流：海外推广与获客准备指南",
+      "target_url": "/blog/topics/fb-dating-traffic-5035e1c0/",
+      "planned_publish_date": "2026-05-01",
+      "risk_level": "medium",
+      "content_type": "topic",
+      "internal_link_count": 5
+    }
+  ],
+  "errors": [],
+  "dry_run": true
+}

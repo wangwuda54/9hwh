@@ -5,7 +5,7 @@ description: 了解如何评估和开展海外推广兼职机会。本文梳理�
 target_url: /blog/part-time-how-to-5875d40e/
 primary_keyword: 兼职怎么做
 secondary_keywords: 兼职, 怎么做
-status: draft_received
+status: reviewed
 ---
 
 ## 搜索意图判断

@@ -30,6 +30,7 @@ build/
 # Local backups
 backups/
 site/legacy-source/
+data/content-assets/status_update_log.jsonl
 
 # Env
 .env

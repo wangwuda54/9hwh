@@ -5,7 +5,7 @@ description: 了解FB交友引流的真实需求、适合的项目类型、推�
 target_url: /blog/topics/fb-dating-traffic-5035e1c0/
 primary_keyword: FB交友引流
 secondary_keywords: 交友引流, FB, 引流
-status: draft_received
+status: reviewed
 ---
 
 ## 搜索意图判断

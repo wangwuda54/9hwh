@@ -5,7 +5,7 @@ description: 了解FB游戏推广的真实需求与准备流程。为出海团�
 target_url: /blog/topics/fb-game-promotion-eec369fd/
 primary_keyword: FB游戏推广
 secondary_keywords: 游戏, FB, 推广
-status: draft_received
+status: reviewed
 ---
 
 ## 搜索意图判断

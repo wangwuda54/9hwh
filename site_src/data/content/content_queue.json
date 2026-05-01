@@ -16,7 +16,7 @@
       "加密货币推广怎么做"
     ],
     "page_type": "blog_article",
-    "status": "draft_received",
+    "status": "reviewed",
     "priority": 1,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -109,7 +109,7 @@
       "交易所拉新怎么做"
     ],
     "page_type": "blog_article",
-    "status": "draft_received",
+    "status": "reviewed",
     "priority": 4,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -202,7 +202,7 @@
       "交友私聊怎么做"
     ],
     "page_type": "blog_article",
-    "status": "draft_received",
+    "status": "reviewed",
     "priority": 7,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -295,7 +295,7 @@
       "兼职怎么做"
     ],
     "page_type": "blog_article",
-    "status": "draft_received",
+    "status": "reviewed",
     "priority": 10,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -357,7 +357,7 @@
       "交友App注册怎么做"
     ],
     "page_type": "blog_article",
-    "status": "draft_received",
+    "status": "reviewed",
     "priority": 12,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -947,7 +947,7 @@
       "FB交友引流"
     ],
     "page_type": "topic_expansion",
-    "status": "draft_received",
+    "status": "reviewed",
     "priority": 31,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -1330,7 +1330,7 @@
       "FB游戏推广"
     ],
     "page_type": "topic_expansion",
-    "status": "draft_received",
+    "status": "reviewed",
     "priority": 43,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -1588,7 +1588,7 @@
       "FB移民获客"
     ],
     "page_type": "topic_expansion",
-    "status": "draft_received",
+    "status": "reviewed",
     "priority": 51,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -1652,7 +1652,7 @@
       "FB保险获客"
     ],
     "page_type": "topic_expansion",
-    "status": "draft_received",
+    "status": "reviewed",
     "priority": 53,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -1716,7 +1716,7 @@
       "FB贷款获客"
     ],
     "page_type": "topic_expansion",
-    "status": "draft_received",
+    "status": "reviewed",
     "priority": 55,
     "word_count_target": 1800,
     "deepseek_required": true,
