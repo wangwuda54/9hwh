@@ -1,8 +1,27 @@
 {
   "date": "2026-05-01",
-  "daily_limit": 12,
-  "selected_count": 1,
+  "daily_limit": 3,
+  "mode": "normal",
+  "selected_count": 3,
   "selected_items": [
+    {
+      "content_id": "c007-dating-traffic-dating-how-to-002063ad",
+      "title": "交友私聊怎么做：推广路径、渠道判断和准备清单",
+      "target_url": "/blog/dating-how-to-002063ad/",
+      "planned_publish_date": "2026-05-08",
+      "risk_level": "low",
+      "content_type": "topic",
+      "internal_link_count": 5
+    },
+    {
+      "content_id": "c010-media-buying-part-time-how-to-5875d40e",
+      "title": "兼职怎么做：推广路径、渠道判断和准备清单",
+      "target_url": "/blog/part-time-how-to-5875d40e/",
+      "planned_publish_date": "2026-05-09",
+      "risk_level": "low",
+      "content_type": "service",
+      "internal_link_count": 4
+    },
     {
       "content_id": "c031-fb-promotion-fb-dating-traffic-5035e1c0",
       "title": "FB交友引流：海外推广与获客准备指南",
@@ -14,5 +33,5 @@
     }
   ],
   "errors": [],
-  "dry_run": true
+  "dry_run": false
 }

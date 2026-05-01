@@ -4,10 +4,14 @@
   "robots_exists": true,
   "robots_has_sitemap": true,
   "expected_sitemap_url": "https://www.9hwh.com/sitemap.xml",
-  "sitemap_url_count": 22,
+  "sitemap_url_count": 25,
   "queue_url_count": 60,
-  "published_queue_url_count": 0,
-  "queue_urls_in_sitemap": [],
+  "published_queue_url_count": 3,
+  "queue_urls_in_sitemap": [
+    "/blog/dating-how-to-002063ad/",
+    "/blog/part-time-how-to-5875d40e/",
+    "/blog/topics/fb-dating-traffic-5035e1c0/"
+  ],
   "non_published_queue_urls_in_sitemap": [],
   "reviewed_urls_in_sitemap": [],
   "draft_urls_in_sitemap": [],

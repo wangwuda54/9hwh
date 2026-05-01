@@ -202,7 +202,7 @@
       "交友私聊怎么做"
     ],
     "page_type": "blog_article",
-    "status": "reviewed",
+    "status": "published",
     "priority": 7,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -295,7 +295,7 @@
       "兼职怎么做"
     ],
     "page_type": "blog_article",
-    "status": "reviewed",
+    "status": "published",
     "priority": 10,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -947,7 +947,7 @@
       "FB交友引流"
     ],
     "page_type": "topic_expansion",
-    "status": "reviewed",
+    "status": "published",
     "priority": 31,
     "word_count_target": 1800,
     "deepseek_required": true,

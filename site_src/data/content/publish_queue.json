@@ -7,12 +7,12 @@
     "content_type": "topic",
     "priority_score": 72,
     "risk_level": "medium",
-    "publish_status": "queued",
+    "publish_status": "published",
     "planned_publish_date": "2026-05-01",
     "batch": "batch-001",
     "review_status": "pass",
     "internal_link_count": 5,
-    "notes": "ok"
+    "notes": "ok published_at=2026-05-01"
   },
   {
     "content_id": "c043-game-promotion-fb-game-promotion-eec369fd",
@@ -112,12 +112,12 @@
     "content_type": "topic",
     "priority_score": 101,
     "risk_level": "low",
-    "publish_status": "queued",
-    "planned_publish_date": "2026-05-08",
+    "publish_status": "published",
+    "planned_publish_date": "2026-05-01",
     "batch": "batch-001",
     "review_status": "pass",
     "internal_link_count": 5,
-    "notes": "ok"
+    "notes": "ok published_at=2026-05-01"
   },
   {
     "content_id": "c010-media-buying-part-time-how-to-5875d40e",
@@ -127,12 +127,12 @@
     "content_type": "service",
     "priority_score": 98,
     "risk_level": "low",
-    "publish_status": "queued",
-    "planned_publish_date": "2026-05-09",
+    "publish_status": "published",
+    "planned_publish_date": "2026-05-01",
     "batch": "batch-001",
     "review_status": "pass",
     "internal_link_count": 4,
-    "notes": "ok"
+    "notes": "ok published_at=2026-05-01"
   },
   {
     "content_id": "c012-traffic-acquisition-dating-app-how-to-f56b0dad",

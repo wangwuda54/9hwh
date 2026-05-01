@@ -251,9 +251,18 @@ def check_keyword_assets(sitemap: set[str]) -> None:
         "/blog/",
         "/contact/",
     }
+    queue_path = CONTENT_DATA / "content_queue.json"
+    published_article_paths = set()
+    if queue_path.exists():
+        queue = json.loads(queue_path.read_text(encoding="utf-8-sig"))
+        published_article_paths = {
+            item["target_url"]
+            for item in queue
+            if item.get("status") == "published" and item.get("target_url") and not item.get("internal_only")
+        }
     for url in sitemap:
         path = url.replace(BASE_URL, "")
-        if path not in cluster_targets and path not in known_pages:
+        if path not in cluster_targets and path not in known_pages and path not in published_article_paths:
             fail(f"sitemap URL has no cluster or page type note: {url}")
 
     sensitive = rules.get("sensitive_internal_categories", [])
@@ -332,7 +341,7 @@ def check_content_pipeline(sitemap: set[str]) -> None:
         if not item.get("primary_keyword"):
             fail(f"content task missing primary_keyword: {content_id}")
         status = item.get("status")
-        full_url = BASE_URL + target_url.lstrip("/")
+        full_url = BASE_URL + target_url
         if item.get("internal_only") and full_url in sitemap:
             fail(f"internal_only content entered sitemap: {content_id}")
         if status in {"planned", "prompt_ready", "writing", "draft_received", "reviewed", "paused"} and full_url in sitemap:
@@ -398,7 +407,7 @@ def check_deepseek_batch(sitemap: set[str]) -> None:
         if result.returncode != 0:
             fail("review_content_drafts.py failed")
     for item in queue.values():
-        full_url = BASE_URL + item.get("target_url", "").lstrip("/")
+        full_url = BASE_URL + item.get("target_url", "")
         if item.get("status") in {"draft_received", "reviewed"} and full_url in sitemap:
             fail(f"draft/reviewed content entered sitemap: {item['content_id']}")
     ok("DeepSeek batch checks completed")

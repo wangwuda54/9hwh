@@ -5,7 +5,7 @@ description: 为出海团队解析“交友私聊怎么做”的真实需求，�
 target_url: /blog/dating-how-to-002063ad/
 primary_keyword: 交友私聊怎么做
 secondary_keywords: 交友私聊, 怎么做
-status: reviewed
+status: published
 ---
 
 ## 理解“交友私聊怎么做”的真实需求

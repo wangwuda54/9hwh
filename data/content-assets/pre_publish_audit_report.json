@@ -1,0 +1,55 @@
+{
+  "date": "2026-05-01",
+  "mode": "normal",
+  "limit": 3,
+  "dry_run": true,
+  "queue_pool": 10,
+  "valid_candidates": 10,
+  "recommended_count": 3,
+  "recommended_items": [
+    {
+      "content_id": "c007-dating-traffic-dating-how-to-002063ad",
+      "title": "交友私聊怎么做：推广路径、渠道判断和准备清单",
+      "target_url": "/blog/dating-how-to-002063ad/",
+      "primary_keyword": "交友私聊怎么做",
+      "description": "为出海团队解析“交友私聊怎么做”的真实需求，提供推广前准备清单、渠道选择建议及服务边界说明。",
+      "risk_level": "low",
+      "content_type": "topic",
+      "cluster_id": "dating-traffic",
+      "planned_publish_date": "2026-05-08",
+      "internal_link_count": 5,
+      "shape": "ordinary_long_tail",
+      "notes": "ok"
+    },
+    {
+      "content_id": "c010-media-buying-part-time-how-to-5875d40e",
+      "title": "兼职怎么做：推广路径、渠道判断和准备清单",
+      "target_url": "/blog/part-time-how-to-5875d40e/",
+      "primary_keyword": "兼职怎么做",
+      "description": "了解如何评估和开展海外推广兼职机会。本文梳理搜索意图、适合项目类型、推广前准备清单与可选渠道，帮助出海团队与个人做好决策准备。",
+      "risk_level": "low",
+      "content_type": "service",
+      "cluster_id": "media-buying",
+      "planned_publish_date": "2026-05-09",
+      "internal_link_count": 4,
+      "shape": "service_or_platform",
+      "notes": "ok"
+    },
+    {
+      "content_id": "c031-fb-promotion-fb-dating-traffic-5035e1c0",
+      "title": "FB交友引流：海外推广与获客准备指南",
+      "target_url": "/blog/topics/fb-dating-traffic-5035e1c0/",
+      "primary_keyword": "FB交友引流",
+      "description": "了解FB交友引流的真实需求、适合的项目类型、推广前的资料准备、可选渠道及服务边界。为出海团队提供海外推广与获客准备参考。",
+      "risk_level": "medium",
+      "content_type": "topic",
+      "cluster_id": "fb-promotion",
+      "planned_publish_date": "2026-05-01",
+      "internal_link_count": 5,
+      "shape": "social_or_game_topic",
+      "notes": "ok"
+    }
+  ],
+  "skipped_items": [],
+  "errors": []
+}

@@ -130,9 +130,12 @@ def breadcrumb_items(path: str, title: str, base_url: str) -> list[dict]:
         parts = [p for p in path.strip("/").split("/") if p and not p.endswith(".html")]
         current = ""
         for index, part in enumerate(parts):
-            current += "/" + part + "/"
+            current = current.rstrip("/") + "/" + part + "/"
+            crumb_url = current
+            if current == "/blog/topics/":
+                crumb_url = "/topics/"
             name = title if index == len(parts) - 1 else slug_to_label(part)
-            items.append({"name": name, "url": canonical(current, base_url)})
+            items.append({"name": name, "url": canonical(crumb_url, base_url)})
     return items
 
 

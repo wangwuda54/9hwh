@@ -23,4 +23,7 @@
 | https://www.9hwh.com/topics/online-work-leads/ | topics.json:online-work-leads | site/public/topics/online-work-leads/index.html | topic | yes | yes | 网赚推广与兼职获客 | 网赚推广与兼职获客主题页，覆盖网赚推广、兼职获客、在线项目推广、渠道建议和推广前准备。 |
 | https://www.9hwh.com/markets/ | pages.json:markets | site/public/markets/index.html | markets | yes | yes | 海外市场方向 | 9HWH | 说明不同国家和地区的推广判断、平台适配差异、语言素材和落地页准备。 |
 | https://www.9hwh.com/blog/ | pages.json:blog | site/public/blog/index.html | blog | yes | yes | 内容中心 | 9HWH | 内容中心第一版只建立文章分类和后续方向，不批量生成正文。 |
+| https://www.9hwh.com/blog/dating-how-to-002063ad/ | content_queue:c007-dating-traffic-dating-how-to-002063ad | site/public/blog/dating-how-to-002063ad/index.html | blog_article | yes | yes | 交友私聊怎么做：推广路径、渠道判断和准备清单 | 为出海团队解析“交友私聊怎么做”的真实需求，提供推广前准备清单、渠道选择建议及服务边界说明。 |
+| https://www.9hwh.com/blog/part-time-how-to-5875d40e/ | content_queue:c010-media-buying-part-time-how-to-5875d40e | site/public/blog/part-time-how-to-5875d40e/index.html | blog_article | yes | yes | 兼职怎么做：推广路径、渠道判断和准备清单 | 了解如何评估和开展海外推广兼职机会。本文梳理搜索意图、适合项目类型、推广前准备清单与可选渠道，帮助出海团队与个人做好决策准备。 |
+| https://www.9hwh.com/blog/topics/fb-dating-traffic-5035e1c0/ | content_queue:c031-fb-promotion-fb-dating-traffic-5035e1c0 | site/public/blog/topics/fb-dating-traffic-5035e1c0/index.html | topic_expansion | yes | yes | FB交友引流：海外推广与获客准备指南 | 了解FB交友引流的真实需求、适合的项目类型、推广前的资料准备、可选渠道及服务边界。为出海团队提供海外推广与获客准备参考。 |
 | https://www.9hwh.com/contact/ | pages.json:contact | site/public/contact/index.html | contact | yes | yes | 联系咨询 | 9HWH | 联系 9HWH 前建议提供平台、国家市场、项目类型、当前阶段、预算区间、素材、落地页和过往投放记录。 |
