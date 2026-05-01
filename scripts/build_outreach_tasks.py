@@ -7,6 +7,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 TASKS_PATH = ROOT / "data" / "seo" / "outreach_tasks.json"
+EXECUTION_LOG_PATH = ROOT / "data" / "seo" / "outreach_execution_log.json"
 REPORT_JSON_PATH = ROOT / "data" / "seo" / "outreach_tasks_report.json"
 REPORT_MD_PATH = ROOT / "docs" / "outreach-tasks-report.md"
 
@@ -125,6 +126,23 @@ def build_resource_page_tasks() -> list[dict]:
     return [make_task(f"resource-page-{task_id}", "resource_page", platform, target, anchor, angle, "low") for task_id, platform, target, anchor, angle in rows]
 
 
+def build_execution_log(tasks: list[dict]) -> list[dict]:
+    return [
+        {
+            "task_id": task["task_id"],
+            "executed_at": "",
+            "platform": task["platform"],
+            "target_page": task["target_page"],
+            "actual_url": "",
+            "status": "pending",
+            "nofollow": "unknown",
+            "notes": "",
+            "next_check_date": "",
+        }
+        for task in tasks
+    ]
+
+
 def main() -> int:
     tasks = (
         build_owned_profile_tasks()
@@ -148,7 +166,9 @@ def main() -> int:
     TASKS_PATH.parent.mkdir(parents=True, exist_ok=True)
     REPORT_JSON_PATH.parent.mkdir(parents=True, exist_ok=True)
     REPORT_MD_PATH.parent.mkdir(parents=True, exist_ok=True)
+    EXECUTION_LOG_PATH.parent.mkdir(parents=True, exist_ok=True)
     TASKS_PATH.write_text(json.dumps(tasks, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n")
+    EXECUTION_LOG_PATH.write_text(json.dumps(build_execution_log(tasks), ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n")
     REPORT_JSON_PATH.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n")
 
     rows = [

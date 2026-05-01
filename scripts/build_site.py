@@ -87,7 +87,7 @@ def clean_public() -> None:
     PUBLIC.mkdir(parents=True, exist_ok=True)
     for path in PUBLIC.rglob("*.html"):
         path.unlink()
-    for filename in ("sitemap.xml", "robots.txt"):
+    for filename in ("sitemap.xml", "robots.txt", "_headers", "_redirects"):
         path = PUBLIC / filename
         if path.exists():
             path.unlink()
@@ -576,6 +576,7 @@ def build() -> None:
     check_duplicate_urls(records)
     write_sitemap(records, today)
     write_file("robots.txt", "User-agent: *\nAllow: /\n\nSitemap: https://www.9hwh.com/sitemap.xml\n")
+    write_cloudflare_pages_files()
     write_inventory(records)
     print(f"[OK] Generated {len(records)} indexed pages into {PUBLIC}")
 
@@ -590,6 +591,33 @@ def write_sitemap(records: list[dict], lastmod: str) -> None:
         lines.append(f'  <url><loc>{record["url"]}</loc><lastmod>{lastmod}</lastmod></url>')
     lines.append("</urlset>")
     write_file("sitemap.xml", "\n".join(lines) + "\n")
+
+
+def write_cloudflare_pages_files() -> None:
+    headers = "\n".join(
+        [
+            "/*",
+            "  X-Content-Type-Options: nosniff",
+            "  Referrer-Policy: strict-origin-when-cross-origin",
+            "  X-Frame-Options: SAMEORIGIN",
+            "  Content-Security-Policy: frame-ancestors 'self'",
+            "  Permissions-Policy: interest-cohort=()",
+            "  Cache-Control: public, max-age=0, must-revalidate",
+            "",
+            "/assets/*",
+            "  Cache-Control: public, max-age=31536000, immutable",
+            "",
+        ]
+    )
+    redirects = "\n".join(
+        [
+            "# Minimal Cloudflare Pages redirects for the static site",
+            "# No broad rewrites until production rules are explicitly approved.",
+            "",
+        ]
+    )
+    write_file("_headers", headers)
+    write_file("_redirects", redirects)
 
 
 def write_inventory(records: list[dict]) -> None:
