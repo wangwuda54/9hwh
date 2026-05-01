@@ -5,33 +5,33 @@
   "selected_count": 3,
   "selected_items": [
     {
-      "content_id": "c007-dating-traffic-dating-how-to-002063ad",
-      "title": "交友私聊怎么做：推广路径、渠道判断和准备清单",
-      "target_url": "/blog/dating-how-to-002063ad/",
-      "planned_publish_date": "2026-05-08",
+      "content_id": "c004-crypto-promotion-exchange-acquisition-how-to-efd74e87",
+      "title": "交易所拉新怎么做：推广路径、渠道判断和准备清单",
+      "target_url": "/blog/exchange-acquisition-how-to-efd74e87/",
+      "planned_publish_date": "2026-05-07",
       "risk_level": "low",
       "content_type": "topic",
-      "internal_link_count": 5
+      "internal_link_count": 4
     },
     {
-      "content_id": "c010-media-buying-part-time-how-to-5875d40e",
-      "title": "兼职怎么做：推广路径、渠道判断和准备清单",
-      "target_url": "/blog/part-time-how-to-5875d40e/",
-      "planned_publish_date": "2026-05-09",
+      "content_id": "c012-traffic-acquisition-dating-app-how-to-f56b0dad",
+      "title": "交友App注册怎么做：推广路径、渠道判断和准备清单",
+      "target_url": "/blog/dating-app-how-to-f56b0dad/",
+      "planned_publish_date": "2026-05-10",
       "risk_level": "low",
       "content_type": "service",
       "internal_link_count": 4
     },
     {
-      "content_id": "c031-fb-promotion-fb-dating-traffic-5035e1c0",
-      "title": "FB交友引流：海外推广与获客准备指南",
-      "target_url": "/blog/topics/fb-dating-traffic-5035e1c0/",
-      "planned_publish_date": "2026-05-01",
+      "content_id": "c043-game-promotion-fb-game-promotion-eec369fd",
+      "title": "FB游戏推广：海外推广与获客准备指南",
+      "target_url": "/blog/topics/fb-game-promotion-eec369fd/",
+      "planned_publish_date": "2026-05-02",
       "risk_level": "medium",
       "content_type": "topic",
-      "internal_link_count": 5
+      "internal_link_count": 4
     }
   ],
   "errors": [],
-  "dry_run": false
+  "dry_run": true
 }

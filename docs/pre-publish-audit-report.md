@@ -4,14 +4,14 @@
 - mode: normal
 - limit: 3
 - dry_run: True
-- queue_pool: 10
-- valid_candidates: 10
+- queue_pool: 7
+- valid_candidates: 7
 - recommended_count: 3
 
 ## Recommended First Publish Set
 
 | content_id | shape | type | cluster | risk | links | target_url |
 | --- | --- | --- | --- | --- | --- | --- |
-| c007-dating-traffic-dating-how-to-002063ad | ordinary_long_tail | topic | dating-traffic | low | 5 | /blog/dating-how-to-002063ad/ |
-| c010-media-buying-part-time-how-to-5875d40e | service_or_platform | service | media-buying | low | 4 | /blog/part-time-how-to-5875d40e/ |
-| c031-fb-promotion-fb-dating-traffic-5035e1c0 | social_or_game_topic | topic | fb-promotion | medium | 5 | /blog/topics/fb-dating-traffic-5035e1c0/ |
+| c004-crypto-promotion-exchange-acquisition-how-to-efd74e87 | ordinary_long_tail | topic | crypto-promotion | low | 4 | /blog/exchange-acquisition-how-to-efd74e87/ |
+| c012-traffic-acquisition-dating-app-how-to-f56b0dad | service_or_platform | service | traffic-acquisition | low | 4 | /blog/dating-app-how-to-f56b0dad/ |
+| c043-game-promotion-fb-game-promotion-eec369fd | social_or_game_topic | topic | game-promotion | medium | 4 | /blog/topics/fb-game-promotion-eec369fd/ |
