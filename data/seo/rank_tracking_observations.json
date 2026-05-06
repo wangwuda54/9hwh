@@ -1,1 +1,31 @@
-[]
+[
+  {
+    "recorded_at": "2026-05-06T00:00:00+08:00",
+    "stage": "stage-17",
+    "site_status": "pending_deploy",
+    "base_url": "",
+    "formal_domain": "",
+    "status": "pending",
+    "initial_check": null,
+    "observations": [],
+    "next_observation_windows": [
+      {
+        "day": 7,
+        "focus": "Check sitemap fetch, index discovery, and whether any published URL starts appearing in GSC."
+      },
+      {
+        "day": 14,
+        "focus": "Check initial impressions and early query coverage for the 3 published URLs."
+      },
+      {
+        "day": 30,
+        "focus": "Review trend direction, strongest landing pages, and pages still missing exposure."
+      },
+      {
+        "day": 60,
+        "focus": "Review stabilization, identify pages needing title/CTR/internal-link adjustments."
+      }
+    ],
+    "notes": "No ranking data is recorded before a real deployed URL exists. Do not fabricate impressions, clicks, position, or indexation."
+  }
+]

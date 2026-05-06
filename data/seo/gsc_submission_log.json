@@ -1,1 +1,20 @@
-[]
+[
+  {
+    "recorded_at": "2026-05-06T00:00:00+08:00",
+    "stage": "stage-17",
+    "property": "",
+    "sitemap_url": "",
+    "status": "pending",
+    "submitted_at": "",
+    "submitted_by": "",
+    "blocking_reason": "Cloudflare Pages preview/live URL not available in the current environment, so sitemap submission cannot be executed or verified yet.",
+    "preconditions": {
+      "preview_deployed": false,
+      "formal_domain_bound": false,
+      "sitemap_returns_200": false,
+      "robots_has_sitemap": true,
+      "sitemap_only_contains_published": true
+    },
+    "notes": "Use sitemap-only submission after a real deployed URL is available. Do not use GIA. Do not submit individual URLs in bulk."
+  }
+]
