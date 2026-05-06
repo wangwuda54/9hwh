@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import html
 import csv
+import hashlib
 import json
 import re
 import shutil
@@ -43,6 +44,11 @@ def load_keyword_json(name: str):
 
 def read_text(path: Path) -> str:
     return path.read_text(encoding="utf-8")
+
+
+def css_asset_version() -> str:
+    css = SRC / "assets" / "css" / "styles.css"
+    return hashlib.sha1(css.read_bytes()).hexdigest()[:8]
 
 
 def render(template: str, values: dict[str, str]) -> str:
@@ -170,8 +176,16 @@ def process_cards_html(titles: list[str]) -> str:
         "执行协助": "围绕投放、推广和过程沟通持续配合，不只停在建议层。",
         "数据反馈和调整": "根据阶段反馈调整渠道、素材、预算和下一轮测试节奏。",
     }
-    items = [{"title": title, "text": descriptions.get(title, "根据项目反馈继续调整测试节奏。")} for title in titles]
-    return simple_cards(items[:4], 4, "step")
+    cards = []
+    for index, title in enumerate(titles[:4], start=1):
+        cards.append(
+            '<article class="card step">'
+            f'<span class="step-number">{index:02d}</span>'
+            f'<h3>{esc(title)}</h3>'
+            f'<p>{esc(descriptions.get(title, "根据项目反馈继续调整测试节奏。"))}</p>'
+            "</article>"
+        )
+    return '<div class="grid grid-4 process">' + "".join(cards) + "</div>"
 
 
 def advantage_cards_html(items: list[str]) -> str:
@@ -547,6 +561,7 @@ def render_base(page: dict, path: str, content: str, site: dict, nav: list[dict]
             "title": esc(page["title"]),
             "description": esc(page["description"]),
             "canonical": esc(canonical(path, site["base_url"])),
+            "asset_version": css_asset_version(),
             "site_name": esc(site["site_name"]),
             "nav": nav_html(nav),
             "breadcrumb": breadcrumb,
