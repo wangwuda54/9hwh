@@ -23,10 +23,12 @@ CONTENT_DATA = DATA / "content"
 DRAFTS = SRC / "content_drafts"
 TELEGRAM_URL = "https://tg.9hwh.com/"
 TELEGRAM_BUTTON_LABEL = "Telegram 咨询"
-DETAIL_CTA_TITLE = "想确认你的项目适合怎么跑？"
-DETAIL_CTA_TEXT = "可以通过 Telegram 联系 9HWH，先简单说明项目类型、目标地区、预算范围和现有素材情况，我们会一起判断适合从哪个渠道开始测试。"
-ARTICLE_CTA_TITLE = "想确认你的项目适合怎么跑？"
-ARTICLE_CTA_TEXT = "可以通过 Telegram 联系 9HWH，先简单说明项目类型、目标地区、预算范围和现有素材情况，我们会一起判断适合从哪个渠道开始测试。"
+DEFAULT_CTA_TITLE = "不知道先跑 TK、FB 还是 Google？"
+DEFAULT_CTA_TEXT = "把项目类型、目标地区、预算范围和现有素材发到 Telegram，我们先帮你判断适合从哪个渠道开始测，避免一开始就把预算花在不确定的方向上。"
+DETAIL_CTA_TITLE = DEFAULT_CTA_TITLE
+DETAIL_CTA_TEXT = DEFAULT_CTA_TEXT
+ARTICLE_CTA_TITLE = DEFAULT_CTA_TITLE
+ARTICLE_CTA_TEXT = DEFAULT_CTA_TEXT
 FRONT_CONSULTATION_NOTE = "我们会先了解项目类型、目标地区、预算范围和现有准备，再一起判断适合从哪个渠道开始测试。"
 PUBLIC_COPY_REPLACEMENTS = {
     "服务边界说明": "沟通准备说明",
@@ -57,6 +59,11 @@ PUBLIC_COPY_REPLACEMENTS = {
     "不提供平台政策规避操作": "按可持续渠道方式推进",
     "不愿确认平台政策和地区法规的合作": "资料不完整、无法判断目标市场和承接路径的合作",
     "服务不包含：": "沟通时会重点确认：",
+    "个人团队": "出海项目团队",
+    "联系 9HWH": "发到 Telegram",
+    "可以通过 Telegram 联系 9HWH，先简单说明项目类型、目标地区、预算范围和现有素材情况，我们会一起判断适合从哪个渠道开始测试。": DEFAULT_CTA_TEXT,
+    "通过 Telegram 联系 9HWH": "把项目情况发到 Telegram",
+    "通过 Telegram 咨询 9HWH": "通过 Telegram 说一下你的项目情况",
     "会结合项目资料和平台要求做前期判断或降低审核标准": "会结合项目资料和平台要求做前期判断",
     "不承接涉及违禁内容或不合规承诺的项目": "项目内容和表达方式会在沟通时先做基础判断",
     "不建议以此路径开展推广": "建议先评估更合适的沟通路径",
@@ -186,7 +193,7 @@ def home_hero_buttons_html() -> str:
 
 def floating_telegram_html() -> str:
     return (
-        f'<a class="floating-telegram" href="{TELEGRAM_URL}" target="_blank" rel="noopener noreferrer" aria-label="通过 Telegram 咨询 9HWH">'
+        f'<a class="floating-telegram" href="{TELEGRAM_URL}" target="_blank" rel="noopener noreferrer" aria-label="通过 Telegram 说一下你的项目情况">'
         '<span class="floating-telegram-icon" aria-hidden="true"></span>'
         '<span class="floating-telegram-label">Telegram 咨询</span>'
         "</a>"
@@ -476,7 +483,7 @@ def markdown_to_html(markdown: str) -> str:
             label = match.group(1)
             href = match.group(2)
             if href == "/contact/" or "联系" in label or "咨询" in label:
-                return f'<a href="{TELEGRAM_URL}" target="_blank" rel="noopener noreferrer">通过 Telegram 联系 9HWH</a>'
+                return f'<a href="{TELEGRAM_URL}" target="_blank" rel="noopener noreferrer">把项目情况发到 Telegram</a>'
             return f'<a href="{esc(href)}">{label}</a>'
         escaped = re.sub(r"\[(.+?)\]\((/[^)\s]+)\)", replace_markdown_link, escaped)
         return escaped
@@ -681,7 +688,7 @@ def build() -> None:
             "advantage_cards": home_advantage_cards_html(),
             "process_cards": process_cards_html(blocks["process_steps"]),
             "fit_cards": fit_cards_html(),
-            "cta": cta_html("通过 Telegram 咨询 9HWH", "如果你已经在准备海外推广、广告投放、引流获客或市场测试，可以直接通过 Telegram 联系 9HWH，我们会先一起判断适合从哪些渠道开始跑。"),
+            "cta": cta_html(DEFAULT_CTA_TITLE, DEFAULT_CTA_TEXT),
         },
     )
     emit("/", pages["home"], home_content, site, nav, global_schemas, records, "pages.json:home", "home")
@@ -770,14 +777,14 @@ def build() -> None:
     privacy_extra = (
         '<article class="card"><h2>我们如何处理信息</h2>'
         "<p>9HWH 尊重访问者隐私。本站不设置站内注册、付款或会员系统。</p>"
-        "<p>当用户通过 Telegram 联系 9HWH 时，沟通由 Telegram 平台承载，相关使用体验和账号安全也会受到 Telegram 平台规则影响。</p>"
+        "<p>当用户通过 Telegram 发来项目情况时，沟通由 Telegram 平台承载，相关使用体验和账号安全也会受到 Telegram 平台规则影响。</p>"
         "<p>本站可能因网站安全、防滥用、基础访问统计或 Cloudflare 服务保留必要访问日志。这些日志用于维护网站稳定和排查异常访问。</p>"
         "<p>9HWH 不会出售访问者个人信息。</p></article>"
         '<article class="card"><h2>通过 Telegram 主动提供的信息</h2>'
         "<p>如果用户通过 Telegram 主动提供项目类型、目标地区、预算范围、素材、落地页或联系方式，这些信息仅用于沟通推广需求和提供咨询协助。</p>"
         '<p>如需删除或更正主动提供的信息，可以通过 <a href="'
         + TELEGRAM_URL
-        + '" target="_blank" rel="noopener noreferrer">Telegram 联系 9HWH</a>。</p>'
+        + '" target="_blank" rel="noopener noreferrer">Telegram 咨询</a>。</p>'
         "<p>最后更新：2026 年 5 月 6 日</p></article>"
     )
     emit("/privacy/", pages["privacy"], listing_content(pages["privacy"], [], privacy_extra), site, nav, global_schemas, records, "pages.json:privacy", "legal")
