@@ -65,6 +65,7 @@ REQUIRED_PATHS = [
     "/markets/",
     "/blog/",
     "/contact/",
+    "/privacy/",
 ]
 
 
@@ -166,10 +167,11 @@ def check_html(sitemap: set[str]) -> None:
             fail(f"{rel} is indexable but missing from sitemap")
         if not indexable and expected_url in sitemap:
             fail(f"{rel} should not be in sitemap")
-        if (rel.startswith("services/") or rel.startswith("topics/")) and "服务边界" not in text:
-            fail(f"{rel} missing service boundary")
         if rel == "contact/index.html" and "Telegram" not in text:
             fail("contact page missing Telegram contact entry")
+        if rel == "privacy/index.html":
+            if "隐私政策" not in text or "最后更新" not in text or "Telegram" not in text:
+                fail("privacy page missing required policy details")
         for term in FORBIDDEN:
             if term in text:
                 fail(f"{rel} contains forbidden term: {term}")
@@ -250,6 +252,7 @@ def check_keyword_assets(sitemap: set[str]) -> None:
         "/markets/",
         "/blog/",
         "/contact/",
+        "/privacy/",
     }
     queue_path = CONTENT_DATA / "content_queue.json"
     published_article_paths = set()

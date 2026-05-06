@@ -27,6 +27,42 @@ DETAIL_CTA_TITLE = "想确认你的项目适合怎么跑？"
 DETAIL_CTA_TEXT = "可以通过 Telegram 联系 9HWH，先简单说明项目类型、目标地区、预算范围和现有素材情况，我们会一起判断适合从哪个渠道开始测试。"
 ARTICLE_CTA_TITLE = "想确认你的项目适合怎么跑？"
 ARTICLE_CTA_TEXT = "可以通过 Telegram 联系 9HWH，先简单说明项目类型、目标地区、预算范围和现有素材情况，我们会一起判断适合从哪个渠道开始测试。"
+FRONT_CONSULTATION_NOTE = "我们会先了解项目类型、目标地区、预算范围和现有准备，再一起判断适合从哪个渠道开始测试。"
+PUBLIC_COPY_REPLACEMENTS = {
+    "服务边界说明": "沟通准备说明",
+    "服务边界": "沟通准备",
+    "平台规则和投放边界": "平台选择和测试准备",
+    "提前确认边界": "提前准备信息",
+    "边界确认": "准备确认",
+    "具体执行前仍需确认边界": "具体执行前仍需补充项目信息",
+    "平台边界": "平台方向",
+    "素材表达边界": "素材表达范围",
+    "内容边界": "内容表达范围",
+    "项目边界": "项目情况",
+    "不承诺避开平台审核，不提供规避平台政策的操作，不保证任何平台审核结果或投放结果。": FRONT_CONSULTATION_NOTE,
+    "不承诺以任何方式避开平台审核，不提供规避平台政策的操作，不保证任何平台审核结果或投放结果。": FRONT_CONSULTATION_NOTE,
+    "不承诺避开平台审核": "会结合项目资料和平台要求做前期判断",
+    "不提供规避平台政策的操作": "会优先按可持续的渠道方式推进",
+    "不保证任何平台审核结果或投放结果": "实际反馈会结合平台、市场、素材和承接情况持续判断",
+    "不保证任何平台审核结果或投放效果": "会根据平台反馈、素材表现和承接情况持续判断测试方向",
+    "不保证任何平台的审核通过率、投放效果或投资回报": "实际反馈会结合平台、市场、素材和承接情况持续判断",
+    "不保证任何具体效果或转化数据": "会根据测试数据持续调整素材、渠道和承接路径",
+    "不提供规避平台政策或当地法规的操作": "会优先按可持续的渠道方式推进",
+    "不承诺任何审核结果": "会根据项目资料和平台要求做前期判断",
+    "不承诺任何平台审核结果或投放结果": "会结合项目情况和测试反馈推进",
+    "不承诺审核结果或投放结果": "会结合项目情况和测试反馈推进",
+    "不承诺平台审核结果": "会结合项目资料和平台要求做前期判断",
+    "不承诺固定投放结果": "基于测试反馈逐步优化",
+    "不承诺 ROI 或固定回收结果": "根据测试反馈持续复盘渠道质量",
+    "不提供平台政策规避操作": "按可持续渠道方式推进",
+    "不愿确认平台政策和地区法规的合作": "资料不完整、无法判断目标市场和承接路径的合作",
+    "服务不包含：": "沟通时会重点确认：",
+    "会结合项目资料和平台要求做前期判断或降低审核标准": "会结合项目资料和平台要求做前期判断",
+    "不承接涉及违禁内容或不合规承诺的项目": "项目内容和表达方式会在沟通时先做基础判断",
+    "不建议以此路径开展推广": "建议先评估更合适的沟通路径",
+    "不适合或需谨慎评估的项目包括：": "需要先补充信息评估的项目包括：",
+    "合作前会先确认平台政策、地区法规和项目限制，": "我们会先了解项目类型、目标地区、预算范围和现有准备，",
+}
 
 
 def load_json(name: str):
@@ -59,6 +95,13 @@ def render(template: str, values: dict[str, str]) -> str:
 
 def esc(value: object) -> str:
     return html.escape(str(value), quote=True)
+
+
+def soften_public_copy(value: object) -> str:
+    text = str(value)
+    for source, target in PUBLIC_COPY_REPLACEMENTS.items():
+        text = text.replace(source, target)
+    return text
 
 
 def slug_to_label(slug: str) -> str:
@@ -114,7 +157,7 @@ def partial(name: str, values: dict[str, str] | None = None) -> str:
 
 
 def list_items(items: list[str], class_name: str = "checklist") -> str:
-    return f'<ul class="{class_name}">' + "".join(f"<li>{esc(item)}</li>" for item in items) + "</ul>"
+    return f'<ul class="{class_name}">' + "".join(f"<li>{esc(soften_public_copy(item))}</li>" for item in items) + "</ul>"
 
 
 def nav_html(items: list[dict]) -> str:
@@ -154,8 +197,8 @@ def card_grid(items: list[dict], columns: int = 3) -> str:
     cards = []
     for item in items:
         url = item.get("url", "#")
-        title = item.get("title", item.get("label", ""))
-        summary = item.get("summary", item.get("description", ""))
+        title = soften_public_copy(item.get("title", item.get("label", "")))
+        summary = soften_public_copy(item.get("summary", item.get("description", "")))
         cards.append(partial("card_grid.html", {"url": esc(url), "title": esc(title), "summary": esc(summary)}))
     return f'<div class="grid grid-{columns}">' + "".join(cards) + "</div>"
 
@@ -287,13 +330,13 @@ def faq_schema(faqs: list[dict]) -> dict:
 
 
 def service_schema(item: dict, site: dict) -> dict:
-    return {"@context": "https://schema.org", "@type": "Service", "name": item["title"], "description": item["description"], "provider": {"@type": "Organization", "name": site["site_name"], "url": site["base_url"]}, "areaServed": "Global"}
+    return {"@context": "https://schema.org", "@type": "Service", "name": soften_public_copy(item["title"]), "description": soften_public_copy(item["description"]), "provider": {"@type": "Organization", "name": site["site_name"], "url": site["base_url"]}, "areaServed": "Global"}
 
 
 def faq_html(faqs: list[dict]) -> str:
     if not faqs:
         return ""
-    body = "".join(f'<article class="faq-item"><h3>{esc(item["q"])}</h3><p>{esc(item["a"])}</p></article>' for item in faqs)
+    body = "".join(f'<article class="faq-item"><h3>{esc(soften_public_copy(item["q"]))}</h3><p>{esc(soften_public_copy(item["a"]))}</p></article>' for item in faqs)
     return partial("faq.html", {"items": body})
 
 
@@ -302,7 +345,7 @@ def cta_html(title: str, text: str, button_label: str = TELEGRAM_BUTTON_LABEL, u
 
 
 def boundary_html(text: str) -> str:
-    return partial("boundary.html", {"text": esc(text)})
+    return partial("boundary.html", {"text": esc(soften_public_copy(text))})
 
 
 def keyword_context() -> dict:
@@ -427,7 +470,7 @@ def aggregate_published_articles(published_drafts: list[tuple[dict, str]]) -> di
 
 def markdown_to_html(markdown: str) -> str:
     def inline_html(text: str) -> str:
-        escaped = esc(text)
+        escaped = esc(soften_public_copy(text))
         escaped = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", escaped)
         def replace_markdown_link(match):
             label = match.group(1)
@@ -498,35 +541,35 @@ def sections_html(sections: list[tuple[str, str]]) -> str:
 def detail_content(item: dict, item_type: str, faq_data: dict, blocks: dict, keyword_ctx: dict, published_articles: list[dict] | None = None) -> tuple[str, list[dict]]:
     if item_type == "service":
         sections = [
-            ("服务说明", f"<p>{esc(item.get('intro', item.get('summary', '')))}</p>"),
+            ("服务说明", f"<p>{esc(soften_public_copy(item.get('intro', item.get('summary', ''))))}</p>"),
             ("适合项目", list_items(item.get("suitable_for", []))),
             ("常见需求", list_items(item.get("common_needs", []))),
             ("支持内容", list_items(item.get("support_items", []))),
             ("执行流程", list_items(item.get("process", []))),
             ("需要准备什么", list_items(item.get("preparation", []))),
             ("不适合什么", list_items(item.get("not_suitable", item.get("not_suitable_for", [])))),
-            ("服务边界", list_items(item.get("boundaries", []))),
+            ("沟通准备", list_items(item.get("boundaries", []))),
         ]
         faq_group = "services"
     elif item_type == "platform":
         sections = [
-            ("平台说明", f"<p>{esc(item.get('intro', item.get('summary', '')))}</p>"),
+            ("平台说明", f"<p>{esc(soften_public_copy(item.get('intro', item.get('summary', ''))))}</p>"),
             ("平台适合场景", list_items(item.get("traffic_scenes", []))),
             ("适合项目类型", list_items(item.get("suitable_projects", item.get("suitable_for", [])))),
             ("投放前准备", list_items(item.get("preparation", []))),
             ("服务适配", list_items(item.get("service_fit", []))),
-            ("服务边界", list_items(item.get("boundaries", []))),
+            ("沟通准备", list_items(item.get("boundaries", []))),
         ]
         faq_group = "platforms"
     else:
         sections = [
-            ("主题说明", f"<p>{esc(item.get('intro', item.get('summary', '')))}</p>"),
+            ("主题说明", f"<p>{esc(soften_public_copy(item.get('intro', item.get('summary', ''))))}</p>"),
             ("常见推广需求", list_items(item.get("common_needs", []))),
             ("可用渠道", list_items(item.get("recommended_channels", []))),
             ("推广前准备", list_items(item.get("preparation", []))),
             ("服务适配", list_items(item.get("service_fit", []))),
-            ("风险提示", list_items(item.get("risk_notes", []))),
-            ("服务边界", list_items(item.get("boundaries", []))),
+            ("测试准备", list_items(item.get("risk_notes", []))),
+            ("沟通准备", list_items(item.get("boundaries", []))),
         ]
         faq_group = "topics"
     if published_articles:
@@ -536,9 +579,9 @@ def detail_content(item: dict, item_type: str, faq_data: dict, blocks: dict, key
         read_text(TEMPLATES / "page.html"),
         {
             "eyebrow": esc(item.get("eyebrow", "详情")),
-            "h1": esc(item["h1"]),
-            "description": esc(item["description"]),
-            "body": sections_html(sections),
+            "h1": esc(soften_public_copy(item["h1"])),
+            "description": esc(soften_public_copy(item["description"])),
+            "body": sections_html([(soften_public_copy(title), content) for title, content in sections]),
             "related_services": card_grid(item.get("related_services", []), 2),
             "related_topics": card_grid(item.get("related_topics", []), 2),
             "related_platforms": card_grid(item.get("related_platforms", []), 2),
@@ -558,15 +601,15 @@ def render_base(page: dict, path: str, content: str, site: dict, nav: list[dict]
     return render(
         read_text(TEMPLATES / "base.html"),
         {
-            "title": esc(page["title"]),
-            "description": esc(page["description"]),
+            "title": esc(soften_public_copy(page["title"])),
+            "description": esc(soften_public_copy(page["description"])),
             "canonical": esc(canonical(path, site["base_url"])),
             "asset_version": css_asset_version(),
             "site_name": esc(site["site_name"]),
             "nav": nav_html(nav),
             "breadcrumb": breadcrumb,
             "content": content,
-            "footer": partial("footer.html", {"boundary": esc(site["service_boundary_short"]), "telegram_url": esc(TELEGRAM_URL)}),
+            "footer": partial("footer.html", {"boundary": esc(soften_public_copy(site["service_boundary_short"])), "telegram_url": esc(TELEGRAM_URL)}),
             "floating_contact": floating_telegram_html(),
             "json_ld": schema_html,
         },
@@ -593,7 +636,7 @@ def emit(path: str, page: dict, content: str, site: dict, nav: list[dict], schem
     target.parent.mkdir(parents=True, exist_ok=True)
     target.write_text(html_text, encoding="utf-8", newline="\n")
     if indexable:
-        records.append({"url": canonical(path, site["base_url"]), "path": path, "source": source, "output": target.relative_to(ROOT).as_posix(), "type": page_type, "title": page["title"], "description": page["description"], "indexable": "yes"})
+        records.append({"url": canonical(path, site["base_url"]), "path": path, "source": source, "output": target.relative_to(ROOT).as_posix(), "type": page_type, "title": soften_public_copy(page["title"]), "description": soften_public_copy(page["description"]), "indexable": "yes"})
 
 
 def build() -> None:
@@ -700,8 +743,8 @@ def build() -> None:
         }
         content = render(read_text(TEMPLATES / "listing.html"), {
             "eyebrow": "内容中心",
-            "h1": esc(page["h1"]),
-            "description": esc(page["description"]),
+            "h1": esc(soften_public_copy(page["h1"])),
+            "description": esc(soften_public_copy(page["description"])),
             "cards": "",
             "extra": '<article class="card">' + markdown_to_html(body) + "</article>" + boundary_html(blocks["service_boundary"]) + cta_html(ARTICLE_CTA_TITLE, ARTICLE_CTA_TEXT),
         })
@@ -724,6 +767,21 @@ def build() -> None:
     )
     emit("/contact/", pages["contact"], listing_content(pages["contact"], [], contact_extra), site, nav, global_schemas, records, "pages.json:contact", "contact")
 
+    privacy_extra = (
+        '<article class="card"><h2>我们如何处理信息</h2>'
+        "<p>9HWH 尊重访问者隐私。本站不设置站内注册、付款或会员系统。</p>"
+        "<p>当用户通过 Telegram 联系 9HWH 时，沟通由 Telegram 平台承载，相关使用体验和账号安全也会受到 Telegram 平台规则影响。</p>"
+        "<p>本站可能因网站安全、防滥用、基础访问统计或 Cloudflare 服务保留必要访问日志。这些日志用于维护网站稳定和排查异常访问。</p>"
+        "<p>9HWH 不会出售访问者个人信息。</p></article>"
+        '<article class="card"><h2>通过 Telegram 主动提供的信息</h2>'
+        "<p>如果用户通过 Telegram 主动提供项目类型、目标地区、预算范围、素材、落地页或联系方式，这些信息仅用于沟通推广需求和提供咨询协助。</p>"
+        '<p>如需删除或更正主动提供的信息，可以通过 <a href="'
+        + TELEGRAM_URL
+        + '" target="_blank" rel="noopener noreferrer">Telegram 联系 9HWH</a>。</p>'
+        "<p>最后更新：2026 年 5 月 6 日</p></article>"
+    )
+    emit("/privacy/", pages["privacy"], listing_content(pages["privacy"], [], privacy_extra), site, nav, global_schemas, records, "pages.json:privacy", "legal")
+
     not_found_extra = '<p><a class="button button-primary" href="/">返回首页</a> <a class="button button-secondary" href="/services/">查看服务</a> <a class="button button-telegram" href="' + TELEGRAM_URL + '" target="_blank" rel="noopener noreferrer">Telegram 咨询</a></p>'
     emit("/404.html", pages["404"], listing_content(pages["404"], [], not_found_extra), site, nav, global_schemas, records, "pages.json:404", "utility", indexable=False)
 
@@ -736,7 +794,7 @@ def build() -> None:
 
 
 def listing_content(page: dict, items: list[dict], extra: str = "") -> str:
-    return render(read_text(TEMPLATES / "listing.html"), {"eyebrow": esc(page.get("eyebrow", "")), "h1": esc(page["h1"]), "description": esc(page["description"]), "cards": card_grid(items, 3 if len(items) <= 3 else 4), "extra": extra})
+    return render(read_text(TEMPLATES / "listing.html"), {"eyebrow": esc(page.get("eyebrow", "")), "h1": esc(soften_public_copy(page["h1"])), "description": esc(soften_public_copy(page["description"])), "cards": card_grid(items, 3 if len(items) <= 3 else 4), "extra": extra})
 
 
 def write_sitemap(records: list[dict], lastmod: str) -> None:
