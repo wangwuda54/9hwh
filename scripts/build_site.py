@@ -135,7 +135,7 @@ def home_hero_buttons_html() -> str:
         f'<a class="button button-telegram" href="{TELEGRAM_URL}" target="_blank" rel="noopener noreferrer">'
         "Telegram 咨询"
         "</a>"
-        f'<a class="button button-telegram-alt" href="{TELEGRAM_URL}" target="_blank" rel="noopener noreferrer">'
+        f'<a class="button button-secondary" href="{TELEGRAM_URL}" target="_blank" rel="noopener noreferrer">'
         "渠道评估"
         "</a>"
     )
@@ -724,7 +724,7 @@ def build() -> None:
     )
     emit("/contact/", pages["contact"], listing_content(pages["contact"], [], contact_extra), site, nav, global_schemas, records, "pages.json:contact", "contact")
 
-    not_found_extra = '<p><a class="button button-primary" href="/">返回首页</a> <a class="button button-secondary" href="/services/">查看服务</a> <a class="button button-telegram-alt" href="' + TELEGRAM_URL + '" target="_blank" rel="noopener noreferrer">Telegram 咨询</a></p>'
+    not_found_extra = '<p><a class="button button-primary" href="/">返回首页</a> <a class="button button-secondary" href="/services/">查看服务</a> <a class="button button-telegram" href="' + TELEGRAM_URL + '" target="_blank" rel="noopener noreferrer">Telegram 咨询</a></p>'
     emit("/404.html", pages["404"], listing_content(pages["404"], [], not_found_extra), site, nav, global_schemas, records, "pages.json:404", "utility", indexable=False)
 
     check_duplicate_urls(records)
