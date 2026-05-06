@@ -2,7 +2,7 @@
 
 | URL | Source | Output File | Type | Sitemap | Indexable | Title | Description |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| https://www.9hwh.com/ | pages.json:home | site/public/index.html | home | yes | yes | 9HWH | 海外流量推广与获客支持 | 9HWH 帮出海项目梳理 TK、FB、Google 等渠道测试方向，从账户准备、素材方向、落地页承接到投放测试一起配合，让预算尽量花在更可能出效果的方向。 |
+| https://www.9hwh.com/ | pages.json:home | site/public/index.html | home | yes | yes | 9HWH | 海外流量推广与获客支持 | 9HWH 帮出海项目做 TK、FB、Google 等渠道的推广测试、获客准备和持续优化。从账户、素材、落地页到测试节奏一起配合，让预算尽量花在更可能出效果的方向。 |
 | https://www.9hwh.com/services/ | pages.json:services | site/public/services/index.html | listing | yes | yes | 服务总览 | 9HWH | 服务页用于把 9HWH 的核心能力拆成推广路径梳理、获客方案、投放准备和买量测试。 |
 | https://www.9hwh.com/services/overseas-promotion/ | services.json:overseas-promotion | site/public/services/overseas-promotion/index.html | service | yes | yes | 海外推广服务 | 海外推广服务覆盖出海项目推广、海外市场推广、渠道组合、项目冷启动和推广路径梳理。 |
 | https://www.9hwh.com/services/traffic-acquisition/ | services.json:traffic-acquisition | site/public/services/traffic-acquisition/index.html | service | yes | yes | 引流获客服务 | 引流获客服务覆盖精准获客、拉新、用户来源判断、转化路径建议、交友引流、游戏推广、贷款获客、保险获客和移民获客。 |

@@ -130,7 +130,7 @@ def home_hero_buttons_html() -> str:
         "Telegram 咨询"
         "</a>"
         f'<a class="button button-telegram-alt" href="{TELEGRAM_URL}" target="_blank" rel="noopener noreferrer">'
-        "看适合跑哪些渠道"
+        "渠道评估"
         "</a>"
     )
 
@@ -171,7 +171,7 @@ def process_cards_html(titles: list[str]) -> str:
         "数据反馈和调整": "根据阶段反馈调整渠道、素材、预算和下一轮测试节奏。",
     }
     items = [{"title": title, "text": descriptions.get(title, "根据项目反馈继续调整测试节奏。")} for title in titles]
-    return simple_cards(items, 3, "step")
+    return simple_cards(items[:4], 4, "step")
 
 
 def advantage_cards_html(items: list[str]) -> str:
@@ -187,6 +187,35 @@ def fit_cards_html() -> str:
         {"title": "需要多方向协作", "text": "需要账户、素材、落地页和投放节奏一起配合，而不是只听建议。"},
     ]
     return simple_cards(items, 3)
+
+
+def home_service_cards_html() -> str:
+    items = [
+        {"label": "01", "title": "推广路径梳理", "text": "梳理项目阶段、目标市场和渠道优先级，避免一开始就乱跑。"},
+        {"label": "02", "title": "渠道测试协作", "text": "围绕 TK、FB、Google 等渠道，确定第一轮测试方式和节奏。"},
+        {"label": "03", "title": "素材与落地页准备", "text": "一起检查素材方向、页面承接和转化路径，让测试能落地。"},
+        {"label": "04", "title": "获客与数据反馈", "text": "根据咨询、注册、转化等反馈，调整素材、渠道和预算。"},
+    ]
+    cards = []
+    for item in items:
+        cards.append(
+            '<article class="home-service-card">'
+            f'<span>{esc(item["label"])}</span>'
+            f'<h3>{esc(item["title"])}</h3>'
+            f'<p>{esc(item["text"])}</p>'
+            "</article>"
+        )
+    return '<div class="home-service-grid">' + "".join(cards) + "</div>"
+
+
+def home_advantage_cards_html() -> str:
+    items = [
+        {"title": "少走弯路", "text": "先判断项目适合跑哪个渠道，再决定测试优先级。"},
+        {"title": "更快启动", "text": "账户、素材、落地页和测试节奏一起准备，减少等待。"},
+        {"title": "降低试错", "text": "先小预算测试，再判断是否继续放量。"},
+        {"title": "持续优化", "text": "根据反馈调整素材、渠道和承接路径。"},
+    ]
+    return simple_cards(items, 2, "advantage-card")
 
 
 def extract_markdown_links(markdown: str) -> list[str]:
@@ -511,6 +540,7 @@ def detail_content(item: dict, item_type: str, faq_data: dict, blocks: dict, key
 def render_base(page: dict, path: str, content: str, site: dict, nav: list[dict], schemas: list[dict]) -> str:
     crumbs = breadcrumb_items(path, page["h1"], site["base_url"])
     schema_html = "\n".join(json_script(schema) for schema in schemas)
+    breadcrumb = "" if url_path(path) == "/" else breadcrumb_html(crumbs)
     return render(
         read_text(TEMPLATES / "base.html"),
         {
@@ -519,7 +549,7 @@ def render_base(page: dict, path: str, content: str, site: dict, nav: list[dict]
             "canonical": esc(canonical(path, site["base_url"])),
             "site_name": esc(site["site_name"]),
             "nav": nav_html(nav),
-            "breadcrumb": breadcrumb_html(crumbs),
+            "breadcrumb": breadcrumb,
             "content": content,
             "footer": partial("footer.html", {"boundary": esc(site["service_boundary_short"]), "telegram_url": esc(TELEGRAM_URL)}),
             "floating_contact": floating_telegram_html(),
@@ -582,7 +612,6 @@ def build() -> None:
     if schema_flags.get("website_schema"):
         global_schemas.append(website_schema(site))
 
-    home_faqs = resolve_faqs(faqs, pages["home"].get("faq_refs"), "global")
     home_content = render(
         read_text(TEMPLATES / "home.html"),
         {
@@ -590,14 +619,14 @@ def build() -> None:
             "h1": esc(pages["home"]["h1"]),
             "description": esc(pages["home"]["description"]),
             "hero_buttons": home_hero_buttons_html(),
-            "service_cards": card_grid(services, 4),
-            "platform_cards": card_grid(platforms, 3),
+            "home_service_cards": home_service_cards_html(),
+            "advantage_cards": home_advantage_cards_html(),
             "process_cards": process_cards_html(blocks["process_steps"]),
             "fit_cards": fit_cards_html(),
             "cta": cta_html("通过 Telegram 咨询 9HWH", "如果你已经在准备海外推广、广告投放、引流获客或市场测试，可以直接通过 Telegram 联系 9HWH，我们会先一起判断适合从哪些渠道开始跑。"),
         },
     )
-    emit("/", pages["home"], home_content, site, nav, global_schemas + [faq_schema(home_faqs)], records, "pages.json:home", "home")
+    emit("/", pages["home"], home_content, site, nav, global_schemas, records, "pages.json:home", "home")
 
     services_extra = (
         cta_html("不确定先做推广、获客还是投放？", "把项目类型、目标市场和预算范围发到 Telegram，我们先帮你判断适合从哪个服务方向切入。")
@@ -663,16 +692,18 @@ def build() -> None:
         })
         emit(task["target_url"], page, content, site, nav, global_schemas, records, f"content_queue:{task['content_id']}", task.get("page_type", "blog_article"))
 
+    prep_items = ["项目类型", "目标地区", "预算范围", "想跑的平台", "现有素材 / 落地页"]
     contact_extra = (
-        '<div class="contact-card-grid"><article class="card contact-focus"><h2>推荐直接走 Telegram</h2><p>'
+        '<div class="contact-consult-layout"><section class="contact-main-card"><p class="eyebrow">咨询入口</p><h2>通过 Telegram 直接沟通项目情况</h2><p>'
         + esc(contact["contact_intro"])
-        + '</p><div class="contact-button-row"><a class="button button-telegram" href="'
-        + TELEGRAM_URL
-        + '" target="_blank" rel="noopener noreferrer">打开 Telegram 咨询</a><a class="button button-secondary" href="/">返回首页</a></div><p class="note">'
-        + esc(contact["response_note"])
-        + '</p></article><article class="card"><h2>适合咨询的问题</h2>'
+        + '</p><h3>适合咨询的问题</h3>'
         + list_items(contact["required_info"])
-        + "</article></div>"
+        + '<div class="contact-button-row"><a class="button button-telegram" href="'
+        + TELEGRAM_URL
+        + '" target="_blank" rel="noopener noreferrer">Telegram 咨询</a><a class="button button-secondary" href="/">返回首页</a></div></section>'
+        + '<aside class="contact-side-stack"><article class="card prep-card"><h2>咨询前可以准备这些信息</h2>'
+        + list_items(prep_items, "clean-list")
+        + '</article><article class="card prep-card"><h2>我们会怎么配合</h2><div class="mini-flow"><span>了解项目</span><span>判断渠道</span><span>准备测试</span><span>持续优化</span></div></article></aside></div>'
         + cta_html("把项目情况发到 Telegram，我们一起判断下一步", "不用先准备很完整的方案，先说清项目、目标地区、预算和已有素材，我们会帮你把第一轮测试方向理顺。")
         + faq_html(resolve_faqs(faqs, None, "contact"))
     )

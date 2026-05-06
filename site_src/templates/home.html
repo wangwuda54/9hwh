@@ -1,62 +1,87 @@
 <section class="hero">
   <div class="container hero-inner">
     <div class="hero-copy">
-      <p class="eyebrow">{{ eyebrow }}</p>
+      <p class="hero-kicker">出海推广 / 流量获客 / 投放测试协作</p>
       <h1>{{ h1 }}</h1>
       <p class="lead">{{ description }}</p>
-      <div class="button-row hero-button-row">{{ hero_buttons }}</div>
-      <div class="hero-points">
-        <span>降低试错成本</span>
-        <span>更快开跑测试</span>
-        <span>持续配合优化</span>
+      <div class="hero-bullets">
+        <span>先判断渠道，再开始测试</span>
+        <span>账户、素材、落地页一起准备</span>
+        <span>降低无效试错，把预算放到更可能出效果的方向</span>
       </div>
+      <div class="button-row hero-button-row">{{ hero_buttons }}</div>
     </div>
-    <aside class="hero-panel" aria-label="服务协作概览">
-      <div class="panel-label">服务协作</div>
-      <h2>从渠道判断到测试落地</h2>
-      <div class="panel-list">
-        <span><strong>01</strong> 梳理项目、市场、预算和素材</span>
-        <span><strong>02</strong> 判断 TK、FB、Google 或组合渠道</span>
-        <span><strong>03</strong> 配合账户、落地页和投放测试</span>
+    <aside class="launch-board" aria-label="推广启动看板">
+      <div class="board-head">
+        <div>
+          <p class="board-kicker">推广启动看板</p>
+          <h2>先把测试路径理清楚</h2>
+        </div>
+        <span class="board-status">准备评估</span>
+      </div>
+      <div class="board-grid">
+        <article class="board-card">
+          <span>渠道判断</span>
+          <strong>TK / FB / Google</strong>
+        </article>
+        <article class="board-card">
+          <span>测试准备</span>
+          <strong>账户 / 素材 / 落地页</strong>
+        </article>
+        <article class="board-card">
+          <span>获客目标</span>
+          <strong>咨询 / 注册 / 转化</strong>
+        </article>
+        <article class="board-card board-card-accent">
+          <span>当前建议</span>
+          <strong>先小预算测试，再判断是否放量</strong>
+        </article>
+      </div>
+      <div class="board-flow">
+        <span>项目沟通</span>
+        <i></i>
+        <span>渠道判断</span>
+        <i></i>
+        <span>准备测试</span>
       </div>
     </aside>
   </div>
 </section>
-<section class="section">
+<section class="section service-section">
   <div class="container">
-    <div class="section-head">
-      <p class="eyebrow">我们主要能帮什么</p>
-      <h2>把推广测试拆成能执行的几步</h2>
-      <p>先判断方向，再准备账户、素材和落地页，最后进入小预算测试和持续调整。</p>
+    <div class="section-head section-head-wide">
+      <p class="eyebrow">我们具体能帮什么</p>
+      <h2>从推广判断到测试落地，拆成能执行的工作</h2>
+      <p>先把渠道、账户、素材、落地页和预算节奏一起看清楚，再进入测试。</p>
     </div>
-    {{ service_cards }}
+    {{ home_service_cards }}
   </div>
 </section>
-<section class="section section-tint">
+<section class="section advantage-section">
   <div class="container split-section">
     <div class="section-head">
-      <p class="eyebrow">常见渠道</p>
-      <h2>按项目阶段选择测试平台</h2>
-      <p>不是每个项目都适合一上来全渠道投放。我们会结合目标市场、素材形态和承接能力，先选更容易验证的方向。</p>
+      <p class="eyebrow">为什么先做判断</p>
+      <h2>让预算少绕路，测试更快进入正题</h2>
+      <p>9HWH 更关注测试前的准备质量：渠道是否适合、素材是否能跑、落地页是否接得住，以及后续怎么根据反馈调整。</p>
     </div>
-    {{ platform_cards }}
+    {{ advantage_cards }}
   </div>
 </section>
-<section class="section">
+<section class="section process-section">
   <div class="container">
-    <div class="section-head">
+    <div class="section-head section-head-wide">
       <p class="eyebrow">合作流程</p>
       <h2>项目沟通 -> 渠道判断 -> 准备测试 -> 持续优化</h2>
     </div>
     {{ process_cards }}
   </div>
 </section>
-<section class="section section-tint">
+<section class="section fit-section">
   <div class="container split-section">
     <div class="section-head">
       <p class="eyebrow">适合咨询的项目</p>
       <h2>有出海获客需求，但还没确定怎么跑</h2>
-      <p>可以先把项目类型、目标地区、预算范围和已有准备说清楚，我们一起判断下一步。</p>
+      <p>先通过 Telegram 说清项目类型、目标地区、预算范围和已有素材，我们一起判断下一步。</p>
     </div>
     {{ fit_cards }}
   </div>
