@@ -20,6 +20,12 @@ KEYWORD_DATA = DATA / "keywords"
 KEYWORD_ASSETS = ROOT / "data" / "keyword-assets"
 CONTENT_DATA = DATA / "content"
 DRAFTS = SRC / "content_drafts"
+TELEGRAM_URL = "https://tg.9hwh.com/"
+TELEGRAM_BUTTON_LABEL = "Telegram 咨询"
+DETAIL_CTA_TITLE = "通过 Telegram 咨询 9HWH"
+DETAIL_CTA_TEXT = "可以通过 Telegram 联系 9HWH，先简单说明项目类型、目标地区、预算范围和现有素材情况，我们会一起判断适合从哪个渠道开始测试。"
+ARTICLE_CTA_TITLE = "想确认你的项目适合怎么跑？"
+ARTICLE_CTA_TEXT = "可以通过 Telegram 联系 9HWH，先简单说明项目类型、目标地区、预算范围和现有素材情况，我们会一起判断适合从哪个渠道开始测试。"
 
 
 def load_json(name: str):
@@ -109,6 +115,28 @@ def nav_html(items: list[dict]) -> str:
     return "".join(f'<a href="{esc(item["url"])}">{esc(item["label"])}</a>' for item in items)
 
 
+def home_hero_buttons_html() -> str:
+    return (
+        f'<a class="button button-telegram" href="{TELEGRAM_URL}" target="_blank" rel="noopener noreferrer">'
+        '<span class="button-label-long">Telegram 咨询推广方案</span>'
+        '<span class="button-label-short">TG 咨询方案</span>'
+        "</a>"
+        f'<a class="button button-telegram-alt" href="{TELEGRAM_URL}" target="_blank" rel="noopener noreferrer">'
+        '<span class="button-label-long">Telegram 看看适合跑哪些渠道</span>'
+        '<span class="button-label-short">TG 渠道评估</span>'
+        "</a>"
+    )
+
+
+def floating_telegram_html() -> str:
+    return (
+        f'<a class="floating-telegram" href="{TELEGRAM_URL}" target="_blank" rel="noopener noreferrer" aria-label="Telegram 咨询">'
+        '<span class="floating-telegram-badge">TG</span>'
+        '<span class="floating-telegram-label">Telegram 咨询</span>'
+        "</a>"
+    )
+
+
 def card_grid(items: list[dict], columns: int = 3) -> str:
     cards = []
     for item in items:
@@ -184,8 +212,8 @@ def faq_html(faqs: list[dict]) -> str:
     return partial("faq.html", {"items": body})
 
 
-def cta_html(title: str, text: str) -> str:
-    return partial("cta.html", {"title": esc(title), "text": esc(text)})
+def cta_html(title: str, text: str, button_label: str = TELEGRAM_BUTTON_LABEL, url: str = TELEGRAM_URL) -> str:
+    return partial("cta.html", {"title": esc(title), "text": esc(text), "button_label": esc(button_label), "url": esc(url)})
 
 
 def boundary_html(text: str) -> str:
@@ -316,7 +344,13 @@ def markdown_to_html(markdown: str) -> str:
     def inline_html(text: str) -> str:
         escaped = esc(text)
         escaped = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", escaped)
-        escaped = re.sub(r"\[(.+?)\]\((/[^)\s]+)\)", lambda match: f'<a href="{esc(match.group(2))}">{match.group(1)}</a>', escaped)
+        def replace_markdown_link(match):
+            label = match.group(1)
+            href = match.group(2)
+            if href == "/contact/" or "联系" in label or "咨询" in label:
+                return f'<a href="{TELEGRAM_URL}" target="_blank" rel="noopener noreferrer">通过 Telegram 联系 9HWH</a>'
+            return f'<a href="{esc(href)}">{label}</a>'
+        escaped = re.sub(r"\[(.+?)\]\((/[^)\s]+)\)", replace_markdown_link, escaped)
         return escaped
 
     blocks = []
@@ -426,7 +460,7 @@ def detail_content(item: dict, item_type: str, faq_data: dict, blocks: dict, key
             "keyword_block": keyword_block(item["url"], keyword_ctx),
             "faq": faq_html(faqs),
             "boundary": boundary_html(blocks["service_boundary"]),
-            "cta": cta_html(item.get("cta_title", "联系咨询"), item.get("cta_text", item.get("cta", ""))),
+            "cta": cta_html(DETAIL_CTA_TITLE, DETAIL_CTA_TEXT),
         },
     )
     return content, faqs
@@ -445,7 +479,8 @@ def render_base(page: dict, path: str, content: str, site: dict, nav: list[dict]
             "nav": nav_html(nav),
             "breadcrumb": breadcrumb_html(crumbs),
             "content": content,
-            "footer": partial("footer.html", {"boundary": esc(site["service_boundary_short"])}),
+            "footer": partial("footer.html", {"boundary": esc(site["service_boundary_short"]), "telegram_url": esc(TELEGRAM_URL)}),
+            "floating_contact": floating_telegram_html(),
             "json_ld": schema_html,
         },
     )
@@ -509,8 +544,10 @@ def build() -> None:
     home_content = render(
         read_text(TEMPLATES / "home.html"),
         {
+            "eyebrow": "出海项目推广支持",
             "h1": esc(pages["home"]["h1"]),
             "description": esc(pages["home"]["description"]),
+            "hero_buttons": home_hero_buttons_html(),
             "service_cards": card_grid(services, 4),
             "platform_cards": card_grid(platforms, 3),
             "topic_cards": card_grid(topics, 4),
@@ -520,7 +557,7 @@ def build() -> None:
             "keyword_block": keyword_block("/", keyword_ctx, "首页关键词承接方向"),
             "boundary": boundary_html(blocks["service_boundary"]),
             "faq": faq_html(home_faqs),
-            "cta": cta_html("准备开始沟通？", "如果你正在准备海外推广、引流获客、广告投放或买量测试，可以先整理项目资料，再进入咨询。"),
+            "cta": cta_html("通过 Telegram 咨询 9HWH", "如果你已经在准备海外推广、广告投放、引流获客或市场测试，可以直接通过 Telegram 联系 9HWH，我们会先一起判断适合从哪些渠道开始跑。"),
         },
     )
     emit("/", pages["home"], home_content, site, nav, global_schemas + [faq_schema(home_faqs)], records, "pages.json:home", "home")
@@ -563,14 +600,27 @@ def build() -> None:
             "h1": esc(page["h1"]),
             "description": esc(page["description"]),
             "cards": "",
-            "extra": '<article class="card">' + markdown_to_html(body) + "</article>" + boundary_html(blocks["service_boundary"]) + cta_html("需要进一步沟通？", "如果你正在评估相关推广路径，可以整理项目资料后联系 9HWH。"),
+            "extra": '<article class="card">' + markdown_to_html(body) + "</article>" + boundary_html(blocks["service_boundary"]) + cta_html(ARTICLE_CTA_TITLE, ARTICLE_CTA_TEXT),
         })
         emit(task["target_url"], page, content, site, nav, global_schemas, records, f"content_queue:{task['content_id']}", task.get("page_type", "blog_article"))
 
-    contact_extra = partial("boundary.html", {"text": esc(contact["boundary_note"])}) + '<div class="grid grid-2"><article class="card"><h2>咨询前需要提供</h2>' + list_items(contact["required_info"]) + '</article><article class="card"><h2>' + esc(contact["contact_title"]) + '</h2><p>' + esc(contact["contact_intro"]) + '</p><p>' + esc(contact["contact_placeholder"]) + '</p><p>' + esc(contact["response_note"]) + "</p></article></div>" + faq_html(resolve_faqs(faqs, None, "contact"))
+    contact_extra = (
+        '<div class="contact-card-grid"><article class="card"><h2>适合咨询的问题</h2>'
+        + list_items(contact["required_info"])
+        + '</article><article class="card"><h2>'
+        + esc(contact["contact_title"])
+        + '</h2><p>'
+        + esc(contact["contact_intro"])
+        + '</p><div class="contact-button-row"><a class="button button-telegram" href="'
+        + TELEGRAM_URL
+        + '" target="_blank" rel="noopener noreferrer">打开 Telegram 咨询</a></div><p>'
+        + esc(contact["response_note"])
+        + "</p></article></div>"
+        + faq_html(resolve_faqs(faqs, None, "contact"))
+    )
     emit("/contact/", pages["contact"], listing_content(pages["contact"], [], contact_extra), site, nav, global_schemas, records, "pages.json:contact", "contact")
 
-    not_found_extra = '<p><a class="button button-primary" href="/">返回首页</a> <a class="button button-secondary" href="/services/">查看服务</a> <a class="button button-secondary" href="/contact/">联系咨询</a></p>'
+    not_found_extra = '<p><a class="button button-primary" href="/">返回首页</a> <a class="button button-secondary" href="/services/">查看服务</a> <a class="button button-telegram-alt" href="' + TELEGRAM_URL + '" target="_blank" rel="noopener noreferrer">Telegram 咨询</a></p>'
     emit("/404.html", pages["404"], listing_content(pages["404"], [], not_found_extra), site, nav, global_schemas, records, "pages.json:404", "utility", indexable=False)
 
     check_duplicate_urls(records)

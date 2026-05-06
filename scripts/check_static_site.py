@@ -168,8 +168,8 @@ def check_html(sitemap: set[str]) -> None:
             fail(f"{rel} should not be in sitemap")
         if (rel.startswith("services/") or rel.startswith("topics/")) and "服务边界" not in text:
             fail(f"{rel} missing service boundary")
-        if rel == "contact/index.html" and "咨询前需要提供" not in text:
-            fail("contact page missing consultation checklist")
+        if rel == "contact/index.html" and "Telegram" not in text:
+            fail("contact page missing Telegram contact entry")
         for term in FORBIDDEN:
             if term in text:
                 fail(f"{rel} contains forbidden term: {term}")
