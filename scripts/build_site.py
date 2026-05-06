@@ -21,8 +21,8 @@ KEYWORD_ASSETS = ROOT / "data" / "keyword-assets"
 CONTENT_DATA = DATA / "content"
 DRAFTS = SRC / "content_drafts"
 TELEGRAM_URL = "https://tg.9hwh.com/"
-TELEGRAM_BUTTON_LABEL = "Telegram 咨询"
-DETAIL_CTA_TITLE = "通过 Telegram 咨询 9HWH"
+TELEGRAM_BUTTON_LABEL = "打开 Telegram 咨询"
+DETAIL_CTA_TITLE = "想确认你的项目适合怎么跑？"
 DETAIL_CTA_TEXT = "可以通过 Telegram 联系 9HWH，先简单说明项目类型、目标地区、预算范围和现有素材情况，我们会一起判断适合从哪个渠道开始测试。"
 ARTICLE_CTA_TITLE = "想确认你的项目适合怎么跑？"
 ARTICLE_CTA_TEXT = "可以通过 Telegram 联系 9HWH，先简单说明项目类型、目标地区、预算范围和现有素材情况，我们会一起判断适合从哪个渠道开始测试。"
@@ -112,27 +112,36 @@ def list_items(items: list[str], class_name: str = "checklist") -> str:
 
 
 def nav_html(items: list[dict]) -> str:
-    return "".join(f'<a href="{esc(item["url"])}">{esc(item["label"])}</a>' for item in items)
+    links = []
+    for item in items:
+        url = item["url"]
+        label = item["label"]
+        is_external = url.startswith("http://") or url.startswith("https://")
+        classes = "nav-contact" if "Telegram" in label or url == TELEGRAM_URL else ""
+        attrs = ' target="_blank" rel="noopener noreferrer"' if is_external else ""
+        class_attr = f' class="{classes}"' if classes else ""
+        links.append(f'<a{class_attr} href="{esc(url)}"{attrs}>{esc(label)}</a>')
+    return "".join(links)
 
 
 def home_hero_buttons_html() -> str:
     return (
         f'<a class="button button-telegram" href="{TELEGRAM_URL}" target="_blank" rel="noopener noreferrer">'
         '<span class="button-label-long">Telegram 咨询推广方案</span>'
-        '<span class="button-label-short">TG 咨询方案</span>'
+        '<span class="button-label-short">Telegram 咨询</span>'
         "</a>"
         f'<a class="button button-telegram-alt" href="{TELEGRAM_URL}" target="_blank" rel="noopener noreferrer">'
         '<span class="button-label-long">Telegram 看看适合跑哪些渠道</span>'
-        '<span class="button-label-short">TG 渠道评估</span>'
+        '<span class="button-label-short">渠道评估</span>'
         "</a>"
     )
 
 
 def floating_telegram_html() -> str:
     return (
-        f'<a class="floating-telegram" href="{TELEGRAM_URL}" target="_blank" rel="noopener noreferrer" aria-label="Telegram 咨询">'
+        f'<a class="floating-telegram" href="{TELEGRAM_URL}" target="_blank" rel="noopener noreferrer" aria-label="通过 Telegram 咨询 9HWH">'
         '<span class="floating-telegram-badge">TG</span>'
-        '<span class="floating-telegram-label">Telegram 咨询</span>'
+        '<span class="floating-telegram-label">Telegram 咨询<small>推广方案</small></span>'
         "</a>"
     )
 
@@ -145,6 +154,32 @@ def card_grid(items: list[dict], columns: int = 3) -> str:
         summary = item.get("summary", item.get("description", ""))
         cards.append(partial("card_grid.html", {"url": esc(url), "title": esc(title), "summary": esc(summary)}))
     return f'<div class="grid grid-{columns}">' + "".join(cards) + "</div>"
+
+
+def simple_cards(items: list[dict], columns: int = 3, extra_class: str = "") -> str:
+    cards = []
+    for item in items:
+        cards.append(f'<article class="card {extra_class}"><h3>{esc(item["title"])}</h3><p>{esc(item["text"])}</p></article>')
+    return f'<div class="grid grid-{columns}">' + "".join(cards) + "</div>"
+
+
+def process_cards_html(titles: list[str]) -> str:
+    descriptions = {
+        "需求沟通": "先确认项目类型、目标地区、当前阶段、预算区间和现有准备。",
+        "项目和市场判断": "结合市场、平台、素材和落地页承接，判断更适合先从哪里开始。",
+        "渠道建议": "围绕 TK、FB、Google 或组合渠道，给出第一轮测试思路。",
+        "投放准备": "梳理账户、素材方向、落地页和转化路径，让测试能落地。",
+        "执行协助": "围绕投放、推广和过程沟通持续配合，不只停在建议层。",
+        "数据反馈和调整": "根据阶段反馈调整渠道、素材、预算和下一轮测试节奏。",
+    }
+    items = [{"title": title, "text": descriptions.get(title, "根据项目反馈继续调整测试节奏。")} for title in titles]
+    return simple_cards(items, 3, "step")
+
+
+def advantage_cards_html(items: list[str]) -> str:
+    titles = ["降低试错成本", "找到渠道组合", "持续配合优化"]
+    cards = [{"title": titles[index] if index < len(titles) else "一起往前跑", "text": text} for index, text in enumerate(items)]
+    return simple_cards(cards, 3)
 
 
 def extract_markdown_links(markdown: str) -> list[str]:
@@ -552,8 +587,8 @@ def build() -> None:
             "platform_cards": card_grid(platforms, 3),
             "topic_cards": card_grid(topics, 4),
             "market_pills": "".join(f'<span class="pill">{esc(m)}</span>' for m in markets["market_list"]),
-            "process": list_items(blocks["process_steps"], "process-list"),
-            "why_9hwh": list_items(blocks["why_9hwh"]),
+            "process_cards": process_cards_html(blocks["process_steps"]),
+            "why_9hwh": advantage_cards_html(blocks["why_9hwh"]),
             "keyword_block": keyword_block("/", keyword_ctx, "首页关键词承接方向"),
             "boundary": boundary_html(blocks["service_boundary"]),
             "faq": faq_html(home_faqs),
@@ -562,27 +597,49 @@ def build() -> None:
     )
     emit("/", pages["home"], home_content, site, nav, global_schemas + [faq_schema(home_faqs)], records, "pages.json:home", "home")
 
-    services_extra = keyword_block("/services/traffic-acquisition/", keyword_ctx, "服务词承接方向") + boundary_html(blocks["service_boundary"]) + faq_html(resolve_faqs(faqs, None, "services"))
+    services_extra = (
+        cta_html("不确定先做推广、获客还是投放？", "把项目类型、目标市场和预算范围发到 Telegram，我们先帮你判断适合从哪个服务方向切入。")
+        + keyword_block("/services/traffic-acquisition/", keyword_ctx, "服务词承接方向")
+        + boundary_html(blocks["service_boundary"])
+        + faq_html(resolve_faqs(faqs, None, "services"))
+    )
     emit("/services/", pages["services"], listing_content(pages["services"], services, services_extra), site, nav, global_schemas, records, "pages.json:services", "listing")
     for item in services:
         content, item_faqs = detail_content(item, "service", faqs, blocks, keyword_ctx, published_aggregates["services"].get(item["url"], []))
         schemas = global_schemas + [faq_schema(item_faqs), service_schema(item, site)]
         emit(item["url"], item, content, site, nav, schemas, records, f"services.json:{item['slug']}", "service")
 
-    platforms_extra = keyword_block("/platforms/tk/", keyword_ctx, "平台词承接方向") + faq_html(resolve_faqs(faqs, None, "platforms"))
+    platforms_extra = (
+        cta_html("不知道该先跑 TK、FB 还是 Google？", "可以通过 Telegram 说一下项目阶段、目标地区和素材情况，我们一起判断第一轮测试渠道。")
+        + keyword_block("/platforms/tk/", keyword_ctx, "平台词承接方向")
+        + faq_html(resolve_faqs(faqs, None, "platforms"))
+    )
     emit("/platforms/", pages["platforms"], listing_content(pages["platforms"], platforms, platforms_extra), site, nav, global_schemas, records, "pages.json:platforms", "listing")
     for item in platforms:
         content, item_faqs = detail_content(item, "platform", faqs, blocks, keyword_ctx, published_aggregates["platforms"].get(item["url"], []))
         emit(item["url"], item, content, site, nav, global_schemas + [faq_schema(item_faqs)], records, f"platforms.json:{item['slug']}", "platform")
 
-    topics_extra = keyword_block("/topics/crypto-promotion/", keyword_ctx, "细分类目承接方向") + boundary_html(blocks["service_boundary"]) + faq_html(resolve_faqs(faqs, None, "topics"))
+    topics_extra = (
+        cta_html("你的项目适合怎么承接获客？", "先通过 Telegram 发项目类型、目标市场和承接路径，我们会帮你拆出更适合测试的渠道组合。")
+        + keyword_block("/topics/crypto-promotion/", keyword_ctx, "细分类目承接方向")
+        + boundary_html(blocks["service_boundary"])
+        + faq_html(resolve_faqs(faqs, None, "topics"))
+    )
     emit("/topics/", pages["topics"], listing_content(pages["topics"], topics, topics_extra), site, nav, global_schemas, records, "pages.json:topics", "listing")
     for item in topics:
         content, item_faqs = detail_content(item, "topic", faqs, blocks, keyword_ctx, published_aggregates["topics"].get(item["url"], []))
         emit(item["url"], item, content, site, nav, global_schemas + [faq_schema(item_faqs)], records, f"topics.json:{item['slug']}", "topic")
 
     market_cards = [{"title": item["title"], "url": "/markets/", "summary": item["summary"]} for item in markets["evaluation_dimensions"]]
-    market_extra = '<div class="pill-list">' + "".join(f'<span class="pill">{esc(m)}</span>' for m in markets["market_list"]) + "</div>" + card_grid(market_cards, 3) + keyword_block("/markets/", keyword_ctx, "市场词承接方向") + faq_html(resolve_faqs(faqs, markets.get("faq_refs"), "markets"))
+    market_extra = (
+        cta_html("还没确定优先测试哪个市场？", "可以通过 Telegram 说明目标地区、语言素材和预算，我们先一起判断更适合开始测试的市场方向。")
+        + '<div class="pill-list">'
+        + "".join(f'<span class="pill">{esc(m)}</span>' for m in markets["market_list"])
+        + "</div>"
+        + card_grid(market_cards, 3)
+        + keyword_block("/markets/", keyword_ctx, "市场词承接方向")
+        + faq_html(resolve_faqs(faqs, markets.get("faq_refs"), "markets"))
+    )
     emit("/markets/", pages["markets"], listing_content(pages["markets"], [], market_extra), site, nav, global_schemas, records, "pages.json:markets", "markets")
 
     blog_extra = card_grid(pages["blog"]["categories"], 3) + content_status_html(content_queue) + '<article class="card"><h2>长尾问答词处理方式</h2><p>带有怎么做、费用、价格、渠道、平台等后缀的长尾词先进入 future_blog 队列，后续再按 GSC 反馈和内容质量要求规划正文。</p></article><p class="note">当前不批量生成文章正文，后续文章正文默认由 DeepSeek 负责。</p>'
@@ -605,17 +662,16 @@ def build() -> None:
         emit(task["target_url"], page, content, site, nav, global_schemas, records, f"content_queue:{task['content_id']}", task.get("page_type", "blog_article"))
 
     contact_extra = (
-        '<div class="contact-card-grid"><article class="card"><h2>适合咨询的问题</h2>'
-        + list_items(contact["required_info"])
-        + '</article><article class="card"><h2>'
-        + esc(contact["contact_title"])
-        + '</h2><p>'
+        '<div class="contact-card-grid"><article class="card contact-focus"><h2>推荐直接走 Telegram</h2><p>'
         + esc(contact["contact_intro"])
         + '</p><div class="contact-button-row"><a class="button button-telegram" href="'
         + TELEGRAM_URL
-        + '" target="_blank" rel="noopener noreferrer">打开 Telegram 咨询</a></div><p>'
+        + '" target="_blank" rel="noopener noreferrer">打开 Telegram 咨询</a><a class="button button-secondary" href="/">返回首页</a></div><p class="note">'
         + esc(contact["response_note"])
-        + "</p></article></div>"
+        + '</p></article><article class="card"><h2>适合咨询的问题</h2>'
+        + list_items(contact["required_info"])
+        + "</article></div>"
+        + cta_html("把项目情况发到 Telegram，我们一起判断下一步", "不用先准备很完整的方案，先说清项目、目标地区、预算和已有素材，我们会帮你把第一轮测试方向理顺。")
         + faq_html(resolve_faqs(faqs, None, "contact"))
     )
     emit("/contact/", pages["contact"], listing_content(pages["contact"], [], contact_extra), site, nav, global_schemas, records, "pages.json:contact", "contact")
