@@ -2,7 +2,7 @@
 
 | URL | Source | Output File | Type | Sitemap | Indexable | Title | Description |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| https://www.9hwh.com/ | pages.json:home | site/public/index.html | home | yes | yes | 9HWH | 海外流量推广与获客支持 | 9HWH 主要帮出海项目做海外流量推广和获客支持，常用渠道包括 TK、FB、Google 等。我们可以从账户准备、素材方向、落地页承接、投放测试到后续优化一起配合，帮你更快开始测试市场，少走一些弯路，把预算尽量花在更可能出效果的方向上。 |
+| https://www.9hwh.com/ | pages.json:home | site/public/index.html | home | yes | yes | 9HWH | 海外流量推广与获客支持 | 9HWH 帮出海项目梳理 TK、FB、Google 等渠道测试方向，从账户准备、素材方向、落地页承接到投放测试一起配合，让预算尽量花在更可能出效果的方向。 |
 | https://www.9hwh.com/services/ | pages.json:services | site/public/services/index.html | listing | yes | yes | 服务总览 | 9HWH | 服务页用于把 9HWH 的核心能力拆成推广路径梳理、获客方案、投放准备和买量测试。 |
 | https://www.9hwh.com/services/overseas-promotion/ | services.json:overseas-promotion | site/public/services/overseas-promotion/index.html | service | yes | yes | 海外推广服务 | 海外推广服务覆盖出海项目推广、海外市场推广、渠道组合、项目冷启动和推广路径梳理。 |
 | https://www.9hwh.com/services/traffic-acquisition/ | services.json:traffic-acquisition | site/public/services/traffic-acquisition/index.html | service | yes | yes | 引流获客服务 | 引流获客服务覆盖精准获客、拉新、用户来源判断、转化路径建议、交友引流、游戏推广、贷款获客、保险获客和移民获客。 |
@@ -26,4 +26,4 @@
 | https://www.9hwh.com/blog/dating-how-to-002063ad/ | content_queue:c007-dating-traffic-dating-how-to-002063ad | site/public/blog/dating-how-to-002063ad/index.html | blog_article | yes | yes | 交友私聊怎么做：推广路径、渠道判断和准备清单 | 为出海团队解析“交友私聊怎么做”的真实需求，提供推广前准备清单、渠道选择建议及服务边界说明。 |
 | https://www.9hwh.com/blog/part-time-how-to-5875d40e/ | content_queue:c010-media-buying-part-time-how-to-5875d40e | site/public/blog/part-time-how-to-5875d40e/index.html | blog_article | yes | yes | 兼职怎么做：推广路径、渠道判断和准备清单 | 了解如何评估和开展海外推广兼职机会。本文梳理搜索意图、适合项目类型、推广前准备清单与可选渠道，帮助出海团队与个人做好决策准备。 |
 | https://www.9hwh.com/blog/topics/fb-dating-traffic-5035e1c0/ | content_queue:c031-fb-promotion-fb-dating-traffic-5035e1c0 | site/public/blog/topics/fb-dating-traffic-5035e1c0/index.html | topic_expansion | yes | yes | FB交友引流：海外推广与获客准备指南 | 了解FB交友引流的真实需求、适合的项目类型、推广前的资料准备、可选渠道及服务边界。为出海团队提供海外推广与获客准备参考。 |
-| https://www.9hwh.com/contact/ | pages.json:contact | site/public/contact/index.html | contact | yes | yes | 通过 Telegram 咨询 9HWH | 9HWH | 如果你正在准备海外推广、广告投放、引流获客或出海项目冷启动，推荐直接通过 Telegram 联系 9HWH。先简单说明项目类型、目标地区、预算范围、已有素材和落地页情况，我们会一起判断适合先跑 TK、FB、Google 还是其他渠道。 |
+| https://www.9hwh.com/contact/ | pages.json:contact | site/public/contact/index.html | contact | yes | yes | 通过 Telegram 咨询 9HWH | 9HWH | 通过 Telegram 直接沟通项目情况、渠道方向和测试需求。先说明项目类型、目标地区、预算范围、素材和落地页情况，我们会一起判断适合先跑哪些渠道。 |

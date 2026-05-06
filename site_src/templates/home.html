@@ -5,44 +5,29 @@
       <h1>{{ h1 }}</h1>
       <p class="lead">{{ description }}</p>
       <div class="button-row hero-button-row">{{ hero_buttons }}</div>
-      <div class="hero-tags">
-        <span>TK / FB / Google</span>
-        <span>账户准备</span>
-        <span>素材方向</span>
-        <span>投放测试</span>
-      </div>
-    </div>
-    <aside class="hero-panel" aria-label="推广测试支持概览">
-      <div class="hero-panel-top">
-        <span class="status-dot"></span>
-        <span>推广测试协作台</span>
-      </div>
-      <div class="hero-metric">
-        <strong>从判断到测试</strong>
-        <span>先确认项目、地区、预算和承接，再选择渠道组合。</span>
-      </div>
-      <div class="hero-checks">
+      <div class="hero-points">
         <span>降低试错成本</span>
-        <span>多账户/多户思路</span>
+        <span>更快开跑测试</span>
         <span>持续配合优化</span>
       </div>
+    </div>
+    <aside class="hero-panel" aria-label="服务协作概览">
+      <div class="panel-label">服务协作</div>
+      <h2>从渠道判断到测试落地</h2>
+      <div class="panel-list">
+        <span><strong>01</strong> 梳理项目、市场、预算和素材</span>
+        <span><strong>02</strong> 判断 TK、FB、Google 或组合渠道</span>
+        <span><strong>03</strong> 配合账户、落地页和投放测试</span>
+      </div>
     </aside>
-  </div>
-</section>
-<section class="section section-compact">
-  <div class="container proof-strip">
-    <span>海外推广</span>
-    <span>引流获客</span>
-    <span>广告投放支持</span>
-    <span>买量测试协作</span>
   </div>
 </section>
 <section class="section">
   <div class="container">
     <div class="section-head">
-      <p class="eyebrow">核心服务</p>
-      <h2>从推广路径到执行协助，先把获客结构搭起来</h2>
-      <p>围绕出海项目的推广、获客、投放和买量测试，帮你更快判断先跑什么、怎么承接、预算该往哪里放。</p>
+      <p class="eyebrow">我们主要能帮什么</p>
+      <h2>把推广测试拆成能执行的几步</h2>
+      <p>先判断方向，再准备账户、素材和落地页，最后进入小预算测试和持续调整。</p>
     </div>
     {{ service_cards }}
   </div>
@@ -50,51 +35,31 @@
 <section class="section section-tint">
   <div class="container split-section">
     <div class="section-head">
-      <p class="eyebrow">为什么值得先聊</p>
-      <h2>不是只给建议，而是一起往前跑</h2>
-      <p>先把项目类型、目标地区、预算区间、素材和落地页情况讲清楚，再决定测试路径，减少一上来就乱投的试错。</p>
-    </div>
-    {{ why_9hwh }}
-  </div>
-</section>
-<section class="section">
-  <div class="container">
-    <div class="section-head">
-      <p class="eyebrow">渠道方向</p>
-      <h2>根据项目阶段选择合适的渠道测试路径</h2>
-      <p>常见会从 TK、FB、Google 或组合渠道开始，不同项目的素材、账户、落地页和预算节奏会不一样。</p>
+      <p class="eyebrow">常见渠道</p>
+      <h2>按项目阶段选择测试平台</h2>
+      <p>不是每个项目都适合一上来全渠道投放。我们会结合目标市场、素材形态和承接能力，先选更容易验证的方向。</p>
     </div>
     {{ platform_cards }}
-  </div>
-</section>
-<section class="section section-tint">
-  <div class="container">
-    <div class="section-head">
-      <p class="eyebrow">主题与市场</p>
-      <h2>先看项目类型和目标市场，再进入具体推广方案</h2>
-      <p>不同主题、地区和平台组合会影响测试优先级，9HWH 会先帮你把可跑方向梳理清楚。</p>
-    </div>
-    {{ topic_cards }}
-    <div class="market-band">
-      <h3>常见市场判断维度</h3>
-      <div class="pill-list">{{ market_pills }}</div>
-    </div>
   </div>
 </section>
 <section class="section">
   <div class="container">
     <div class="section-head">
       <p class="eyebrow">合作流程</p>
-      <h2>先判断，再测试，再根据反馈调整</h2>
+      <h2>项目沟通 -> 渠道判断 -> 准备测试 -> 持续优化</h2>
     </div>
     {{ process_cards }}
   </div>
 </section>
-<section class="section section-compact">
-  <div class="container">{{ keyword_block }}</div>
-</section>
 <section class="section section-tint">
-  <div class="container">{{ faq }}</div>
+  <div class="container split-section">
+    <div class="section-head">
+      <p class="eyebrow">适合咨询的项目</p>
+      <h2>有出海获客需求，但还没确定怎么跑</h2>
+      <p>可以先把项目类型、目标地区、预算范围和已有准备说清楚，我们一起判断下一步。</p>
+    </div>
+    {{ fit_cards }}
+  </div>
 </section>
 <section class="section">
   <div class="container">{{ cta }}</div>

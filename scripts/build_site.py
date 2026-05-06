@@ -21,7 +21,7 @@ KEYWORD_ASSETS = ROOT / "data" / "keyword-assets"
 CONTENT_DATA = DATA / "content"
 DRAFTS = SRC / "content_drafts"
 TELEGRAM_URL = "https://tg.9hwh.com/"
-TELEGRAM_BUTTON_LABEL = "打开 Telegram 咨询"
+TELEGRAM_BUTTON_LABEL = "Telegram 咨询"
 DETAIL_CTA_TITLE = "想确认你的项目适合怎么跑？"
 DETAIL_CTA_TEXT = "可以通过 Telegram 联系 9HWH，先简单说明项目类型、目标地区、预算范围和现有素材情况，我们会一起判断适合从哪个渠道开始测试。"
 ARTICLE_CTA_TITLE = "想确认你的项目适合怎么跑？"
@@ -117,7 +117,7 @@ def nav_html(items: list[dict]) -> str:
         url = item["url"]
         label = item["label"]
         is_external = url.startswith("http://") or url.startswith("https://")
-        classes = "nav-contact" if "Telegram" in label or url == TELEGRAM_URL else ""
+        classes = "nav-contact" if url == TELEGRAM_URL else ""
         attrs = ' target="_blank" rel="noopener noreferrer"' if is_external else ""
         class_attr = f' class="{classes}"' if classes else ""
         links.append(f'<a{class_attr} href="{esc(url)}"{attrs}>{esc(label)}</a>')
@@ -127,12 +127,10 @@ def nav_html(items: list[dict]) -> str:
 def home_hero_buttons_html() -> str:
     return (
         f'<a class="button button-telegram" href="{TELEGRAM_URL}" target="_blank" rel="noopener noreferrer">'
-        '<span class="button-label-long">Telegram 咨询推广方案</span>'
-        '<span class="button-label-short">Telegram 咨询</span>'
+        "Telegram 咨询"
         "</a>"
         f'<a class="button button-telegram-alt" href="{TELEGRAM_URL}" target="_blank" rel="noopener noreferrer">'
-        '<span class="button-label-long">Telegram 看看适合跑哪些渠道</span>'
-        '<span class="button-label-short">渠道评估</span>'
+        "看适合跑哪些渠道"
         "</a>"
     )
 
@@ -140,8 +138,8 @@ def home_hero_buttons_html() -> str:
 def floating_telegram_html() -> str:
     return (
         f'<a class="floating-telegram" href="{TELEGRAM_URL}" target="_blank" rel="noopener noreferrer" aria-label="通过 Telegram 咨询 9HWH">'
-        '<span class="floating-telegram-badge">TG</span>'
-        '<span class="floating-telegram-label">Telegram 咨询<small>推广方案</small></span>'
+        '<span class="floating-telegram-icon" aria-hidden="true"></span>'
+        '<span class="floating-telegram-label">Telegram 咨询</span>'
         "</a>"
     )
 
@@ -180,6 +178,15 @@ def advantage_cards_html(items: list[str]) -> str:
     titles = ["降低试错成本", "找到渠道组合", "持续配合优化"]
     cards = [{"title": titles[index] if index < len(titles) else "一起往前跑", "text": text} for index, text in enumerate(items)]
     return simple_cards(cards, 3)
+
+
+def fit_cards_html() -> str:
+    items = [
+        {"title": "出海项目冷启动", "text": "还没确定先跑哪个渠道，需要先判断市场、预算和承接方式。"},
+        {"title": "已有预算准备测试", "text": "希望从小预算开始验证素材、落地页和渠道组合，减少无效试错。"},
+        {"title": "需要多方向协作", "text": "需要账户、素材、落地页和投放节奏一起配合，而不是只听建议。"},
+    ]
+    return simple_cards(items, 3)
 
 
 def extract_markdown_links(markdown: str) -> list[str]:
@@ -585,13 +592,8 @@ def build() -> None:
             "hero_buttons": home_hero_buttons_html(),
             "service_cards": card_grid(services, 4),
             "platform_cards": card_grid(platforms, 3),
-            "topic_cards": card_grid(topics, 4),
-            "market_pills": "".join(f'<span class="pill">{esc(m)}</span>' for m in markets["market_list"]),
             "process_cards": process_cards_html(blocks["process_steps"]),
-            "why_9hwh": advantage_cards_html(blocks["why_9hwh"]),
-            "keyword_block": keyword_block("/", keyword_ctx, "首页关键词承接方向"),
-            "boundary": boundary_html(blocks["service_boundary"]),
-            "faq": faq_html(home_faqs),
+            "fit_cards": fit_cards_html(),
             "cta": cta_html("通过 Telegram 咨询 9HWH", "如果你已经在准备海外推广、广告投放、引流获客或市场测试，可以直接通过 Telegram 联系 9HWH，我们会先一起判断适合从哪些渠道开始跑。"),
         },
     )
