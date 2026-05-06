@@ -1,29 +1,61 @@
 {
-  "base_url": "",
+  "base_url": "https://www.9hwh.com",
   "expected_published": 3,
-  "status": "pending",
+  "status": "pass",
   "core_checks": {
-    "homepage_200": false,
-    "services_200": false,
-    "topics_200": false,
-    "contact_200": false,
-    "robots_200": false,
-    "sitemap_200": false,
-    "robots_has_sitemap": false,
-    "sitemap_only_published": false
+    "homepage_200": true,
+    "services_200": true,
+    "topics_200": true,
+    "contact_200": true,
+    "robots_200": true,
+    "sitemap_200": true,
+    "robots_has_sitemap": true,
+    "sitemap_only_published": true
   },
   "published_urls": [
     "https://www.9hwh.com/blog/dating-how-to-002063ad/",
     "https://www.9hwh.com/blog/part-time-how-to-5875d40e/",
     "https://www.9hwh.com/blog/topics/fb-dating-traffic-5035e1c0/"
   ],
-  "reviewed_unpublished_urls": [],
+  "reviewed_unpublished_urls": [
+    "https://www.9hwh.com/blog/crypto-promotion-how-to-17e66750/",
+    "https://www.9hwh.com/blog/exchange-acquisition-how-to-efd74e87/",
+    "https://www.9hwh.com/blog/dating-app-how-to-f56b0dad/",
+    "https://www.9hwh.com/blog/topics/fb-game-promotion-eec369fd/",
+    "https://www.9hwh.com/blog/topics/fb-immigration-leads-b33be086/",
+    "https://www.9hwh.com/blog/topics/fb-insurance-leads-b01d5372/",
+    "https://www.9hwh.com/blog/topics/fb-loan-leads-60d3dc0c/"
+  ],
   "internal_only_urls": [
     "https://www.9hwh.com/blog/topics/tk-immigration-ads-bcb960fd/"
   ],
-  "sitemap_urls": [],
-  "issues": [
-    "Cloudflare Pages preview URL has not been provided in the current environment.",
-    "verify_deployed_site.py has not been executed because there is no reachable preview deployment to verify."
-  ]
+  "sitemap_urls": [
+    "https://www.9hwh.com/",
+    "https://www.9hwh.com/services/",
+    "https://www.9hwh.com/services/overseas-promotion/",
+    "https://www.9hwh.com/services/traffic-acquisition/",
+    "https://www.9hwh.com/services/ad-campaign-support/",
+    "https://www.9hwh.com/services/media-buying/",
+    "https://www.9hwh.com/platforms/",
+    "https://www.9hwh.com/platforms/tk/",
+    "https://www.9hwh.com/platforms/fb/",
+    "https://www.9hwh.com/platforms/google/",
+    "https://www.9hwh.com/topics/",
+    "https://www.9hwh.com/topics/crypto-promotion/",
+    "https://www.9hwh.com/topics/dating-traffic/",
+    "https://www.9hwh.com/topics/game-promotion/",
+    "https://www.9hwh.com/topics/finance-leads/",
+    "https://www.9hwh.com/topics/loan-leads/",
+    "https://www.9hwh.com/topics/insurance-leads/",
+    "https://www.9hwh.com/topics/immigration-leads/",
+    "https://www.9hwh.com/topics/online-work-leads/",
+    "https://www.9hwh.com/markets/",
+    "https://www.9hwh.com/blog/",
+    "https://www.9hwh.com/blog/dating-how-to-002063ad/",
+    "https://www.9hwh.com/blog/part-time-how-to-5875d40e/",
+    "https://www.9hwh.com/blog/topics/fb-dating-traffic-5035e1c0/",
+    "https://www.9hwh.com/contact/",
+    "https://www.9hwh.com/privacy/"
+  ],
+  "issues": []
 }

@@ -1,8 +1,7 @@
 from __future__ import annotations
 
-import html
-import csv
 import hashlib
+import html
 import json
 import re
 import shutil
@@ -18,80 +17,23 @@ PARTIALS = TEMPLATES / "partials"
 PUBLIC = ROOT / "site" / "public"
 DOCS = ROOT / "docs"
 KEYWORD_DATA = DATA / "keywords"
-KEYWORD_ASSETS = ROOT / "data" / "keyword-assets"
 CONTENT_DATA = DATA / "content"
 DRAFTS = SRC / "content_drafts"
+
+BASE_URL = "https://www.9hwh.com"
 TELEGRAM_URL = "https://tg.9hwh.com/"
 TELEGRAM_BUTTON_LABEL = "Telegram 咨询"
-DEFAULT_CTA_TITLE = "不知道先跑 TK、FB 还是 Google？"
-DEFAULT_CTA_TEXT = "把项目类型、目标地区、预算范围和现有素材发到 Telegram，我们先帮你判断适合从哪个渠道开始测，避免一开始就把预算花在不确定的方向上。"
-DETAIL_CTA_TITLE = DEFAULT_CTA_TITLE
-DETAIL_CTA_TEXT = DEFAULT_CTA_TEXT
-ARTICLE_CTA_TITLE = DEFAULT_CTA_TITLE
-ARTICLE_CTA_TEXT = DEFAULT_CTA_TEXT
-FRONT_CONSULTATION_NOTE = "我们会先了解项目类型、目标地区、预算范围和现有准备，再一起判断适合从哪个渠道开始测试。"
-PUBLIC_COPY_REPLACEMENTS = {
-    "服务边界说明": "沟通准备说明",
-    "服务边界": "沟通准备",
-    "平台规则和投放边界": "平台选择和测试准备",
-    "提前确认边界": "提前准备信息",
-    "边界确认": "准备确认",
-    "具体执行前仍需确认边界": "具体执行前仍需补充项目信息",
-    "平台边界": "平台方向",
-    "素材表达边界": "素材表达范围",
-    "内容边界": "内容表达范围",
-    "项目边界": "项目情况",
-    "不承诺避开平台审核，不提供规避平台政策的操作，不保证任何平台审核结果或投放结果。": FRONT_CONSULTATION_NOTE,
-    "不承诺以任何方式避开平台审核，不提供规避平台政策的操作，不保证任何平台审核结果或投放结果。": FRONT_CONSULTATION_NOTE,
-    "不承诺避开平台审核": "会结合项目资料和平台要求做前期判断",
-    "不提供规避平台政策的操作": "会优先按可持续的渠道方式推进",
-    "不保证任何平台审核结果或投放结果": "实际反馈会结合平台、市场、素材和承接情况持续判断",
-    "不保证任何平台审核结果或投放效果": "会根据平台反馈、素材表现和承接情况持续判断测试方向",
-    "不保证任何平台的审核通过率、投放效果或投资回报": "实际反馈会结合平台、市场、素材和承接情况持续判断",
-    "不保证任何具体效果或转化数据": "会根据测试数据持续调整素材、渠道和承接路径",
-    "不提供规避平台政策或当地法规的操作": "会优先按可持续的渠道方式推进",
-    "不承诺任何审核结果": "会根据项目资料和平台要求做前期判断",
-    "不承诺任何平台审核结果或投放结果": "会结合项目情况和测试反馈推进",
-    "不承诺审核结果或投放结果": "会结合项目情况和测试反馈推进",
-    "不承诺平台审核结果": "会结合项目资料和平台要求做前期判断",
-    "不承诺固定投放结果": "基于测试反馈逐步优化",
-    "不承诺 ROI 或固定回收结果": "根据测试反馈持续复盘渠道质量",
-    "不提供平台政策规避操作": "按可持续渠道方式推进",
-    "不愿确认平台政策和地区法规的合作": "资料不完整、无法判断目标市场和承接路径的合作",
-    "服务不包含：": "沟通时会重点确认：",
-    "个人团队": "出海项目团队",
-    "联系 9HWH": "发到 Telegram",
-    "可以通过 Telegram 联系 9HWH，先简单说明项目类型、目标地区、预算范围和现有素材情况，我们会一起判断适合从哪个渠道开始测试。": DEFAULT_CTA_TEXT,
-    "通过 Telegram 联系 9HWH": "把项目情况发到 Telegram",
-    "通过 Telegram 咨询 9HWH": "通过 Telegram 说一下你的项目情况",
-    "会结合项目资料和平台要求做前期判断或降低审核标准": "会结合项目资料和平台要求做前期判断",
-    "不承接涉及违禁内容或不合规承诺的项目": "项目内容和表达方式会在沟通时先做基础判断",
-    "不建议以此路径开展推广": "建议先评估更合适的沟通路径",
-    "不适合或需谨慎评估的项目包括：": "需要先补充信息评估的项目包括：",
-    "合作前会先确认平台政策、地区法规和项目限制，": "我们会先了解项目类型、目标地区、预算范围和现有准备，",
-}
+DEFAULT_CTA_TITLE = "想确认你的项目适合怎么跑？"
+DEFAULT_CTA_TEXT = "可以通过 Telegram 联系 9HWH，先简单说明项目类型、目标地区、预算范围和现有素材情况，我们会一起判断适合从哪个渠道开始测试。"
+TOPIC_DEFAULT_ARTICLE_NOTE = "相关内容将逐步更新，你也可以先通过 Telegram 说一下项目情况。"
 
 
 def load_json(name: str):
-    with (DATA / name).open("r", encoding="utf-8-sig") as fh:
-        return json.load(fh)
-
-
-def load_keyword_json(name: str):
-    path = KEYWORD_DATA / name
-    if not path.exists():
-        return [] if name.endswith(".json") else {}
-    with path.open("r", encoding="utf-8-sig") as fh:
-        return json.load(fh)
+    return json.loads((DATA / name).read_text(encoding="utf-8"))
 
 
 def read_text(path: Path) -> str:
     return path.read_text(encoding="utf-8")
-
-
-def css_asset_version() -> str:
-    css = SRC / "assets" / "css" / "styles.css"
-    return hashlib.sha1(css.read_bytes()).hexdigest()[:8]
 
 
 def render(template: str, values: dict[str, str]) -> str:
@@ -100,25 +42,21 @@ def render(template: str, values: dict[str, str]) -> str:
     return template
 
 
+def partial(name: str, values: dict[str, str] | None = None) -> str:
+    return render(read_text(PARTIALS / name), values or {})
+
+
 def esc(value: object) -> str:
     return html.escape(str(value), quote=True)
 
 
-def soften_public_copy(value: object) -> str:
-    text = str(value)
-    for source, target in PUBLIC_COPY_REPLACEMENTS.items():
-        text = text.replace(source, target)
-    return text
-
-
-def slug_to_label(slug: str) -> str:
-    return slug.replace("-", " ").title()
+def css_asset_version() -> str:
+    css = SRC / "assets" / "css" / "styles.css"
+    return hashlib.sha1(css.read_bytes()).hexdigest()[:8]
 
 
 def url_path(path: str) -> str:
-    if not path.startswith("/"):
-        path = "/" + path
-    return path
+    return path if path.startswith("/") else "/" + path
 
 
 def page_file(path: str) -> str:
@@ -134,7 +72,7 @@ def output_file(path: str) -> Path:
     return PUBLIC / page_file(path)
 
 
-def canonical(path: str, base_url: str) -> str:
+def canonical(path: str, base_url: str = BASE_URL) -> str:
     path = url_path(path)
     return base_url.rstrip("/") + ("/" if path == "/" else path)
 
@@ -147,24 +85,33 @@ def write_file(relative: str, content: str) -> None:
 
 def clean_public() -> None:
     PUBLIC.mkdir(parents=True, exist_ok=True)
-    for path in PUBLIC.rglob("*.html"):
-        path.unlink()
-    for filename in ("sitemap.xml", "robots.txt", "_headers", "_redirects"):
-        path = PUBLIC / filename
-        if path.exists():
+    for path in PUBLIC.rglob("*"):
+        if path.is_file():
             path.unlink()
-    css = PUBLIC / "assets" / "css" / "styles.css"
-    if css.exists():
-        css.unlink()
 
 
-def partial(name: str, values: dict[str, str] | None = None) -> str:
-    values = values or {}
-    return render(read_text(PARTIALS / name), values)
+def is_placeholder(value: str) -> bool:
+    text = value.strip()
+    return bool(text) and set(text) == {"?"}
+
+
+def clean_items(items: list[str], fallback: list[str] | None = None) -> list[str]:
+    cleaned = []
+    for item in items:
+        text = str(item).strip()
+        if not text or is_placeholder(text):
+            continue
+        cleaned.append(text)
+    if cleaned:
+        return cleaned
+    return fallback or []
 
 
 def list_items(items: list[str], class_name: str = "checklist") -> str:
-    return f'<ul class="{class_name}">' + "".join(f"<li>{esc(soften_public_copy(item))}</li>" for item in items) + "</ul>"
+    cleaned = clean_items(items)
+    if not cleaned:
+        return '<ul class="' + class_name + '"><li>相关内容将逐步更新</li></ul>'
+    return f'<ul class="{class_name}">' + "".join(f"<li>{esc(item)}</li>" for item in cleaned) + "</ul>"
 
 
 def nav_html(items: list[dict]) -> str:
@@ -173,27 +120,22 @@ def nav_html(items: list[dict]) -> str:
         url = item["url"]
         label = item["label"]
         is_external = url.startswith("http://") or url.startswith("https://")
-        classes = "nav-contact" if url == TELEGRAM_URL else ""
         attrs = ' target="_blank" rel="noopener noreferrer"' if is_external else ""
-        class_attr = f' class="{classes}"' if classes else ""
-        links.append(f'<a{class_attr} href="{esc(url)}"{attrs}>{esc(label)}</a>')
+        extra_class = ' class="nav-contact"' if "Telegram" in label or url == TELEGRAM_URL else ""
+        links.append(f'<a{extra_class} href="{esc(url)}"{attrs}>{esc(label)}</a>')
     return "".join(links)
 
 
 def home_hero_buttons_html() -> str:
     return (
-        f'<a class="button button-telegram" href="{TELEGRAM_URL}" target="_blank" rel="noopener noreferrer">'
-        "Telegram 咨询"
-        "</a>"
-        f'<a class="button button-secondary" href="{TELEGRAM_URL}" target="_blank" rel="noopener noreferrer">'
-        "渠道评估"
-        "</a>"
+        f'<a class="button button-telegram" href="{TELEGRAM_URL}" target="_blank" rel="noopener noreferrer">Telegram 咨询推广方案</a>'
+        f'<a class="button button-secondary" href="{TELEGRAM_URL}" target="_blank" rel="noopener noreferrer">Telegram 看看适合跑哪些渠道</a>'
     )
 
 
 def floating_telegram_html() -> str:
     return (
-        f'<a class="floating-telegram" href="{TELEGRAM_URL}" target="_blank" rel="noopener noreferrer" aria-label="通过 Telegram 说一下你的项目情况">'
+        f'<a class="floating-telegram" href="{TELEGRAM_URL}" target="_blank" rel="noopener noreferrer" aria-label="通过 Telegram 咨询 9HWH">'
         '<span class="floating-telegram-icon" aria-hidden="true"></span>'
         '<span class="floating-telegram-label">Telegram 咨询</span>'
         "</a>"
@@ -204,69 +146,52 @@ def card_grid(items: list[dict], columns: int = 3) -> str:
     cards = []
     for item in items:
         url = item.get("url", "#")
-        title = soften_public_copy(item.get("title", item.get("label", "")))
-        summary = soften_public_copy(item.get("summary", item.get("description", "")))
+        title = item.get("title", item.get("label", ""))
+        summary = item.get("summary", item.get("description", ""))
         cards.append(partial("card_grid.html", {"url": esc(url), "title": esc(title), "summary": esc(summary)}))
+    if not cards:
+        return ""
     return f'<div class="grid grid-{columns}">' + "".join(cards) + "</div>"
 
 
 def simple_cards(items: list[dict], columns: int = 3, extra_class: str = "") -> str:
-    cards = []
+    body = []
     for item in items:
-        cards.append(f'<article class="card {extra_class}"><h3>{esc(item["title"])}</h3><p>{esc(item["text"])}</p></article>')
-    return f'<div class="grid grid-{columns}">' + "".join(cards) + "</div>"
-
-
-def process_cards_html(titles: list[str]) -> str:
-    descriptions = {
-        "需求沟通": "先确认项目类型、目标地区、当前阶段、预算区间和现有准备。",
-        "项目和市场判断": "结合市场、平台、素材和落地页承接，判断更适合先从哪里开始。",
-        "渠道建议": "围绕 TK、FB、Google 或组合渠道，给出第一轮测试思路。",
-        "投放准备": "梳理账户、素材方向、落地页和转化路径，让测试能落地。",
-        "执行协助": "围绕投放、推广和过程沟通持续配合，不只停在建议层。",
-        "数据反馈和调整": "根据阶段反馈调整渠道、素材、预算和下一轮测试节奏。",
-    }
-    cards = []
-    for index, title in enumerate(titles[:4], start=1):
-        cards.append(
-            '<article class="card step">'
-            f'<span class="step-number">{index:02d}</span>'
-            f'<h3>{esc(title)}</h3>'
-            f'<p>{esc(descriptions.get(title, "根据项目反馈继续调整测试节奏。"))}</p>'
-            "</article>"
+        body.append(
+            '<article class="card'
+            + (f" {extra_class}" if extra_class else "")
+            + '">'
+            + f"<h3>{esc(item['title'])}</h3>"
+            + f"<p>{esc(item['text'])}</p>"
+            + "</article>"
         )
-    return '<div class="grid grid-4 process">' + "".join(cards) + "</div>"
+    return f'<div class="grid grid-{columns}">' + "".join(body) + "</div>"
 
 
-def advantage_cards_html(items: list[str]) -> str:
-    titles = ["降低试错成本", "找到渠道组合", "持续配合优化"]
-    cards = [{"title": titles[index] if index < len(titles) else "一起往前跑", "text": text} for index, text in enumerate(items)]
-    return simple_cards(cards, 3)
-
-
-def fit_cards_html() -> str:
+def process_cards_html() -> str:
     items = [
-        {"title": "出海项目冷启动", "text": "还没确定先跑哪个渠道，需要先判断市场、预算和承接方式。"},
-        {"title": "已有预算准备测试", "text": "希望从小预算开始验证素材、落地页和渠道组合，减少无效试错。"},
-        {"title": "需要多方向协作", "text": "需要账户、素材、落地页和投放节奏一起配合，而不是只听建议。"},
+        {"title": "项目沟通", "text": "先确认项目类型、目标地区、预算范围和现有准备情况。"},
+        {"title": "渠道判断", "text": "结合市场、素材和落地页情况，判断更适合先跑哪个渠道。"},
+        {"title": "准备测试", "text": "把账户、素材、落地页和承接链路一起整理清楚。"},
+        {"title": "持续优化", "text": "根据阶段反馈继续调整渠道、素材和预算节奏。"},
     ]
-    return simple_cards(items, 3)
+    return simple_cards(items, 4, "step")
 
 
 def home_service_cards_html() -> str:
     items = [
-        {"label": "01", "title": "推广路径梳理", "text": "梳理项目阶段、目标市场和渠道优先级，避免一开始就乱跑。"},
-        {"label": "02", "title": "渠道测试协作", "text": "围绕 TK、FB、Google 等渠道，确定第一轮测试方式和节奏。"},
-        {"label": "03", "title": "素材与落地页准备", "text": "一起检查素材方向、页面承接和转化路径，让测试能落地。"},
-        {"label": "04", "title": "获客与数据反馈", "text": "根据咨询、注册、转化等反馈，调整素材、渠道和预算。"},
+        {"title": "推广方向梳理", "text": "先判断项目更适合先跑哪类渠道，再安排第一轮测试顺序。"},
+        {"title": "投放准备协作", "text": "一起看账户、素材、落地页和转化路径是否准备到位。"},
+        {"title": "获客测试支持", "text": "围绕咨询、注册、转化等目标推进测试，而不是只停留在建议层。"},
+        {"title": "阶段反馈优化", "text": "根据测试反馈继续调整渠道、素材和承接方式。"},
     ]
     cards = []
-    for item in items:
+    for index, item in enumerate(items, start=1):
         cards.append(
             '<article class="home-service-card">'
-            f'<span>{esc(item["label"])}</span>'
-            f'<h3>{esc(item["title"])}</h3>'
-            f'<p>{esc(item["text"])}</p>'
+            f"<span>{index:02d}</span>"
+            f"<h3>{esc(item['title'])}</h3>"
+            f"<p>{esc(item['text'])}</p>"
             "</article>"
         )
     return '<div class="home-service-grid">' + "".join(cards) + "</div>"
@@ -274,226 +199,31 @@ def home_service_cards_html() -> str:
 
 def home_advantage_cards_html() -> str:
     items = [
-        {"title": "少走弯路", "text": "先判断项目适合跑哪个渠道，再决定测试优先级。"},
-        {"title": "更快启动", "text": "账户、素材、落地页和测试节奏一起准备，减少等待。"},
-        {"title": "降低试错", "text": "先小预算测试，再判断是否继续放量。"},
-        {"title": "持续优化", "text": "根据反馈调整素材、渠道和承接路径。"},
+        {"title": "少走弯路", "text": "先把测试方向理顺，再进入更具体的执行安排。"},
+        {"title": "降低试错成本", "text": "小预算先测，尽量把钱花在更可能出效果的方向上。"},
+        {"title": "持续一起推进", "text": "不是给一份建议就结束，而是根据反馈继续调整。"},
     ]
-    return simple_cards(items, 2, "advantage-card")
+    return simple_cards(items, 3, "advantage-card")
+
+
+def fit_cards_html() -> str:
+    items = [
+        {"title": "项目刚准备启动", "text": "还没确定先跑哪个渠道，想先把方向判断清楚。"},
+        {"title": "已有素材和落地页", "text": "想尽快进入测试，但不想一开始就乱花预算。"},
+        {"title": "已经在做推广", "text": "希望有人一起看渠道组合、素材方向和后续优化。"},
+    ]
+    return simple_cards(items, 3)
 
 
 def extract_markdown_links(markdown: str) -> list[str]:
     return re.findall(r"\]\((/[^)\s]+)\)", markdown)
 
 
-def breadcrumb_items(path: str, title: str, base_url: str) -> list[dict]:
-    path = url_path(path)
-    items = [{"name": "首页", "url": canonical("/", base_url)}]
-    if path != "/":
-        parts = [p for p in path.strip("/").split("/") if p and not p.endswith(".html")]
-        current = ""
-        for index, part in enumerate(parts):
-            current = current.rstrip("/") + "/" + part + "/"
-            crumb_url = current
-            if current == "/blog/topics/":
-                crumb_url = "/topics/"
-            name = title if index == len(parts) - 1 else slug_to_label(part)
-            items.append({"name": name, "url": canonical(crumb_url, base_url)})
-    return items
-
-
-def breadcrumb_html(items: list[dict]) -> str:
-    links = []
-    for index, item in enumerate(items):
-        if index == len(items) - 1:
-            links.append(f"<span>{esc(item['name'])}</span>")
-        else:
-            links.append(f'<a href="{esc(item["url"].replace(BASE_URL, "") or "/")}">{esc(item["name"])}</a>')
-    return partial("breadcrumb.html", {"items": " / ".join(links)})
-
-
-def json_script(data: dict) -> str:
-    return '<script type="application/ld+json">' + json.dumps(data, ensure_ascii=False, separators=(",", ":")) + "</script>"
-
-
-def organization_schema(site: dict) -> dict:
-    return {"@context": "https://schema.org", "@type": "Organization", "name": site["site_name"], "url": site["base_url"], "description": site["default_description"]}
-
-
-def website_schema(site: dict) -> dict:
-    return {"@context": "https://schema.org", "@type": "WebSite", "name": site["site_name"], "url": site["base_url"], "description": site["default_description"]}
-
-
-def breadcrumb_schema(items: list[dict]) -> dict:
-    return {
-        "@context": "https://schema.org",
-        "@type": "BreadcrumbList",
-        "itemListElement": [{"@type": "ListItem", "position": i + 1, "name": item["name"], "item": item["url"]} for i, item in enumerate(items)],
-    }
-
-
-def faq_schema(faqs: list[dict]) -> dict:
-    return {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": f["q"], "acceptedAnswer": {"@type": "Answer", "text": f["a"]}} for f in faqs]}
-
-
-def service_schema(item: dict, site: dict) -> dict:
-    return {"@context": "https://schema.org", "@type": "Service", "name": soften_public_copy(item["title"]), "description": soften_public_copy(item["description"]), "provider": {"@type": "Organization", "name": site["site_name"], "url": site["base_url"]}, "areaServed": "Global"}
-
-
-def faq_html(faqs: list[dict]) -> str:
-    if not faqs:
-        return ""
-    body = "".join(f'<article class="faq-item"><h3>{esc(soften_public_copy(item["q"]))}</h3><p>{esc(soften_public_copy(item["a"]))}</p></article>' for item in faqs)
-    return partial("faq.html", {"items": body})
-
-
-def cta_html(title: str, text: str, button_label: str = TELEGRAM_BUTTON_LABEL, url: str = TELEGRAM_URL) -> str:
-    return partial("cta.html", {"title": esc(title), "text": esc(text), "button_label": esc(button_label), "url": esc(url)})
-
-
-def boundary_html(text: str) -> str:
-    return partial("boundary.html", {"text": esc(soften_public_copy(text))})
-
-
-def keyword_context() -> dict:
-    clusters = load_keyword_json("clusters.json")
-    url_map = load_keyword_json("url_map.json")
-    rules_path = KEYWORD_DATA / "rules.json"
-    rules = json.loads(rules_path.read_text(encoding="utf-8-sig")) if rules_path.exists() else {}
-    by_url: dict[str, list[str]] = {}
-    for item in url_map:
-        if item.get("status") in {"public_primary", "public_secondary"}:
-            by_url.setdefault(item["target_url"], []).append(item["keyword"])
-    for cluster in clusters:
-        target = cluster.get("target_url")
-        if not target:
-            continue
-        for term in cluster.get("include_actions", []) + cluster.get("include_categories", []) + cluster.get("include_platforms", []) + cluster.get("include_countries", []):
-            by_url.setdefault(target, []).append(term)
-    summary = {}
-    summary_path = KEYWORD_ASSETS / "cluster_summary.csv"
-    if summary_path.exists():
-        with summary_path.open("r", encoding="utf-8-sig", newline="") as fh:
-            for row in csv.DictReader(fh):
-                summary[row["cluster_id"]] = row
-    return {"clusters": clusters, "url_map": url_map, "rules": rules, "by_url": by_url, "summary": summary}
-
-
-def keyword_block(path: str, context: dict, title: str = "关键词承接方向") -> str:
-    terms = context.get("by_url", {}).get(path, [])
-    blocked = set(context.get("rules", {}).get("sensitive_internal_categories", []) + context.get("rules", {}).get("blocked_promise_terms", []))
-    visible = []
-    for term in terms:
-        if not term or term in visible:
-            continue
-        if any(blocked_term and blocked_term in term for blocked_term in blocked):
-            continue
-        visible.append(term)
-    visible = visible[:12]
-    if not visible:
-        return ""
-    pills = "".join(f'<span class="pill">{esc(term)}</span>' for term in visible)
-    return f'<article class="card keyword-block"><h2>{esc(title)}</h2><p>本页只展示代表性搜索方向，完整关键词先进入内部资产库和聚类映射，不直接生成大量公开页面。</p><div class="pill-list">{pills}</div></article>'
-
-
-def load_content_queue() -> list[dict]:
-    path = CONTENT_DATA / "content_queue.json"
-    if not path.exists():
-        return []
-    return json.loads(path.read_text(encoding="utf-8-sig"))
-
-
-def parse_draft(path: Path) -> tuple[dict, str]:
-    text = path.read_text(encoding="utf-8-sig")
-    if not text.startswith("---"):
-        return {}, text
-    _, front, body = text.split("---", 2)
-    meta = {}
-    for line in front.splitlines():
-        if ":" in line:
-            key, value = line.split(":", 1)
-            meta[key.strip()] = value.strip()
-    return meta, body.strip()
-
-
-def load_publishable_drafts(queue: list[dict]) -> list[tuple[dict, str]]:
-    publishable = {
-        item["content_id"]: item
-        for item in queue
-        if item.get("status") == "published" and not item.get("internal_only")
-    }
-    result = []
-    if not DRAFTS.exists():
-        return result
-    for path in DRAFTS.glob("*.md"):
-        if path.name.upper() == "README.MD":
-            continue
-        meta, body = parse_draft(path)
-        content_id = meta.get("content_id")
-        if content_id in publishable:
-            task = publishable[content_id].copy()
-            task.update({key: value for key, value in meta.items() if value})
-            result.append((task, body))
-    result.sort(key=lambda pair: int(pair[0].get("priority", 9999)))
-    return result
-
-
-def article_card(task: dict) -> dict:
-    return {
-        "title": task.get("title", ""),
-        "url": task.get("target_url", "#"),
-        "summary": task.get("description", task.get("intent", "")),
-    }
-
-
-def blog_article_cards_html(published_drafts: list[tuple[dict, str]]) -> str:
-    if not published_drafts:
-        return '<article class="card"><h2>内容正在整理中</h2><p>更多专题内容将按审核和发布节奏逐步更新。</p></article>'
-    cards = []
-    for task, _body in published_drafts:
-        title = soften_public_copy(task.get("title", ""))
-        url = task.get("target_url", "#")
-        description = soften_public_copy(task.get("description", task.get("intent", "")))
-        tag = task.get("primary_keyword") or task.get("cluster_id", "海外推广")
-        cards.append(
-            '<article class="card">'
-            f'<h3><a href="{esc(url)}">{esc(title)}</a></h3>'
-            f"<p>{esc(description)}</p>"
-            f'<div class="pill-list"><span class="pill">{esc(tag)}</span></div>'
-            "</article>"
-        )
-    return '<div class="grid grid-3">' + "".join(cards) + "</div>"
-
-
-def aggregate_published_articles(published_drafts: list[tuple[dict, str]]) -> dict[str, dict[str, list[dict]]]:
-    grouped = {"topics": {}, "services": {}, "platforms": {}}
-    for task, body in published_drafts:
-        card = article_card(task)
-        if task.get("target_topic"):
-            grouped["topics"].setdefault(task["target_topic"], []).append(card)
-        if task.get("target_service"):
-            grouped["services"].setdefault(task["target_service"], []).append(card)
-        internal_links = set(task.get("internal_links", [])) | set(extract_markdown_links(body))
-        for link in sorted(internal_links):
-            if link.startswith("/platforms/") and link != "/platforms/":
-                grouped["platforms"].setdefault(link, []).append(card)
-    for group in grouped.values():
-        for cards in group.values():
-            cards.sort(key=lambda item: item["title"])
-    return grouped
-
-
 def markdown_to_html(markdown: str) -> str:
     def inline_html(text: str) -> str:
-        escaped = esc(soften_public_copy(text))
+        escaped = esc(text)
         escaped = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", escaped)
-        def replace_markdown_link(match):
-            label = match.group(1)
-            href = match.group(2)
-            if href == "/contact/" or "联系" in label or "咨询" in label:
-                return f'<a href="{TELEGRAM_URL}" target="_blank" rel="noopener noreferrer">把项目情况发到 Telegram</a>'
-            return f'<a href="{esc(href)}">{label}</a>'
-        escaped = re.sub(r"\[(.+?)\]\((/[^)\s]+)\)", replace_markdown_link, escaped)
+        escaped = re.sub(r"\[(.+?)\]\((/[^)\s]+)\)", r'<a href="\2">\1</a>', escaped)
         return escaped
 
     blocks = []
@@ -530,10 +260,119 @@ def markdown_to_html(markdown: str) -> str:
     return "".join(blocks)
 
 
+def breadcrumb_items(path: str, title: str) -> list[dict]:
+    path = url_path(path)
+    items = [{"name": "首页", "url": canonical("/")}]
+    if path == "/":
+        return items
+    parts = [part for part in path.strip("/").split("/") if part and not part.endswith(".html")]
+    current = ""
+    for index, part in enumerate(parts):
+        current = current.rstrip("/") + "/" + part + "/"
+        name = title if index == len(parts) - 1 else part.replace("-", " ").title()
+        if current == "/blog/topics/":
+            current = "/topics/"
+        items.append({"name": name, "url": canonical(current)})
+    return items
+
+
+def breadcrumb_html(items: list[dict]) -> str:
+    parts = []
+    for index, item in enumerate(items):
+        if index == len(items) - 1:
+            parts.append(f"<span>{esc(item['name'])}</span>")
+        else:
+            local_url = item["url"].replace(BASE_URL, "") or "/"
+            parts.append(f'<a href="{esc(local_url)}">{esc(item["name"])}</a>')
+    return partial("breadcrumb.html", {"items": " / ".join(parts)})
+
+
+def json_script(data: dict) -> str:
+    return '<script type="application/ld+json">' + json.dumps(data, ensure_ascii=False, separators=(",", ":")) + "</script>"
+
+
+def organization_schema(site: dict) -> dict:
+    return {"@context": "https://schema.org", "@type": "Organization", "name": site["site_name"], "url": site["base_url"], "description": site["default_description"]}
+
+
+def website_schema(site: dict) -> dict:
+    return {"@context": "https://schema.org", "@type": "WebSite", "name": site["site_name"], "url": site["base_url"], "description": site["default_description"]}
+
+
+def breadcrumb_schema(items: list[dict]) -> dict:
+    return {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [{"@type": "ListItem", "position": i + 1, "name": item["name"], "item": item["url"]} for i, item in enumerate(items)],
+    }
+
+
+def faq_schema(faqs: list[dict]) -> dict:
+    return {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": item["q"], "acceptedAnswer": {"@type": "Answer", "text": item["a"]}} for item in faqs]}
+
+
+def service_schema(item: dict, site: dict) -> dict:
+    return {"@context": "https://schema.org", "@type": "Service", "name": item["title"], "description": item["description"], "provider": {"@type": "Organization", "name": site["site_name"], "url": site["base_url"]}, "areaServed": "Global"}
+
+
+def faq_html(faqs: list[dict]) -> str:
+    if not faqs:
+        return ""
+    items = "".join(f'<article class="faq-item"><h3>{esc(item["q"])}</h3><p>{esc(item["a"])}</p></article>' for item in faqs)
+    return partial("faq.html", {"items": items})
+
+
+def cta_html(title: str, text: str, button_label: str = TELEGRAM_BUTTON_LABEL, url: str = TELEGRAM_URL) -> str:
+    return partial("cta.html", {"title": esc(title), "text": esc(text), "button_label": esc(button_label), "url": esc(url)})
+
+
+def boundary_html(text: str) -> str:
+    return partial("boundary.html", {"text": esc(text)})
+
+
+def keyword_context() -> dict:
+    by_url: dict[str, list[str]] = {}
+    rules = {}
+    url_map_path = KEYWORD_DATA / "url_map.json"
+    rules_path = KEYWORD_DATA / "rules.json"
+    clusters_path = KEYWORD_DATA / "clusters.json"
+    if url_map_path.exists():
+        for item in json.loads(url_map_path.read_text(encoding="utf-8")):
+            if item.get("status") in {"public_primary", "public_secondary"} and item.get("target_url") and item.get("keyword"):
+                by_url.setdefault(item["target_url"], []).append(item["keyword"])
+    if clusters_path.exists():
+        for cluster in json.loads(clusters_path.read_text(encoding="utf-8")):
+            target = cluster.get("target_url")
+            if not target:
+                continue
+            for key in ("include_actions", "include_categories", "include_platforms", "include_countries"):
+                for term in cluster.get(key, []):
+                    if term:
+                        by_url.setdefault(target, []).append(term)
+    if rules_path.exists():
+        rules = json.loads(rules_path.read_text(encoding="utf-8"))
+    return {"by_url": by_url, "rules": rules}
+
+
+def keyword_block(path: str, context: dict, title: str = "相关搜索方向") -> str:
+    terms = context.get("by_url", {}).get(path, [])
+    blocked = set(context.get("rules", {}).get("sensitive_internal_categories", []) + context.get("rules", {}).get("blocked_promise_terms", []))
+    visible = []
+    for term in terms:
+        if not term or term in visible:
+            continue
+        if any(blocked_term and blocked_term in term for blocked_term in blocked):
+            continue
+        visible.append(term)
+    visible = visible[:12]
+    if not visible:
+        return ""
+    pills = "".join(f'<span class="pill">{esc(term)}</span>' for term in visible)
+    return f'<article class="card keyword-block"><h2>{esc(title)}</h2><p>以下内容代表当前页面相关的常见搜索方向，用于帮助理解主题，不代表全部投放场景。</p><div class="pill-list">{pills}</div></article>'
+
+
 def resolve_faqs(faq_data: dict, refs: list[str] | None, fallback_group: str) -> list[dict]:
-    pool = []
-    for group in ("global", fallback_group):
-        pool.extend(faq_data.get(group, []))
+    pool = faq_data.get("global", []) + faq_data.get(fallback_group, [])
     if refs:
         by_id = {item.get("id"): item for group in faq_data.values() for item in group if item.get("id")}
         selected = [by_id[ref] for ref in refs if ref in by_id]
@@ -553,276 +392,212 @@ def sections_html(sections: list[tuple[str, str]]) -> str:
     return "".join(f'<article class="card"><h2>{esc(title)}</h2>{content}</article>' for title, content in sections)
 
 
+def load_content_queue() -> list[dict]:
+    path = CONTENT_DATA / "content_queue.json"
+    if not path.exists():
+        return []
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def parse_draft(path: Path) -> tuple[dict, str]:
+    text = path.read_text(encoding="utf-8-sig")
+    if not text.startswith("---"):
+        return {}, text
+    _, front, body = text.split("---", 2)
+    meta = {}
+    for line in front.splitlines():
+        if ":" in line:
+            key, value = line.split(":", 1)
+            meta[key.strip()] = value.strip()
+    return meta, body.strip()
+
+
+def load_publishable_drafts(queue: list[dict]) -> list[tuple[dict, str]]:
+    publishable = {item["content_id"]: item for item in queue if item.get("status") == "published" and not item.get("internal_only")}
+    results = []
+    if not DRAFTS.exists():
+        return results
+    for path in sorted(DRAFTS.glob("*.md")):
+        if path.name.upper() == "README.MD":
+            continue
+        meta, body = parse_draft(path)
+        content_id = meta.get("content_id")
+        if content_id in publishable:
+            task = publishable[content_id].copy()
+            task.update({key: value for key, value in meta.items() if value})
+            results.append((task, body))
+    return results
+
+
+def article_card(task: dict) -> dict:
+    return {"title": task.get("title", ""), "url": task.get("target_url", "#"), "summary": task.get("description", task.get("intent", ""))}
+
+
+def aggregate_published_articles(published_drafts: list[tuple[dict, str]]) -> dict[str, dict[str, list[dict]]]:
+    grouped = {"topics": {}, "services": {}, "platforms": {}}
+    for task, body in published_drafts:
+        card = article_card(task)
+        if task.get("target_topic"):
+            grouped["topics"].setdefault(task["target_topic"], []).append(card)
+        if task.get("target_service"):
+            grouped["services"].setdefault(task["target_service"], []).append(card)
+        for link in extract_markdown_links(body):
+            if link.startswith("/platforms/") and link != "/platforms/":
+                grouped["platforms"].setdefault(link, []).append(card)
+    for group in grouped.values():
+        for cards in group.values():
+            cards.sort(key=lambda item: item["title"])
+    return grouped
+
+
+def blog_article_cards_html(published_drafts: list[tuple[dict, str]]) -> str:
+    cards = []
+    for task, _ in published_drafts:
+        cards.append({"title": task["title"], "url": task["target_url"], "summary": task.get("description", task.get("intent", ""))})
+    if not cards:
+        return '<article class="card"><h2>内容中心</h2><p>公开内容将逐步更新。</p></article>'
+    return card_grid(cards, 3)
+
+
+def topic_article_block(published_articles: list[dict] | None) -> tuple[str, str]:
+    if published_articles:
+        return "已发布相关文章", card_grid(published_articles, 2)
+    return "相关文章", f"<p>{esc(TOPIC_DEFAULT_ARTICLE_NOTE)}</p>"
+
+
+def topic_service_fit(item: dict) -> list[str]:
+    return clean_items(
+        item.get("service_fit", []),
+        [
+            "适合先判断目标市场、预算范围和落地页承接方式的项目。",
+            "适合已经有项目方向，但还没确定先从哪个渠道开始测试的团队。",
+            "适合希望把素材、页面和咨询路径一起理顺后再推进推广的项目。",
+            "适合希望通过 Telegram 先沟通项目情况，再决定测试节奏的合作方式。",
+        ],
+    )
+
+
+def topic_consultation_prep(item: dict) -> list[str]:
+    return clean_items(
+        item.get("risk_notes", []),
+        [
+            "先准备项目介绍、目标地区、预算范围和落地页链接。",
+            "如果已有素材、账户准备或 App 页面，也建议一并说明。",
+            "先确认内容表达边界和咨询承接方式，再决定是否进入测试。",
+        ],
+    )
+
+
+def platform_service_fit(item: dict) -> list[str]:
+    return clean_items(
+        item.get("service_fit", []),
+        [
+            "适合先做渠道判断和测试顺序梳理。",
+            "适合结合素材方向和落地页承接一起评估。",
+            "适合小预算先测，再根据反馈继续优化。",
+            "适合需要持续沟通测试节奏和阶段反馈的项目。",
+        ],
+    )
+
+
 def detail_content(item: dict, item_type: str, faq_data: dict, blocks: dict, keyword_ctx: dict, published_articles: list[dict] | None = None) -> tuple[str, list[dict]]:
     if item_type == "service":
         sections = [
-            ("服务说明", f"<p>{esc(soften_public_copy(item.get('intro', item.get('summary', ''))))}</p>"),
-            ("适合项目", list_items(item.get("suitable_for", []))),
+            ("服务说明", f"<p>{esc(item.get('intro', item.get('summary', '')))}</p>"),
+            ("适合什么项目", list_items(item.get("suitable_for", []))),
             ("常见需求", list_items(item.get("common_needs", []))),
             ("支持内容", list_items(item.get("support_items", []))),
             ("执行流程", list_items(item.get("process", []))),
-            ("需要准备什么", list_items(item.get("preparation", []))),
-            ("不适合什么", list_items(item.get("not_suitable", item.get("not_suitable_for", [])))),
-            ("沟通准备", list_items(item.get("boundaries", []))),
+            ("推广前准备", list_items(item.get("preparation", []))),
+            ("暂不适合的情况", list_items(item.get("not_suitable", item.get("not_suitable_for", [])))),
+            ("服务边界", list_items(item.get("boundaries", []))),
         ]
         faq_group = "services"
     elif item_type == "platform":
         sections = [
-            ("平台说明", f"<p>{esc(soften_public_copy(item.get('intro', item.get('summary', ''))))}</p>"),
-            ("平台适合场景", list_items(item.get("traffic_scenes", []))),
-            ("适合项目类型", list_items(item.get("suitable_projects", item.get("suitable_for", [])))),
-            ("投放前准备", list_items(item.get("preparation", []))),
-            ("服务适配", list_items(item.get("service_fit", []))),
-            ("沟通准备", list_items(item.get("boundaries", []))),
+            ("平台说明", f"<p>{esc(item.get('intro', item.get('summary', '')))}</p>"),
+            ("适合什么项目", list_items(item.get("suitable_projects", item.get("suitable_for", [])))),
+            ("适合的流量场景", list_items(item.get("traffic_scenes", []))),
+            ("推广前准备", list_items(item.get("preparation", []))),
+            ("服务适配", list_items(platform_service_fit(item))),
+            ("服务边界", list_items(item.get("boundaries", []))),
         ]
         faq_group = "platforms"
     else:
+        article_title, article_content = topic_article_block(published_articles)
         sections = [
-            ("主题说明", f"<p>{esc(soften_public_copy(item.get('intro', item.get('summary', ''))))}</p>"),
-            ("常见推广需求", list_items(item.get("common_needs", []))),
-            ("可用渠道", list_items(item.get("recommended_channels", []))),
+            ("主题说明", f"<p>{esc(item.get('intro', item.get('summary', '')))}</p>"),
+            ("适合什么项目", list_items(item.get("suitable_for", []))),
             ("推广前准备", list_items(item.get("preparation", []))),
-            ("服务适配", list_items(item.get("service_fit", []))),
-            ("测试准备", list_items(item.get("risk_notes", []))),
-            ("沟通准备", list_items(item.get("boundaries", []))),
+            ("渠道建议", list_items(item.get("recommended_channels", []))),
+            ("服务边界", list_items(item.get("boundaries", []))),
+            ("咨询前准备", list_items(topic_consultation_prep(item))),
+            ("服务适配", list_items(topic_service_fit(item))),
+            (article_title, article_content),
         ]
         faq_group = "topics"
-    if published_articles:
-        sections.append(("已发布相关文章", card_grid(published_articles, 2)))
     faqs = resolve_faqs(faq_data, item.get("faq_refs"), faq_group)
     content = render(
         read_text(TEMPLATES / "page.html"),
         {
             "eyebrow": esc(item.get("eyebrow", "详情")),
-            "h1": esc(soften_public_copy(item["h1"])),
-            "description": esc(soften_public_copy(item["description"])),
-            "body": sections_html([(soften_public_copy(title), content) for title, content in sections]),
+            "h1": esc(item["h1"]),
+            "description": esc(item["description"]),
+            "body": sections_html(sections),
             "related_services": card_grid(item.get("related_services", []), 2),
             "related_topics": card_grid(item.get("related_topics", []), 2),
             "related_platforms": card_grid(item.get("related_platforms", []), 2),
             "keyword_block": keyword_block(item["url"], keyword_ctx),
             "faq": faq_html(faqs),
             "boundary": boundary_html(blocks["service_boundary"]),
-            "cta": cta_html(DETAIL_CTA_TITLE, DETAIL_CTA_TEXT),
+            "cta": cta_html(item.get("cta_title", DEFAULT_CTA_TITLE), item.get("cta_text", item.get("cta", DEFAULT_CTA_TEXT))),
         },
     )
     return content, faqs
 
 
 def render_base(page: dict, path: str, content: str, site: dict, nav: list[dict], schemas: list[dict]) -> str:
-    crumbs = breadcrumb_items(path, page["h1"], site["base_url"])
-    schema_html = "\n".join(json_script(schema) for schema in schemas)
-    breadcrumb = "" if url_path(path) == "/" else breadcrumb_html(crumbs)
+    crumbs = breadcrumb_items(path, page["h1"])
     return render(
         read_text(TEMPLATES / "base.html"),
         {
-            "title": esc(soften_public_copy(page["title"])),
-            "description": esc(soften_public_copy(page["description"])),
-            "canonical": esc(canonical(path, site["base_url"])),
+            "title": esc(page["title"]),
+            "description": esc(page["description"]),
+            "canonical": esc(canonical(path)),
             "asset_version": css_asset_version(),
             "site_name": esc(site["site_name"]),
             "nav": nav_html(nav),
-            "breadcrumb": breadcrumb,
+            "breadcrumb": "" if url_path(path) == "/" else breadcrumb_html(crumbs),
             "content": content,
-            "footer": partial("footer.html", {"boundary": esc(soften_public_copy(site["service_boundary_short"])), "telegram_url": esc(TELEGRAM_URL)}),
+            "footer": partial("footer.html", {"boundary": esc(site["service_boundary_short"]), "telegram_url": esc(TELEGRAM_URL)}),
             "floating_contact": floating_telegram_html(),
-            "json_ld": schema_html,
+            "json_ld": "\n".join(json_script(schema) for schema in schemas),
         },
     )
 
 
-def check_duplicate_urls(records: list[dict]) -> None:
-    seen = set()
-    duplicates = []
-    for record in records:
-        if record["url"] in seen:
-            duplicates.append(record["url"])
-        seen.add(record["url"])
-    if duplicates:
-        raise SystemExit("[FAIL] duplicate URLs: " + ", ".join(duplicates))
-
-
 def emit(path: str, page: dict, content: str, site: dict, nav: list[dict], schemas: list[dict], records: list[dict], source: str, page_type: str, indexable: bool = True) -> None:
-    full_schemas = schemas[:]
-    crumbs = breadcrumb_items(path, page["h1"], site["base_url"])
-    full_schemas.append(breadcrumb_schema(crumbs))
+    crumbs = breadcrumb_items(path, page["h1"])
+    full_schemas = schemas + [breadcrumb_schema(crumbs)]
     html_text = render_base(page, path, content, site, nav, full_schemas)
     target = output_file(path)
     target.parent.mkdir(parents=True, exist_ok=True)
     target.write_text(html_text, encoding="utf-8", newline="\n")
     if indexable:
-        records.append({"url": canonical(path, site["base_url"]), "path": path, "source": source, "output": target.relative_to(ROOT).as_posix(), "type": page_type, "title": soften_public_copy(page["title"]), "description": soften_public_copy(page["description"]), "indexable": "yes"})
-
-
-def build() -> None:
-    site = load_json("site.json")
-    nav = load_json("nav.json")
-    pages = load_json("pages.json")
-    services = load_json("services.json")
-    platforms = load_json("platforms.json")
-    topics = load_json("topics.json")
-    markets = load_json("markets.json")
-    contact = load_json("contact.json")
-    faqs = load_json("faqs.json")
-    seo = load_json("seo.json")
-    schema_flags = load_json("schema.json")
-    blocks = load_json("content_blocks.json")
-    keyword_ctx = keyword_context()
-    content_queue = load_content_queue()
-    published_drafts = load_publishable_drafts(content_queue)
-    published_aggregates = aggregate_published_articles(published_drafts)
-    today = date.today().isoformat()
-
-    clean_public()
-    css_target = PUBLIC / "assets" / "css" / "styles.css"
-    css_target.parent.mkdir(parents=True, exist_ok=True)
-    shutil.copyfile(SRC / "assets" / "css" / "styles.css", css_target)
-
-    records: list[dict] = []
-    global_schemas = []
-    if schema_flags.get("organization_schema"):
-        global_schemas.append(organization_schema(site))
-    if schema_flags.get("website_schema"):
-        global_schemas.append(website_schema(site))
-
-    home_content = render(
-        read_text(TEMPLATES / "home.html"),
-        {
-            "eyebrow": "出海项目推广支持",
-            "h1": esc(pages["home"]["h1"]),
-            "description": esc(pages["home"]["description"]),
-            "hero_buttons": home_hero_buttons_html(),
-            "home_service_cards": home_service_cards_html(),
-            "advantage_cards": home_advantage_cards_html(),
-            "process_cards": process_cards_html(blocks["process_steps"]),
-            "fit_cards": fit_cards_html(),
-            "cta": cta_html(DEFAULT_CTA_TITLE, DEFAULT_CTA_TEXT),
-        },
-    )
-    emit("/", pages["home"], home_content, site, nav, global_schemas, records, "pages.json:home", "home")
-
-    services_extra = (
-        cta_html("不确定先做推广、获客还是投放？", "把项目类型、目标市场和预算范围发到 Telegram，我们先帮你判断适合从哪个服务方向切入。")
-        + keyword_block("/services/traffic-acquisition/", keyword_ctx, "服务词承接方向")
-        + boundary_html(blocks["service_boundary"])
-        + faq_html(resolve_faqs(faqs, None, "services"))
-    )
-    emit("/services/", pages["services"], listing_content(pages["services"], services, services_extra), site, nav, global_schemas, records, "pages.json:services", "listing")
-    for item in services:
-        content, item_faqs = detail_content(item, "service", faqs, blocks, keyword_ctx, published_aggregates["services"].get(item["url"], []))
-        schemas = global_schemas + [faq_schema(item_faqs), service_schema(item, site)]
-        emit(item["url"], item, content, site, nav, schemas, records, f"services.json:{item['slug']}", "service")
-
-    platforms_extra = (
-        cta_html("不知道该先跑 TK、FB 还是 Google？", "可以通过 Telegram 说一下项目阶段、目标地区和素材情况，我们一起判断第一轮测试渠道。")
-        + keyword_block("/platforms/tk/", keyword_ctx, "平台词承接方向")
-        + faq_html(resolve_faqs(faqs, None, "platforms"))
-    )
-    emit("/platforms/", pages["platforms"], listing_content(pages["platforms"], platforms, platforms_extra), site, nav, global_schemas, records, "pages.json:platforms", "listing")
-    for item in platforms:
-        content, item_faqs = detail_content(item, "platform", faqs, blocks, keyword_ctx, published_aggregates["platforms"].get(item["url"], []))
-        emit(item["url"], item, content, site, nav, global_schemas + [faq_schema(item_faqs)], records, f"platforms.json:{item['slug']}", "platform")
-
-    topics_extra = (
-        cta_html("你的项目适合怎么承接获客？", "先通过 Telegram 发项目类型、目标市场和承接路径，我们会帮你拆出更适合测试的渠道组合。")
-        + keyword_block("/topics/crypto-promotion/", keyword_ctx, "细分类目承接方向")
-        + boundary_html(blocks["service_boundary"])
-        + faq_html(resolve_faqs(faqs, None, "topics"))
-    )
-    emit("/topics/", pages["topics"], listing_content(pages["topics"], topics, topics_extra), site, nav, global_schemas, records, "pages.json:topics", "listing")
-    for item in topics:
-        content, item_faqs = detail_content(item, "topic", faqs, blocks, keyword_ctx, published_aggregates["topics"].get(item["url"], []))
-        emit(item["url"], item, content, site, nav, global_schemas + [faq_schema(item_faqs)], records, f"topics.json:{item['slug']}", "topic")
-
-    market_cards = [{"title": item["title"], "url": "/markets/", "summary": item["summary"]} for item in markets["evaluation_dimensions"]]
-    market_extra = (
-        cta_html("还没确定优先测试哪个市场？", "可以通过 Telegram 说明目标地区、语言素材和预算，我们先一起判断更适合开始测试的市场方向。")
-        + '<div class="pill-list">'
-        + "".join(f'<span class="pill">{esc(m)}</span>' for m in markets["market_list"])
-        + "</div>"
-        + card_grid(market_cards, 3)
-        + keyword_block("/markets/", keyword_ctx, "市场词承接方向")
-        + faq_html(resolve_faqs(faqs, markets.get("faq_refs"), "markets"))
-    )
-    emit("/markets/", pages["markets"], listing_content(pages["markets"], [], market_extra), site, nav, global_schemas, records, "pages.json:markets", "markets")
-
-    blog_extra = (
-        '<article class="card"><h2>实用内容整理</h2>'
-        "<p>这里会围绕海外推广、引流获客、广告投放、平台选择和项目准备，整理长期可维护的实用内容。</p>"
-        "<p>更多专题内容将按审核和发布节奏逐步更新。</p></article>"
-        + blog_article_cards_html(published_drafts)
-    )
-    emit("/blog/", pages["blog"], listing_content(pages["blog"], [], blog_extra), site, nav, global_schemas, records, "pages.json:blog", "blog")
-
-    for task, body in published_drafts:
-        page = {
-            "title": task["title"],
-            "h1": task.get("h1", task["title"]),
-            "description": task.get("description", task.get("intent", task["title"])),
-            "eyebrow": "内容中心",
-        }
-        content = render(read_text(TEMPLATES / "listing.html"), {
-            "eyebrow": "内容中心",
-            "h1": esc(soften_public_copy(page["h1"])),
-            "description": esc(soften_public_copy(page["description"])),
-            "cards": "",
-            "extra": '<article class="card">' + markdown_to_html(body) + "</article>" + boundary_html(blocks["service_boundary"]) + cta_html(ARTICLE_CTA_TITLE, ARTICLE_CTA_TEXT),
-        })
-        emit(task["target_url"], page, content, site, nav, global_schemas, records, f"content_queue:{task['content_id']}", task.get("page_type", "blog_article"))
-
-    prep_items = ["项目类型", "目标地区", "预算范围", "想跑的平台", "现有素材 / 落地页"]
-    contact_extra = (
-        '<div class="contact-consult-layout"><section class="contact-main-card"><p class="eyebrow">咨询入口</p><h2>通过 Telegram 直接沟通项目情况</h2><p>'
-        + esc(contact["contact_intro"])
-        + '</p><h3>适合咨询的问题</h3>'
-        + list_items(contact["required_info"])
-        + '<div class="contact-button-row"><a class="button button-telegram" href="'
-        + TELEGRAM_URL
-        + '" target="_blank" rel="noopener noreferrer">Telegram 咨询</a><a class="button button-secondary" href="/">返回首页</a></div></section>'
-        + '<aside class="contact-side-stack"><article class="card prep-card"><h2>咨询前可以准备这些信息</h2>'
-        + list_items(prep_items, "clean-list")
-        + '</article><article class="card prep-card"><h2>我们会怎么配合</h2><div class="mini-flow"><span>了解项目</span><span>判断渠道</span><span>准备测试</span><span>持续优化</span></div></article></aside></div>'
-        + cta_html("把项目情况发到 Telegram，我们一起判断下一步", "不用先准备很完整的方案，先说清项目、目标地区、预算和已有素材，我们会帮你把第一轮测试方向理顺。")
-        + faq_html(resolve_faqs(faqs, None, "contact"))
-    )
-    emit("/contact/", pages["contact"], listing_content(pages["contact"], [], contact_extra), site, nav, global_schemas, records, "pages.json:contact", "contact")
-
-    privacy_extra = (
-        '<article class="card"><h2>我们如何处理信息</h2>'
-        "<p>9HWH 尊重访问者隐私。本站不设置站内注册、付款或会员系统。</p>"
-        "<p>当用户通过 Telegram 发来项目情况时，沟通由 Telegram 平台承载，相关使用体验和账号安全也会受到 Telegram 平台规则影响。</p>"
-        "<p>本站可能因网站安全、防滥用、基础访问统计或 Cloudflare 服务保留必要访问日志。这些日志用于维护网站稳定和排查异常访问。</p>"
-        "<p>9HWH 不会出售访问者个人信息。</p></article>"
-        '<article class="card"><h2>通过 Telegram 主动提供的信息</h2>'
-        "<p>如果用户通过 Telegram 主动提供项目类型、目标地区、预算范围、素材、落地页或联系方式，这些信息仅用于沟通推广需求和提供咨询协助。</p>"
-        '<p>如需删除或更正主动提供的信息，可以通过 <a href="'
-        + TELEGRAM_URL
-        + '" target="_blank" rel="noopener noreferrer">Telegram 咨询</a>。</p>'
-        "<p>最后更新：2026 年 5 月 6 日</p></article>"
-    )
-    emit("/privacy/", pages["privacy"], listing_content(pages["privacy"], [], privacy_extra), site, nav, global_schemas, records, "pages.json:privacy", "legal")
-
-    not_found_extra = '<p><a class="button button-primary" href="/">返回首页</a> <a class="button button-secondary" href="/services/">查看服务</a> <a class="button button-telegram" href="' + TELEGRAM_URL + '" target="_blank" rel="noopener noreferrer">Telegram 咨询</a></p>'
-    emit("/404.html", pages["404"], listing_content(pages["404"], [], not_found_extra), site, nav, global_schemas, records, "pages.json:404", "utility", indexable=False)
-
-    check_duplicate_urls(records)
-    write_sitemap(records, today)
-    write_file("robots.txt", "User-agent: *\nAllow: /\n\nSitemap: https://www.9hwh.com/sitemap.xml\n")
-    write_cloudflare_pages_files()
-    write_inventory(records)
-    print(f"[OK] Generated {len(records)} indexed pages into {PUBLIC}")
+        records.append({"url": canonical(path), "path": path, "source": source, "output": target.relative_to(ROOT).as_posix(), "type": page_type, "title": page["title"], "description": page["description"], "indexable": "yes"})
 
 
 def listing_content(page: dict, items: list[dict], extra: str = "") -> str:
-    return render(read_text(TEMPLATES / "listing.html"), {"eyebrow": esc(page.get("eyebrow", "")), "h1": esc(soften_public_copy(page["h1"])), "description": esc(soften_public_copy(page["description"])), "cards": card_grid(items, 3 if len(items) <= 3 else 4), "extra": extra})
+    columns = 3 if len(items) <= 3 else 4
+    return render(read_text(TEMPLATES / "listing.html"), {"eyebrow": esc(page.get("eyebrow", "")), "h1": esc(page["h1"]), "description": esc(page["description"]), "cards": card_grid(items, columns), "extra": extra})
 
 
 def write_sitemap(records: list[dict], lastmod: str) -> None:
-    lines = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
+    rows = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
     for record in records:
-        lines.append(f'  <url><loc>{record["url"]}</loc><lastmod>{lastmod}</lastmod></url>')
-    lines.append("</urlset>")
-    write_file("sitemap.xml", "\n".join(lines) + "\n")
+        rows.append(f'  <url><loc>{record["url"]}</loc><lastmod>{lastmod}</lastmod></url>')
+    rows.append("</urlset>")
+    write_file("sitemap.xml", "\n".join(rows) + "\n")
 
 
 def write_cloudflare_pages_files() -> None:
@@ -854,13 +629,141 @@ def write_cloudflare_pages_files() -> None:
 
 def write_inventory(records: list[dict]) -> None:
     DOCS.mkdir(parents=True, exist_ok=True)
-    rows = ["# Site URL Inventory", "", "| URL | Source | Output File | Type | Sitemap | Indexable | Title | Description |", "| --- | --- | --- | --- | --- | --- | --- | --- |"]
+    rows = [
+        "# Site URL Inventory",
+        "",
+        "| URL | Source | Output File | Type | Sitemap | Indexable | Title | Description |",
+        "| --- | --- | --- | --- | --- | --- | --- | --- |",
+    ]
     for record in records:
         rows.append(f"| {record['url']} | {record['source']} | {record['output']} | {record['type']} | yes | {record['indexable']} | {record['title']} | {record['description']} |")
     (DOCS / "site-url-inventory.md").write_text("\n".join(rows) + "\n", encoding="utf-8", newline="\n")
 
 
-BASE_URL = "https://www.9hwh.com"
+def check_duplicate_urls(records: list[dict]) -> None:
+    seen = set()
+    duplicates = []
+    for record in records:
+        if record["url"] in seen:
+            duplicates.append(record["url"])
+        seen.add(record["url"])
+    if duplicates:
+        raise SystemExit("[FAIL] duplicate URLs: " + ", ".join(duplicates))
+
+
+def build() -> None:
+    site = load_json("site.json")
+    nav = load_json("nav.json")
+    pages = load_json("pages.json")
+    services = load_json("services.json")
+    platforms = load_json("platforms.json")
+    topics = load_json("topics.json")
+    markets = load_json("markets.json")
+    contact = load_json("contact.json")
+    faqs = load_json("faqs.json")
+    schema_flags = load_json("schema.json")
+    blocks = load_json("content_blocks.json")
+    keyword_ctx = keyword_context()
+    content_queue = load_content_queue()
+    published_drafts = load_publishable_drafts(content_queue)
+    published_aggregates = aggregate_published_articles(published_drafts)
+
+    clean_public()
+    css_target = PUBLIC / "assets" / "css" / "styles.css"
+    css_target.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copyfile(SRC / "assets" / "css" / "styles.css", css_target)
+
+    records: list[dict] = []
+    global_schemas = []
+    if schema_flags.get("organization_schema"):
+        global_schemas.append(organization_schema(site))
+    if schema_flags.get("website_schema"):
+        global_schemas.append(website_schema(site))
+
+    home_content = render(
+        read_text(TEMPLATES / "home.html"),
+        {
+            "h1": esc(pages["home"]["h1"]),
+            "description": esc(pages["home"]["description"]),
+            "hero_buttons": home_hero_buttons_html(),
+            "home_service_cards": home_service_cards_html(),
+            "advantage_cards": home_advantage_cards_html(),
+            "process_cards": process_cards_html(),
+            "fit_cards": fit_cards_html(),
+            "cta": cta_html(DEFAULT_CTA_TITLE, DEFAULT_CTA_TEXT),
+        },
+    )
+    emit("/", pages["home"], home_content, site, nav, global_schemas, records, "pages.json:home", "home")
+
+    services_extra = cta_html("需要先判断适合哪种合作方式？", "先通过 Telegram 说一下项目类型、目标地区和预算范围，我们会一起判断更适合从推广、获客还是投放支持切入。")
+    emit("/services/", pages["services"], listing_content(pages["services"], services, services_extra), site, nav, global_schemas, records, "pages.json:services", "listing")
+    for item in services:
+        content, item_faqs = detail_content(item, "service", faqs, blocks, keyword_ctx, published_aggregates["services"].get(item["url"], []))
+        emit(item["url"], item, content, site, nav, global_schemas + [faq_schema(item_faqs), service_schema(item, site)], records, f"services.json:{item['slug']}", "service")
+
+    platforms_extra = cta_html("想先确认该从哪个平台开始测试？", "可以通过 Telegram 先说明项目类型、素材情况和目标地区，我们会一起判断更适合先跑 TK、FB、Google 还是其他组合。")
+    emit("/platforms/", pages["platforms"], listing_content(pages["platforms"], platforms, platforms_extra), site, nav, global_schemas, records, "pages.json:platforms", "listing")
+    for item in platforms:
+        content, item_faqs = detail_content(item, "platform", faqs, blocks, keyword_ctx, published_aggregates["platforms"].get(item["url"], []))
+        emit(item["url"], item, content, site, nav, global_schemas + [faq_schema(item_faqs)], records, f"platforms.json:{item['slug']}", "platform")
+
+    topics_extra = cta_html("主题页看完了，想继续聊你的项目？", "先通过 Telegram 说一下项目情况、市场方向和预算范围，我们会一起拆更适合你的推广路径和测试节奏。")
+    emit("/topics/", pages["topics"], listing_content(pages["topics"], topics, topics_extra), site, nav, global_schemas, records, "pages.json:topics", "listing")
+    for item in topics:
+        content, item_faqs = detail_content(item, "topic", faqs, blocks, keyword_ctx, published_aggregates["topics"].get(item["url"], []))
+        emit(item["url"], item, content, site, nav, global_schemas + [faq_schema(item_faqs)], records, f"topics.json:{item['slug']}", "topic")
+
+    market_cards = [{"title": item["title"], "url": "/markets/", "summary": item["summary"]} for item in markets["evaluation_dimensions"]]
+    market_extra = (
+        '<div class="pill-list">' + "".join(f'<span class="pill">{esc(item)}</span>' for item in markets["market_list"]) + "</div>"
+        + card_grid(market_cards, 3)
+        + cta_html("还没确定先做哪个国家或地区？", "可以通过 Telegram 先说明目标市场、语言和预算安排，我们会一起判断更适合先从哪个市场开始测试。")
+    )
+    emit("/markets/", pages["markets"], listing_content(pages["markets"], [], market_extra), site, nav, global_schemas, records, "pages.json:markets", "markets")
+
+    blog_extra = blog_article_cards_html(published_drafts)
+    emit("/blog/", pages["blog"], listing_content(pages["blog"], [], blog_extra), site, nav, global_schemas, records, "pages.json:blog", "blog")
+
+    for task, body in published_drafts:
+        page = {
+            "title": task["title"],
+            "h1": task.get("h1", task["title"]),
+            "description": task.get("description", task.get("intent", task["title"])),
+            "eyebrow": "内容中心",
+        }
+        article_extra = '<article class="card">' + markdown_to_html(body) + "</article>" + cta_html(DEFAULT_CTA_TITLE, DEFAULT_CTA_TEXT)
+        emit(task["target_url"], page, listing_content(page, [], article_extra), site, nav, global_schemas, records, f"content_queue:{task['content_id']}", task.get("page_type", "blog_article"))
+
+    contact_extra = (
+        '<article class="card"><h2>通过 Telegram 联系 9HWH</h2><p>'
+        + esc(contact["contact_intro"])
+        + '</p><h3>适合咨询的问题</h3>'
+        + list_items(contact["required_info"])
+        + '<p><a class="button button-telegram" href="'
+        + TELEGRAM_URL
+        + '" target="_blank" rel="noopener noreferrer">打开 Telegram 咨询</a></p>'
+        + "<p>该入口为 Telegram 轮换咨询入口，会根据当前可接待账号进行跳转。</p></article>"
+        + cta_html("更适合先通过 Telegram 沟通项目情况", "如果你正在准备海外推广、广告投放、引流获客或出海项目冷启动，可以先通过 Telegram 说明项目类型、目标地区、预算范围和现有素材情况。")
+        + faq_html(resolve_faqs(faqs, None, "contact"))
+    )
+    emit("/contact/", pages["contact"], listing_content(pages["contact"], [], contact_extra), site, nav, global_schemas, records, "pages.json:contact", "contact")
+
+    privacy_extra = (
+        '<article class="card"><h2>隐私政策</h2><p>9HWH 尊重访问者隐私。本网站不提供站内注册、支付或会员系统。</p>'
+        "<p>如果你通过 Telegram 主动发送项目资料，这些信息只会用于沟通海外推广、获客支持和测试准备，不会用于与咨询无关的公开展示。</p>"
+        "<p>最后更新：2026-05-06</p></article>"
+    )
+    emit("/privacy/", pages["privacy"], listing_content(pages["privacy"], [], privacy_extra), site, nav, global_schemas, records, "pages.json:privacy", "legal")
+
+    not_found_extra = f'<p><a class="button button-primary" href="/">返回首页</a> <a class="button button-secondary" href="/services/">查看服务</a> <a class="button button-telegram" href="{TELEGRAM_URL}" target="_blank" rel="noopener noreferrer">Telegram 咨询</a></p>'
+    emit("/404.html", pages["404"], listing_content(pages["404"], [], not_found_extra), site, nav, global_schemas, records, "pages.json:404", "utility", indexable=False)
+
+    check_duplicate_urls(records)
+    write_sitemap(records, date.today().isoformat())
+    write_file("robots.txt", "User-agent: *\nAllow: /\n\nSitemap: https://www.9hwh.com/sitemap.xml\n")
+    write_cloudflare_pages_files()
+    write_inventory(records)
+    print(f"[OK] Generated {len(records)} indexed pages into {PUBLIC}")
 
 
 if __name__ == "__main__":
