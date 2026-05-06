@@ -403,18 +403,6 @@ def load_content_queue() -> list[dict]:
     return json.loads(path.read_text(encoding="utf-8-sig"))
 
 
-def content_status_html(queue: list[dict]) -> str:
-    counts: dict[str, int] = {}
-    for item in queue:
-        counts[item["status"]] = counts.get(item["status"], 0) + 1
-    total = sum(counts.values())
-    return (
-        '<article class="card"><h2>内容生产状态</h2>'
-        f"<p>当前已规划内容任务 {total} 条：planned {counts.get('planned', 0)} 条，prompt_ready {counts.get('prompt_ready', 0)} 条，draft_received {counts.get('draft_received', 0)} 条，reviewed {counts.get('reviewed', 0)} 条，published {counts.get('published', 0)} 条。</p>"
-        "<p>第一批 DeepSeek batch-001 已作为写作任务包准备。未完成正文不会生成公开页面，也不会进入 sitemap。正文后续由 DeepSeek 生成，再由 Codex 审核接入。</p></article>"
-    )
-
-
 def parse_draft(path: Path) -> tuple[dict, str]:
     text = path.read_text(encoding="utf-8-sig")
     if not text.startswith("---"):
@@ -446,6 +434,7 @@ def load_publishable_drafts(queue: list[dict]) -> list[tuple[dict, str]]:
             task = publishable[content_id].copy()
             task.update({key: value for key, value in meta.items() if value})
             result.append((task, body))
+    result.sort(key=lambda pair: int(pair[0].get("priority", 9999)))
     return result
 
 
@@ -455,6 +444,25 @@ def article_card(task: dict) -> dict:
         "url": task.get("target_url", "#"),
         "summary": task.get("description", task.get("intent", "")),
     }
+
+
+def blog_article_cards_html(published_drafts: list[tuple[dict, str]]) -> str:
+    if not published_drafts:
+        return '<article class="card"><h2>内容正在整理中</h2><p>更多专题内容将按审核和发布节奏逐步更新。</p></article>'
+    cards = []
+    for task, _body in published_drafts:
+        title = soften_public_copy(task.get("title", ""))
+        url = task.get("target_url", "#")
+        description = soften_public_copy(task.get("description", task.get("intent", "")))
+        tag = task.get("primary_keyword") or task.get("cluster_id", "海外推广")
+        cards.append(
+            '<article class="card">'
+            f'<h3><a href="{esc(url)}">{esc(title)}</a></h3>'
+            f"<p>{esc(description)}</p>"
+            f'<div class="pill-list"><span class="pill">{esc(tag)}</span></div>'
+            "</article>"
+        )
+    return '<div class="grid grid-3">' + "".join(cards) + "</div>"
 
 
 def aggregate_published_articles(published_drafts: list[tuple[dict, str]]) -> dict[str, dict[str, list[dict]]]:
@@ -738,7 +746,12 @@ def build() -> None:
     )
     emit("/markets/", pages["markets"], listing_content(pages["markets"], [], market_extra), site, nav, global_schemas, records, "pages.json:markets", "markets")
 
-    blog_extra = card_grid(pages["blog"]["categories"], 3) + content_status_html(content_queue) + '<article class="card"><h2>长尾问答词处理方式</h2><p>带有怎么做、费用、价格、渠道、平台等后缀的长尾词先进入 future_blog 队列，后续再按 GSC 反馈和内容质量要求规划正文。</p></article><p class="note">当前不批量生成文章正文，后续文章正文默认由 DeepSeek 负责。</p>'
+    blog_extra = (
+        '<article class="card"><h2>实用内容整理</h2>'
+        "<p>这里会围绕海外推广、引流获客、广告投放、平台选择和项目准备，整理长期可维护的实用内容。</p>"
+        "<p>更多专题内容将按审核和发布节奏逐步更新。</p></article>"
+        + blog_article_cards_html(published_drafts)
+    )
     emit("/blog/", pages["blog"], listing_content(pages["blog"], [], blog_extra), site, nav, global_schemas, records, "pages.json:blog", "blog")
 
     for task, body in published_drafts:
