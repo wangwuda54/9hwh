@@ -2,10 +2,11 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import subprocess
-import sys
-from datetime import date, datetime
+from datetime import date, datetime, timezone
 from pathlib import Path
+from urllib.parse import urljoin
 
 from pre_publish_audit import load_json as audit_load_json
 from pre_publish_audit import load_review_by_id as audit_load_review_by_id
@@ -22,6 +23,7 @@ POLICY_PATH = CONTENT_DIR / "publish_policy.json"
 DRAFTS_DIR = ROOT / "site_src" / "content_drafts"
 REPORT_JSON_PATH = ROOT / "data" / "content-assets" / "daily_publish_report.json"
 REPORT_MD_PATH = ROOT / "docs" / "daily-publish-report.md"
+DEFAULT_SITE_URL = "https://www.9hwh.com"
 
 MODE_LIMITS = {
     "conservative": 1,
@@ -42,6 +44,14 @@ POST_PUBLISH_CHECKS = [
 def write_json(path: Path, data) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n")
+
+
+def iso_now() -> str:
+    return datetime.now(timezone.utc).astimezone().isoformat(timespec="seconds")
+
+
+def full_url(site_url: str, target_url: str) -> str:
+    return urljoin(site_url.rstrip("/") + "/", target_url.lstrip("/"))
 
 
 def parse_args() -> argparse.Namespace:
@@ -155,30 +165,35 @@ def run_post_publish_checks() -> list[dict]:
     return checks
 
 
+def summarize_total_published(queue: list[dict]) -> int:
+    return sum(1 for item in queue if item.get("status") == "published")
+
+
 def write_report(report: dict) -> None:
     write_json(REPORT_JSON_PATH, report)
     REPORT_MD_PATH.parent.mkdir(parents=True, exist_ok=True)
     rows = [
         "# Daily Publish Report",
         "",
-        f"- date: {report['date']}",
+        f"- status: {report['status']}",
+        f"- run_date: {report['run_date']}",
         f"- mode: {report['mode']}",
         f"- daily_limit: {report['daily_limit']}",
         f"- hard_limit: {report['hard_limit']}",
         f"- dry_run: {report['dry_run']}",
         f"- selected_count: {report['selected_count']}",
         f"- published_count: {report['published_count']}",
+        f"- total_published: {report['total_published']}",
+        f"- site_url: {report['site_url']}",
+        f"- message: {report['message']}",
         "",
-        "## Selected Items",
+        "## Published Items",
         "",
-        "| content_id | Type | Risk | Links | URL |",
-        "| --- | --- | --- | --- | --- |",
+        "| content_id | Title | URL |",
+        "| --- | --- | --- |",
     ]
-    for item in report["selected_items"]:
-        rows.append(
-            f"| {item['content_id']} | {item['content_type']} | {item['risk_level']} | "
-            f"{item['internal_link_count']} | {item['target_url']} |"
-        )
+    for item in report["published_items"]:
+        rows.append(f"| {item['content_id']} | {item['title']} | {item['full_url']} |")
     if report["errors"]:
         rows.extend(["", "## Errors", ""])
         rows.extend(f"- {error}" for error in report["errors"])
@@ -192,6 +207,7 @@ def write_report(report: dict) -> None:
 def main() -> int:
     args = parse_args()
     publish_date = datetime.strptime(args.date, "%Y-%m-%d").date().isoformat()
+    site_url = os.environ.get("SITE_URL", DEFAULT_SITE_URL)
     policy = load_policy()
     hard_limit = int(policy.get("hard_daily_limit", HARD_LIMIT))
     limit = resolve_limit(args, policy)
@@ -210,6 +226,7 @@ def main() -> int:
             "content_id": item["content_id"],
             "title": item["title"],
             "target_url": item["target_url"],
+            "full_url": full_url(site_url, item["target_url"]),
             "planned_publish_date": publish_date,
             "risk_level": item["risk_level"],
             "content_type": item["content_type"],
@@ -219,6 +236,8 @@ def main() -> int:
     ]
 
     report = {
+        "status": "success" if selected_items else "no_changes",
+        "run_date": publish_date,
         "date": publish_date,
         "mode": args.mode,
         "daily_limit": limit,
@@ -227,19 +246,35 @@ def main() -> int:
         "reviewed_candidate_count": len(validated_candidates),
         "selected_count": len(selected_items),
         "published_count": 0,
+        "total_published": summarize_total_published(content_queue),
         "selected_items": selected_items,
+        "published_items": [],
         "skipped_items": skipped,
         "errors": errors,
         "post_publish_checks": [],
+        "site_url": site_url,
+        "message": "",
+        "generated_at": iso_now(),
     }
+    report["message"] = (
+        f"Dry-run selected {len(selected_items)} reviewed item(s)."
+        if args.dry_run and selected_items
+        else "Dry-run found no reviewed content to publish."
+        if args.dry_run
+        else ""
+    )
 
     if errors:
+        report["status"] = "failure"
+        report["message"] = "Daily publish validation failed."
+        report["generated_at"] = iso_now()
         write_report(report)
         for error in errors:
             print(f"[FAIL] {error}")
         return 1
 
     if args.dry_run:
+        report["generated_at"] = iso_now()
         write_report(report)
         print(f"[OK] daily publish dry-run passed for {len(selected_items)} item(s) on {publish_date}")
         return 0
@@ -275,10 +310,21 @@ def main() -> int:
     write_json(CONTENT_STATUS_PATH, update_content_status_summary(content_queue))
 
     report["published_count"] = len(selected_items)
+    report["published_items"] = selected_items
+    report["total_published"] = summarize_total_published(content_queue)
+    report["status"] = "success" if selected_items else "no_changes"
+    report["message"] = (
+        f"Published {len(selected_items)} reviewed item(s)."
+        if selected_items
+        else "No reviewed content was available for publication."
+    )
     report["post_publish_checks"] = run_post_publish_checks()
     failed_checks = [check for check in report["post_publish_checks"] if check["returncode"] != 0]
     if failed_checks:
+        report["status"] = "failure"
         report["errors"].append(f"post publish check failed: {failed_checks[0]['command']}")
+        report["message"] = f"Post publish check failed: {failed_checks[0]['command']}"
+    report["generated_at"] = iso_now()
     write_report(report)
     if failed_checks:
         print(f"[FAIL] post publish check failed: {failed_checks[0]['command']}")

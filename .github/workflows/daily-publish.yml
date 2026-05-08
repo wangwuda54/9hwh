@@ -23,6 +23,11 @@ on:
 permissions:
   contents: write
 
+env:
+  WECOM_WEBHOOK: ${{ secrets.WECOM_WEBHOOK }}
+  WECHAT_WEBHOOK_URL: ${{ secrets.WECHAT_WEBHOOK_URL }}
+  GITHUB_RUN_URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+
 jobs:
   daily-publish:
     runs-on: ubuntu-latest
@@ -78,3 +83,21 @@ jobs:
           fi
           git commit -m "daily publish reviewed content"
           git push origin main
+
+      - name: Notify publish result
+        if: success()
+        shell: bash
+        run: |
+          set -euo pipefail
+          publish_status="$(python -c "import json; print(json.load(open('data/content-assets/daily_publish_report.json', encoding='utf-8-sig')).get('status', 'success'))")"
+          if [ "$publish_status" = "no_changes" ]; then
+            python scripts/notify_wecom.py --status no_changes --site-url https://www.9hwh.com
+          elif [ "$publish_status" = "failure" ]; then
+            python scripts/notify_wecom.py --status failure --site-url https://www.9hwh.com
+          else
+            python scripts/notify_wecom.py --status success --site-url https://www.9hwh.com
+          fi
+
+      - name: Notify failure
+        if: failure()
+        run: python scripts/notify_wecom.py --status failure --site-url https://www.9hwh.com
