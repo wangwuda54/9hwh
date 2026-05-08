@@ -1,16 +1,8 @@
-name: Daily Publish
+name: Daily 9HWH publish
 
 on:
   workflow_dispatch:
     inputs:
-      dry_run:
-        description: "Run without publishing content"
-        required: true
-        default: "true"
-        type: choice
-        options:
-          - "true"
-          - "false"
       mode:
         description: "Publishing pace"
         required: true
@@ -24,7 +16,9 @@ on:
       limit:
         description: "Optional daily publish limit"
         required: false
-        default: ""
+        default: "3"
+  schedule:
+    - cron: "30 2 * * *"
 
 permissions:
   contents: write
@@ -43,30 +37,44 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Run daily publish
+      - name: Dry run daily publish
         shell: bash
         run: |
           set -euo pipefail
-          args=(--mode "${{ inputs.mode }}")
-          if [ "${{ inputs.dry_run }}" = "true" ]; then
-            args+=(--dry-run)
-          fi
-          if [ -n "${{ inputs.limit }}" ]; then
-            args+=(--limit "${{ inputs.limit }}")
-          fi
-          python scripts/daily_publish.py "${args[@]}"
+          mode="${{ github.event.inputs.mode || 'normal' }}"
+          limit="${{ github.event.inputs.limit || '3' }}"
+          python scripts/daily_publish.py --dry-run --mode "$mode" --limit "$limit"
 
-      - name: Commit published content
-        if: ${{ inputs.dry_run == 'false' }}
+      - name: Publish reviewed content
         shell: bash
         run: |
           set -euo pipefail
-          if git diff --quiet; then
-            echo "No changes to commit."
-            exit 0
-          fi
+          mode="${{ github.event.inputs.mode || 'normal' }}"
+          limit="${{ github.event.inputs.limit || '3' }}"
+          python scripts/daily_publish.py --mode "$mode" --limit "$limit"
+
+      - name: Build site
+        run: python scripts/build_site.py
+
+      - name: Check static site
+        run: python scripts/check_static_site.py
+
+      - name: Check sitemap readiness
+        run: python scripts/check_sitemap_readiness.py
+
+      - name: Git status
+        run: git status --short
+
+      - name: Commit and push published content
+        shell: bash
+        run: |
+          set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add site_src/data/content site_src/content_drafts site/public data/content-assets docs
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
           git commit -m "daily publish reviewed content"
           git push origin main
