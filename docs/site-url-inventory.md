@@ -3,7 +3,7 @@
 | URL | Source | Output File | Type | Sitemap | Indexable | Title | Description |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | https://www.9hwh.com/ | pages.json:home | site/public/index.html | home | yes | yes | 9HWH | 海外流量推广与获客支持 | 9HWH 帮出海项目做 TK、FB、Google 等渠道的推广测试、获客准备和持续优化。从账户、素材、落地页到测试节奏一起配合，让预算尽量花在更可能出效果的方向。 |
-| https://www.9hwh.com/services/ | pages.json:services | site/public/services/index.html | listing | yes | yes | 服务总览 | 9HWH | 服务页用于把 9HWH 的核心能力拆成推广路径梳理、获客方案、投放准备和买量测试。 |
+| https://www.9hwh.com/services/ | pages.json:services | site/public/services/index.html | listing | yes | yes | 服务总览 | 9HWH | 我们围绕海外推广、引流获客、广告投放和买量测试，帮助你梳理渠道方向、明确投放准备，并逐步建立适合项目的获客路径。 |
 | https://www.9hwh.com/services/overseas-promotion/ | services.json:overseas-promotion | site/public/services/overseas-promotion/index.html | service | yes | yes | 海外推广服务 | 海外推广服务覆盖出海项目推广、海外市场推广、渠道组合、项目冷启动和推广路径梳理。 |
 | https://www.9hwh.com/services/traffic-acquisition/ | services.json:traffic-acquisition | site/public/services/traffic-acquisition/index.html | service | yes | yes | 引流获客服务 | 引流获客服务覆盖精准获客、拉新、用户来源判断、转化路径建议、交友引流、游戏推广、贷款获客、保险获客和移民获客。 |
 | https://www.9hwh.com/services/ad-campaign-support/ | services.json:ad-campaign-support | site/public/services/ad-campaign-support/index.html | service | yes | yes | 广告投放支持 | 广告投放支持覆盖广告投放、广告代投、TK 投放、FB 投放、Google 投放、素材方向、落地页检查和投放前准备。 |
@@ -12,7 +12,7 @@
 | https://www.9hwh.com/platforms/tk/ | platforms.json:tk | site/public/platforms/tk/index.html | platform | yes | yes | TK 推广支持 | TK 推广支持覆盖短视频流量、信息流测试、项目曝光、冷启动和引流获客。 |
 | https://www.9hwh.com/platforms/fb/ | platforms.json:fb | site/public/platforms/fb/index.html | platform | yes | yes | FB 推广支持 | FB 推广支持覆盖社交流量、兴趣人群、广告投放、再营销方向和获客测试。 |
 | https://www.9hwh.com/platforms/google/ | platforms.json:google | site/public/platforms/google/index.html | platform | yes | yes | Google 推广支持 | Google 推广支持覆盖搜索需求承接、关键词流量、展示广告、长期获客和落地页承接。 |
-| https://www.9hwh.com/topics/ | pages.json:topics | site/public/topics/index.html | listing | yes | yes | 关键词主题总览 | 9HWH | 主题页用于说明不同项目类型的推广路径、渠道判断和获客准备，帮助项目更快理清测试方向。 |
+| https://www.9hwh.com/topics/ | pages.json:topics | site/public/topics/index.html | listing | yes | yes | 关键词主题总览 | 9HWH | 按不同项目类型整理推广路径、渠道判断和前期准备，帮助你更快判断适合从哪里开始、需要先准备什么。 |
 | https://www.9hwh.com/topics/crypto-promotion/ | topics.json:crypto-promotion | site/public/topics/crypto-promotion/index.html | topic | yes | yes | 虚拟币推广与币圈引流 | 虚拟币推广与币圈引流主题页，覆盖加密货币推广、交易所拉新、渠道建议、投放准备和获客路径梳理。 |
 | https://www.9hwh.com/topics/dating-traffic/ | topics.json:dating-traffic | site/public/topics/dating-traffic/index.html | topic | yes | yes | 交友项目引流 | 交友项目引流主题页，覆盖交友引流、交友 App 注册、真人交友、交友私聊、社交流量和获客准备。 |
 | https://www.9hwh.com/topics/game-promotion/ | topics.json:game-promotion | site/public/topics/game-promotion/index.html | topic | yes | yes | 游戏推广与游戏买量 | 游戏推广主题页，覆盖游戏推广、游戏买量、游戏拉新、线上娱乐推广、渠道建议和买量测试准备。 |
@@ -22,7 +22,7 @@
 | https://www.9hwh.com/topics/immigration-leads/ | topics.json:immigration-leads | site/public/topics/immigration-leads/index.html | topic | yes | yes | 移民咨询获客 | 移民咨询获客主题页，覆盖移民获客、移民咨询推广、海外咨询引流、渠道建议和边界确认。 |
 | https://www.9hwh.com/topics/online-work-leads/ | topics.json:online-work-leads | site/public/topics/online-work-leads/index.html | topic | yes | yes | 网赚推广与兼职获客 | 网赚推广与兼职获客主题页，覆盖网赚推广、兼职获客、在线项目推广、渠道建议和推广前准备。 |
 | https://www.9hwh.com/markets/ | pages.json:markets | site/public/markets/index.html | markets | yes | yes | 海外市场方向 | 9HWH | 说明不同国家和地区的推广判断、平台适配差异、语言素材和落地页准备。 |
-| https://www.9hwh.com/blog/ | pages.json:blog | site/public/blog/index.html | blog | yes | yes | 内容中心 | 9HWH | 围绕海外推广、引流获客、广告投放、平台选择和项目准备，整理长期可维护的实用内容。 |
+| https://www.9hwh.com/blog/ | pages.json:blog | site/public/blog/index.html | blog | yes | yes | 内容中心 | 9HWH | 这里持续更新海外推广、引流获客、广告投放、渠道选择和项目准备等实用内容，方便你快速查看与参考。 |
 | https://www.9hwh.com/blog/dating-how-to-002063ad/ | content_queue:c007-dating-traffic-dating-how-to-002063ad | site/public/blog/dating-how-to-002063ad/index.html | blog_article | yes | yes | 交友私聊怎么做：推广路径、渠道判断和准备清单 | 为出海团队解析“交友私聊怎么做”的真实需求，提供推广前准备清单、渠道选择建议及服务边界说明。 |
 | https://www.9hwh.com/blog/part-time-how-to-5875d40e/ | content_queue:c010-media-buying-part-time-how-to-5875d40e | site/public/blog/part-time-how-to-5875d40e/index.html | blog_article | yes | yes | 兼职怎么做：推广路径、渠道判断和准备清单 | 了解如何评估和开展海外推广兼职机会。本文梳理搜索意图、适合项目类型、推广前准备清单与可选渠道，帮助出海团队与个人做好决策准备。 |
 | https://www.9hwh.com/blog/topics/fb-dating-traffic-5035e1c0/ | content_queue:c031-fb-promotion-fb-dating-traffic-5035e1c0 | site/public/blog/topics/fb-dating-traffic-5035e1c0/index.html | topic_expansion | yes | yes | FB交友引流：海外推广与获客准备指南 | 了解FB交友引流的真实需求、适合的项目类型、推广前的资料准备、可选渠道及服务边界。为出海团队提供海外推广与获客准备参考。 |

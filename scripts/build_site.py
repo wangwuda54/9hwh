@@ -19,10 +19,13 @@ DOCS = ROOT / "docs"
 KEYWORD_DATA = DATA / "keywords"
 CONTENT_DATA = DATA / "content"
 DRAFTS = SRC / "content_drafts"
+SEO_DATA = ROOT / "data" / "seo"
 
 BASE_URL = "https://www.9hwh.com"
 TELEGRAM_URL = "https://tg.9hwh.com/"
 TELEGRAM_BUTTON_LABEL = "Telegram 咨询"
+LEGACY_FALLBACK_PATH = "/services/legacy/"
+LEGACY_EXACT_SOURCE_LIMIT = 900
 DEFAULT_CTA_TITLE = "想确认你的项目适合怎么跑？"
 DEFAULT_CTA_TEXT = "可以通过 Telegram 联系 9HWH，先简单说明项目类型、目标地区、预算范围和现有素材情况，我们会一起判断适合从哪个渠道开始测试。"
 TOPIC_DEFAULT_ARTICLE_NOTE = "相关内容将逐步更新，你也可以先通过 Telegram 说一下项目情况。"
@@ -561,13 +564,14 @@ def detail_content(item: dict, item_type: str, faq_data: dict, blocks: dict, key
     return content, faqs
 
 
-def render_base(page: dict, path: str, content: str, site: dict, nav: list[dict], schemas: list[dict]) -> str:
+def render_base(page: dict, path: str, content: str, site: dict, nav: list[dict], schemas: list[dict], indexable: bool = True) -> str:
     crumbs = breadcrumb_items(path, page["h1"])
     return render(
         read_text(TEMPLATES / "base.html"),
         {
             "title": esc(page["title"]),
             "description": esc(page["description"]),
+            "robots_meta": "" if indexable else '<meta name="robots" content="noindex,follow">',
             "canonical": esc(canonical(path)),
             "asset_version": css_asset_version(),
             "site_name": esc(site["site_name"]),
@@ -584,7 +588,7 @@ def render_base(page: dict, path: str, content: str, site: dict, nav: list[dict]
 def emit(path: str, page: dict, content: str, site: dict, nav: list[dict], schemas: list[dict], records: list[dict], source: str, page_type: str, indexable: bool = True) -> None:
     crumbs = breadcrumb_items(path, page["h1"])
     full_schemas = schemas + [breadcrumb_schema(crumbs)]
-    html_text = render_base(page, path, content, site, nav, full_schemas)
+    html_text = render_base(page, path, content, site, nav, full_schemas, indexable)
     target = output_file(path)
     target.parent.mkdir(parents=True, exist_ok=True)
     target.write_text(html_text, encoding="utf-8", newline="\n")
@@ -605,6 +609,77 @@ def write_sitemap(records: list[dict], lastmod: str) -> None:
     write_file("sitemap.xml", "\n".join(rows) + "\n")
 
 
+def load_legacy_redirect_map() -> list[dict]:
+    path = SEO_DATA / "legacy_url_redirects.json"
+    if not path.exists():
+        return []
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def legacy_source_number(source_path: str) -> int:
+    match = re.search(r"/service_(\d+)$", source_path)
+    return int(match.group(1)) if match else 10**12
+
+
+def selected_legacy_exact_redirects(rows: list[dict]) -> list[dict]:
+    high_confidence = [
+        row
+        for row in rows
+        if row.get("status") == 301
+        and row.get("confidence") == "high"
+        and row.get("needs_review") is False
+        and re.fullmatch(r"/service_\d+", row.get("source_path", ""))
+    ]
+    by_target: dict[str, list[dict]] = {}
+    for row in sorted(high_confidence, key=lambda item: legacy_source_number(item["source_path"])):
+        by_target.setdefault(row["target_path"], []).append(row)
+
+    selected: list[dict] = []
+    seen: set[str] = set()
+    priority = next((row for row in high_confidence if row["source_path"] == "/service_15209"), None)
+    if priority:
+        selected.append(priority)
+        seen.add(priority["source_path"])
+
+    while len(selected) < LEGACY_EXACT_SOURCE_LIMIT:
+        added = False
+        for target in sorted(by_target):
+            while by_target[target] and by_target[target][0]["source_path"] in seen:
+                by_target[target].pop(0)
+            if not by_target[target]:
+                continue
+            row = by_target[target].pop(0)
+            selected.append(row)
+            seen.add(row["source_path"])
+            added = True
+            if len(selected) >= LEGACY_EXACT_SOURCE_LIMIT:
+                break
+        if not added:
+            break
+    return selected
+
+
+def legacy_redirect_lines() -> list[str]:
+    rows = load_legacy_redirect_map()
+    lines = [
+        "# Legacy service URL redirects generated from data/seo/legacy_url_redirects.json",
+        "# Exact high-confidence 301 rules are first; broad legacy fallback rules stay last.",
+    ]
+    for row in selected_legacy_exact_redirects(rows):
+        source_path = row["source_path"]
+        target_path = row["target_path"]
+        lines.append(f"{source_path} {target_path} 301")
+        lines.append(f"{source_path}.html {target_path} 301")
+    lines.extend(
+        [
+            f"/service_*.html {LEGACY_FALLBACK_PATH} 302",
+            f"/service_* {LEGACY_FALLBACK_PATH} 302",
+            "",
+        ]
+    )
+    return lines
+
+
 def write_cloudflare_pages_files() -> None:
     headers = "\n".join(
         [
@@ -621,13 +696,7 @@ def write_cloudflare_pages_files() -> None:
             "",
         ]
     )
-    redirects = "\n".join(
-        [
-            "# Minimal Cloudflare Pages redirects for the static site",
-            "# No broad rewrites until production rules are explicitly approved.",
-            "",
-        ]
-    )
+    redirects = "\n".join(legacy_redirect_lines())
     write_file("_headers", headers)
     write_file("_redirects", redirects)
 
@@ -705,6 +774,25 @@ def build() -> None:
     for item in services:
         content, item_faqs = detail_content(item, "service", faqs, blocks, keyword_ctx, published_aggregates["services"].get(item["url"], []))
         emit(item["url"], item, content, site, nav, global_schemas + [faq_schema(item_faqs), service_schema(item, site)], records, f"services.json:{item['slug']}", "service")
+
+    legacy_page = {
+        "title": "服务内容已整合 | 9HWH",
+        "h1": "服务内容已整合",
+        "description": "旧服务页面已经整合到新版 9HWH 服务体系，可以继续查看服务、主题方向或通过 Telegram 咨询项目情况。",
+        "eyebrow": "旧服务承接",
+    }
+    legacy_extra = (
+        '<article class="card"><h2>继续查看新版服务体系</h2>'
+        "<p>你访问的旧服务入口已经归并到新版服务与主题页面。可以先查看服务总览和主题方向，也可以直接通过 Telegram 说明项目类型、目标地区和预算范围。</p>"
+        '<div class="button-row">'
+        '<a class="button button-primary" href="/services/">查看服务</a>'
+        '<a class="button button-secondary" href="/topics/">查看主题</a>'
+        '<a class="button button-secondary" href="/contact/">联系咨询</a>'
+        f'<a class="button button-telegram" href="{TELEGRAM_URL}" target="_blank" rel="noopener noreferrer">Telegram 咨询</a>'
+        "</div></article>"
+        + cta_html("想确认适合哪个方向？", "先通过 Telegram 说一下项目情况，我们会一起判断更适合从服务、主题还是平台方向继续看。")
+    )
+    emit(LEGACY_FALLBACK_PATH, legacy_page, listing_content(legacy_page, [], legacy_extra), site, nav, global_schemas, records, "legacy_url_redirects.json:fallback", "legacy", indexable=False)
 
     platforms_extra = cta_html("想先确认该从哪个平台开始测试？", "可以通过 Telegram 先说明项目类型、素材情况和目标地区，我们会一起判断更适合先跑 TK、FB、Google 还是其他组合。")
     emit("/platforms/", pages["platforms"], listing_content(pages["platforms"], platforms, platforms_extra), site, nav, global_schemas, records, "pages.json:platforms", "listing")

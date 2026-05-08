@@ -138,13 +138,14 @@ def sitemap_urls() -> set[str]:
 
 
 def check_html(sitemap: set[str]) -> None:
+    non_indexable_pages = {"404.html", "services/legacy/index.html"}
     for path in PUBLIC.rglob("*.html"):
         rel = path.relative_to(PUBLIC).as_posix()
         text = path.read_text(encoding="utf-8")
         parser = LinkParser()
         parser.feed(text)
         expected_url = file_to_url(path)
-        indexable = rel != "404.html"
+        indexable = rel not in non_indexable_pages
         if not parser.title:
             fail(f"{rel} missing title")
         if not parser.has_description:
@@ -169,6 +170,8 @@ def check_html(sitemap: set[str]) -> None:
             fail(f"{rel} should not be in sitemap")
         if rel == "contact/index.html" and "Telegram" not in text:
             fail("contact page missing Telegram contact entry")
+        if rel == "services/legacy/index.html" and 'content="noindex,follow"' not in text:
+            fail("legacy service fallback page missing noindex")
         if rel == "privacy/index.html":
             if "隐私政策" not in text or "最后更新" not in text or "Telegram" not in text:
                 fail("privacy page missing required policy details")
