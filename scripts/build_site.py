@@ -501,6 +501,11 @@ def platform_service_fit(item: dict) -> list[str]:
 
 
 def detail_content(item: dict, item_type: str, faq_data: dict, blocks: dict, keyword_ctx: dict, published_articles: list[dict] | None = None) -> tuple[str, list[dict]]:
+    detail_eyebrows = {
+        "service": "服务详情",
+        "platform": "平台详情",
+        "topic": "主题详情",
+    }
     if item_type == "service":
         sections = [
             ("服务说明", f"<p>{esc(item.get('intro', item.get('summary', '')))}</p>"),
@@ -540,7 +545,7 @@ def detail_content(item: dict, item_type: str, faq_data: dict, blocks: dict, key
     content = render(
         read_text(TEMPLATES / "page.html"),
         {
-            "eyebrow": esc(item.get("eyebrow", "详情")),
+            "eyebrow": esc(item.get("eyebrow", detail_eyebrows.get(item_type, "详情"))),
             "h1": esc(item["h1"]),
             "description": esc(item["description"]),
             "body": sections_html(sections),
