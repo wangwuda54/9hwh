@@ -1,0 +1,15 @@
+{
+  "initial_observation_days": 7,
+  "initial_daily_limit": 3,
+  "stable_daily_limit": 5,
+  "hard_daily_limit": 10,
+  "expert_articles_per_week": 2,
+  "expert_article_days": [
+    "Tuesday",
+    "Friday"
+  ],
+  "require_review_pass": true,
+  "block_internal_only": true,
+  "block_warning_or_fail": true,
+  "block_c045": true
+}

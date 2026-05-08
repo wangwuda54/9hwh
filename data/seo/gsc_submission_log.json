@@ -16,5 +16,27 @@
       "sitemap_only_contains_published": true
     },
     "notes": "Use sitemap-only submission after a real deployed URL is available. Do not use GIA. Do not submit individual URLs in bulk."
+  },
+  {
+    "recorded_at": "2026-05-08T00:00:00+08:00",
+    "stage": "stage-20",
+    "property": "https://www.9hwh.com/",
+    "sitemap_url": "https://www.9hwh.com/sitemap.xml",
+    "status": "submitted_and_read",
+    "submitted_at": "2026-05-08T00:00:00+08:00",
+    "submitted_by": "manual_gsc",
+    "discovered_pages_approx": 26,
+    "follow_up_observation_days": [
+      7,
+      14,
+      30
+    ],
+    "preconditions": {
+      "formal_domain_bound": true,
+      "sitemap_returns_200": true,
+      "robots_has_sitemap": true,
+      "sitemap_only_contains_published": true
+    },
+    "notes": "GSC has read the sitemap successfully. Do not use GIA, do not bulk submit individual URLs, and do not repeatedly resubmit the sitemap after daily publishing."
   }
 ]

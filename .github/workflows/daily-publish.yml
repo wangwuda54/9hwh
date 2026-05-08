@@ -1,0 +1,72 @@
+name: Daily Publish
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Run without publishing content"
+        required: true
+        default: "true"
+        type: choice
+        options:
+          - "true"
+          - "false"
+      mode:
+        description: "Publishing pace"
+        required: true
+        default: "normal"
+        type: choice
+        options:
+          - conservative
+          - normal
+          - growth
+          - aggressive
+      limit:
+        description: "Optional daily publish limit"
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+
+jobs:
+  daily-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Run daily publish
+        shell: bash
+        run: |
+          set -euo pipefail
+          args=(--mode "${{ inputs.mode }}")
+          if [ "${{ inputs.dry_run }}" = "true" ]; then
+            args+=(--dry-run)
+          fi
+          if [ -n "${{ inputs.limit }}" ]; then
+            args+=(--limit "${{ inputs.limit }}")
+          fi
+          python scripts/daily_publish.py "${args[@]}"
+
+      - name: Commit published content
+        if: ${{ inputs.dry_run == 'false' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git diff --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add site_src/data/content site_src/content_drafts site/public data/content-assets docs
+          git commit -m "daily publish reviewed content"
+          git push origin main

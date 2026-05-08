@@ -1,0 +1,69 @@
+{
+  "plan_id": "expert-articles-v1",
+  "created_at": "2026-05-08T00:00:00+08:00",
+  "cadence": {
+    "articles_per_week": 2,
+    "days": [
+      "Tuesday",
+      "Friday"
+    ]
+  },
+  "body_generation_owner": "DeepSeek API",
+  "codex_role": [
+    "create task packages",
+    "import DeepSeek output",
+    "run review checks",
+    "place approved content into publish queue"
+  ],
+  "constraints": {
+    "do_not_call_deepseek_api_in_this_stage": true,
+    "do_not_generate_article_body_in_this_stage": true,
+    "do_not_add_published_content": true,
+    "do_not_bypass_content_queue": true,
+    "require_review_before_publish": true
+  },
+  "topics": [
+    {
+      "id": "expert-001",
+      "title": "TK, FB, Google 三类海外获客渠道怎么选",
+      "target_day": "Tuesday",
+      "status": "task_planned"
+    },
+    {
+      "id": "expert-002",
+      "title": "海外推广项目启动前需要准备什么",
+      "target_day": "Friday",
+      "status": "task_planned"
+    },
+    {
+      "id": "expert-003",
+      "title": "为什么海外投放不能承诺保证效果",
+      "target_day": "Tuesday",
+      "status": "task_planned"
+    },
+    {
+      "id": "expert-004",
+      "title": "出海项目落地页和素材准备清单",
+      "target_day": "Friday",
+      "status": "task_planned"
+    },
+    {
+      "id": "expert-005",
+      "title": "高风险行业推广前的合规和平台边界判断",
+      "target_day": "Tuesday",
+      "status": "task_planned"
+    },
+    {
+      "id": "expert-006",
+      "title": "海外广告投放前如何判断项目适合哪个渠道",
+      "target_day": "Friday",
+      "status": "task_planned"
+    },
+    {
+      "id": "expert-007",
+      "title": "交友、游戏、金融、贷款、保险等项目推广前的风险边界",
+      "target_day": "Tuesday",
+      "status": "task_planned"
+    }
+  ]
+}
