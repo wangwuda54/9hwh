@@ -621,6 +621,15 @@ def legacy_source_number(source_path: str) -> int:
     return int(match.group(1)) if match else 10**12
 
 
+def legacy_gsc_priority_rank(row: dict) -> tuple[int, float, float, float, int]:
+    priority_order = {"P0": 0, "P1": 1, "P2": 2}
+    priority = priority_order.get(row.get("gsc_priority", ""), 99)
+    clicks = float(row.get("gsc_clicks") or 0)
+    impressions = float(row.get("gsc_impressions") or 0)
+    position = float(row.get("gsc_best_position") or row.get("gsc_position") or 999999)
+    return (priority, -clicks, -impressions, position, legacy_source_number(row["source_path"]))
+
+
 def selected_legacy_exact_redirects(rows: list[dict]) -> list[dict]:
     high_confidence = [
         row
@@ -640,6 +649,17 @@ def selected_legacy_exact_redirects(rows: list[dict]) -> list[dict]:
     if priority:
         selected.append(priority)
         seen.add(priority["source_path"])
+
+    gsc_priority_rows = [
+        row
+        for row in high_confidence
+        if row.get("gsc_priority") in {"P0", "P1", "P2"} and row["source_path"] not in seen
+    ]
+    for row in sorted(gsc_priority_rows, key=legacy_gsc_priority_rank):
+        if len(selected) >= LEGACY_EXACT_SOURCE_LIMIT:
+            break
+        selected.append(row)
+        seen.add(row["source_path"])
 
     while len(selected) < LEGACY_EXACT_SOURCE_LIMIT:
         added = False
