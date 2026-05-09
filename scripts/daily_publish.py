@@ -4,6 +4,8 @@ import argparse
 import json
 import os
 import subprocess
+import sys
+import traceback
 from datetime import date, datetime, timezone
 from pathlib import Path
 from urllib.parse import urljoin
@@ -23,6 +25,8 @@ POLICY_PATH = CONTENT_DIR / "publish_policy.json"
 DRAFTS_DIR = ROOT / "site_src" / "content_drafts"
 REPORT_JSON_PATH = ROOT / "data" / "content-assets" / "daily_publish_report.json"
 REPORT_MD_PATH = ROOT / "docs" / "daily-publish-report.md"
+DRY_RUN_REPORT_JSON_PATH = ROOT / "data" / "content-assets" / "daily_publish_dry_run_report.json"
+DRY_RUN_REPORT_MD_PATH = ROOT / "docs" / "daily-publish-dry-run-report.md"
 DEFAULT_SITE_URL = "https://www.9hwh.com"
 
 MODE_LIMITS = {
@@ -169,11 +173,19 @@ def summarize_total_published(queue: list[dict]) -> int:
     return sum(1 for item in queue if item.get("status") == "published")
 
 
+def report_paths(report: dict) -> tuple[Path, Path]:
+    if report.get("dry_run"):
+        return DRY_RUN_REPORT_JSON_PATH, DRY_RUN_REPORT_MD_PATH
+    return REPORT_JSON_PATH, REPORT_MD_PATH
+
+
 def write_report(report: dict) -> None:
-    write_json(REPORT_JSON_PATH, report)
-    REPORT_MD_PATH.parent.mkdir(parents=True, exist_ok=True)
+    report_json_path, report_md_path = report_paths(report)
+    write_json(report_json_path, report)
+    report_md_path.parent.mkdir(parents=True, exist_ok=True)
+    title = "# Daily Publish Dry-Run Report" if report.get("dry_run") else "# Daily Publish Report"
     rows = [
-        "# Daily Publish Report",
+        title,
         "",
         f"- status: {report['status']}",
         f"- run_date: {report['run_date']}",
@@ -201,7 +213,35 @@ def write_report(report: dict) -> None:
         rows.extend(["", "## Post Publish Checks", "", "| Command | Return code |", "| --- | --- |"])
         for check in report["post_publish_checks"]:
             rows.append(f"| `{check['command']}` | {check['returncode']} |")
-    REPORT_MD_PATH.write_text("\n".join(rows) + "\n", encoding="utf-8", newline="\n")
+    report_md_path.write_text("\n".join(rows) + "\n", encoding="utf-8", newline="\n")
+
+
+def write_unhandled_failure_report(exc: Exception) -> None:
+    dry_run = "--dry-run" in sys.argv[1:]
+    today = date.today().isoformat()
+    message = f"Daily publish failed before completion: {exc}"
+    report = {
+        "status": "failure",
+        "run_date": today,
+        "date": today,
+        "mode": DEFAULT_MODE,
+        "daily_limit": DEFAULT_DAILY_LIMIT,
+        "hard_limit": HARD_LIMIT,
+        "dry_run": dry_run,
+        "reviewed_candidate_count": 0,
+        "selected_count": 0,
+        "published_count": 0,
+        "total_published": 0,
+        "selected_items": [],
+        "published_items": [],
+        "skipped_items": [],
+        "errors": [message, traceback.format_exc()],
+        "post_publish_checks": [],
+        "site_url": os.environ.get("SITE_URL", DEFAULT_SITE_URL),
+        "message": message,
+        "generated_at": iso_now(),
+    }
+    write_report(report)
 
 
 def main() -> int:
@@ -335,4 +375,9 @@ def main() -> int:
 
 
 if __name__ == "__main__":
-    raise SystemExit(main())
+    try:
+        raise SystemExit(main())
+    except Exception as exc:
+        write_unhandled_failure_report(exc)
+        print(f"[FAIL] {exc}")
+        raise SystemExit(1)

@@ -42,6 +42,15 @@ jobs:
         with:
           python-version: "3.11"
 
+      - name: Print context
+        shell: bash
+        run: |
+          set -euo pipefail
+          date -u
+          git rev-parse HEAD
+          git status --short
+          python --version
+
       - name: Dry run daily publish
         shell: bash
         run: |
@@ -57,6 +66,58 @@ jobs:
           mode="${{ github.event.inputs.mode || 'normal' }}"
           limit="${{ github.event.inputs.limit || '3' }}"
           python scripts/daily_publish.py --mode "$mode" --limit "$limit"
+
+      - name: After publish status
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat data/content-assets/daily_publish_report.json
+          cat site_src/data/content/content_status.json
+          git status --short
+
+      - name: Validate publish report
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          import sys
+          from pathlib import Path
+
+          report_path = Path("data/content-assets/daily_publish_report.json")
+          if not report_path.exists():
+              print(f"[FAIL] publish report not found: {report_path}")
+              sys.exit(1)
+
+          report = json.loads(report_path.read_text(encoding="utf-8-sig"))
+          status = report.get("status")
+          dry_run = report.get("dry_run")
+          reviewed_candidate_count = int(report.get("reviewed_candidate_count") or 0)
+          selected_count = int(report.get("selected_count") or 0)
+          published_count = int(report.get("published_count") or 0)
+          published_items = report.get("published_items") or []
+
+          errors = []
+          if dry_run is not False:
+              errors.append("daily_publish_report.json must be a formal publish report with dry_run=false")
+          if status not in {"success", "no_changes"}:
+              errors.append(f"unexpected publish status: {status!r}")
+          if reviewed_candidate_count > 0 and selected_count > 0 and published_count <= 0:
+              errors.append("reviewed candidates were selected but published_count is 0")
+          if status == "success" and not published_items:
+              errors.append("status is success but published_items is empty")
+
+          print(f"total_published={report.get('total_published')}")
+          print(f"published_count={published_count}")
+          print("published_items=")
+          for item in published_items:
+              print(f"- {item.get('content_id')} {item.get('full_url') or item.get('target_url')}")
+
+          if errors:
+              for error in errors:
+                  print(f"[FAIL] {error}")
+              sys.exit(1)
+          PY
 
       - name: Build site
         run: python scripts/build_site.py
@@ -81,7 +142,7 @@ jobs:
             echo "No changes to commit."
             exit 0
           fi
-          git commit -m "daily publish reviewed content"
+          git commit -m "daily publish reviewed content for $(date -u +%F)"
           git push origin main
 
       - name: Notify publish result

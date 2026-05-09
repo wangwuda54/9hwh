@@ -1,0 +1,52 @@
+{
+  "status": "success",
+  "run_date": "2026-05-09",
+  "date": "2026-05-09",
+  "mode": "normal",
+  "daily_limit": 3,
+  "hard_limit": 10,
+  "dry_run": true,
+  "reviewed_candidate_count": 7,
+  "selected_count": 3,
+  "published_count": 0,
+  "total_published": 3,
+  "selected_items": [
+    {
+      "content_id": "c004-crypto-promotion-exchange-acquisition-how-to-efd74e87",
+      "title": "交易所拉新怎么做：推广路径、渠道判断和准备清单",
+      "target_url": "/blog/exchange-acquisition-how-to-efd74e87/",
+      "full_url": "https://www.9hwh.com/blog/exchange-acquisition-how-to-efd74e87/",
+      "planned_publish_date": "2026-05-09",
+      "risk_level": "low",
+      "content_type": "topic",
+      "internal_link_count": 4
+    },
+    {
+      "content_id": "c012-traffic-acquisition-dating-app-how-to-f56b0dad",
+      "title": "交友App注册怎么做：推广路径、渠道判断和准备清单",
+      "target_url": "/blog/dating-app-how-to-f56b0dad/",
+      "full_url": "https://www.9hwh.com/blog/dating-app-how-to-f56b0dad/",
+      "planned_publish_date": "2026-05-09",
+      "risk_level": "low",
+      "content_type": "service",
+      "internal_link_count": 4
+    },
+    {
+      "content_id": "c043-game-promotion-fb-game-promotion-eec369fd",
+      "title": "FB游戏推广：海外推广与获客准备指南",
+      "target_url": "/blog/topics/fb-game-promotion-eec369fd/",
+      "full_url": "https://www.9hwh.com/blog/topics/fb-game-promotion-eec369fd/",
+      "planned_publish_date": "2026-05-09",
+      "risk_level": "medium",
+      "content_type": "topic",
+      "internal_link_count": 4
+    }
+  ],
+  "published_items": [],
+  "skipped_items": [],
+  "errors": [],
+  "post_publish_checks": [],
+  "site_url": "https://www.9hwh.com",
+  "message": "Dry-run selected 3 reviewed item(s).",
+  "generated_at": "2026-05-09T13:51:04+08:00"
+}
