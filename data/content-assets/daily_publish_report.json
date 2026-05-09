@@ -1,22 +1,22 @@
 {
   "status": "success",
-  "run_date": "2026-05-08",
-  "date": "2026-05-08",
+  "run_date": "2026-05-09",
+  "date": "2026-05-09",
   "mode": "normal",
   "daily_limit": 3,
   "hard_limit": 10,
-  "dry_run": true,
+  "dry_run": false,
   "reviewed_candidate_count": 7,
   "selected_count": 3,
-  "published_count": 0,
-  "total_published": 3,
+  "published_count": 3,
+  "total_published": 6,
   "selected_items": [
     {
       "content_id": "c004-crypto-promotion-exchange-acquisition-how-to-efd74e87",
       "title": "交易所拉新怎么做：推广路径、渠道判断和准备清单",
       "target_url": "/blog/exchange-acquisition-how-to-efd74e87/",
       "full_url": "https://www.9hwh.com/blog/exchange-acquisition-how-to-efd74e87/",
-      "planned_publish_date": "2026-05-08",
+      "planned_publish_date": "2026-05-09",
       "risk_level": "low",
       "content_type": "topic",
       "internal_link_count": 4
@@ -26,7 +26,7 @@
       "title": "交友App注册怎么做：推广路径、渠道判断和准备清单",
       "target_url": "/blog/dating-app-how-to-f56b0dad/",
       "full_url": "https://www.9hwh.com/blog/dating-app-how-to-f56b0dad/",
-      "planned_publish_date": "2026-05-08",
+      "planned_publish_date": "2026-05-09",
       "risk_level": "low",
       "content_type": "service",
       "internal_link_count": 4
@@ -36,17 +36,67 @@
       "title": "FB游戏推广：海外推广与获客准备指南",
       "target_url": "/blog/topics/fb-game-promotion-eec369fd/",
       "full_url": "https://www.9hwh.com/blog/topics/fb-game-promotion-eec369fd/",
-      "planned_publish_date": "2026-05-08",
+      "planned_publish_date": "2026-05-09",
       "risk_level": "medium",
       "content_type": "topic",
       "internal_link_count": 4
     }
   ],
-  "published_items": [],
+  "published_items": [
+    {
+      "content_id": "c004-crypto-promotion-exchange-acquisition-how-to-efd74e87",
+      "title": "交易所拉新怎么做：推广路径、渠道判断和准备清单",
+      "target_url": "/blog/exchange-acquisition-how-to-efd74e87/",
+      "full_url": "https://www.9hwh.com/blog/exchange-acquisition-how-to-efd74e87/",
+      "planned_publish_date": "2026-05-09",
+      "risk_level": "low",
+      "content_type": "topic",
+      "internal_link_count": 4
+    },
+    {
+      "content_id": "c012-traffic-acquisition-dating-app-how-to-f56b0dad",
+      "title": "交友App注册怎么做：推广路径、渠道判断和准备清单",
+      "target_url": "/blog/dating-app-how-to-f56b0dad/",
+      "full_url": "https://www.9hwh.com/blog/dating-app-how-to-f56b0dad/",
+      "planned_publish_date": "2026-05-09",
+      "risk_level": "low",
+      "content_type": "service",
+      "internal_link_count": 4
+    },
+    {
+      "content_id": "c043-game-promotion-fb-game-promotion-eec369fd",
+      "title": "FB游戏推广：海外推广与获客准备指南",
+      "target_url": "/blog/topics/fb-game-promotion-eec369fd/",
+      "full_url": "https://www.9hwh.com/blog/topics/fb-game-promotion-eec369fd/",
+      "planned_publish_date": "2026-05-09",
+      "risk_level": "medium",
+      "content_type": "topic",
+      "internal_link_count": 4
+    }
+  ],
   "skipped_items": [],
   "errors": [],
-  "post_publish_checks": [],
+  "post_publish_checks": [
+    {
+      "command": "python scripts/build_site.py",
+      "returncode": 0,
+      "stdout": "[OK] Generated 29 indexed pages into /home/runner/work/9hwh/9hwh/site/public",
+      "stderr": ""
+    },
+    {
+      "command": "python scripts/check_static_site.py",
+      "returncode": 0,
+      "stdout": "[OK] sitemap checks completed\n[OK] robots checks completed\n[OK] HTML quality checks completed\n[OK] keyword asset checks completed\n[OK] content pipeline checks completed\n[OK] DeepSeek batch checks completed\n[OK] static site checks passed",
+      "stderr": ""
+    },
+    {
+      "command": "python scripts/check_sitemap_readiness.py",
+      "returncode": 0,
+      "stdout": "[OK] sitemap readiness passed: urls=29 published_queue_urls=6",
+      "stderr": ""
+    }
+  ],
   "site_url": "https://www.9hwh.com",
-  "message": "Dry-run selected 3 reviewed item(s).",
-  "generated_at": "2026-05-08T12:20:57+08:00"
+  "message": "Published 3 reviewed item(s).",
+  "generated_at": "2026-05-09T05:35:18+00:00"
 }

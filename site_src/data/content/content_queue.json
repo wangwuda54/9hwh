@@ -109,7 +109,7 @@
       "交易所拉新怎么做"
     ],
     "page_type": "blog_article",
-    "status": "reviewed",
+    "status": "published",
     "priority": 4,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -357,7 +357,7 @@
       "交友App注册怎么做"
     ],
     "page_type": "blog_article",
-    "status": "reviewed",
+    "status": "published",
     "priority": 12,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -1330,7 +1330,7 @@
       "FB游戏推广"
     ],
     "page_type": "topic_expansion",
-    "status": "reviewed",
+    "status": "published",
     "priority": 43,
     "word_count_target": 1800,
     "deepseek_required": true,

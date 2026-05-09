@@ -4,13 +4,13 @@
 - sitemap_exists: True
 - robots_exists: True
 - robots_has_sitemap: True
-- sitemap_url_count: 26
-- published_queue_url_count: 3
+- sitemap_url_count: 29
+- published_queue_url_count: 6
 - only_published_content_in_sitemap: True
 
 ## Queue URL Audit
 
-- queue_urls_in_sitemap: 3
+- queue_urls_in_sitemap: 6
 - reviewed_urls_in_sitemap: 0
 - draft_urls_in_sitemap: 0
 - internal_only_urls_in_sitemap: 0
