@@ -4,10 +4,11 @@
   "robots_exists": true,
   "robots_has_sitemap": true,
   "expected_sitemap_url": "https://www.9hwh.com/sitemap.xml",
-  "sitemap_url_count": 29,
+  "sitemap_url_count": 30,
   "queue_url_count": 60,
-  "published_queue_url_count": 6,
+  "published_queue_url_count": 7,
   "queue_urls_in_sitemap": [
+    "/blog/crypto-promotion-how-to-17e66750/",
     "/blog/dating-app-how-to-f56b0dad/",
     "/blog/dating-how-to-002063ad/",
     "/blog/exchange-acquisition-how-to-efd74e87/",

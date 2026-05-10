@@ -82,12 +82,12 @@
     "content_type": "service",
     "priority_score": 107,
     "risk_level": "low",
-    "publish_status": "queued",
-    "planned_publish_date": "2026-05-06",
+    "publish_status": "published",
+    "planned_publish_date": "2026-05-10",
     "batch": "batch-001",
     "review_status": "pass",
     "internal_link_count": 5,
-    "notes": "ok"
+    "notes": "ok published_at=2026-05-10"
   },
   {
     "content_id": "c004-crypto-promotion-exchange-acquisition-how-to-efd74e87",

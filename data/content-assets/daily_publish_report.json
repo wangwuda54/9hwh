@@ -1,86 +1,137 @@
 {
   "status": "success",
-  "run_date": "2026-05-09",
-  "date": "2026-05-09",
+  "run_date": "2026-05-10",
+  "date": "2026-05-10",
   "mode": "normal",
   "daily_limit": 3,
   "hard_limit": 10,
   "dry_run": false,
-  "reviewed_candidate_count": 7,
-  "selected_count": 3,
-  "published_count": 3,
-  "total_published": 6,
+  "reviewed_candidate_count": 4,
+  "selected_count": 1,
+  "published_count": 1,
+  "total_published": 7,
   "selected_items": [
     {
-      "content_id": "c004-crypto-promotion-exchange-acquisition-how-to-efd74e87",
-      "title": "交易所拉新怎么做：推广路径、渠道判断和准备清单",
-      "target_url": "/blog/exchange-acquisition-how-to-efd74e87/",
-      "full_url": "https://www.9hwh.com/blog/exchange-acquisition-how-to-efd74e87/",
-      "planned_publish_date": "2026-05-09",
-      "risk_level": "low",
-      "content_type": "topic",
-      "internal_link_count": 4
-    },
-    {
-      "content_id": "c012-traffic-acquisition-dating-app-how-to-f56b0dad",
-      "title": "交友App注册怎么做：推广路径、渠道判断和准备清单",
-      "target_url": "/blog/dating-app-how-to-f56b0dad/",
-      "full_url": "https://www.9hwh.com/blog/dating-app-how-to-f56b0dad/",
-      "planned_publish_date": "2026-05-09",
+      "content_id": "c001-ad-campaign-support-how-to-17e66750",
+      "title": "加密货币推广怎么做：渠道判断、投放准备和服务边界",
+      "target_url": "/blog/crypto-promotion-how-to-17e66750/",
+      "full_url": "https://www.9hwh.com/blog/crypto-promotion-how-to-17e66750/",
+      "planned_publish_date": "2026-05-10",
       "risk_level": "low",
       "content_type": "service",
-      "internal_link_count": 4
-    },
-    {
-      "content_id": "c043-game-promotion-fb-game-promotion-eec369fd",
-      "title": "FB游戏推广：海外推广与获客准备指南",
-      "target_url": "/blog/topics/fb-game-promotion-eec369fd/",
-      "full_url": "https://www.9hwh.com/blog/topics/fb-game-promotion-eec369fd/",
-      "planned_publish_date": "2026-05-09",
-      "risk_level": "medium",
-      "content_type": "topic",
-      "internal_link_count": 4
+      "internal_link_count": 5
     }
   ],
   "published_items": [
     {
-      "content_id": "c004-crypto-promotion-exchange-acquisition-how-to-efd74e87",
-      "title": "交易所拉新怎么做：推广路径、渠道判断和准备清单",
-      "target_url": "/blog/exchange-acquisition-how-to-efd74e87/",
-      "full_url": "https://www.9hwh.com/blog/exchange-acquisition-how-to-efd74e87/",
-      "planned_publish_date": "2026-05-09",
-      "risk_level": "low",
-      "content_type": "topic",
-      "internal_link_count": 4
-    },
-    {
-      "content_id": "c012-traffic-acquisition-dating-app-how-to-f56b0dad",
-      "title": "交友App注册怎么做：推广路径、渠道判断和准备清单",
-      "target_url": "/blog/dating-app-how-to-f56b0dad/",
-      "full_url": "https://www.9hwh.com/blog/dating-app-how-to-f56b0dad/",
-      "planned_publish_date": "2026-05-09",
+      "content_id": "c001-ad-campaign-support-how-to-17e66750",
+      "title": "加密货币推广怎么做：渠道判断、投放准备和服务边界",
+      "target_url": "/blog/crypto-promotion-how-to-17e66750/",
+      "full_url": "https://www.9hwh.com/blog/crypto-promotion-how-to-17e66750/",
+      "planned_publish_date": "2026-05-10",
       "risk_level": "low",
       "content_type": "service",
-      "internal_link_count": 4
-    },
-    {
-      "content_id": "c043-game-promotion-fb-game-promotion-eec369fd",
-      "title": "FB游戏推广：海外推广与获客准备指南",
-      "target_url": "/blog/topics/fb-game-promotion-eec369fd/",
-      "full_url": "https://www.9hwh.com/blog/topics/fb-game-promotion-eec369fd/",
-      "planned_publish_date": "2026-05-09",
-      "risk_level": "medium",
-      "content_type": "topic",
-      "internal_link_count": 4
+      "internal_link_count": 5
     }
   ],
-  "skipped_items": [],
+  "skipped_items": [
+    {
+      "content_id": "c051-immigration-leads-fb-immigration-leads-b33be086",
+      "title": "FB移民获客：海外推广与获客准备指南",
+      "target_url": "/blog/topics/fb-immigration-leads-b33be086/",
+      "primary_keyword": "FB移民获客",
+      "description": "本文围绕FB移民获客，分析搜索意图、适合项目、推广前资料准备与渠道建议，并提供服务边界与咨询准备，帮助出海团队评估移民类项目的获客路径。",
+      "risk_level": "medium",
+      "content_type": "topic",
+      "cluster_id": "immigration-leads",
+      "planned_publish_date": "2026-05-03",
+      "internal_link_count": 5,
+      "shape": "social_or_game_topic",
+      "notes": "ok",
+      "skip_reason": "too_many_sensitive_clusters"
+    },
+    {
+      "content_id": "c053-insurance-leads-fb-insurance-leads-b01d5372",
+      "title": "FB保险获客：海外推广与获客准备指南",
+      "target_url": "/blog/topics/fb-insurance-leads-b01d5372/",
+      "primary_keyword": "FB保险获客",
+      "description": "了解FB保险获客的真实需求与推广准备，为出海保险项目提供投流、引流及获客支持。9HWH提供专业的海外推广与广告投放服务边界说明。",
+      "risk_level": "medium",
+      "content_type": "topic",
+      "cluster_id": "insurance-leads",
+      "planned_publish_date": "2026-05-04",
+      "internal_link_count": 5,
+      "shape": "social_or_game_topic",
+      "notes": "ok",
+      "skip_reason": "too_many_sensitive_clusters"
+    },
+    {
+      "content_id": "c055-loan-leads-fb-loan-leads-60d3dc0c",
+      "title": "FB贷款获客：海外推广与获客准备指南",
+      "target_url": "/blog/topics/fb-loan-leads-60d3dc0c/",
+      "primary_keyword": "FB贷款获客",
+      "description": "本文分析了FB贷款获客背后的真实需求，介绍适合的贷款项目类型及推广前准备清单，提供渠道建议、常见问题与服务边界说明，帮助出海团队理性规划海外获客路径。",
+      "risk_level": "medium",
+      "content_type": "topic",
+      "cluster_id": "loan-leads",
+      "planned_publish_date": "2026-05-05",
+      "internal_link_count": 5,
+      "shape": "social_or_game_topic",
+      "notes": "ok",
+      "skip_reason": "too_many_sensitive_clusters"
+    },
+    {
+      "content_id": "c051-immigration-leads-fb-immigration-leads-b33be086",
+      "title": "FB移民获客：海外推广与获客准备指南",
+      "target_url": "/blog/topics/fb-immigration-leads-b33be086/",
+      "primary_keyword": "FB移民获客",
+      "description": "本文围绕FB移民获客，分析搜索意图、适合项目、推广前资料准备与渠道建议，并提供服务边界与咨询准备，帮助出海团队评估移民类项目的获客路径。",
+      "risk_level": "medium",
+      "content_type": "topic",
+      "cluster_id": "immigration-leads",
+      "planned_publish_date": "2026-05-03",
+      "internal_link_count": 5,
+      "shape": "social_or_game_topic",
+      "notes": "ok",
+      "skip_reason": "too_many_sensitive_clusters"
+    },
+    {
+      "content_id": "c053-insurance-leads-fb-insurance-leads-b01d5372",
+      "title": "FB保险获客：海外推广与获客准备指南",
+      "target_url": "/blog/topics/fb-insurance-leads-b01d5372/",
+      "primary_keyword": "FB保险获客",
+      "description": "了解FB保险获客的真实需求与推广准备，为出海保险项目提供投流、引流及获客支持。9HWH提供专业的海外推广与广告投放服务边界说明。",
+      "risk_level": "medium",
+      "content_type": "topic",
+      "cluster_id": "insurance-leads",
+      "planned_publish_date": "2026-05-04",
+      "internal_link_count": 5,
+      "shape": "social_or_game_topic",
+      "notes": "ok",
+      "skip_reason": "too_many_sensitive_clusters"
+    },
+    {
+      "content_id": "c055-loan-leads-fb-loan-leads-60d3dc0c",
+      "title": "FB贷款获客：海外推广与获客准备指南",
+      "target_url": "/blog/topics/fb-loan-leads-60d3dc0c/",
+      "primary_keyword": "FB贷款获客",
+      "description": "本文分析了FB贷款获客背后的真实需求，介绍适合的贷款项目类型及推广前准备清单，提供渠道建议、常见问题与服务边界说明，帮助出海团队理性规划海外获客路径。",
+      "risk_level": "medium",
+      "content_type": "topic",
+      "cluster_id": "loan-leads",
+      "planned_publish_date": "2026-05-05",
+      "internal_link_count": 5,
+      "shape": "social_or_game_topic",
+      "notes": "ok",
+      "skip_reason": "too_many_sensitive_clusters"
+    }
+  ],
   "errors": [],
   "post_publish_checks": [
     {
       "command": "python scripts/build_site.py",
       "returncode": 0,
-      "stdout": "[OK] Generated 29 indexed pages into /home/runner/work/9hwh/9hwh/site/public",
+      "stdout": "[OK] Generated 30 indexed pages into /home/runner/work/9hwh/9hwh/site/public",
       "stderr": ""
     },
     {
@@ -92,11 +143,11 @@
     {
       "command": "python scripts/check_sitemap_readiness.py",
       "returncode": 0,
-      "stdout": "[OK] sitemap readiness passed: urls=29 published_queue_urls=6",
+      "stdout": "[OK] sitemap readiness passed: urls=30 published_queue_urls=7",
       "stderr": ""
     }
   ],
   "site_url": "https://www.9hwh.com",
-  "message": "Published 3 reviewed item(s).",
-  "generated_at": "2026-05-09T05:35:18+00:00"
+  "message": "Published 1 reviewed item(s).",
+  "generated_at": "2026-05-10T05:49:15+00:00"
 }
