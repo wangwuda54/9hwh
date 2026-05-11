@@ -448,13 +448,23 @@ h3 { font-size: 1.18rem; }
 }
 .footer-telegram:hover { background: var(--telegram-strong); }
 .footer-note { margin-top: 12px; font-size: .9rem; }
+.footer-friends {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 16px;
+  align-items: center;
+  margin-top: 28px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(231, 241, 235, .12);
+  color: #aebdb6;
+  font-size: .9rem;
+}
+.footer-friends a { margin: 0; color: #cbd7d0; }
 .footer-legal {
   display: flex;
   justify-content: space-between;
   gap: 18px;
-  margin-top: 28px;
-  padding-top: 18px;
-  border-top: 1px solid rgba(231, 241, 235, .12);
+  margin-top: 14px;
   color: #aebdb6;
   font-size: .9rem;
 }
