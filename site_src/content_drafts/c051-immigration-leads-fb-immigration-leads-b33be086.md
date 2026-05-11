@@ -5,7 +5,7 @@ description: 本文围绕FB移民获客，分析搜索意图、适合项目、�
 target_url: /blog/topics/fb-immigration-leads-b33be086/
 primary_keyword: FB移民获客
 secondary_keywords: 移民, FB, 获客
-status: reviewed
+status: published
 ---
 
 ## 搜索意图判断

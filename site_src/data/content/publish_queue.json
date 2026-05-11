@@ -37,12 +37,12 @@
     "content_type": "topic",
     "priority_score": 50,
     "risk_level": "medium",
-    "publish_status": "queued",
-    "planned_publish_date": "2026-05-03",
+    "publish_status": "published",
+    "planned_publish_date": "2026-05-11",
     "batch": "batch-001",
     "review_status": "pass",
     "internal_link_count": 5,
-    "notes": "ok"
+    "notes": "ok published_at=2026-05-11"
   },
   {
     "content_id": "c053-insurance-leads-fb-insurance-leads-b01d5372",
