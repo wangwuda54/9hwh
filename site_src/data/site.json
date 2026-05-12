@@ -1,8 +1,8 @@
 {
   "site_name": "9HWH",
   "base_url": "https://www.9hwh.com",
-  "default_description": "9HWH 面向出海项目提供海外流量推广与获客支持，协助判断 TK、FB、Google 等渠道测试路径。",
+  "default_description": "9HWH 面向出海项目提供海外流量推广、广告投放、买量投流和获客测试支持。",
   "contact_placeholder": "https://tg.9hwh.com/",
-  "service_boundary": "我们会先了解项目类型、目标地区、预算范围和现有准备，再一起判断适合从哪个渠道开始测试。",
-  "service_boundary_short": "我们会先了解项目类型、目标地区、预算范围和现有准备，再一起判断适合从哪个渠道开始测试。"
+  "service_boundary": "把项目类型、目标地区、预算范围、素材和落地页发到 Telegram，我们会帮你梳理适合先跑的渠道、测试节奏和承接方式。",
+  "service_boundary_short": "把项目、地区、预算、素材和落地页发到 Telegram，我们会帮你梳理推广启动方式。"
 }
