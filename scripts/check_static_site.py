@@ -368,8 +368,8 @@ def check_content_pipeline(sitemap: set[str]) -> None:
         text = path.read_text(encoding="utf-8-sig")
         if "禁止表达" not in text:
             fail(f"DeepSeek task missing forbidden expression section: {path.name}")
-        if "投放前评估" not in text and ("合规" + "投放建议") not in text:
-            fail(f"DeepSeek task missing assessment section: {path.name}")
+        if "怎么开始测试" not in text:
+            fail(f"DeepSeek task missing testing section: {path.name}")
     blog_text = (PUBLIC / "blog" / "index.html").read_text(encoding="utf-8")
     if blog_text.count("<article") > 30:
         warn("blog page may show too many unfinished content cards")
