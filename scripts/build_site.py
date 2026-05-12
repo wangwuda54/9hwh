@@ -517,8 +517,8 @@ def detail_content(item: dict, item_type: str, faq_data: dict, blocks: dict, key
             ("支持内容", list_items(item.get("support_items", []))),
             ("执行流程", list_items(item.get("process", []))),
             ("推广前准备", list_items(item.get("preparation", []))),
-            ("暂不适合的情况", list_items(item.get("not_suitable", item.get("not_suitable_for", [])))),
-            ("服务边界", list_items(item.get("boundaries", []))),
+            ("项目适配建议", list_items(item.get("not_suitable", item.get("not_suitable_for", [])))),
+            ("合规投放建议", list_items(item.get("boundaries", []))),
         ]
         faq_group = "services"
     elif item_type == "platform":
@@ -528,7 +528,7 @@ def detail_content(item: dict, item_type: str, faq_data: dict, blocks: dict, key
             ("适合的流量场景", list_items(item.get("traffic_scenes", []))),
             ("推广前准备", list_items(item.get("preparation", []))),
             ("服务适配", list_items(platform_service_fit(item))),
-            ("服务边界", list_items(item.get("boundaries", []))),
+            ("合规投放建议", list_items(item.get("boundaries", []))),
         ]
         faq_group = "platforms"
     else:
@@ -538,7 +538,7 @@ def detail_content(item: dict, item_type: str, faq_data: dict, blocks: dict, key
             ("适合什么项目", list_items(item.get("suitable_for", []))),
             ("推广前准备", list_items(item.get("preparation", []))),
             ("渠道建议", list_items(item.get("recommended_channels", []))),
-            ("服务边界", list_items(item.get("boundaries", []))),
+            ("合规投放建议", list_items(item.get("boundaries", []))),
             ("咨询前准备", list_items(topic_consultation_prep(item))),
             ("服务适配", list_items(topic_service_fit(item))),
             (article_title, article_content),

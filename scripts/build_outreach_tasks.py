@@ -73,7 +73,7 @@ def build_external_article_tasks() -> list[dict]:
         ("loan-checklist-1", "Lead Gen Blog", "/topics/loan-leads/", "贷款线索准备", "讲高风险主题的内容边界"),
         ("immigration-checklist-1", "Lead Gen Blog", "/topics/immigration-leads/", "移民线索准备", "讲咨询前问题筛选"),
         ("creative-checklist-1", "Creative Ops Blog", "/services/media-buying/", "投放素材检查表", "围绕素材制作与复盘"),
-        ("service-angle-1", "Agency Directory Blog", "/services/overseas-promotion/", "海外推广服务边界", "解释服务协作边界，不做夸大承诺"),
+        ("service-angle-1", "Agency Directory Blog", "/services/overseas-promotion/", "海外推广合规评估", "解释投放前评估和风险控制建议"),
     ]
     return [make_task(f"external-article-{task_id}", "external_article", platform, target, anchor, angle, "medium") for task_id, platform, target, anchor, angle in rows]
 

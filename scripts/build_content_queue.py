@@ -105,7 +105,7 @@ def title_for(keyword: str, cluster_id: str) -> str:
     if any(suffix in keyword for suffix in ("费用", "价格", "多少钱", "报价", "怎么收费")):
         return f"{keyword}：影响因素、预算准备和沟通要点"
     if "哪家好" in keyword or "靠谱吗" in keyword:
-        return f"{keyword}：选择判断、服务边界和风险提示"
+        return f"{keyword}：选择判断、合规评估和风险提示"
     return f"{keyword}：海外推广与获客准备指南"
 
 

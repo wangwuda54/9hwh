@@ -28,6 +28,6 @@ secondary_keywords:
 
 - draft 不等于发布。
 - 只有 `content_queue.json` 中对应任务状态为 `ready_to_publish` 或 `published`，`build_site.py` 才能生成公开内容页。
-- Codex 后续负责校验 front matter、内链、服务边界和构建结果。
+- Codex 后续负责校验 front matter、内链、合规投放建议和构建结果。
 - 不要把未审核正文直接发布到 sitemap。
 - 不要放入 `service_` 页面或旧站页面内容。

@@ -52,8 +52,8 @@ def task_body(task: dict, rules: dict, site: dict, blocks: dict) -> str:
 ## 必须覆盖的问题
 
 - 这个关键词背后的真实需求是什么？
-- 客户实际关心的是能不能投、从哪里开始投，还是怎样少浪费预算？
-- 适合什么项目类型，不适合什么项目类型？
+- 客户实际关心的是项目适配度、从哪里开始投，还是怎样少浪费预算？
+- 适合什么项目类型，投放前需要先评估哪些资料？
 - 开户前需要准备哪些资料、素材、落地页和预算信息？
 - 账户、素材、落地页、审核反馈和转化路径之间通常怎么互相影响？
 - 哪些说法看起来吸引人，但容易把账户和页面一起带进风险？
@@ -67,7 +67,7 @@ def task_body(task: dict, rules: dict, site: dict, blocks: dict) -> str:
 
 {chr(10).join('- ' + item for item in forbidden)}
 
-## 服务边界
+## 合规投放建议
 
 {blocks['service_boundary']}
 
