@@ -27,36 +27,25 @@ jobs:
           python-version: '3.11'
 
       - name: Refocus topic copy
-        shell: bash
-        run: |
-          set -euo pipefail
-          python scripts/refocus_topics_copy.py
+        run: python scripts/refocus_topics_copy.py
+
+      - name: Regenerate task packs
+        run: python scripts/generate_deepseek_tasks.py
 
       - name: Build site
-        shell: bash
-        run: |
-          set -euo pipefail
-          python scripts/build_site.py
+        run: python scripts/build_site.py
 
       - name: Check static site
-        shell: bash
-        run: |
-          set -euo pipefail
-          python scripts/check_static_site.py
+        run: python scripts/check_static_site.py
 
       - name: Check sitemap readiness
-        shell: bash
-        run: |
-          set -euo pipefail
-          python scripts/check_sitemap_readiness.py
+        run: python scripts/check_sitemap_readiness.py
 
       - name: Commit generated changes
-        shell: bash
         run: |
-          set -euo pipefail
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add site_src/data/topics.json site/public data/content-assets docs || true
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add site_src/data/topics.json site/public data/content-assets data/deepseek-tasks docs || true
           if git diff --cached --quiet; then
             echo "No changes to commit."
             exit 0
