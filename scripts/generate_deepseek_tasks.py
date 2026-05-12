@@ -67,7 +67,7 @@ def task_body(task: dict, rules: dict, site: dict, blocks: dict) -> str:
 
 {chr(10).join('- ' + item for item in forbidden)}
 
-## 合规投放建议
+## 投放前评估
 
 {blocks['service_boundary']}
 

@@ -67,7 +67,7 @@ HIGH_RISK_MARKERS = [
     "理财",
     "博彩",
 ]
-SERVICE_BOUNDARY_MARKERS = ["合规投放建议", "项目适配", "投放地区", "资质材料", "审核风险"]
+SERVICE_BOUNDARY_MARKERS = ["投放前评估", "项目适配", "投放地区", "资质材料", "审核风险"]
 
 
 class BodyHtmlParser(html.parser.HTMLParser):

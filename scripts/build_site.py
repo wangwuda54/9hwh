@@ -503,6 +503,70 @@ def platform_service_fit(item: dict) -> list[str]:
     )
 
 
+def value_items(value) -> list:
+    if not value:
+        return []
+    if isinstance(value, list):
+        return value
+    return [value]
+
+
+def assessment_title(item: dict, item_type: str) -> str:
+    title = item.get("assessment_title")
+    if title:
+        return title
+    fallback_titles = {
+        "service": "投放前评估重点",
+        "platform": "平台投放评估重点",
+        "topic": "项目评估重点",
+    }
+    return fallback_titles.get(item_type, "投放前评估重点")
+
+
+def assessment_items(item: dict, item_type: str) -> list[str]:
+    explicit = clean_items(item.get("assessment_items", []))
+    if explicit:
+        return explicit[:4]
+
+    collected: list[str] = []
+    seen: set[str] = set()
+    fallback_keys = (
+        "boundaries",
+        "not_suitable",
+        "not_suitable_for",
+        "risk_notes",
+        "service_fit",
+    )
+    for key in fallback_keys:
+        for value in clean_items(value_items(item.get(key, []))):
+            if value in seen:
+                continue
+            collected.append(value)
+            seen.add(value)
+            if len(collected) >= 4:
+                return collected
+
+    defaults = {
+        "service": [
+            "先确认目标地区、预算节奏、素材方向和落地页承接路径，再制定推广执行方案。",
+            "结合账户、广告文案、页面内容和数据反馈，持续调整投放节奏和素材表达。",
+        ],
+        "platform": [
+            "先确认目标地区、受众人群、素材方向和页面承接方式，再判断平台投放优先级。",
+            "结合账户结构、审核反馈、转化路径和线索质量，逐步调整预算和素材组合。",
+        ],
+        "topic": [
+            "先确认投放地区、项目资料、广告文案和落地页内容，再判断适合的渠道组合。",
+            "结合表单路径、咨询承接、素材角度和账户反馈，降低审核被拒和投放中断风险。",
+        ],
+    }
+    return defaults.get(item_type, defaults["service"])
+
+
+def assessment_section(item: dict, item_type: str) -> tuple[str, str]:
+    return assessment_title(item, item_type), list_items(assessment_items(item, item_type))
+
+
 def detail_content(item: dict, item_type: str, faq_data: dict, blocks: dict, keyword_ctx: dict, published_articles: list[dict] | None = None) -> tuple[str, list[dict]]:
     detail_eyebrows = {
         "service": "服务详情",
@@ -517,8 +581,7 @@ def detail_content(item: dict, item_type: str, faq_data: dict, blocks: dict, key
             ("支持内容", list_items(item.get("support_items", []))),
             ("执行流程", list_items(item.get("process", []))),
             ("推广前准备", list_items(item.get("preparation", []))),
-            ("项目适配建议", list_items(item.get("not_suitable", item.get("not_suitable_for", [])))),
-            ("合规投放建议", list_items(item.get("boundaries", []))),
+            assessment_section(item, item_type),
         ]
         faq_group = "services"
     elif item_type == "platform":
@@ -527,8 +590,7 @@ def detail_content(item: dict, item_type: str, faq_data: dict, blocks: dict, key
             ("适合什么项目", list_items(item.get("suitable_projects", item.get("suitable_for", [])))),
             ("适合的流量场景", list_items(item.get("traffic_scenes", []))),
             ("推广前准备", list_items(item.get("preparation", []))),
-            ("服务适配", list_items(platform_service_fit(item))),
-            ("合规投放建议", list_items(item.get("boundaries", []))),
+            assessment_section(item, item_type),
         ]
         faq_group = "platforms"
     else:
@@ -538,9 +600,7 @@ def detail_content(item: dict, item_type: str, faq_data: dict, blocks: dict, key
             ("适合什么项目", list_items(item.get("suitable_for", []))),
             ("推广前准备", list_items(item.get("preparation", []))),
             ("渠道建议", list_items(item.get("recommended_channels", []))),
-            ("合规投放建议", list_items(item.get("boundaries", []))),
-            ("咨询前准备", list_items(topic_consultation_prep(item))),
-            ("服务适配", list_items(topic_service_fit(item))),
+            assessment_section(item, item_type),
             (article_title, article_content),
         ]
         faq_group = "topics"
