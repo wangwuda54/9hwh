@@ -52,12 +52,12 @@
     "content_type": "topic",
     "priority_score": 48,
     "risk_level": "medium",
-    "publish_status": "queued",
-    "planned_publish_date": "2026-05-04",
+    "publish_status": "published",
+    "planned_publish_date": "2026-05-12",
     "batch": "batch-001",
     "review_status": "pass",
     "internal_link_count": 5,
-    "notes": "ok"
+    "notes": "ok published_at=2026-05-12"
   },
   {
     "content_id": "c055-loan-leads-fb-loan-leads-60d3dc0c",

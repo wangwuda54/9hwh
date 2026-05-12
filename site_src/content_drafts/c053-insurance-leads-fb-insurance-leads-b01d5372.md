@@ -5,7 +5,7 @@ description: 了解FB保险获客的真实需求与推广准备，为出海保�
 target_url: /blog/topics/fb-insurance-leads-b01d5372/
 primary_keyword: FB保险获客
 secondary_keywords: 保险, FB, 获客
-status: reviewed
+status: published
 ---
 
 ## 搜索意图判断：FB保险获客的真实需求

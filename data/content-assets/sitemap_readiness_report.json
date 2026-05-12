@@ -4,9 +4,9 @@
   "robots_exists": true,
   "robots_has_sitemap": true,
   "expected_sitemap_url": "https://www.9hwh.com/sitemap.xml",
-  "sitemap_url_count": 31,
+  "sitemap_url_count": 32,
   "queue_url_count": 60,
-  "published_queue_url_count": 8,
+  "published_queue_url_count": 9,
   "queue_urls_in_sitemap": [
     "/blog/crypto-promotion-how-to-17e66750/",
     "/blog/dating-app-how-to-f56b0dad/",
@@ -15,7 +15,8 @@
     "/blog/part-time-how-to-5875d40e/",
     "/blog/topics/fb-dating-traffic-5035e1c0/",
     "/blog/topics/fb-game-promotion-eec369fd/",
-    "/blog/topics/fb-immigration-leads-b33be086/"
+    "/blog/topics/fb-immigration-leads-b33be086/",
+    "/blog/topics/fb-insurance-leads-b01d5372/"
   ],
   "non_published_queue_urls_in_sitemap": [],
   "reviewed_urls_in_sitemap": [],
