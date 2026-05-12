@@ -17,8 +17,6 @@ on:
         description: "Optional daily publish limit"
         required: false
         default: "3"
-  schedule:
-    - cron: "30 2 * * *"
 
 permissions:
   contents: write
