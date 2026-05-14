@@ -5,7 +5,7 @@ description: 本文分析了FB贷款获客背后的真实需求，介绍适合�
 target_url: /blog/topics/fb-loan-leads-60d3dc0c/
 primary_keyword: FB贷款获客
 secondary_keywords: 贷款, FB, 获客
-status: reviewed
+status: published
 ---
 
 ## 搜索意图判断
