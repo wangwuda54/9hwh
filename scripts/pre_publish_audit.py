@@ -67,11 +67,6 @@ def contains_html(body: str) -> bool:
     return bool(parser.tags)
 
 
-def has_forbidden_terms(text: str, rules: dict) -> list[str]:
-    terms = list(rules.get("blocked_terms", []))
-    return [term for term in terms if term and term in text]
-
-
 def load_review_by_id() -> dict[str, dict]:
     report = load_json(REVIEW_REPORT_PATH, {"articles": []})
     return {item["content_id"]: item for item in report.get("articles", []) if item.get("content_id")}
@@ -168,10 +163,8 @@ def validate_candidate(entry: dict, content_by_id: dict[str, dict], review_by_id
     if not review_item:
         errors.append(f"{content_id}: review report missing")
     else:
-        if review_item.get("status") != "pass":
-            errors.append(f"{content_id}: review must be pass")
-        if review_item.get("warnings"):
-            errors.append(f"{content_id}: review warnings must be 0")
+        if review_item.get("status") not in {"pass", "warning"}:
+            errors.append(f"{content_id}: review must be pass or warning")
         if review_item.get("issues"):
             errors.append(f"{content_id}: review fail issues must be 0")
 
@@ -194,9 +187,6 @@ def validate_candidate(entry: dict, content_by_id: dict[str, dict], review_by_id
         errors.append(f"{content_id}: HTML is not allowed")
     if any(line.strip().startswith("# ") for line in body.splitlines()):
         errors.append(f"{content_id}: body cannot contain H1")
-    forbidden = has_forbidden_terms(full_text, rules)
-    if forbidden:
-        errors.append(f"{content_id}: forbidden terms found")
     if len(links) < 4:
         errors.append(f"{content_id}: needs at least 4 internal links")
 

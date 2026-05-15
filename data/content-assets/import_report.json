@@ -1,67 +1,248 @@
 {
-  "generated_at": "2026-04-30T23:18:41",
+  "generated_at": "2026-05-15T15:56:41",
   "imported": [
+    {
+      "file": "c002-ad-campaign-support-how-to-f12343f8.md",
+      "article": 1,
+      "content_id": "c002-ad-campaign-support-how-to-f12343f8",
+      "target": "site_src/content_drafts/c002-ad-campaign-support-how-to-f12343f8.md"
+    },
+    {
+      "file": "c003-ad-campaign-support-crypto-how-to-887db2f2.md",
+      "article": 1,
+      "content_id": "c003-ad-campaign-support-crypto-how-to-887db2f2",
+      "target": "site_src/content_drafts/c003-ad-campaign-support-crypto-how-to-887db2f2.md"
+    },
+    {
+      "file": "c005-crypto-promotion-crypto-traffic-how-to-a32df87d.md",
+      "article": 1,
+      "content_id": "c005-crypto-promotion-crypto-traffic-how-to-a32df87d",
+      "target": "site_src/content_drafts/c005-crypto-promotion-crypto-traffic-how-to-a32df87d.md"
+    },
+    {
+      "file": "c006-crypto-promotion-crypto-promotion-how-to-1b5b5379.md",
+      "article": 1,
+      "content_id": "c006-crypto-promotion-crypto-promotion-how-to-1b5b5379",
+      "target": "site_src/content_drafts/c006-crypto-promotion-crypto-promotion-how-to-1b5b5379.md"
+    },
+    {
+      "file": "c008-dating-traffic-dating-how-to-e74a54f4.md",
+      "article": 1,
+      "content_id": "c008-dating-traffic-dating-how-to-e74a54f4",
+      "target": "site_src/content_drafts/c008-dating-traffic-dating-how-to-e74a54f4.md"
+    },
+    {
+      "file": "c009-dating-traffic-dating-how-to-ad9ee1af.md",
+      "article": 1,
+      "content_id": "c009-dating-traffic-dating-how-to-ad9ee1af",
+      "target": "site_src/content_drafts/c009-dating-traffic-dating-how-to-ad9ee1af.md"
+    },
+    {
+      "file": "c011-media-buying-online-work-how-to-60caf548.md",
+      "article": 1,
+      "content_id": "c011-media-buying-online-work-how-to-60caf548",
+      "target": "site_src/content_drafts/c011-media-buying-online-work-how-to-60caf548.md"
+    },
+    {
+      "file": "c013-traffic-acquisition-dating-traffic-how-to-a23563ce.md",
+      "article": 1,
+      "content_id": "c013-traffic-acquisition-dating-traffic-how-to-a23563ce",
+      "target": "site_src/content_drafts/c013-traffic-acquisition-dating-traffic-how-to-a23563ce.md"
+    },
+    {
+      "file": "c014-traffic-acquisition-insurance-how-to-1d0e89ba.md",
+      "article": 1,
+      "content_id": "c014-traffic-acquisition-insurance-how-to-1d0e89ba",
+      "target": "site_src/content_drafts/c014-traffic-acquisition-insurance-how-to-1d0e89ba.md"
+    },
+    {
+      "file": "c015-traffic-acquisition-game-how-to-ce12eefa.md",
+      "article": 1,
+      "content_id": "c015-traffic-acquisition-game-how-to-ce12eefa",
+      "target": "site_src/content_drafts/c015-traffic-acquisition-game-how-to-ce12eefa.md"
+    },
+    {
+      "file": "c016-traffic-acquisition-immigration-how-to-38e8c4a4.md",
+      "article": 1,
+      "content_id": "c016-traffic-acquisition-immigration-how-to-38e8c4a4",
+      "target": "site_src/content_drafts/c016-traffic-acquisition-immigration-how-to-38e8c4a4.md"
+    },
+    {
+      "file": "c017-traffic-acquisition-loan-how-to-ee56b631.md",
+      "article": 1,
+      "content_id": "c017-traffic-acquisition-loan-how-to-ee56b631",
+      "target": "site_src/content_drafts/c017-traffic-acquisition-loan-how-to-ee56b631.md"
+    },
+    {
+      "file": "c018-ad-campaign-support-cost-6e550a25.md",
+      "article": 1,
+      "content_id": "c018-ad-campaign-support-cost-6e550a25",
+      "target": "site_src/content_drafts/c018-ad-campaign-support-cost-6e550a25.md"
+    },
+    {
+      "file": "c019-ad-campaign-support-cost-cafc4fef.md",
+      "article": 1,
+      "content_id": "c019-ad-campaign-support-cost-cafc4fef",
+      "target": "site_src/content_drafts/c019-ad-campaign-support-cost-cafc4fef.md"
+    },
+    {
+      "file": "c020-ad-campaign-support-crypto-cost-5d087f6e.md",
+      "article": 1,
+      "content_id": "c020-ad-campaign-support-crypto-cost-5d087f6e",
+      "target": "site_src/content_drafts/c020-ad-campaign-support-crypto-cost-5d087f6e.md"
+    }
+  ],
+  "skipped": [
     {
       "file": "c001-ad-campaign-support-how-to-17e66750.md",
       "article": 1,
       "content_id": "c001-ad-campaign-support-how-to-17e66750",
-      "target": "site_src/content_drafts/c001-ad-campaign-support-how-to-17e66750.md"
+      "reason": "published content is protected"
     },
     {
       "file": "c004-crypto-promotion-exchange-acquisition-how-to-efd74e87.md",
       "article": 1,
       "content_id": "c004-crypto-promotion-exchange-acquisition-how-to-efd74e87",
-      "target": "site_src/content_drafts/c004-crypto-promotion-exchange-acquisition-how-to-efd74e87.md"
+      "reason": "published content is protected"
     },
     {
       "file": "c007-dating-traffic-dating-how-to-002063ad.md",
       "article": 1,
       "content_id": "c007-dating-traffic-dating-how-to-002063ad",
-      "target": "site_src/content_drafts/c007-dating-traffic-dating-how-to-002063ad.md"
+      "reason": "published content is protected"
     },
     {
       "file": "c010-media-buying-part-time-how-to-5875d40e.md",
       "article": 1,
       "content_id": "c010-media-buying-part-time-how-to-5875d40e",
-      "target": "site_src/content_drafts/c010-media-buying-part-time-how-to-5875d40e.md"
+      "reason": "published content is protected"
     },
     {
       "file": "c012-traffic-acquisition-dating-app-how-to-f56b0dad.md",
       "article": 1,
       "content_id": "c012-traffic-acquisition-dating-app-how-to-f56b0dad",
-      "target": "site_src/content_drafts/c012-traffic-acquisition-dating-app-how-to-f56b0dad.md"
+      "reason": "published content is protected"
     },
     {
       "file": "c031-fb-promotion-fb-dating-traffic-5035e1c0.md",
       "article": 1,
       "content_id": "c031-fb-promotion-fb-dating-traffic-5035e1c0",
-      "target": "site_src/content_drafts/c031-fb-promotion-fb-dating-traffic-5035e1c0.md"
+      "reason": "published content is protected"
     },
     {
       "file": "c043-game-promotion-fb-game-promotion-eec369fd.md",
       "article": 1,
       "content_id": "c043-game-promotion-fb-game-promotion-eec369fd",
-      "target": "site_src/content_drafts/c043-game-promotion-fb-game-promotion-eec369fd.md"
+      "reason": "published content is protected"
     },
     {
       "file": "c051-immigration-leads-fb-immigration-leads-b33be086.md",
       "article": 1,
       "content_id": "c051-immigration-leads-fb-immigration-leads-b33be086",
-      "target": "site_src/content_drafts/c051-immigration-leads-fb-immigration-leads-b33be086.md"
+      "reason": "published content is protected"
     },
     {
       "file": "c053-insurance-leads-fb-insurance-leads-b01d5372.md",
       "article": 1,
       "content_id": "c053-insurance-leads-fb-insurance-leads-b01d5372",
-      "target": "site_src/content_drafts/c053-insurance-leads-fb-insurance-leads-b01d5372.md"
+      "reason": "published content is protected"
     },
     {
       "file": "c055-loan-leads-fb-loan-leads-60d3dc0c.md",
       "article": 1,
       "content_id": "c055-loan-leads-fb-loan-leads-60d3dc0c",
-      "target": "site_src/content_drafts/c055-loan-leads-fb-loan-leads-60d3dc0c.md"
+      "reason": "published content is protected"
+    },
+    {
+      "file": "c061-traffic-acquisition-leads-quality-test.md",
+      "article": 1,
+      "content_id": "c061-traffic-acquisition-leads-quality-test",
+      "reason": "draft file already exists"
+    },
+    {
+      "file": "c062-media-buying-small-budget-test.md",
+      "article": 1,
+      "content_id": "c062-media-buying-small-budget-test",
+      "reason": "draft file already exists"
+    },
+    {
+      "file": "c063-overseas-promotion-landing-page.md",
+      "article": 1,
+      "content_id": "c063-overseas-promotion-landing-page",
+      "reason": "draft file already exists"
+    },
+    {
+      "file": "c064-ad-campaign-support-material-test.md",
+      "article": 1,
+      "content_id": "c064-ad-campaign-support-material-test",
+      "reason": "draft file already exists"
+    },
+    {
+      "file": "c065-fb-leads-form-setup.md",
+      "article": 1,
+      "content_id": "c065-fb-leads-form-setup",
+      "reason": "draft file already exists"
+    },
+    {
+      "file": "c066-google-search-leads-keywords.md",
+      "article": 1,
+      "content_id": "c066-google-search-leads-keywords",
+      "reason": "draft file already exists"
+    },
+    {
+      "file": "c067-tk-short-video-leads.md",
+      "article": 1,
+      "content_id": "c067-tk-short-video-leads",
+      "reason": "draft file already exists"
+    },
+    {
+      "file": "c068-game-user-acquisition-cost.md",
+      "article": 1,
+      "content_id": "c068-game-user-acquisition-cost",
+      "reason": "draft file already exists"
+    },
+    {
+      "file": "c069-dating-app-registration-flow.md",
+      "article": 1,
+      "content_id": "c069-dating-app-registration-flow",
+      "reason": "draft file already exists"
+    },
+    {
+      "file": "c070-crypto-exchange-leads.md",
+      "article": 1,
+      "content_id": "c070-crypto-exchange-leads",
+      "reason": "draft file already exists"
+    },
+    {
+      "file": "c071-loan-leads-page-copy.md",
+      "article": 1,
+      "content_id": "c071-loan-leads-page-copy",
+      "reason": "draft file already exists"
+    },
+    {
+      "file": "c072-insurance-leads-follow-up.md",
+      "article": 1,
+      "content_id": "c072-insurance-leads-follow-up",
+      "reason": "draft file already exists"
+    },
+    {
+      "file": "c073-immigration-consultation-leads.md",
+      "article": 1,
+      "content_id": "c073-immigration-consultation-leads",
+      "reason": "draft file already exists"
+    },
+    {
+      "file": "c074-online-work-leads-test.md",
+      "article": 1,
+      "content_id": "c074-online-work-leads-test",
+      "reason": "draft file already exists"
+    },
+    {
+      "file": "c075-youtube-promotion-leads.md",
+      "article": 1,
+      "content_id": "c075-youtube-promotion-leads",
+      "reason": "draft file already exists"
     }
   ],
-  "skipped": [],
   "failed": []
 }

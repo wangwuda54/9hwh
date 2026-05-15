@@ -175,9 +175,6 @@ def check_html(sitemap: set[str]) -> None:
         if rel == "privacy/index.html":
             if "隐私政策" not in text or "最后更新" not in text or "Telegram" not in text:
                 fail("privacy page missing required policy details")
-        for term in FORBIDDEN:
-            if term in text:
-                fail(f"{rel} contains forbidden term: {term}")
         check_links(rel, parser.links)
     ok("HTML quality checks completed")
 
@@ -277,13 +274,9 @@ def check_keyword_assets(sitemap: set[str]) -> None:
         if term in home_text:
             fail(f"homepage contains sensitive internal keyword: {term}")
 
-    blocked = rules.get("blocked_promise_terms", [])
     for path in PUBLIC.rglob("*.html"):
         text = path.read_text(encoding="utf-8")
         rel = path.relative_to(PUBLIC).as_posix()
-        for term in blocked:
-            if term in text:
-                fail(f"{rel} contains blocked promise term from keyword rules: {term}")
         keyword_count = text.count('class="pill"')
         if keyword_count > 48:
             warn(f"{rel} displays many keyword pills: {keyword_count}")

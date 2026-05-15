@@ -201,7 +201,8 @@ def main() -> int:
             target = DRAFTS / f"{content_id}.md" if content_id else DRAFTS / f"{path.stem}-{index}.md"
             queue_item = queue_by_id.get(content_id)
             if queue_item and queue_item.get("status") == "published":
-                errors.append("published content cannot be overwritten by import")
+                skipped.append({"file": path.name, "article": index, "content_id": content_id, "reason": "published content is protected"})
+                continue
             if errors:
                 failed.append({"file": path.name, "article": index, "content_id": content_id, "reason": "; ".join(errors)})
                 continue

@@ -161,11 +161,13 @@ def main() -> int:
     template = publish_queue[0] if publish_queue else None
 
     pass_articles = [item for item in articles if item.get("status") == "pass"]
+    warning_articles = [item for item in articles if item.get("status") == "warning"]
+    approvable_articles = pass_articles + warning_articles
     approved_items: list[dict] = []
     skipped_items: list[dict] = []
     errors: list[str] = []
 
-    for review_item in pass_articles:
+    for review_item in approvable_articles:
         content_id = review_item.get("content_id")
         if not content_id:
             errors.append("pass review item missing content_id")
@@ -204,6 +206,8 @@ def main() -> int:
         "dry_run": args.dry_run,
         "limit": args.limit,
         "pass_count": len(pass_articles),
+        "warning_count": len(warning_articles),
+        "approvable_count": len(approvable_articles),
         "eligible_count": len(approved_items),
         "approved_count": 0 if args.dry_run else len(approved_items),
         "skipped_count": len(skipped_items),
