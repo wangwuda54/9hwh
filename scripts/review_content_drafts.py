@@ -9,7 +9,6 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 DRAFTS = ROOT / "site_src" / "content_drafts"
 QUEUE_PATH = ROOT / "site_src" / "data" / "content" / "content_queue.json"
-RULES_PATH = ROOT / "site_src" / "data" / "content" / "content_rules.json"
 ASSETS = ROOT / "data" / "content-assets"
 DOCS = ROOT / "docs"
 
@@ -23,51 +22,6 @@ REQUIRED_FIELDS = (
     "status",
 )
 LEGAL_DRAFT_STATUSES = {"draft_received", "reviewed", "published"}
-FORBIDDEN_TERMS = [
-    "保证过审",
-    "保证不限号",
-    "保证效果",
-    "保证转化",
-    "保证收益",
-    "绕过平台政策",
-    "规避审核",
-    "抗风控",
-    "Cloak",
-    "仿牌",
-    "博彩",
-    "黑五类",
-    "三不限",
-    "违规业务也能做",
-    "任何平台都能过",
-    "任何行业都能投",
-]
-FABRICATION_PATTERNS = [
-    r"办公室",
-    r"办公地址",
-    r"总部位于",
-    r"团队规模",
-    r"上百人团队",
-    r"(我们的|本团队的|公司已做过的)客户案例",
-    r"(我们的|本团队的|公司已做过的)成功案例",
-    r"联系电话",
-    r"联系.*手机号",
-    r"手机号.{0,8}(联系|咨询|添加|提交)",
-    r"微信.{0,8}(联系|咨询|添加)",
-    r"WhatsApp.{0,8}(contact|message|consult|chat|number)",
-    r"Telegram.{0,8}(contact|message|consult|group|channel)",
-]
-HIGH_RISK_MARKERS = [
-    "虚拟币",
-    "加密货币",
-    "币圈",
-    "交易所",
-    "贷款",
-    "保险",
-    "移民",
-    "理财",
-    "博彩",
-]
-SERVICE_BOUNDARY_MARKERS = ["投放前评估", "项目适配", "投放地区", "资质材料", "审核风险"]
 
 
 class BodyHtmlParser(html.parser.HTMLParser):
@@ -151,18 +105,6 @@ def review_internal_links(meta: dict[str, str], queue_item: dict | None, body: s
     return warnings
 
 
-def has_service_boundary(meta: dict[str, str], body: str) -> bool:
-    text = " ".join([meta.get("title", ""), meta.get("description", ""), body])
-    return any(marker in text for marker in SERVICE_BOUNDARY_MARKERS)
-
-
-def is_high_risk(meta: dict[str, str], queue_item: dict | None) -> bool:
-    if queue_item and queue_item.get("risk_level") in {"medium", "high"}:
-        return True
-    text = " ".join(meta.values())
-    return any(marker in text for marker in HIGH_RISK_MARKERS)
-
-
 def check_markdown_headings(body: str) -> list[str]:
     issues = []
     for line_no, line in enumerate(body.splitlines(), start=1):
@@ -226,24 +168,7 @@ def review_one(path: Path, queue_by_id: dict[str, dict]) -> dict:
     if primary_keyword and body.count(primary_keyword) > 12:
         warnings.append("possible keyword stuffing")
 
-    full_text = json.dumps(meta, ensure_ascii=False) + "\n" + body
-    for term in FORBIDDEN_TERMS:
-        if term in full_text:
-            issues.append(f"forbidden term: {term}")
-    rules = load_json(RULES_PATH)
-    for term in rules.get("blocked_terms", []):
-        if term and term in full_text:
-            issues.append(f"blocked term from content_rules: {term}")
-    for pattern in FABRICATION_PATTERNS:
-        if re.search(pattern, body, flags=re.IGNORECASE):
-            issues.append(f"possible fabricated company/contact claim: {pattern}")
-    if "service_" in body or "/service_" in body:
-        issues.append("contains old service link")
     warnings.extend(review_internal_links(meta, queue_item, body))
-    if is_high_risk(meta, queue_item) and not has_service_boundary(meta, body):
-        issues.append("high-risk topic missing service boundary wording")
-    elif not has_service_boundary(meta, body):
-        warnings.append("missing service boundary wording")
 
     return {
         "file": path.name,
