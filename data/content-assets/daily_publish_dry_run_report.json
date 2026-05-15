@@ -1,32 +1,21 @@
 {
-  "status": "success",
-  "run_date": "2026-05-14",
-  "date": "2026-05-14",
+  "status": "no_changes",
+  "run_date": "2026-05-15",
+  "date": "2026-05-15",
   "mode": "normal",
   "daily_limit": 3,
   "hard_limit": 10,
   "dry_run": true,
-  "reviewed_candidate_count": 1,
-  "selected_count": 1,
+  "reviewed_candidate_count": 0,
+  "selected_count": 0,
   "published_count": 0,
-  "total_published": 9,
-  "selected_items": [
-    {
-      "content_id": "c055-loan-leads-fb-loan-leads-60d3dc0c",
-      "title": "FB贷款获客：海外推广与获客准备指南",
-      "target_url": "/blog/topics/fb-loan-leads-60d3dc0c/",
-      "full_url": "https://www.9hwh.com/blog/topics/fb-loan-leads-60d3dc0c/",
-      "planned_publish_date": "2026-05-14",
-      "risk_level": "medium",
-      "content_type": "topic",
-      "internal_link_count": 5
-    }
-  ],
+  "total_published": 10,
+  "selected_items": [],
   "published_items": [],
   "skipped_items": [],
   "errors": [],
   "post_publish_checks": [],
   "site_url": "https://www.9hwh.com",
-  "message": "Dry-run selected 1 reviewed item(s).",
-  "generated_at": "2026-05-14T11:57:57+08:00"
+  "message": "Dry-run found no reviewed content to publish.",
+  "generated_at": "2026-05-15T06:08:45+00:00"
 }
