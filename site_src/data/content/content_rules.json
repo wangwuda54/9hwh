@@ -1,27 +1,52 @@
 {
   "max_new_content_per_batch": 60,
   "default_word_count": 1800,
-  "high_priority_intents": ["long_tail_question", "获客、拉新、用户来源判断", "投放前准备和执行协助", "虚拟币、币圈、交易所拉新", "交友项目获客和注册拉新"],
-  "blocked_terms": ["保证过审", "保证不限号", "稳定不限户", "保证效果", "保证转化", "保证收益", "百分百稳定", "不封号", "包过", "内部渠道", "绕过平台政策", "规避审核", "绕审", "代规避", "抗风控", "黑科技", "Cloak", "cloak", "仿牌", "博彩", "黑五类", "三不限", "违规业务也能做", "任何平台都能过", "任何行业都能投", "Telegram 引流", "TG 引流", "灰色资源", "账号买卖"],
-  "sensitive_terms": ["色粉", "精准色粉", "成人粉", "成人兴趣粉", "充值色粉", "Slot", "维权", "债务", "索赔"],
-  "homepage_forbidden_terms": ["色粉", "精准色粉", "成人粉", "成人兴趣粉", "充值色粉", "Slot", "保证过审", "保证不限号", "保证效果", "保证收益"],
-  "article_required_sections": ["搜索意图判断", "适合什么项目", "推广前准备", "渠道建议", "常见问题", "怎么开始测试", "联系咨询"],
+  "high_priority_intents": [
+    "long_tail_question",
+    "获客、拉新、用户来源判断",
+    "投放前准备和执行协助",
+    "虚拟币、币圈、交易所拉新",
+    "交友项目获客和注册拉新"
+  ],
+  "blocked_terms": [],
+  "sensitive_terms": [],
+  "homepage_forbidden_terms": [],
+  "article_required_sections": [
+    "搜索意图判断",
+    "适合什么项目",
+    "推广前准备",
+    "渠道建议",
+    "常见问题",
+    "怎么开始测试",
+    "联系咨询"
+  ],
   "internal_link_rules": {
-    "required_links": ["/services/", "/topics/", "/contact/"],
+    "required_links": [
+      "/services/",
+      "/topics/",
+      "/contact/"
+    ],
     "minimum_article_links": 4,
-    "required_article_link_types": ["platform_or_service", "topic", "listing", "contact"],
+    "required_article_link_types": [
+      "platform_or_service",
+      "topic",
+      "listing",
+      "contact"
+    ],
     "max_links_per_article": 8,
-    "avoid_links": ["service_", "legacy-source"]
+    "avoid_links": [
+      "service_",
+      "legacy-source"
+    ]
   },
   "deepseek_prompt_rules": [
     "正文由 DeepSeek 生成，Codex 只负责任务包、接入、构建和检查。",
-    "不要写保证过审、保证不限号、稳定不限户、保证效果、保证收益、绕过平台政策、规避审核、内部渠道、黑科技、Telegram/TG 引流、具体报价、灰色资源、账号买卖等承诺或资源话术。",
-    "内容要像真实服务页或推广经验文章，不要像灰色落地页，也不要像合规报告。",
-    "标题、H1、描述要保留客户真实搜索词，例如贷款获客、交友引流、游戏买量、保险获客、移民咨询获客、虚拟币推广。",
-    "表达要像真实做过投放、开户、素材、落地页和客服承接的人在解释问题，不要写成政策说明、审查说明或模板文章。",
+    "这是自建站 SEO 内容，不设置禁词，不把客户真实搜索词当成禁止内容。",
+    "标题、H1、描述和正文要保留客户真实搜索词，不要强行改成没人搜的正规词。",
+    "内容要像真实服务页或推广经验文章，不要像平台审核说明或模板文章。",
+    "表达要像真实做过获客、素材、落地页和客服承接的人在解释问题。",
     "短句优先，直接说结论，少用空泛大词，不要堆长段，不要频繁使用“首先、其次、最后”。",
     "多写客户会问的问题、素材怎么准备、落地页怎么承接、预算怎么测试、线索质量怎么看。",
-    "不能承诺的地方直接不写承诺，不要反复写风险、边界、不保证、不适合。",
     "结尾 CTA 偏实操咨询，引导读者整理地区、产品类型、落地页、素材方向和预算后直接联系。",
     "必须包含怎么开始测试和咨询准备建议。"
   ]
