@@ -264,7 +264,7 @@
       "真人交友怎么做"
     ],
     "page_type": "blog_article",
-    "status": "reviewed",
+    "status": "published",
     "priority": 9,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -450,7 +450,7 @@
       "游戏怎么做"
     ],
     "page_type": "blog_article",
-    "status": "reviewed",
+    "status": "published",
     "priority": 15,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -543,7 +543,7 @@
       "加密货币费用"
     ],
     "page_type": "blog_article",
-    "status": "reviewed",
+    "status": "published",
     "priority": 18,
     "word_count_target": 1800,
     "deepseek_required": true,

@@ -5,7 +5,7 @@ description: 游戏怎么做：推广路径、渠道判断和准备清单，围�
 target_url: /blog/game-how-to-ce12eefa/
 primary_keyword: 游戏怎么做
 secondary_keywords: 游戏, 怎么做
-status: reviewed
+status: published
 ---
 
 ## 游戏怎么推？先想清楚“怎么走”比“走哪条路”重要

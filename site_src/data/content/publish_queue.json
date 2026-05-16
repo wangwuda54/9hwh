@@ -352,12 +352,12 @@
     "content_type": "blog_article",
     "priority_score": 9,
     "risk_level": "low",
-    "publish_status": "queued",
-    "planned_publish_date": "",
+    "publish_status": "published",
+    "planned_publish_date": "2026-05-16",
     "batch": "",
     "review_status": "pass",
     "internal_link_count": 4,
-    "notes": "approved_from_review"
+    "notes": "approved_from_review published_at=2026-05-16"
   },
   {
     "content_id": "c011-media-buying-online-work-how-to-60caf548",
@@ -412,12 +412,12 @@
     "content_type": "blog_article",
     "priority_score": 15,
     "risk_level": "low",
-    "publish_status": "queued",
-    "planned_publish_date": "",
+    "publish_status": "published",
+    "planned_publish_date": "2026-05-16",
     "batch": "",
     "review_status": "pass",
     "internal_link_count": 4,
-    "notes": "approved_from_review"
+    "notes": "approved_from_review published_at=2026-05-16"
   },
   {
     "content_id": "c016-traffic-acquisition-immigration-how-to-38e8c4a4",
@@ -457,12 +457,12 @@
     "content_type": "blog_article",
     "priority_score": 18,
     "risk_level": "low",
-    "publish_status": "queued",
-    "planned_publish_date": "",
+    "publish_status": "published",
+    "planned_publish_date": "2026-05-16",
     "batch": "",
     "review_status": "pass",
     "internal_link_count": 4,
-    "notes": "approved_from_review"
+    "notes": "approved_from_review published_at=2026-05-16"
   },
   {
     "content_id": "c019-ad-campaign-support-cost-cafc4fef",

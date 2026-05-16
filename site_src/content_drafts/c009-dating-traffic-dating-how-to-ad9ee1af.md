@@ -5,7 +5,7 @@ description: 真人交友怎么做：推广路径、渠道判断和准备清单�
 target_url: /blog/dating-how-to-ad9ee1af/
 primary_keyword: 真人交友怎么做
 secondary_keywords: 真人交友, 怎么做
-status: reviewed
+status: published
 ---
 
 ## 真人交友怎么做：从渠道选择到素材落地，直接讲执行

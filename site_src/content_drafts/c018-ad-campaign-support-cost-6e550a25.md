@@ -5,7 +5,7 @@ description: 加密货币费用：影响因素、预算准备和沟通要点，�
 target_url: /blog/cost-6e550a25/
 primary_keyword: 加密货币费用
 secondary_keywords: 加密货币, 费用
-status: reviewed
+status: published
 ---
 
 ## 加密货币费用：影响因素、预算准备和沟通要点
