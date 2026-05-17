@@ -5,7 +5,7 @@ description: 小预算买量怎么测：素材、渠道和转化路径准备，�
 target_url: /blog/small-budget-media-buying-test/
 primary_keyword: 小预算买量怎么测
 secondary_keywords: 小预算买量, 买量测试, 投流测试
-status: reviewed
+status: published
 ---
 
 ## 小预算买量怎么测：素材、渠道和转化路径准备

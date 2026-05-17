@@ -5,7 +5,7 @@ description: 线索质量怎么测试：渠道判断、表单承接和跟进节�
 target_url: /blog/leads-quality-test/
 primary_keyword: 线索质量怎么测试
 secondary_keywords: 线索质量, 获客测试, 表单承接
-status: reviewed
+status: published
 ---
 
 ## 线索质量怎么测试：渠道判断、表单承接和跟进节奏

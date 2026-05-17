@@ -5,7 +5,7 @@ description: 理财费用：影响因素、预算准备和沟通要点，围绕�
 target_url: /blog/cost-cafc4fef/
 primary_keyword: 理财费用
 secondary_keywords: 理财, 费用
-status: reviewed
+status: published
 ---
 
 ## 理财费用：影响因素、预算准备和沟通要点
