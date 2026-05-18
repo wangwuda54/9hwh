@@ -322,12 +322,12 @@
     "content_type": "blog_article",
     "priority_score": 6,
     "risk_level": "low",
-    "publish_status": "queued",
-    "planned_publish_date": "",
+    "publish_status": "published",
+    "planned_publish_date": "2026-05-18",
     "batch": "",
     "review_status": "pass",
     "internal_link_count": 4,
-    "notes": "approved_from_review"
+    "notes": "approved_from_review published_at=2026-05-18"
   },
   {
     "content_id": "c008-dating-traffic-dating-how-to-e74a54f4",
@@ -547,12 +547,12 @@
     "content_type": "blog_article",
     "priority_score": 64,
     "risk_level": "low",
-    "publish_status": "queued",
-    "planned_publish_date": "",
+    "publish_status": "published",
+    "planned_publish_date": "2026-05-18",
     "batch": "",
     "review_status": "pass",
     "internal_link_count": 4,
-    "notes": "approved_from_review"
+    "notes": "approved_from_review published_at=2026-05-18"
   },
   {
     "content_id": "c066-google-search-leads-keywords",
@@ -592,11 +592,11 @@
     "content_type": "blog_article",
     "priority_score": 75,
     "risk_level": "low",
-    "publish_status": "queued",
-    "planned_publish_date": "",
+    "publish_status": "published",
+    "planned_publish_date": "2026-05-18",
     "batch": "",
     "review_status": "pass",
     "internal_link_count": 4,
-    "notes": "approved_from_review"
+    "notes": "approved_from_review published_at=2026-05-18"
   }
 ]

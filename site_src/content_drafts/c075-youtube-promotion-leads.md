@@ -5,7 +5,7 @@ description: YouTube推广获客怎么做：内容渠道、落地页和再营销
 target_url: /blog/youtube-promotion-leads/
 primary_keyword: YouTube推广获客怎么做
 secondary_keywords: YouTube推广, 内容渠道, 再营销
-status: reviewed
+status: published
 ---
 
 ## YouTube推广获客怎么做：内容渠道、落地页和再营销准备

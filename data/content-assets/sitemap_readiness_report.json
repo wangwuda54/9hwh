@@ -4,13 +4,15 @@
   "robots_exists": true,
   "robots_has_sitemap": true,
   "expected_sitemap_url": "https://www.9hwh.com/sitemap.xml",
-  "sitemap_url_count": 49,
+  "sitemap_url_count": 52,
   "queue_url_count": 75,
-  "published_queue_url_count": 26,
+  "published_queue_url_count": 29,
   "queue_urls_in_sitemap": [
+    "/blog/ad-material-test/",
     "/blog/cost-6e550a25/",
     "/blog/cost-cafc4fef/",
     "/blog/crypto-promotion-how-to-17e66750/",
+    "/blog/crypto-promotion-how-to-1b5b5379/",
     "/blog/crypto-traffic-how-to-a32df87d/",
     "/blog/dating-app-how-to-f56b0dad/",
     "/blog/dating-how-to-002063ad/",
@@ -33,7 +35,8 @@
     "/blog/topics/fb-game-promotion-eec369fd/",
     "/blog/topics/fb-immigration-leads-b33be086/",
     "/blog/topics/fb-insurance-leads-b01d5372/",
-    "/blog/topics/fb-loan-leads-60d3dc0c/"
+    "/blog/topics/fb-loan-leads-60d3dc0c/",
+    "/blog/youtube-promotion-leads/"
   ],
   "non_published_queue_urls_in_sitemap": [],
   "reviewed_urls_in_sitemap": [],

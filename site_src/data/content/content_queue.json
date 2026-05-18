@@ -171,7 +171,7 @@
       "虚拟币推广怎么做"
     ],
     "page_type": "blog_article",
-    "status": "reviewed",
+    "status": "published",
     "priority": 6,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -2008,7 +2008,7 @@
       "素材测试"
     ],
     "page_type": "blog_article",
-    "status": "reviewed",
+    "status": "published",
     "priority": 64,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -2389,7 +2389,7 @@
       "推广获客"
     ],
     "page_type": "blog_article",
-    "status": "reviewed",
+    "status": "published",
     "priority": 75,
     "word_count_target": 1800,
     "deepseek_required": true,

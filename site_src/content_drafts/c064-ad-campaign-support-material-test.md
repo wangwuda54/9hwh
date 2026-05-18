@@ -5,7 +5,7 @@ description: 广告素材怎么测试：角度、预算和反馈复盘方法，�
 target_url: /blog/ad-material-test/
 primary_keyword: 广告素材怎么测试
 secondary_keywords: 广告素材测试, 素材角度, 投放反馈
-status: reviewed
+status: published
 ---
 
 ## 广告素材怎么测试：从准备到复盘的完整路径

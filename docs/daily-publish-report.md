@@ -1,14 +1,14 @@
 # Daily Publish Report
 
 - status: success
-- run_date: 2026-05-17
+- run_date: 2026-05-18
 - mode: normal
 - daily_limit: 3
 - hard_limit: 10
 - dry_run: False
 - selected_count: 3
 - published_count: 3
-- total_published: 26
+- total_published: 29
 - site_url: https://www.9hwh.com
 - message: Published 3 reviewed item(s).
 
@@ -16,9 +16,9 @@
 
 | content_id | Title | URL |
 | --- | --- | --- |
-| c019-ad-campaign-support-cost-cafc4fef | 理财费用：影响因素、预算准备和沟通要点 | https://www.9hwh.com/blog/cost-cafc4fef/ |
-| c061-traffic-acquisition-leads-quality-test | 线索质量怎么测试：渠道判断、表单承接和跟进节奏 | https://www.9hwh.com/blog/leads-quality-test/ |
-| c062-media-buying-small-budget-test | 小预算买量怎么测：素材、渠道和转化路径准备 | https://www.9hwh.com/blog/small-budget-media-buying-test/ |
+| c064-ad-campaign-support-material-test | 广告素材怎么测试：角度、预算和反馈复盘方法 | https://www.9hwh.com/blog/ad-material-test/ |
+| c075-youtube-promotion-leads | YouTube推广获客怎么做：内容渠道、落地页和再营销准备 | https://www.9hwh.com/blog/youtube-promotion-leads/ |
+| c006-crypto-promotion-crypto-promotion-how-to-1b5b5379 | 虚拟币推广怎么做：推广路径、渠道判断和准备清单 | https://www.9hwh.com/blog/crypto-promotion-how-to-1b5b5379/ |
 
 ## Post Publish Checks
 
