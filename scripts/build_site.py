@@ -450,6 +450,28 @@ def load_videos() -> list[dict]:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+def load_video_topics() -> dict[str, dict]:
+    path = DATA / "video_topics.json"
+    if not path.exists():
+        return {}
+    topics = json.loads(path.read_text(encoding="utf-8"))
+    return {item["slug"]: item for item in topics if item.get("slug")}
+
+
+def merge_video_topics(videos: list[dict], topics: dict[str, dict]) -> list[dict]:
+    content_fields = {"primary_keyword", "title", "h1", "description", "summary", "tags", "related_links"}
+    merged = []
+    for item in videos:
+        next_item = item.copy()
+        topic = topics.get(item.get("slug", ""))
+        if topic:
+            for field in content_fields:
+                if field in topic:
+                    next_item[field] = topic[field]
+        merged.append(next_item)
+    return merged
+
+
 def parse_draft(path: Path) -> tuple[dict, str]:
     text = path.read_text(encoding="utf-8-sig")
     if not text.startswith("---"):
@@ -709,13 +731,58 @@ def listing_content(page: dict, items: list[dict], extra: str = "") -> str:
     return render(read_text(TEMPLATES / "listing.html"), {"eyebrow": esc(page.get("eyebrow", "")), "h1": esc(page["h1"]), "description": esc(page["description"]), "cards": card_grid(items, columns), "extra": extra})
 
 
+def video_cards_html(items: list[dict]) -> str:
+    cards = []
+    for item in items:
+        tags = item.get("tags", [])[:1]
+        tag_html = "".join(f'<span class="pill">{esc(tag)}</span>' for tag in tags)
+        summary = item.get("summary") or item.get("description", "")
+        cards.append(
+            '<article class="card video-card">'
+            f"<h3>{esc(item['title'])}</h3>"
+            f"<p>{esc(summary)}</p>"
+            f'<div class="video-tags">{tag_html}</div>'
+            f'<a class="button button-secondary" href="/v/{esc(item["slug"])}/">查看视频</a>'
+            "</article>"
+        )
+    if not cards:
+        return ""
+    return '<div class="grid grid-4 video-card-grid">' + "".join(cards) + "</div>"
+
+
+def video_listing_content(page: dict, videos: list[dict], extra: str = "") -> str:
+    return render(
+        read_text(TEMPLATES / "listing.html"),
+        {
+            "eyebrow": esc(page.get("eyebrow", "")),
+            "h1": esc(page["h1"]),
+            "description": esc(page["description"]),
+            "cards": video_cards_html(videos),
+            "extra": extra,
+        },
+    )
+
+
 def internal_link_label(path: str) -> str:
     labels = {
         "/services/": "服务总览",
+        "/services/overseas-promotion/": "海外推广服务",
         "/services/traffic-acquisition/": "引流获客服务",
         "/services/ad-campaign-support/": "广告投放支持",
+        "/services/media-buying/": "买量投流支持",
+        "/platforms/": "平台方向",
+        "/platforms/tk/": "TK 推广支持",
+        "/platforms/fb/": "FB 推广支持",
         "/platforms/google/": "Google 推广支持",
         "/topics/": "主题内容",
+        "/topics/crypto-promotion/": "虚拟币推广",
+        "/topics/dating-traffic/": "交友项目引流",
+        "/topics/game-promotion/": "游戏推广",
+        "/topics/finance-leads/": "金融咨询获客",
+        "/topics/loan-leads/": "贷款获客",
+        "/topics/insurance-leads/": "保险获客",
+        "/topics/immigration-leads/": "移民咨询获客",
+        "/topics/online-work-leads/": "兼职获客",
         "/contact/": "联系咨询",
     }
     if path in labels:
@@ -739,11 +806,12 @@ def video_content(item: dict) -> str:
     tag_html = "".join(f'<span class="pill">{esc(tag)}</span>' for tag in tags)
     if not tag_html:
         tag_html = '<span class="pill">视频案例</span>'
+    primary_keyword = item.get("primary_keyword") or item.get("h1") or item.get("title")
     services = [
-        "支持批量生成短视频素材",
-        "支持根据关键词生成视频标题和页面内容",
-        "支持用于 Google 搜索承接页面",
-        "支持配合 Dailymotion / Rumble / Odysee 做分发入口",
+        f"围绕“{primary_keyword}”整理页面标题、说明内容和联系入口。",
+        "关键词页面适合承接 Google 搜索里的明确需求，重点说明路径和准备事项。",
+        "短视频素材可以作为页面说明、外部分发和咨询前判断的补充。",
+        "页面用于整理获客思路和沟通入口，不承诺排名、审核或转化结果。",
     ]
     return render(
         read_text(TEMPLATES / "video.html"),
@@ -754,10 +822,11 @@ def video_content(item: dict) -> str:
             "thumbnail": esc(item["thumbnail"]),
             "video_file": esc(item["video_file"]),
             "summary": esc(item.get("summary", item["description"])),
+            "primary_keyword": esc(primary_keyword),
             "tags": tag_html,
             "duration_seconds": esc(item["duration_seconds"]),
             "service_items": list_items(services),
-            "contact_note": esc(item.get("contact_note", "如需了解视频制作或推广页面承接，可以通过联系页提交项目信息。")),
+            "contact_note": esc(item.get("contact_note", "如需根据项目类型规划 Google 搜索承接页、短视频素材或多平台分发路径，可以先进入联系页说明项目情况。")),
             "related_links": related_links_html(item.get("related_links", [])),
         },
     )
@@ -951,7 +1020,7 @@ def build() -> None:
     content_queue = load_content_queue()
     published_drafts = load_publishable_drafts(content_queue)
     published_aggregates = aggregate_published_articles(published_drafts)
-    videos = load_videos()
+    videos = merge_video_topics(load_videos(), load_video_topics())
     published_videos = [item for item in videos if item.get("status") == "published"]
 
     clean_public()
@@ -1035,12 +1104,8 @@ def build() -> None:
         "description": "查看 9HWH 视频案例页面，用于了解短视频素材、AI 视频生成、推广页面和 Google 搜索承接页面的组合方式。",
         "eyebrow": "视频案例",
     }
-    video_cards = [
-        {"title": item["title"], "url": "/v/" + item["slug"] + "/", "summary": item.get("summary", item["description"])}
-        for item in published_videos
-    ]
-    video_extra = cta_html("需要把视频素材做成搜索承接页面？", "可以先进入联系页说明项目类型、已有素材、目标市场和需要批量生成的页面数量。", "联系咨询", "/contact/")
-    emit("/v/", video_listing_page, listing_content(video_listing_page, video_cards, video_extra), site, nav, global_schemas, records, "videos.json:index", "video_listing")
+    video_extra = cta_html("需要把关键词和视频素材做成搜索承接页？", "可以先进入联系页说明项目类型、已有素材、目标市场和需要批量生成的页面数量。", "联系咨询", "/contact/")
+    emit("/v/", video_listing_page, video_listing_content(video_listing_page, published_videos, video_extra), site, nav, global_schemas, records, "videos.json:index", "video_listing")
 
     for task, body in published_drafts:
         page = {

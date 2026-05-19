@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import csv
+import html
 import json
 import re
 import subprocess
@@ -17,6 +18,7 @@ KEYWORDS = ROOT / "site_src" / "data" / "keywords"
 KEYWORD_ASSETS = ROOT / "data" / "keyword-assets"
 CONTENT_DATA = ROOT / "site_src" / "data" / "content"
 VIDEOS_DATA = DATA / "videos.json"
+VIDEO_TOPICS_DATA = DATA / "video_topics.json"
 DEEPSEEK_TASKS = ROOT / "data" / "deepseek-tasks"
 BATCH_001 = ROOT / "data" / "deepseek-batches" / "batch-001"
 DRAFTS = ROOT / "site_src" / "content_drafts"
@@ -44,6 +46,7 @@ FORBIDDEN = [
     "任何平台都能过",
     "任何行业都能投",
 ]
+PLACEHOLDER_VIDEO_TITLE = re.compile(r"AI数字人视频生成服务\s*\d{3}")
 REQUIRED_PATHS = [
     "/",
     "/services/",
@@ -164,6 +167,12 @@ def load_video_records() -> list[dict]:
     return json.loads(VIDEOS_DATA.read_text(encoding="utf-8-sig"))
 
 
+def load_video_topic_records() -> list[dict]:
+    if not VIDEO_TOPICS_DATA.exists():
+        return []
+    return json.loads(VIDEO_TOPICS_DATA.read_text(encoding="utf-8-sig"))
+
+
 def published_video_paths() -> set[str]:
     return {"/v/" + item.get("slug", "") + "/" for item in load_video_records() if item.get("status") == "published" and item.get("slug")}
 
@@ -254,10 +263,68 @@ def check_robots() -> None:
     ok("robots checks completed")
 
 
+def merged_video_item(item: dict, topic_map: dict[str, dict]) -> dict:
+    result = item.copy()
+    topic = topic_map.get(item.get("slug", ""))
+    if topic:
+        for field in ("primary_keyword", "title", "h1", "description", "summary", "tags", "related_links"):
+            if field in topic:
+                result[field] = topic[field]
+    return result
+
+
+def visible_text(html_text: str) -> str:
+    return html.unescape(re.sub(r"<[^>]+>", "", html_text)).strip()
+
+
+def check_video_topics(videos: list[dict]) -> dict[str, dict]:
+    topics = load_video_topic_records()
+    if not topics:
+        return {}
+    video_slugs = {item.get("slug") for item in videos if item.get("slug")}
+    topic_slugs: set[str] = set()
+    descriptions: list[str] = []
+    required_fields = ("title", "h1", "description", "summary")
+    for item in topics:
+        slug = item.get("slug", "")
+        if not slug:
+            fail("video topic missing slug")
+            continue
+        if slug in topic_slugs:
+            fail(f"duplicate video topic slug: {slug}")
+        topic_slugs.add(slug)
+        if slug not in video_slugs:
+            fail(f"video topic slug missing from videos.json: {slug}")
+        for field in required_fields:
+            if not str(item.get(field, "")).strip():
+                fail(f"video topic missing {field}: {slug}")
+        if PLACEHOLDER_VIDEO_TITLE.fullmatch(str(item.get("title", "")).strip()):
+            fail(f"video topic uses placeholder title: {slug}")
+        if PLACEHOLDER_VIDEO_TITLE.fullmatch(str(item.get("h1", "")).strip()):
+            fail(f"video topic uses placeholder h1: {slug}")
+        if item.get("description"):
+            descriptions.append(str(item["description"]).strip())
+        for link in item.get("related_links", []):
+            if not isinstance(link, str) or not link.startswith("/") or link.startswith("//"):
+                fail(f"video topic related_links must be internal paths: {slug} -> {link}")
+    if len(descriptions) > 1 and len(set(descriptions)) == 1:
+        fail("video topic descriptions are all identical")
+
+    listing_file = path_to_file("/v/")
+    if listing_file.exists():
+        listing_text = listing_file.read_text(encoding="utf-8")
+        if PLACEHOLDER_VIDEO_TITLE.search(listing_text):
+            fail("/v/ listing contains placeholder video title")
+        if "- &gt;" in listing_text or " - >" in listing_text or "->" in listing_text:
+            fail('/v/ listing contains "- >" arrow text')
+    return {item["slug"]: item for item in topics if item.get("slug")}
+
+
 def check_videos(sitemap: set[str]) -> None:
     if not VIDEOS_DATA.exists():
         return
     videos = load_video_records()
+    topic_map = check_video_topics(videos)
     video_sitemap_path = PUBLIC / "video-sitemap.xml"
     if not video_sitemap_path.exists():
         fail("missing video-sitemap.xml")
@@ -287,9 +354,12 @@ def check_videos(sitemap: set[str]) -> None:
                 fail(f"unpublished video entered sitemap: {slug}")
             continue
 
+        effective_item = merged_video_item(item, topic_map)
         for field in ("title", "h1", "description", "video_file", "thumbnail", "duration_seconds"):
-            if item.get(field) in (None, ""):
+            if effective_item.get(field) in (None, ""):
                 fail(f"published video missing {field}: {slug}")
+        if PLACEHOLDER_VIDEO_TITLE.fullmatch(str(effective_item.get("title", "")).strip()):
+            fail(f"published video uses placeholder title: {slug}")
 
         video_file = str(item.get("video_file", ""))
         thumbnail = str(item.get("thumbnail", ""))
@@ -310,7 +380,7 @@ def check_videos(sitemap: set[str]) -> None:
         if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", str(item.get("upload_date", ""))):
             fail(f"upload_date must use YYYY-MM-DD: {slug}")
 
-        for link in item.get("related_links", []):
+        for link in effective_item.get("related_links", []):
             if not isinstance(link, str) or not link.startswith("/") or link.startswith("//"):
                 fail(f"video related_links must be internal paths: {slug} -> {link}")
 
@@ -335,6 +405,13 @@ def check_videos(sitemap: set[str]) -> None:
             fail(f"{generated_file.relative_to(PUBLIC).as_posix()} missing video tag")
         if "VideoObject" not in text:
             fail(f"{generated_file.relative_to(PUBLIC).as_posix()} missing VideoObject")
+        h1_match = re.search(r"<h1[^>]*>(.*?)</h1>", text, flags=re.S | re.I)
+        if h1_match:
+            h1_text = visible_text(h1_match.group(1))
+            if re.fullmatch(r"\d{1,3}", h1_text):
+                fail(f"{generated_file.relative_to(PUBLIC).as_posix()} h1 is only a number")
+            if PLACEHOLDER_VIDEO_TITLE.fullmatch(h1_text):
+                fail(f"{generated_file.relative_to(PUBLIC).as_posix()} h1 uses placeholder title")
 
     ok("video page checks completed")
 

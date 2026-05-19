@@ -35,6 +35,30 @@ site_src/data/videos.json
 - `contact_note`：联系承接说明，不写排名、审核、转化承诺。
 - `related_links`：站内相关链接，只允许 `/` 开头的站内路径。
 
+## 视频页内容不是视频编号，而是关键词落地页
+
+`videos.json` 负责视频资产和基础状态，例如 `slug`、`video_file`、`thumbnail`、`duration_seconds`、`upload_date` 和 `source_filename`。
+
+最终用于 Google 收录和客户承接的页面文案放在：
+
+```text
+site_src/data/video_topics.json
+```
+
+`video_topics.json` 按 `slug` 对应视频页，负责覆盖 SEO 页面内容：
+
+- `primary_keyword`
+- `title`
+- `h1`
+- `description`
+- `summary`
+- `tags`
+- `related_links`
+
+批量视频页不能直接用 `title-prefix + 编号` 当最终标题，例如“AI数字人视频生成服务 001”。每个视频页都应该对应一个明确关键词、不同标题和不同描述，让 `/v/<slug>/` 更像真实的关键词承接页，而不是素材编号页。
+
+每次批量导入视频后，先确认视频资产已经进入 `videos.json`，再补充或生成 `video_topics.json`。如果某个 `slug` 没有 topic，构建会回退使用 `videos.json` 原内容，但在提交到 GSC 前必须确认标题、H1、描述和正文已经是最终关键词内容。
+
 ## 构建命令
 
 ```bash
