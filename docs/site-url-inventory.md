@@ -56,5 +56,6 @@
 | https://www.9hwh.com/v/ai-video-service-demo-001/ | videos.json:001 | site/public/v/ai-video-service-demo-001/index.html | video | yes | yes | AI数字人视频生成服务演示 | 本页面展示 AI 数字人短视频生成效果，适合需要批量制作短视频、广告素材、产品展示视频和推广内容的项目参考。 |
 | https://www.9hwh.com/v/short-video-landing-page-demo-002/ | videos.json:002 | site/public/v/short-video-landing-page-demo-002/index.html | video | yes | yes | 短视频推广落地页承接演示 | 本页面展示短视频素材与推广落地页结合的示例，适合需要用搜索页面承接视频内容、整理服务说明和引导咨询的项目参考。 |
 | https://www.9hwh.com/v/product-showcase-video-demo-003/ | videos.json:003 | site/public/v/product-showcase-video-demo-003/index.html | video | yes | yes | 产品展示视频页面演示 | 本页面展示产品展示类视频页面结构，适合需要批量生成产品介绍、素材说明和搜索承接内容的项目参考。 |
+| https://www.9hwh.com/v/ai-video-service-001/ | videos.json:auto-001 | site/public/v/ai-video-service-001/index.html | video | yes | yes | AI数字人视频生成服务 001 | 本页面展示 AI 数字人短视频生成效果，适合需要批量制作短视频、广告素材、产品展示视频和推广内容的项目参考。如需了解视频制作、批量生成或 Google 搜索获客页面，可以通过联系页提交项目信息。 |
 | https://www.9hwh.com/contact/ | pages.json:contact | site/public/contact/index.html | contact | yes | yes | 通过 Telegram 说一下你的项目情况 | 9HWH | 把项目类型、目标地区、预算范围、已有素材和落地页情况发到 Telegram，我们会先帮你判断适合从 TK、FB、Google 还是其他渠道开始测试。 |
 | https://www.9hwh.com/privacy/ | pages.json:privacy | site/public/privacy/index.html | legal | yes | yes | 隐私政策 | 9HWH | 9HWH 隐私政策说明本站访问、Telegram 沟通和必要访问日志相关的信息处理方式。 |

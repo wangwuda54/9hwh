@@ -11,7 +11,11 @@
     "thumbnail": "/thumbnails/ai-video-service-demo-001.jpg",
     "duration_seconds": 45,
     "upload_date": "2026-05-19",
-    "tags": ["AI视频生成", "数字人视频", "短视频制作"],
+    "tags": [
+      "AI视频生成",
+      "数字人视频",
+      "短视频制作"
+    ],
     "contact_note": "如需了解视频制作、批量生成或推广页面承接，可以通过联系页提交项目信息。",
     "related_links": [
       "/services/traffic-acquisition/",
@@ -32,7 +36,11 @@
     "thumbnail": "/thumbnails/short-video-landing-page-demo-002.jpg",
     "duration_seconds": 90,
     "upload_date": "2026-05-19",
-    "tags": ["短视频推广", "落地页承接", "Google搜索"],
+    "tags": [
+      "短视频推广",
+      "落地页承接",
+      "Google搜索"
+    ],
     "contact_note": "如需把已有视频素材整理成搜索承接页面，可以通过联系页说明项目、素材和目标市场。",
     "related_links": [
       "/services/traffic-acquisition/",
@@ -53,7 +61,11 @@
     "thumbnail": "/thumbnails/product-showcase-video-demo-003.jpg",
     "duration_seconds": 120,
     "upload_date": "2026-05-19",
-    "tags": ["产品展示视频", "视频页面", "内容承接"],
+    "tags": [
+      "产品展示视频",
+      "视频页面",
+      "内容承接"
+    ],
     "contact_note": "如需批量制作产品展示视频页面，可以先通过联系页提交品类、素材数量和目标地区。",
     "related_links": [
       "/services/",
@@ -61,5 +73,31 @@
       "/platforms/google/",
       "/contact/"
     ]
+  },
+  {
+    "id": "auto-001",
+    "status": "published",
+    "slug": "ai-video-service-001",
+    "title": "AI数字人视频生成服务 001",
+    "h1": "AI数字人视频生成服务 001",
+    "description": "本页面展示 AI 数字人短视频生成效果，适合需要批量制作短视频、广告素材、产品展示视频和推广内容的项目参考。如需了解视频制作、批量生成或 Google 搜索获客页面，可以通过联系页提交项目信息。",
+    "summary": "展示 AI 数字人视频生成效果，并提供视频制作、素材准备和推广页面承接说明。",
+    "video_file": "/videos/ai-video-service-001.mp4",
+    "thumbnail": "/thumbnails/ai-video-service-001.jpg",
+    "duration_seconds": 45,
+    "upload_date": "2026-05-19",
+    "tags": [
+      "AI视频生成",
+      "数字人视频",
+      "短视频制作"
+    ],
+    "contact_note": "如需了解视频制作、批量生成或推广页面承接，可以通过联系页提交项目信息。",
+    "related_links": [
+      "/services/traffic-acquisition/",
+      "/services/ad-campaign-support/",
+      "/platforms/google/",
+      "/contact/"
+    ],
+    "source_filename": "1.MP4"
   }
 ]

@@ -35,4 +35,15 @@
       <video:publication_date>2026-05-19T00:00:00+00:00</video:publication_date>
     </video:video>
   </url>
+  <url>
+    <loc>https://www.9hwh.com/v/ai-video-service-001/</loc>
+    <video:video>
+      <video:thumbnail_loc>https://www.9hwh.com/thumbnails/ai-video-service-001.jpg</video:thumbnail_loc>
+      <video:title>AI数字人视频生成服务 001</video:title>
+      <video:description>本页面展示 AI 数字人短视频生成效果，适合需要批量制作短视频、广告素材、产品展示视频和推广内容的项目参考。如需了解视频制作、批量生成或 Google 搜索获客页面，可以通过联系页提交项目信息。</video:description>
+      <video:content_loc>https://www.9hwh.com/videos/ai-video-service-001.mp4</video:content_loc>
+      <video:duration>45</video:duration>
+      <video:publication_date>2026-05-19T00:00:00+00:00</video:publication_date>
+    </video:video>
+  </url>
 </urlset>
