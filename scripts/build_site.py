@@ -459,7 +459,7 @@ def load_video_topics() -> dict[str, dict]:
 
 
 def merge_video_topics(videos: list[dict], topics: dict[str, dict]) -> list[dict]:
-    content_fields = {"primary_keyword", "title", "h1", "description", "summary", "tags", "related_links"}
+    content_fields = {"primary_keyword", "title", "h1", "description", "summary", "tags", "related_links", "points", "contact_note"}
     merged = []
     for item in videos:
         next_item = item.copy()
@@ -734,15 +734,15 @@ def listing_content(page: dict, items: list[dict], extra: str = "") -> str:
 def video_cards_html(items: list[dict]) -> str:
     cards = []
     for item in items:
-        tags = item.get("tags", [])[:1]
-        tag_html = "".join(f'<span class="pill">{esc(tag)}</span>' for tag in tags)
+        tags = item.get("tags", [])[:2]
+        tag_html = "".join(f'<span class="video-tag">{esc(tag)}</span>' for tag in tags)
         summary = item.get("summary") or item.get("description", "")
         cards.append(
             '<article class="card video-card">'
             f"<h3>{esc(item['title'])}</h3>"
             f"<p>{esc(summary)}</p>"
             f'<div class="video-tags">{tag_html}</div>'
-            f'<a class="button button-secondary" href="/v/{esc(item["slug"])}/">查看视频</a>'
+            f'<a class="button button-secondary" href="/v/{esc(item["slug"])}/">查看案例</a>'
             "</article>"
         )
     if not cards:
@@ -807,11 +807,11 @@ def video_content(item: dict) -> str:
     if not tag_html:
         tag_html = '<span class="pill">视频案例</span>'
     primary_keyword = item.get("primary_keyword") or item.get("h1") or item.get("title")
-    services = [
-        f"围绕“{primary_keyword}”整理页面标题、说明内容和联系入口。",
-        "关键词页面适合承接 Google 搜索里的明确需求，重点说明路径和准备事项。",
-        "短视频素材可以作为页面说明、外部分发和咨询前判断的补充。",
-        "页面用于整理获客思路和沟通入口，不承诺排名、审核或转化结果。",
+    points = item.get("points") or [
+        "短视频先抓住用户注意力，页面再承接搜索词、项目卖点和咨询动作。",
+        "标题、视频内容和落地页文案保持同一个关键词方向，减少用户跳出。",
+        "素材版本按国家、渠道和人群拆开测试，方便后续复盘。",
+        "Telegram 可直接发送项目类型、地区和素材需求。",
     ]
     return render(
         read_text(TEMPLATES / "video.html"),
@@ -825,8 +825,9 @@ def video_content(item: dict) -> str:
             "primary_keyword": esc(primary_keyword),
             "tags": tag_html,
             "duration_seconds": esc(item["duration_seconds"]),
-            "service_items": list_items(services),
-            "contact_note": esc(item.get("contact_note", "如需根据项目类型规划 Google 搜索承接页、短视频素材或多平台分发路径，可以先进入联系页说明项目情况。")),
+            "promotion_points": list_items(points),
+            "contact_note": esc(item.get("contact_note", "Telegram 可直接发送行业、投放地区、目标用户和素材形式，便于对接视频制作和页面承接。")),
+            "telegram_url": esc(TELEGRAM_URL),
             "related_links": related_links_html(item.get("related_links", [])),
         },
     )
@@ -1104,7 +1105,7 @@ def build() -> None:
         "description": "查看 9HWH 视频案例页面，用于了解短视频素材、AI 视频生成、推广页面和 Google 搜索承接页面的组合方式。",
         "eyebrow": "视频案例",
     }
-    video_extra = cta_html("需要把关键词和视频素材做成搜索承接页？", "可以先进入联系页说明项目类型、已有素材、目标市场和需要批量生成的页面数量。", "联系咨询", "/contact/")
+    video_extra = cta_html("关键词和视频素材需要一起做？", "Telegram 可直接发送项目类型、目标市场、现有素材和页面数量，便于对接视频落地页制作。")
     emit("/v/", video_listing_page, video_listing_content(video_listing_page, published_videos, video_extra), site, nav, global_schemas, records, "videos.json:index", "video_listing")
 
     for task, body in published_drafts:

@@ -418,6 +418,28 @@ h3 { font-size: 1.18rem; }
   flex-wrap: wrap;
   gap: 10px;
 }
+.video-tag {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 0 10px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--blue);
+  font-size: .86rem;
+}
+.video-page-stack { gap: 24px; }
+.video-cta-row {
+  display: flex;
+  justify-content: center;
+}
+.video-copy-card h2 { font-size: 1.48rem; }
+.video-copy-card .checklist li { margin-bottom: 12px; }
+.video-contact-panel {
+  align-items: center;
+  background: linear-gradient(135deg, #fff, #f5fbf8);
+}
 .contact-panel {
   display: flex;
   align-items: center;

@@ -47,6 +47,19 @@ FORBIDDEN = [
     "任何行业都能投",
 ]
 PLACEHOLDER_VIDEO_TITLE = re.compile(r"AI数字人视频生成服务\s*\d{3}")
+VIDEO_FORBIDDEN_TERMS = [
+    "不承诺",
+    "不保证",
+    "本页用于说明",
+    "页面用于说明",
+    "页面用于整理",
+    "仅用于说明",
+    "说明路径",
+    "整理获客思路",
+    "沟通入口",
+    "咨询前判断",
+    "审核或转化结果",
+]
 REQUIRED_PATHS = [
     "/",
     "/services/",
@@ -304,6 +317,11 @@ def check_video_topics(videos: list[dict]) -> dict[str, dict]:
             fail(f"video topic uses placeholder h1: {slug}")
         if item.get("description"):
             descriptions.append(str(item["description"]).strip())
+        topic_text = " ".join(str(item.get(field, "")) for field in ("title", "h1", "description", "summary", "contact_note"))
+        topic_text += " " + " ".join(str(point) for point in item.get("points", []))
+        for term in VIDEO_FORBIDDEN_TERMS:
+            if term in topic_text:
+                fail(f"video topic contains forbidden wording: {slug} -> {term}")
         for link in item.get("related_links", []):
             if not isinstance(link, str) or not link.startswith("/") or link.startswith("//"):
                 fail(f"video topic related_links must be internal paths: {slug} -> {link}")
@@ -317,6 +335,11 @@ def check_video_topics(videos: list[dict]) -> dict[str, dict]:
             fail("/v/ listing contains placeholder video title")
         if "- &gt;" in listing_text or " - >" in listing_text or "->" in listing_text:
             fail('/v/ listing contains "- >" arrow text')
+        if "展示 AI 数字人视频生成效果" in listing_text:
+            fail("/v/ listing contains old AI video demo summary")
+        for term in VIDEO_FORBIDDEN_TERMS:
+            if term in listing_text:
+                fail(f"/v/ listing contains forbidden wording: {term}")
     return {item["slug"]: item for item in topics if item.get("slug")}
 
 
@@ -405,6 +428,12 @@ def check_videos(sitemap: set[str]) -> None:
             fail(f"{generated_file.relative_to(PUBLIC).as_posix()} missing video tag")
         if "VideoObject" not in text:
             fail(f"{generated_file.relative_to(PUBLIC).as_posix()} missing VideoObject")
+        for term in VIDEO_FORBIDDEN_TERMS:
+            if term in text:
+                fail(f"{generated_file.relative_to(PUBLIC).as_posix()} contains forbidden video wording: {term}")
+        telegram_buttons = text.count('class="button button-telegram"')
+        if telegram_buttons > 2:
+            warn(f"{generated_file.relative_to(PUBLIC).as_posix()} has {telegram_buttons} Telegram CTA buttons")
         h1_match = re.search(r"<h1[^>]*>(.*?)</h1>", text, flags=re.S | re.I)
         if h1_match:
             h1_text = visible_text(h1_match.group(1))
