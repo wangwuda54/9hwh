@@ -1,0 +1,58 @@
+<section class="page-hero">
+  <div class="container">
+    <p class="eyebrow">{{ eyebrow }}</p>
+    <h1>{{ h1 }}</h1>
+    <p class="lead">{{ description }}</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container stack">
+    <article class="contact-panel">
+      <div>
+        <h2>视频制作与搜索承接咨询</h2>
+        <p>如需批量视频制作、推广页面承接或 Google 搜索获客页面，可以先进入联系页说明项目。</p>
+      </div>
+      <div class="button-row">
+        <a class="button button-primary" href="/contact/">联系咨询</a>
+        <a class="button button-secondary" href="/platforms/google/">查看 Google 推广支持</a>
+      </div>
+    </article>
+
+    <div class="video-player-wrap">
+      <video class="video-player" controls preload="metadata" poster="{{ thumbnail }}">
+        <source src="{{ video_file }}" type="video/mp4">
+      </video>
+    </div>
+
+    <div class="grid grid-2">
+      <article class="card">
+        <h2>视频说明</h2>
+        <p>{{ summary }}</p>
+        <div class="video-meta">
+          <span>时长：{{ duration_seconds }} 秒</span>
+        </div>
+        <div class="video-tags">{{ tags }}</div>
+      </article>
+
+      <article class="card">
+        <h2>服务说明</h2>
+        {{ service_items }}
+      </article>
+    </div>
+
+    <article class="contact-panel">
+      <div>
+        <h2>联系承接</h2>
+        <p>{{ contact_note }}</p>
+        <p>页面只用于说明视频制作、内容整理和搜索承接方式，不承诺排名、审核或转化结果。</p>
+      </div>
+      <a class="button button-primary" href="/contact/">进入联系页</a>
+    </article>
+
+    <article class="card related-links">
+      <h2>相关链接</h2>
+      <div class="pill-list">{{ related_links }}</div>
+    </article>
+  </div>
+</section>

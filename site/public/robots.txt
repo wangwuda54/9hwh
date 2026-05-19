@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://www.9hwh.com/sitemap.xml
+Sitemap: https://www.9hwh.com/video-sitemap.xml

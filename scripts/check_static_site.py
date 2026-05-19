@@ -12,9 +12,11 @@ from urllib.parse import urlparse
 
 ROOT = Path(__file__).resolve().parents[1]
 PUBLIC = ROOT / "site" / "public"
+DATA = ROOT / "site_src" / "data"
 KEYWORDS = ROOT / "site_src" / "data" / "keywords"
 KEYWORD_ASSETS = ROOT / "data" / "keyword-assets"
 CONTENT_DATA = ROOT / "site_src" / "data" / "content"
+VIDEOS_DATA = DATA / "videos.json"
 DEEPSEEK_TASKS = ROOT / "data" / "deepseek-tasks"
 BATCH_001 = ROOT / "data" / "deepseek-batches" / "batch-001"
 DRAFTS = ROOT / "site_src" / "content_drafts"
@@ -80,6 +82,7 @@ class LinkParser(HTMLParser):
         self.h1_count = 0
         self.has_nav = False
         self.has_footer = False
+        self.has_video = False
 
     def handle_starttag(self, tag: str, attrs):
         attrs_dict = dict(attrs)
@@ -99,6 +102,8 @@ class LinkParser(HTMLParser):
             self.has_nav = True
         if tag == "footer":
             self.has_footer = True
+        if tag == "video":
+            self.has_video = True
 
 
 def ok(message: str) -> None:
@@ -135,6 +140,24 @@ def file_to_url(path: Path) -> str:
 def sitemap_urls() -> set[str]:
     text = (PUBLIC / "sitemap.xml").read_text(encoding="utf-8")
     return set(re.findall(r"<loc>(.*?)</loc>", text))
+
+
+def video_sitemap_urls() -> set[str]:
+    path = PUBLIC / "video-sitemap.xml"
+    if not path.exists():
+        return set()
+    text = path.read_text(encoding="utf-8")
+    return set(re.findall(r"<loc>(.*?)</loc>", text))
+
+
+def load_video_records() -> list[dict]:
+    if not VIDEOS_DATA.exists():
+        return []
+    return json.loads(VIDEOS_DATA.read_text(encoding="utf-8-sig"))
+
+
+def published_video_paths() -> set[str]:
+    return {"/v/" + item.get("slug", "") + "/" for item in load_video_records() if item.get("status") == "published" and item.get("slug")}
 
 
 def check_html(sitemap: set[str]) -> None:
@@ -216,9 +239,94 @@ def check_robots() -> None:
     text = (PUBLIC / "robots.txt").read_text(encoding="utf-8")
     if "Sitemap: https://www.9hwh.com/sitemap.xml" not in text:
         fail("robots missing sitemap")
+    if VIDEOS_DATA.exists() and "Sitemap: https://www.9hwh.com/video-sitemap.xml" not in text:
+        fail("robots missing video sitemap")
     if "Disallow: /service" in text or "Disallow: /service_" in text:
         fail("robots blocks service paths")
     ok("robots checks completed")
+
+
+def check_videos(sitemap: set[str]) -> None:
+    if not VIDEOS_DATA.exists():
+        return
+    videos = load_video_records()
+    video_sitemap_path = PUBLIC / "video-sitemap.xml"
+    if not video_sitemap_path.exists():
+        fail("missing video-sitemap.xml")
+    video_urls = video_sitemap_urls()
+    slugs: set[str] = set()
+    allowed_statuses = {"published", "draft", "noindex", "rejected"}
+
+    for item in videos:
+        slug = item.get("slug", "")
+        status = item.get("status", "")
+        if status not in allowed_statuses:
+            fail(f"video has unsupported status: {slug or item.get('id', '')} -> {status}")
+        if not slug:
+            fail(f"video missing slug: {item.get('id', '')}")
+            continue
+        if slug in slugs:
+            fail(f"duplicate video slug: {slug}")
+        slugs.add(slug)
+
+        path = "/v/" + slug + "/"
+        url = BASE_URL + path
+        generated_file = path_to_file(path)
+        if status != "published":
+            if generated_file.exists():
+                fail(f"unpublished video generated page: {slug}")
+            if url in sitemap or url in video_urls:
+                fail(f"unpublished video entered sitemap: {slug}")
+            continue
+
+        for field in ("title", "h1", "description", "video_file", "thumbnail", "duration_seconds"):
+            if item.get(field) in (None, ""):
+                fail(f"published video missing {field}: {slug}")
+
+        video_file = str(item.get("video_file", ""))
+        thumbnail = str(item.get("thumbnail", ""))
+        if not video_file.startswith("/videos/"):
+            fail(f"video_file must start with /videos/: {slug}")
+        if not thumbnail.startswith("/thumbnails/"):
+            fail(f"thumbnail must start with /thumbnails/: {slug}")
+        if video_file.startswith("/") and not (PUBLIC / video_file.lstrip("/")).exists():
+            warn(f"video file missing, page structure only: {video_file}")
+        if thumbnail.startswith("/") and not (PUBLIC / thumbnail.lstrip("/")).exists():
+            warn(f"thumbnail file missing, page structure only: {thumbnail}")
+
+        duration = item.get("duration_seconds")
+        if not isinstance(duration, int) or duration <= 0:
+            fail(f"duration_seconds must be a positive integer: {slug}")
+        if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", str(item.get("upload_date", ""))):
+            fail(f"upload_date must use YYYY-MM-DD: {slug}")
+
+        for link in item.get("related_links", []):
+            if not isinstance(link, str) or not link.startswith("/") or link.startswith("//"):
+                fail(f"video related_links must be internal paths: {slug} -> {link}")
+
+        if not generated_file.exists():
+            fail(f"published video page missing: {path}")
+            continue
+        if url not in sitemap:
+            fail(f"published video missing from sitemap.xml: {url}")
+        if url not in video_urls:
+            fail(f"published video missing from video-sitemap.xml: {url}")
+
+        text = generated_file.read_text(encoding="utf-8")
+        parser = LinkParser()
+        parser.feed(text)
+        if parser.h1_count != 1:
+            fail(f"{generated_file.relative_to(PUBLIC).as_posix()} has {parser.h1_count} h1 tags")
+        if not parser.canonical:
+            fail(f"{generated_file.relative_to(PUBLIC).as_posix()} missing canonical")
+        if not parser.has_description:
+            fail(f"{generated_file.relative_to(PUBLIC).as_posix()} missing meta description")
+        if not parser.has_video:
+            fail(f"{generated_file.relative_to(PUBLIC).as_posix()} missing video tag")
+        if "VideoObject" not in text:
+            fail(f"{generated_file.relative_to(PUBLIC).as_posix()} missing VideoObject")
+
+    ok("video page checks completed")
 
 
 def load_keyword_json(name: str):
@@ -251,9 +359,11 @@ def check_keyword_assets(sitemap: set[str]) -> None:
         "/topics/",
         "/markets/",
         "/blog/",
+        "/v/",
         "/contact/",
         "/privacy/",
     }
+    known_pages.update(published_video_paths())
     queue_path = CONTENT_DATA / "content_queue.json"
     published_article_paths = set()
     if queue_path.exists():
@@ -423,6 +533,7 @@ def main() -> int:
     check_sitemap(sitemap)
     check_robots()
     check_html(sitemap)
+    check_videos(sitemap)
     check_keyword_assets(sitemap)
     check_content_pipeline(sitemap)
     check_deepseek_batch(sitemap)

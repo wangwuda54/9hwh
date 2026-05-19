@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+  <url>
+    <loc>https://www.9hwh.com/v/ai-video-service-demo-001/</loc>
+    <video:video>
+      <video:thumbnail_loc>https://www.9hwh.com/thumbnails/ai-video-service-demo-001.jpg</video:thumbnail_loc>
+      <video:title>AI数字人视频生成服务演示</video:title>
+      <video:description>本页面展示 AI 数字人短视频生成效果，适合需要批量制作短视频、广告素材、产品展示视频和推广内容的项目参考。</video:description>
+      <video:content_loc>https://www.9hwh.com/videos/ai-video-service-demo-001.mp4</video:content_loc>
+      <video:duration>45</video:duration>
+      <video:publication_date>2026-05-19T00:00:00+00:00</video:publication_date>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://www.9hwh.com/v/short-video-landing-page-demo-002/</loc>
+    <video:video>
+      <video:thumbnail_loc>https://www.9hwh.com/thumbnails/short-video-landing-page-demo-002.jpg</video:thumbnail_loc>
+      <video:title>短视频推广落地页承接演示</video:title>
+      <video:description>本页面展示短视频素材与推广落地页结合的示例，适合需要用搜索页面承接视频内容、整理服务说明和引导咨询的项目参考。</video:description>
+      <video:content_loc>https://www.9hwh.com/videos/short-video-landing-page-demo-002.mp4</video:content_loc>
+      <video:duration>90</video:duration>
+      <video:publication_date>2026-05-19T00:00:00+00:00</video:publication_date>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://www.9hwh.com/v/product-showcase-video-demo-003/</loc>
+    <video:video>
+      <video:thumbnail_loc>https://www.9hwh.com/thumbnails/product-showcase-video-demo-003.jpg</video:thumbnail_loc>
+      <video:title>产品展示视频页面演示</video:title>
+      <video:description>本页面展示产品展示类视频页面结构，适合需要批量生成产品介绍、素材说明和搜索承接内容的项目参考。</video:description>
+      <video:content_loc>https://www.9hwh.com/videos/product-showcase-video-demo-003.mp4</video:content_loc>
+      <video:duration>120</video:duration>
+      <video:publication_date>2026-05-19T00:00:00+00:00</video:publication_date>
+    </video:video>
+  </url>
+</urlset>

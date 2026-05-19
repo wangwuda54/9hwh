@@ -26,6 +26,8 @@ TELEGRAM_URL = "https://tg.9hwh.com/"
 TELEGRAM_BUTTON_LABEL = "Telegram 咨询"
 LEGACY_FALLBACK_PATH = "/services/legacy/"
 LEGACY_EXACT_SOURCE_LIMIT = 900
+DEFAULT_VIDEO_RELATED_LINKS = ["/services/", "/platforms/google/", "/topics/", "/contact/"]
+PRESERVED_PUBLIC_DIRS = {"videos", "thumbnails"}
 DEFAULT_CTA_TITLE = "想确认你的项目适合怎么跑？"
 DEFAULT_CTA_TEXT = "可以通过 Telegram 联系 9HWH，先简单说明项目类型、目标地区、预算范围和现有素材情况，我们会一起判断适合从哪个渠道开始测试。"
 TOPIC_DEFAULT_ARTICLE_NOTE = "相关内容将逐步更新，你也可以先通过 Telegram 说一下项目情况。"
@@ -62,6 +64,20 @@ def url_path(path: str) -> str:
     return path if path.startswith("/") else "/" + path
 
 
+def duration_iso(seconds: int) -> str:
+    seconds = int(seconds)
+    hours, remainder = divmod(seconds, 3600)
+    minutes, secs = divmod(remainder, 60)
+    parts = ["PT"]
+    if hours:
+        parts.append(f"{hours}H")
+    if minutes:
+        parts.append(f"{minutes}M")
+    if secs or not (hours or minutes):
+        parts.append(f"{secs}S")
+    return "".join(parts)
+
+
 def page_file(path: str) -> str:
     path = url_path(path)
     if path == "/":
@@ -90,6 +106,9 @@ def clean_public() -> None:
     PUBLIC.mkdir(parents=True, exist_ok=True)
     for path in PUBLIC.rglob("*"):
         if path.is_file():
+            rel = path.relative_to(PUBLIC)
+            if rel.parts and rel.parts[0] in PRESERVED_PUBLIC_DIRS:
+                continue
             path.unlink()
 
 
@@ -318,6 +337,20 @@ def service_schema(item: dict, site: dict) -> dict:
     return {"@context": "https://schema.org", "@type": "Service", "name": item["title"], "description": item["description"], "provider": {"@type": "Organization", "name": site["site_name"], "url": site["base_url"]}, "areaServed": "Global"}
 
 
+def video_schema(item: dict, base_url: str = BASE_URL) -> dict:
+    return {
+        "@context": "https://schema.org",
+        "@type": "VideoObject",
+        "name": item["title"],
+        "description": item["description"],
+        "thumbnailUrl": base_url + item["thumbnail"],
+        "uploadDate": item["upload_date"] + "T00:00:00+00:00",
+        "duration": duration_iso(item["duration_seconds"]),
+        "contentUrl": base_url + item["video_file"],
+        "embedUrl": base_url + "/v/" + item["slug"] + "/",
+    }
+
+
 def faq_html(faqs: list[dict]) -> str:
     if not faqs:
         return ""
@@ -397,6 +430,13 @@ def sections_html(sections: list[tuple[str, str]]) -> str:
 
 def load_content_queue() -> list[dict]:
     path = CONTENT_DATA / "content_queue.json"
+    if not path.exists():
+        return []
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def load_videos() -> list[dict]:
+    path = DATA / "videos.json"
     if not path.exists():
         return []
     return json.loads(path.read_text(encoding="utf-8"))
@@ -661,12 +701,94 @@ def listing_content(page: dict, items: list[dict], extra: str = "") -> str:
     return render(read_text(TEMPLATES / "listing.html"), {"eyebrow": esc(page.get("eyebrow", "")), "h1": esc(page["h1"]), "description": esc(page["description"]), "cards": card_grid(items, columns), "extra": extra})
 
 
+def internal_link_label(path: str) -> str:
+    labels = {
+        "/services/": "服务总览",
+        "/services/traffic-acquisition/": "引流获客服务",
+        "/services/ad-campaign-support/": "广告投放支持",
+        "/platforms/google/": "Google 推广支持",
+        "/topics/": "主题内容",
+        "/contact/": "联系咨询",
+    }
+    if path in labels:
+        return labels[path]
+    cleaned = path.strip("/").replace("-", " ")
+    return cleaned.title() if cleaned else "首页"
+
+
+def related_links_html(links: list[str]) -> str:
+    cleaned = []
+    for link in links or DEFAULT_VIDEO_RELATED_LINKS:
+        if isinstance(link, str) and link.startswith("/") and not link.startswith("//"):
+            cleaned.append(link)
+    if not cleaned:
+        cleaned = DEFAULT_VIDEO_RELATED_LINKS
+    return "".join(f'<a class="badge" href="{esc(link)}">{esc(internal_link_label(link))}</a>' for link in cleaned)
+
+
+def video_content(item: dict) -> str:
+    tags = item.get("tags", [])
+    tag_html = "".join(f'<span class="pill">{esc(tag)}</span>' for tag in tags)
+    if not tag_html:
+        tag_html = '<span class="pill">视频案例</span>'
+    services = [
+        "支持批量生成短视频素材",
+        "支持根据关键词生成视频标题和页面内容",
+        "支持用于 Google 搜索承接页面",
+        "支持配合 Dailymotion / Rumble / Odysee 做分发入口",
+    ]
+    return render(
+        read_text(TEMPLATES / "video.html"),
+        {
+            "eyebrow": "视频案例",
+            "h1": esc(item["h1"]),
+            "description": esc(item["description"]),
+            "thumbnail": esc(item["thumbnail"]),
+            "video_file": esc(item["video_file"]),
+            "summary": esc(item.get("summary", item["description"])),
+            "tags": tag_html,
+            "duration_seconds": esc(item["duration_seconds"]),
+            "service_items": list_items(services),
+            "contact_note": esc(item.get("contact_note", "如需了解视频制作或推广页面承接，可以通过联系页提交项目信息。")),
+            "related_links": related_links_html(item.get("related_links", [])),
+        },
+    )
+
+
 def write_sitemap(records: list[dict], lastmod: str) -> None:
     rows = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
     for record in records:
         rows.append(f'  <url><loc>{record["url"]}</loc><lastmod>{lastmod}</lastmod></url>')
     rows.append("</urlset>")
     write_file("sitemap.xml", "\n".join(rows) + "\n")
+
+
+def write_video_sitemap(videos: list[dict]) -> None:
+    rows = [
+        '<?xml version="1.0" encoding="UTF-8"?>',
+        '<urlset',
+        '  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"',
+        '  xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">',
+    ]
+    for item in videos:
+        video_url = BASE_URL + "/v/" + item["slug"] + "/"
+        rows.extend(
+            [
+                "  <url>",
+                f"    <loc>{esc(video_url)}</loc>",
+                "    <video:video>",
+                f"      <video:thumbnail_loc>{esc(BASE_URL + item['thumbnail'])}</video:thumbnail_loc>",
+                f"      <video:title>{esc(item['title'])}</video:title>",
+                f"      <video:description>{esc(item['description'])}</video:description>",
+                f"      <video:content_loc>{esc(BASE_URL + item['video_file'])}</video:content_loc>",
+                f"      <video:duration>{esc(item['duration_seconds'])}</video:duration>",
+                f"      <video:publication_date>{esc(item['upload_date'])}T00:00:00+00:00</video:publication_date>",
+                "    </video:video>",
+                "  </url>",
+            ]
+        )
+    rows.append("</urlset>")
+    write_file("video-sitemap.xml", "\n".join(rows) + "\n")
 
 
 def load_legacy_redirect_map() -> list[dict]:
@@ -821,6 +943,8 @@ def build() -> None:
     content_queue = load_content_queue()
     published_drafts = load_publishable_drafts(content_queue)
     published_aggregates = aggregate_published_articles(published_drafts)
+    videos = load_videos()
+    published_videos = [item for item in videos if item.get("status") == "published"]
 
     clean_public()
     css_target = PUBLIC / "assets" / "css" / "styles.css"
@@ -897,6 +1021,19 @@ def build() -> None:
     blog_extra = blog_article_cards_html(published_drafts)
     emit("/blog/", pages["blog"], listing_content(pages["blog"], [], blog_extra), site, nav, global_schemas, records, "pages.json:blog", "blog")
 
+    video_listing_page = {
+        "title": "视频案例 | 9HWH",
+        "h1": "视频案例",
+        "description": "查看 9HWH 视频案例页面，用于了解短视频素材、AI 视频生成、推广页面和 Google 搜索承接页面的组合方式。",
+        "eyebrow": "视频案例",
+    }
+    video_cards = [
+        {"title": item["title"], "url": "/v/" + item["slug"] + "/", "summary": item.get("summary", item["description"])}
+        for item in published_videos
+    ]
+    video_extra = cta_html("需要把视频素材做成搜索承接页面？", "可以先进入联系页说明项目类型、已有素材、目标市场和需要批量生成的页面数量。", "联系咨询", "/contact/")
+    emit("/v/", video_listing_page, listing_content(video_listing_page, video_cards, video_extra), site, nav, global_schemas, records, "videos.json:index", "video_listing")
+
     for task, body in published_drafts:
         page = {
             "title": task["title"],
@@ -906,6 +1043,25 @@ def build() -> None:
         }
         article_extra = '<article class="card">' + markdown_to_html(body) + "</article>" + cta_html(DEFAULT_CTA_TITLE, DEFAULT_CTA_TEXT)
         emit(task["target_url"], page, listing_content(page, [], article_extra), site, nav, global_schemas, records, f"content_queue:{task['content_id']}", task.get("page_type", "blog_article"))
+
+    for item in published_videos:
+        page = {
+            "title": item["title"],
+            "h1": item["h1"],
+            "description": item["description"],
+            "eyebrow": "视频案例",
+        }
+        emit(
+            "/v/" + item["slug"] + "/",
+            page,
+            video_content(item),
+            site,
+            nav,
+            global_schemas + [video_schema(item)],
+            records,
+            f"videos.json:{item.get('id', item['slug'])}",
+            "video",
+        )
 
     contact_extra = (
         '<article class="card"><h2>通过 Telegram 联系 9HWH</h2><p>'
@@ -933,7 +1089,8 @@ def build() -> None:
 
     check_duplicate_urls(records)
     write_sitemap(records, date.today().isoformat())
-    write_file("robots.txt", "User-agent: *\nAllow: /\n\nSitemap: https://www.9hwh.com/sitemap.xml\n")
+    write_video_sitemap(published_videos)
+    write_file("robots.txt", "User-agent: *\nAllow: /\n\nSitemap: https://www.9hwh.com/sitemap.xml\nSitemap: https://www.9hwh.com/video-sitemap.xml\n")
     write_cloudflare_pages_files()
     write_inventory(records)
     print(f"[OK] Generated {len(records)} indexed pages into {PUBLIC}")
