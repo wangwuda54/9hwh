@@ -31,12 +31,12 @@ DEFAULT_SITE_URL = "https://www.9hwh.com"
 
 MODE_LIMITS = {
     "conservative": 1,
-    "normal": 3,
-    "growth": 5,
+    "normal": 7,
+    "growth": 7,
     "aggressive": 10,
 }
 DEFAULT_MODE = "normal"
-DEFAULT_DAILY_LIMIT = 3
+DEFAULT_DAILY_LIMIT = 7
 HARD_LIMIT = 10
 POST_PUBLISH_CHECKS = [
     ["python", "scripts/build_site.py"],
