@@ -1,7 +1,7 @@
 [
   {
     "id": "001",
-    "status": "published",
+    "status": "draft",
     "slug": "ai-video-service-demo-001",
     "title": "AI数字人视频生成服务演示",
     "h1": "AI数字人视频生成服务演示",
@@ -26,7 +26,7 @@
   },
   {
     "id": "002",
-    "status": "published",
+    "status": "draft",
     "slug": "short-video-landing-page-demo-002",
     "title": "短视频推广落地页承接演示",
     "h1": "短视频推广落地页承接演示",
@@ -51,7 +51,7 @@
   },
   {
     "id": "003",
-    "status": "published",
+    "status": "draft",
     "slug": "product-showcase-video-demo-003",
     "title": "产品展示视频页面演示",
     "h1": "产品展示视频页面演示",
@@ -82,8 +82,8 @@
     "h1": "AI数字人视频生成服务 001",
     "description": "本页面展示 AI 数字人短视频生成效果，适合需要批量制作短视频、广告素材、产品展示视频和推广内容的项目参考。如需了解视频制作、批量生成或 Google 搜索获客页面，可以通过联系页提交项目信息。",
     "summary": "展示 AI 数字人视频生成效果，并提供视频制作、素材准备和推广页面承接说明。",
-    "video_file": "/videos/ai-video-service-001.mp4",
-    "thumbnail": "/thumbnails/ai-video-service-001.jpg",
+    "video_file": "https://video.9hwh.com/videos/ai-video-service-001.mp4",
+    "thumbnail": "https://video.9hwh.com/thumbnails/ai-video-service-001.jpg",
     "duration_seconds": 45,
     "upload_date": "2026-05-19",
     "tags": [
@@ -99,5 +99,1019 @@
       "/contact/"
     ],
     "source_filename": "1.MP4"
+  },
+  {
+    "id": "auto-002",
+    "status": "published",
+    "slug": "ai-video-service-002",
+    "title": "AI数字人视频生成服务 002",
+    "h1": "AI数字人视频生成服务 002",
+    "description": "本页面展示 AI 数字人短视频生成效果，适合需要批量制作短视频、广告素材、产品展示视频和推广内容的项目参考。如需了解视频制作、批量生成或 Google 搜索获客页面，可以通过联系页提交项目信息。",
+    "summary": "展示 AI 数字人视频生成效果，并提供视频制作、素材准备和推广页面承接说明。",
+    "video_file": "https://video.9hwh.com/videos/ai-video-service-002.mp4",
+    "thumbnail": "https://video.9hwh.com/thumbnails/ai-video-service-002.jpg",
+    "duration_seconds": 45,
+    "upload_date": "2026-05-19",
+    "tags": [
+      "AI视频生成",
+      "数字人视频",
+      "短视频制作"
+    ],
+    "contact_note": "如需了解视频制作、批量生成或推广页面承接，可以通过联系页提交项目信息。",
+    "related_links": [
+      "/services/traffic-acquisition/",
+      "/services/ad-campaign-support/",
+      "/platforms/google/",
+      "/contact/"
+    ],
+    "source_filename": "10.MP4"
+  },
+  {
+    "id": "auto-003",
+    "status": "published",
+    "slug": "ai-video-service-003",
+    "title": "AI数字人视频生成服务 003",
+    "h1": "AI数字人视频生成服务 003",
+    "description": "本页面展示 AI 数字人短视频生成效果，适合需要批量制作短视频、广告素材、产品展示视频和推广内容的项目参考。如需了解视频制作、批量生成或 Google 搜索获客页面，可以通过联系页提交项目信息。",
+    "summary": "展示 AI 数字人视频生成效果，并提供视频制作、素材准备和推广页面承接说明。",
+    "video_file": "https://video.9hwh.com/videos/ai-video-service-003.mp4",
+    "thumbnail": "https://video.9hwh.com/thumbnails/ai-video-service-003.jpg",
+    "duration_seconds": 45,
+    "upload_date": "2026-05-19",
+    "tags": [
+      "AI视频生成",
+      "数字人视频",
+      "短视频制作"
+    ],
+    "contact_note": "如需了解视频制作、批量生成或推广页面承接，可以通过联系页提交项目信息。",
+    "related_links": [
+      "/services/traffic-acquisition/",
+      "/services/ad-campaign-support/",
+      "/platforms/google/",
+      "/contact/"
+    ],
+    "source_filename": "11.MP4"
+  },
+  {
+    "id": "auto-004",
+    "status": "published",
+    "slug": "ai-video-service-004",
+    "title": "AI数字人视频生成服务 004",
+    "h1": "AI数字人视频生成服务 004",
+    "description": "本页面展示 AI 数字人短视频生成效果，适合需要批量制作短视频、广告素材、产品展示视频和推广内容的项目参考。如需了解视频制作、批量生成或 Google 搜索获客页面，可以通过联系页提交项目信息。",
+    "summary": "展示 AI 数字人视频生成效果，并提供视频制作、素材准备和推广页面承接说明。",
+    "video_file": "https://video.9hwh.com/videos/ai-video-service-004.mp4",
+    "thumbnail": "https://video.9hwh.com/thumbnails/ai-video-service-004.jpg",
+    "duration_seconds": 45,
+    "upload_date": "2026-05-19",
+    "tags": [
+      "AI视频生成",
+      "数字人视频",
+      "短视频制作"
+    ],
+    "contact_note": "如需了解视频制作、批量生成或推广页面承接，可以通过联系页提交项目信息。",
+    "related_links": [
+      "/services/traffic-acquisition/",
+      "/services/ad-campaign-support/",
+      "/platforms/google/",
+      "/contact/"
+    ],
+    "source_filename": "12.MP4"
+  },
+  {
+    "id": "auto-005",
+    "status": "published",
+    "slug": "ai-video-service-005",
+    "title": "AI数字人视频生成服务 005",
+    "h1": "AI数字人视频生成服务 005",
+    "description": "本页面展示 AI 数字人短视频生成效果，适合需要批量制作短视频、广告素材、产品展示视频和推广内容的项目参考。如需了解视频制作、批量生成或 Google 搜索获客页面，可以通过联系页提交项目信息。",
+    "summary": "展示 AI 数字人视频生成效果，并提供视频制作、素材准备和推广页面承接说明。",
+    "video_file": "https://video.9hwh.com/videos/ai-video-service-005.mp4",
+    "thumbnail": "https://video.9hwh.com/thumbnails/ai-video-service-005.jpg",
+    "duration_seconds": 45,
+    "upload_date": "2026-05-19",
+    "tags": [
+      "AI视频生成",
+      "数字人视频",
+      "短视频制作"
+    ],
+    "contact_note": "如需了解视频制作、批量生成或推广页面承接，可以通过联系页提交项目信息。",
+    "related_links": [
+      "/services/traffic-acquisition/",
+      "/services/ad-campaign-support/",
+      "/platforms/google/",
+      "/contact/"
+    ],
+    "source_filename": "13.MP4"
+  },
+  {
+    "id": "auto-006",
+    "status": "published",
+    "slug": "ai-video-service-006",
+    "title": "AI数字人视频生成服务 006",
+    "h1": "AI数字人视频生成服务 006",
+    "description": "本页面展示 AI 数字人短视频生成效果，适合需要批量制作短视频、广告素材、产品展示视频和推广内容的项目参考。如需了解视频制作、批量生成或 Google 搜索获客页面，可以通过联系页提交项目信息。",
+    "summary": "展示 AI 数字人视频生成效果，并提供视频制作、素材准备和推广页面承接说明。",
+    "video_file": "https://video.9hwh.com/videos/ai-video-service-006.mp4",
+    "thumbnail": "https://video.9hwh.com/thumbnails/ai-video-service-006.jpg",
+    "duration_seconds": 45,
+    "upload_date": "2026-05-19",
+    "tags": [
+      "AI视频生成",
+      "数字人视频",
+      "短视频制作"
+    ],
+    "contact_note": "如需了解视频制作、批量生成或推广页面承接，可以通过联系页提交项目信息。",
+    "related_links": [
+      "/services/traffic-acquisition/",
+      "/services/ad-campaign-support/",
+      "/platforms/google/",
+      "/contact/"
+    ],
+    "source_filename": "14.MP4"
+  },
+  {
+    "id": "auto-007",
+    "status": "published",
+    "slug": "ai-video-service-007",
+    "title": "AI数字人视频生成服务 007",
+    "h1": "AI数字人视频生成服务 007",
+    "description": "本页面展示 AI 数字人短视频生成效果，适合需要批量制作短视频、广告素材、产品展示视频和推广内容的项目参考。如需了解视频制作、批量生成或 Google 搜索获客页面，可以通过联系页提交项目信息。",
+    "summary": "展示 AI 数字人视频生成效果，并提供视频制作、素材准备和推广页面承接说明。",
+    "video_file": "https://video.9hwh.com/videos/ai-video-service-007.mp4",
+    "thumbnail": "https://video.9hwh.com/thumbnails/ai-video-service-007.jpg",
+    "duration_seconds": 45,
+    "upload_date": "2026-05-19",
+    "tags": [
+      "AI视频生成",
+      "数字人视频",
+      "短视频制作"
+    ],
+    "contact_note": "如需了解视频制作、批量生成或推广页面承接，可以通过联系页提交项目信息。",
+    "related_links": [
+      "/services/traffic-acquisition/",
+      "/services/ad-campaign-support/",
+      "/platforms/google/",
+      "/contact/"
+    ],
+    "source_filename": "15.MP4"
+  },
+  {
+    "id": "auto-008",
+    "status": "published",
+    "slug": "ai-video-service-008",
+    "title": "AI数字人视频生成服务 008",
+    "h1": "AI数字人视频生成服务 008",
+    "description": "本页面展示 AI 数字人短视频生成效果，适合需要批量制作短视频、广告素材、产品展示视频和推广内容的项目参考。如需了解视频制作、批量生成或 Google 搜索获客页面，可以通过联系页提交项目信息。",
+    "summary": "展示 AI 数字人视频生成效果，并提供视频制作、素材准备和推广页面承接说明。",
+    "video_file": "https://video.9hwh.com/videos/ai-video-service-008.mp4",
+    "thumbnail": "https://video.9hwh.com/thumbnails/ai-video-service-008.jpg",
+    "duration_seconds": 45,
+    "upload_date": "2026-05-19",
+    "tags": [
+      "AI视频生成",
+      "数字人视频",
+      "短视频制作"
+    ],
+    "contact_note": "如需了解视频制作、批量生成或推广页面承接，可以通过联系页提交项目信息。",
+    "related_links": [
+      "/services/traffic-acquisition/",
+      "/services/ad-campaign-support/",
+      "/platforms/google/",
+      "/contact/"
+    ],
+    "source_filename": "16.MP4"
+  },
+  {
+    "id": "auto-009",
+    "status": "published",
+    "slug": "ai-video-service-009",
+    "title": "AI数字人视频生成服务 009",
+    "h1": "AI数字人视频生成服务 009",
+    "description": "本页面展示 AI 数字人短视频生成效果，适合需要批量制作短视频、广告素材、产品展示视频和推广内容的项目参考。如需了解视频制作、批量生成或 Google 搜索获客页面，可以通过联系页提交项目信息。",
+    "summary": "展示 AI 数字人视频生成效果，并提供视频制作、素材准备和推广页面承接说明。",
+    "video_file": "https://video.9hwh.com/videos/ai-video-service-009.mp4",
+    "thumbnail": "https://video.9hwh.com/thumbnails/ai-video-service-009.jpg",
+    "duration_seconds": 45,
+    "upload_date": "2026-05-19",
+    "tags": [
+      "AI视频生成",
+      "数字人视频",
+      "短视频制作"
+    ],
+    "contact_note": "如需了解视频制作、批量生成或推广页面承接，可以通过联系页提交项目信息。",
+    "related_links": [
+      "/services/traffic-acquisition/",
+      "/services/ad-campaign-support/",
+      "/platforms/google/",
+      "/contact/"
+    ],
+    "source_filename": "17.MP4"
+  },
+  {
+    "id": "auto-010",
+    "status": "published",
+    "slug": "ai-video-service-010",
+    "title": "AI数字人视频生成服务 010",
+    "h1": "AI数字人视频生成服务 010",
+    "description": "本页面展示 AI 数字人短视频生成效果，适合需要批量制作短视频、广告素材、产品展示视频和推广内容的项目参考。如需了解视频制作、批量生成或 Google 搜索获客页面，可以通过联系页提交项目信息。",
+    "summary": "展示 AI 数字人视频生成效果，并提供视频制作、素材准备和推广页面承接说明。",
+    "video_file": "https://video.9hwh.com/videos/ai-video-service-010.mp4",
+    "thumbnail": "https://video.9hwh.com/thumbnails/ai-video-service-010.jpg",
+    "duration_seconds": 45,
+    "upload_date": "2026-05-19",
+    "tags": [
+      "AI视频生成",
+      "数字人视频",
+      "短视频制作"
+    ],
+    "contact_note": "如需了解视频制作、批量生成或推广页面承接，可以通过联系页提交项目信息。",
+    "related_links": [
+      "/services/traffic-acquisition/",
+      "/services/ad-campaign-support/",
+      "/platforms/google/",
+      "/contact/"
+    ],
+    "source_filename": "18.MP4"
+  },
+  {
+    "id": "auto-011",
+    "status": "published",
+    "slug": "ai-video-service-011",
+    "title": "AI数字人视频生成服务 011",
+    "h1": "AI数字人视频生成服务 011",
+    "description": "本页面展示 AI 数字人短视频生成效果，适合需要批量制作短视频、广告素材、产品展示视频和推广内容的项目参考。如需了解视频制作、批量生成或 Google 搜索获客页面，可以通过联系页提交项目信息。",
+    "summary": "展示 AI 数字人视频生成效果，并提供视频制作、素材准备和推广页面承接说明。",
+    "video_file": "https://video.9hwh.com/videos/ai-video-service-011.mp4",
+    "thumbnail": "https://video.9hwh.com/thumbnails/ai-video-service-011.jpg",
+    "duration_seconds": 45,
+    "upload_date": "2026-05-19",
+    "tags": [
+      "AI视频生成",
+      "数字人视频",
+      "短视频制作"
+    ],
+    "contact_note": "如需了解视频制作、批量生成或推广页面承接，可以通过联系页提交项目信息。",
+    "related_links": [
+      "/services/traffic-acquisition/",
+      "/services/ad-campaign-support/",
+      "/platforms/google/",
+      "/contact/"
+    ],
+    "source_filename": "19.MP4"
+  },
+  {
+    "id": "auto-012",
+    "status": "published",
+    "slug": "ai-video-service-012",
+    "title": "AI数字人视频生成服务 012",
+    "h1": "AI数字人视频生成服务 012",
+    "description": "本页面展示 AI 数字人短视频生成效果，适合需要批量制作短视频、广告素材、产品展示视频和推广内容的项目参考。如需了解视频制作、批量生成或 Google 搜索获客页面，可以通过联系页提交项目信息。",
+    "summary": "展示 AI 数字人视频生成效果，并提供视频制作、素材准备和推广页面承接说明。",
+    "video_file": "https://video.9hwh.com/videos/ai-video-service-012.mp4",
+    "thumbnail": "https://video.9hwh.com/thumbnails/ai-video-service-012.jpg",
+    "duration_seconds": 45,
+    "upload_date": "2026-05-19",
+    "tags": [
+      "AI视频生成",
+      "数字人视频",
+      "短视频制作"
+    ],
+    "contact_note": "如需了解视频制作、批量生成或推广页面承接，可以通过联系页提交项目信息。",
+    "related_links": [
+      "/services/traffic-acquisition/",
+      "/services/ad-campaign-support/",
+      "/platforms/google/",
+      "/contact/"
+    ],
+    "source_filename": "2.MP4"
+  },
+  {
+    "id": "auto-013",
+    "status": "published",
+    "slug": "ai-video-service-013",
+    "title": "AI数字人视频生成服务 013",
+    "h1": "AI数字人视频生成服务 013",
+    "description": "本页面展示 AI 数字人短视频生成效果，适合需要批量制作短视频、广告素材、产品展示视频和推广内容的项目参考。如需了解视频制作、批量生成或 Google 搜索获客页面，可以通过联系页提交项目信息。",
+    "summary": "展示 AI 数字人视频生成效果，并提供视频制作、素材准备和推广页面承接说明。",
+    "video_file": "https://video.9hwh.com/videos/ai-video-service-013.mp4",
+    "thumbnail": "https://video.9hwh.com/thumbnails/ai-video-service-013.jpg",
+    "duration_seconds": 45,
+    "upload_date": "2026-05-19",
+    "tags": [
+      "AI视频生成",
+      "数字人视频",
+      "短视频制作"
+    ],
+    "contact_note": "如需了解视频制作、批量生成或推广页面承接，可以通过联系页提交项目信息。",
+    "related_links": [
+      "/services/traffic-acquisition/",
+      "/services/ad-campaign-support/",
+      "/platforms/google/",
+      "/contact/"
+    ],
+    "source_filename": "20.MP4"
+  },
+  {
+    "id": "auto-014",
+    "status": "published",
+    "slug": "ai-video-service-014",
+    "title": "AI数字人视频生成服务 014",
+    "h1": "AI数字人视频生成服务 014",
+    "description": "本页面展示 AI 数字人短视频生成效果，适合需要批量制作短视频、广告素材、产品展示视频和推广内容的项目参考。如需了解视频制作、批量生成或 Google 搜索获客页面，可以通过联系页提交项目信息。",
+    "summary": "展示 AI 数字人视频生成效果，并提供视频制作、素材准备和推广页面承接说明。",
+    "video_file": "https://video.9hwh.com/videos/ai-video-service-014.mp4",
+    "thumbnail": "https://video.9hwh.com/thumbnails/ai-video-service-014.jpg",
+    "duration_seconds": 45,
+    "upload_date": "2026-05-19",
+    "tags": [
+      "AI视频生成",
+      "数字人视频",
+      "短视频制作"
+    ],
+    "contact_note": "如需了解视频制作、批量生成或推广页面承接，可以通过联系页提交项目信息。",
+    "related_links": [
+      "/services/traffic-acquisition/",
+      "/services/ad-campaign-support/",
+      "/platforms/google/",
+      "/contact/"
+    ],
+    "source_filename": "21.MP4"
+  },
+  {
+    "id": "auto-015",
+    "status": "published",
+    "slug": "ai-video-service-015",
+    "title": "AI数字人视频生成服务 015",
+    "h1": "AI数字人视频生成服务 015",
+    "description": "本页面展示 AI 数字人短视频生成效果，适合需要批量制作短视频、广告素材、产品展示视频和推广内容的项目参考。如需了解视频制作、批量生成或 Google 搜索获客页面，可以通过联系页提交项目信息。",
+    "summary": "展示 AI 数字人视频生成效果，并提供视频制作、素材准备和推广页面承接说明。",
+    "video_file": "https://video.9hwh.com/videos/ai-video-service-015.mp4",
+    "thumbnail": "https://video.9hwh.com/thumbnails/ai-video-service-015.jpg",
+    "duration_seconds": 45,
+    "upload_date": "2026-05-19",
+    "tags": [
+      "AI视频生成",
+      "数字人视频",
+      "短视频制作"
+    ],
+    "contact_note": "如需了解视频制作、批量生成或推广页面承接，可以通过联系页提交项目信息。",
+    "related_links": [
+      "/services/traffic-acquisition/",
+      "/services/ad-campaign-support/",
+      "/platforms/google/",
+      "/contact/"
+    ],
+    "source_filename": "22.MP4"
+  },
+  {
+    "id": "auto-016",
+    "status": "published",
+    "slug": "ai-video-service-016",
+    "title": "AI数字人视频生成服务 016",
+    "h1": "AI数字人视频生成服务 016",
+    "description": "本页面展示 AI 数字人短视频生成效果，适合需要批量制作短视频、广告素材、产品展示视频和推广内容的项目参考。如需了解视频制作、批量生成或 Google 搜索获客页面，可以通过联系页提交项目信息。",
+    "summary": "展示 AI 数字人视频生成效果，并提供视频制作、素材准备和推广页面承接说明。",
+    "video_file": "https://video.9hwh.com/videos/ai-video-service-016.mp4",
+    "thumbnail": "https://video.9hwh.com/thumbnails/ai-video-service-016.jpg",
+    "duration_seconds": 45,
+    "upload_date": "2026-05-19",
+    "tags": [
+      "AI视频生成",
+      "数字人视频",
+      "短视频制作"
+    ],
+    "contact_note": "如需了解视频制作、批量生成或推广页面承接，可以通过联系页提交项目信息。",
+    "related_links": [
+      "/services/traffic-acquisition/",
+      "/services/ad-campaign-support/",
+      "/platforms/google/",
+      "/contact/"
+    ],
+    "source_filename": "23.MP4"
+  },
+  {
+    "id": "auto-017",
+    "status": "published",
+    "slug": "ai-video-service-017",
+    "title": "AI数字人视频生成服务 017",
+    "h1": "AI数字人视频生成服务 017",
+    "description": "本页面展示 AI 数字人短视频生成效果，适合需要批量制作短视频、广告素材、产品展示视频和推广内容的项目参考。如需了解视频制作、批量生成或 Google 搜索获客页面，可以通过联系页提交项目信息。",
+    "summary": "展示 AI 数字人视频生成效果，并提供视频制作、素材准备和推广页面承接说明。",
+    "video_file": "https://video.9hwh.com/videos/ai-video-service-017.mp4",
+    "thumbnail": "https://video.9hwh.com/thumbnails/ai-video-service-017.jpg",
+    "duration_seconds": 45,
+    "upload_date": "2026-05-19",
+    "tags": [
+      "AI视频生成",
+      "数字人视频",
+      "短视频制作"
+    ],
+    "contact_note": "如需了解视频制作、批量生成或推广页面承接，可以通过联系页提交项目信息。",
+    "related_links": [
+      "/services/traffic-acquisition/",
+      "/services/ad-campaign-support/",
+      "/platforms/google/",
+      "/contact/"
+    ],
+    "source_filename": "24.MP4"
+  },
+  {
+    "id": "auto-018",
+    "status": "published",
+    "slug": "ai-video-service-018",
+    "title": "AI数字人视频生成服务 018",
+    "h1": "AI数字人视频生成服务 018",
+    "description": "本页面展示 AI 数字人短视频生成效果，适合需要批量制作短视频、广告素材、产品展示视频和推广内容的项目参考。如需了解视频制作、批量生成或 Google 搜索获客页面，可以通过联系页提交项目信息。",
+    "summary": "展示 AI 数字人视频生成效果，并提供视频制作、素材准备和推广页面承接说明。",
+    "video_file": "https://video.9hwh.com/videos/ai-video-service-018.mp4",
+    "thumbnail": "https://video.9hwh.com/thumbnails/ai-video-service-018.jpg",
+    "duration_seconds": 45,
+    "upload_date": "2026-05-19",
+    "tags": [
+      "AI视频生成",
+      "数字人视频",
+      "短视频制作"
+    ],
+    "contact_note": "如需了解视频制作、批量生成或推广页面承接，可以通过联系页提交项目信息。",
+    "related_links": [
+      "/services/traffic-acquisition/",
+      "/services/ad-campaign-support/",
+      "/platforms/google/",
+      "/contact/"
+    ],
+    "source_filename": "25.MP4"
+  },
+  {
+    "id": "auto-019",
+    "status": "published",
+    "slug": "ai-video-service-019",
+    "title": "AI数字人视频生成服务 019",
+    "h1": "AI数字人视频生成服务 019",
+    "description": "本页面展示 AI 数字人短视频生成效果，适合需要批量制作短视频、广告素材、产品展示视频和推广内容的项目参考。如需了解视频制作、批量生成或 Google 搜索获客页面，可以通过联系页提交项目信息。",
+    "summary": "展示 AI 数字人视频生成效果，并提供视频制作、素材准备和推广页面承接说明。",
+    "video_file": "https://video.9hwh.com/videos/ai-video-service-019.mp4",
+    "thumbnail": "https://video.9hwh.com/thumbnails/ai-video-service-019.jpg",
+    "duration_seconds": 45,
+    "upload_date": "2026-05-19",
+    "tags": [
+      "AI视频生成",
+      "数字人视频",
+      "短视频制作"
+    ],
+    "contact_note": "如需了解视频制作、批量生成或推广页面承接，可以通过联系页提交项目信息。",
+    "related_links": [
+      "/services/traffic-acquisition/",
+      "/services/ad-campaign-support/",
+      "/platforms/google/",
+      "/contact/"
+    ],
+    "source_filename": "26.MP4"
+  },
+  {
+    "id": "auto-020",
+    "status": "published",
+    "slug": "ai-video-service-020",
+    "title": "AI数字人视频生成服务 020",
+    "h1": "AI数字人视频生成服务 020",
+    "description": "本页面展示 AI 数字人短视频生成效果，适合需要批量制作短视频、广告素材、产品展示视频和推广内容的项目参考。如需了解视频制作、批量生成或 Google 搜索获客页面，可以通过联系页提交项目信息。",
+    "summary": "展示 AI 数字人视频生成效果，并提供视频制作、素材准备和推广页面承接说明。",
+    "video_file": "https://video.9hwh.com/videos/ai-video-service-020.mp4",
+    "thumbnail": "https://video.9hwh.com/thumbnails/ai-video-service-020.jpg",
+    "duration_seconds": 45,
+    "upload_date": "2026-05-19",
+    "tags": [
+      "AI视频生成",
+      "数字人视频",
+      "短视频制作"
+    ],
+    "contact_note": "如需了解视频制作、批量生成或推广页面承接，可以通过联系页提交项目信息。",
+    "related_links": [
+      "/services/traffic-acquisition/",
+      "/services/ad-campaign-support/",
+      "/platforms/google/",
+      "/contact/"
+    ],
+    "source_filename": "27.MP4"
+  },
+  {
+    "id": "auto-021",
+    "status": "published",
+    "slug": "ai-video-service-021",
+    "title": "AI数字人视频生成服务 021",
+    "h1": "AI数字人视频生成服务 021",
+    "description": "本页面展示 AI 数字人短视频生成效果，适合需要批量制作短视频、广告素材、产品展示视频和推广内容的项目参考。如需了解视频制作、批量生成或 Google 搜索获客页面，可以通过联系页提交项目信息。",
+    "summary": "展示 AI 数字人视频生成效果，并提供视频制作、素材准备和推广页面承接说明。",
+    "video_file": "https://video.9hwh.com/videos/ai-video-service-021.mp4",
+    "thumbnail": "https://video.9hwh.com/thumbnails/ai-video-service-021.jpg",
+    "duration_seconds": 45,
+    "upload_date": "2026-05-19",
+    "tags": [
+      "AI视频生成",
+      "数字人视频",
+      "短视频制作"
+    ],
+    "contact_note": "如需了解视频制作、批量生成或推广页面承接，可以通过联系页提交项目信息。",
+    "related_links": [
+      "/services/traffic-acquisition/",
+      "/services/ad-campaign-support/",
+      "/platforms/google/",
+      "/contact/"
+    ],
+    "source_filename": "28.MP4"
+  },
+  {
+    "id": "auto-022",
+    "status": "published",
+    "slug": "ai-video-service-022",
+    "title": "AI数字人视频生成服务 022",
+    "h1": "AI数字人视频生成服务 022",
+    "description": "本页面展示 AI 数字人短视频生成效果，适合需要批量制作短视频、广告素材、产品展示视频和推广内容的项目参考。如需了解视频制作、批量生成或 Google 搜索获客页面，可以通过联系页提交项目信息。",
+    "summary": "展示 AI 数字人视频生成效果，并提供视频制作、素材准备和推广页面承接说明。",
+    "video_file": "https://video.9hwh.com/videos/ai-video-service-022.mp4",
+    "thumbnail": "https://video.9hwh.com/thumbnails/ai-video-service-022.jpg",
+    "duration_seconds": 45,
+    "upload_date": "2026-05-19",
+    "tags": [
+      "AI视频生成",
+      "数字人视频",
+      "短视频制作"
+    ],
+    "contact_note": "如需了解视频制作、批量生成或推广页面承接，可以通过联系页提交项目信息。",
+    "related_links": [
+      "/services/traffic-acquisition/",
+      "/services/ad-campaign-support/",
+      "/platforms/google/",
+      "/contact/"
+    ],
+    "source_filename": "29.MP4"
+  },
+  {
+    "id": "auto-023",
+    "status": "published",
+    "slug": "ai-video-service-023",
+    "title": "AI数字人视频生成服务 023",
+    "h1": "AI数字人视频生成服务 023",
+    "description": "本页面展示 AI 数字人短视频生成效果，适合需要批量制作短视频、广告素材、产品展示视频和推广内容的项目参考。如需了解视频制作、批量生成或 Google 搜索获客页面，可以通过联系页提交项目信息。",
+    "summary": "展示 AI 数字人视频生成效果，并提供视频制作、素材准备和推广页面承接说明。",
+    "video_file": "https://video.9hwh.com/videos/ai-video-service-023.mp4",
+    "thumbnail": "https://video.9hwh.com/thumbnails/ai-video-service-023.jpg",
+    "duration_seconds": 45,
+    "upload_date": "2026-05-19",
+    "tags": [
+      "AI视频生成",
+      "数字人视频",
+      "短视频制作"
+    ],
+    "contact_note": "如需了解视频制作、批量生成或推广页面承接，可以通过联系页提交项目信息。",
+    "related_links": [
+      "/services/traffic-acquisition/",
+      "/services/ad-campaign-support/",
+      "/platforms/google/",
+      "/contact/"
+    ],
+    "source_filename": "3.MP4"
+  },
+  {
+    "id": "auto-024",
+    "status": "published",
+    "slug": "ai-video-service-024",
+    "title": "AI数字人视频生成服务 024",
+    "h1": "AI数字人视频生成服务 024",
+    "description": "本页面展示 AI 数字人短视频生成效果，适合需要批量制作短视频、广告素材、产品展示视频和推广内容的项目参考。如需了解视频制作、批量生成或 Google 搜索获客页面，可以通过联系页提交项目信息。",
+    "summary": "展示 AI 数字人视频生成效果，并提供视频制作、素材准备和推广页面承接说明。",
+    "video_file": "https://video.9hwh.com/videos/ai-video-service-024.mp4",
+    "thumbnail": "https://video.9hwh.com/thumbnails/ai-video-service-024.jpg",
+    "duration_seconds": 45,
+    "upload_date": "2026-05-19",
+    "tags": [
+      "AI视频生成",
+      "数字人视频",
+      "短视频制作"
+    ],
+    "contact_note": "如需了解视频制作、批量生成或推广页面承接，可以通过联系页提交项目信息。",
+    "related_links": [
+      "/services/traffic-acquisition/",
+      "/services/ad-campaign-support/",
+      "/platforms/google/",
+      "/contact/"
+    ],
+    "source_filename": "30.MP4"
+  },
+  {
+    "id": "auto-025",
+    "status": "published",
+    "slug": "ai-video-service-025",
+    "title": "AI数字人视频生成服务 025",
+    "h1": "AI数字人视频生成服务 025",
+    "description": "本页面展示 AI 数字人短视频生成效果，适合需要批量制作短视频、广告素材、产品展示视频和推广内容的项目参考。如需了解视频制作、批量生成或 Google 搜索获客页面，可以通过联系页提交项目信息。",
+    "summary": "展示 AI 数字人视频生成效果，并提供视频制作、素材准备和推广页面承接说明。",
+    "video_file": "https://video.9hwh.com/videos/ai-video-service-025.mp4",
+    "thumbnail": "https://video.9hwh.com/thumbnails/ai-video-service-025.jpg",
+    "duration_seconds": 45,
+    "upload_date": "2026-05-19",
+    "tags": [
+      "AI视频生成",
+      "数字人视频",
+      "短视频制作"
+    ],
+    "contact_note": "如需了解视频制作、批量生成或推广页面承接，可以通过联系页提交项目信息。",
+    "related_links": [
+      "/services/traffic-acquisition/",
+      "/services/ad-campaign-support/",
+      "/platforms/google/",
+      "/contact/"
+    ],
+    "source_filename": "31.MP4"
+  },
+  {
+    "id": "auto-026",
+    "status": "published",
+    "slug": "ai-video-service-026",
+    "title": "AI数字人视频生成服务 026",
+    "h1": "AI数字人视频生成服务 026",
+    "description": "本页面展示 AI 数字人短视频生成效果，适合需要批量制作短视频、广告素材、产品展示视频和推广内容的项目参考。如需了解视频制作、批量生成或 Google 搜索获客页面，可以通过联系页提交项目信息。",
+    "summary": "展示 AI 数字人视频生成效果，并提供视频制作、素材准备和推广页面承接说明。",
+    "video_file": "https://video.9hwh.com/videos/ai-video-service-026.mp4",
+    "thumbnail": "https://video.9hwh.com/thumbnails/ai-video-service-026.jpg",
+    "duration_seconds": 45,
+    "upload_date": "2026-05-19",
+    "tags": [
+      "AI视频生成",
+      "数字人视频",
+      "短视频制作"
+    ],
+    "contact_note": "如需了解视频制作、批量生成或推广页面承接，可以通过联系页提交项目信息。",
+    "related_links": [
+      "/services/traffic-acquisition/",
+      "/services/ad-campaign-support/",
+      "/platforms/google/",
+      "/contact/"
+    ],
+    "source_filename": "32.MP4"
+  },
+  {
+    "id": "auto-027",
+    "status": "published",
+    "slug": "ai-video-service-027",
+    "title": "AI数字人视频生成服务 027",
+    "h1": "AI数字人视频生成服务 027",
+    "description": "本页面展示 AI 数字人短视频生成效果，适合需要批量制作短视频、广告素材、产品展示视频和推广内容的项目参考。如需了解视频制作、批量生成或 Google 搜索获客页面，可以通过联系页提交项目信息。",
+    "summary": "展示 AI 数字人视频生成效果，并提供视频制作、素材准备和推广页面承接说明。",
+    "video_file": "https://video.9hwh.com/videos/ai-video-service-027.mp4",
+    "thumbnail": "https://video.9hwh.com/thumbnails/ai-video-service-027.jpg",
+    "duration_seconds": 45,
+    "upload_date": "2026-05-19",
+    "tags": [
+      "AI视频生成",
+      "数字人视频",
+      "短视频制作"
+    ],
+    "contact_note": "如需了解视频制作、批量生成或推广页面承接，可以通过联系页提交项目信息。",
+    "related_links": [
+      "/services/traffic-acquisition/",
+      "/services/ad-campaign-support/",
+      "/platforms/google/",
+      "/contact/"
+    ],
+    "source_filename": "33.MP4"
+  },
+  {
+    "id": "auto-028",
+    "status": "published",
+    "slug": "ai-video-service-028",
+    "title": "AI数字人视频生成服务 028",
+    "h1": "AI数字人视频生成服务 028",
+    "description": "本页面展示 AI 数字人短视频生成效果，适合需要批量制作短视频、广告素材、产品展示视频和推广内容的项目参考。如需了解视频制作、批量生成或 Google 搜索获客页面，可以通过联系页提交项目信息。",
+    "summary": "展示 AI 数字人视频生成效果，并提供视频制作、素材准备和推广页面承接说明。",
+    "video_file": "https://video.9hwh.com/videos/ai-video-service-028.mp4",
+    "thumbnail": "https://video.9hwh.com/thumbnails/ai-video-service-028.jpg",
+    "duration_seconds": 45,
+    "upload_date": "2026-05-19",
+    "tags": [
+      "AI视频生成",
+      "数字人视频",
+      "短视频制作"
+    ],
+    "contact_note": "如需了解视频制作、批量生成或推广页面承接，可以通过联系页提交项目信息。",
+    "related_links": [
+      "/services/traffic-acquisition/",
+      "/services/ad-campaign-support/",
+      "/platforms/google/",
+      "/contact/"
+    ],
+    "source_filename": "34.MP4"
+  },
+  {
+    "id": "auto-029",
+    "status": "published",
+    "slug": "ai-video-service-029",
+    "title": "AI数字人视频生成服务 029",
+    "h1": "AI数字人视频生成服务 029",
+    "description": "本页面展示 AI 数字人短视频生成效果，适合需要批量制作短视频、广告素材、产品展示视频和推广内容的项目参考。如需了解视频制作、批量生成或 Google 搜索获客页面，可以通过联系页提交项目信息。",
+    "summary": "展示 AI 数字人视频生成效果，并提供视频制作、素材准备和推广页面承接说明。",
+    "video_file": "https://video.9hwh.com/videos/ai-video-service-029.mp4",
+    "thumbnail": "https://video.9hwh.com/thumbnails/ai-video-service-029.jpg",
+    "duration_seconds": 45,
+    "upload_date": "2026-05-19",
+    "tags": [
+      "AI视频生成",
+      "数字人视频",
+      "短视频制作"
+    ],
+    "contact_note": "如需了解视频制作、批量生成或推广页面承接，可以通过联系页提交项目信息。",
+    "related_links": [
+      "/services/traffic-acquisition/",
+      "/services/ad-campaign-support/",
+      "/platforms/google/",
+      "/contact/"
+    ],
+    "source_filename": "35.MP4"
+  },
+  {
+    "id": "auto-030",
+    "status": "published",
+    "slug": "ai-video-service-030",
+    "title": "AI数字人视频生成服务 030",
+    "h1": "AI数字人视频生成服务 030",
+    "description": "本页面展示 AI 数字人短视频生成效果，适合需要批量制作短视频、广告素材、产品展示视频和推广内容的项目参考。如需了解视频制作、批量生成或 Google 搜索获客页面，可以通过联系页提交项目信息。",
+    "summary": "展示 AI 数字人视频生成效果，并提供视频制作、素材准备和推广页面承接说明。",
+    "video_file": "https://video.9hwh.com/videos/ai-video-service-030.mp4",
+    "thumbnail": "https://video.9hwh.com/thumbnails/ai-video-service-030.jpg",
+    "duration_seconds": 45,
+    "upload_date": "2026-05-19",
+    "tags": [
+      "AI视频生成",
+      "数字人视频",
+      "短视频制作"
+    ],
+    "contact_note": "如需了解视频制作、批量生成或推广页面承接，可以通过联系页提交项目信息。",
+    "related_links": [
+      "/services/traffic-acquisition/",
+      "/services/ad-campaign-support/",
+      "/platforms/google/",
+      "/contact/"
+    ],
+    "source_filename": "36.MP4"
+  },
+  {
+    "id": "auto-031",
+    "status": "published",
+    "slug": "ai-video-service-031",
+    "title": "AI数字人视频生成服务 031",
+    "h1": "AI数字人视频生成服务 031",
+    "description": "本页面展示 AI 数字人短视频生成效果，适合需要批量制作短视频、广告素材、产品展示视频和推广内容的项目参考。如需了解视频制作、批量生成或 Google 搜索获客页面，可以通过联系页提交项目信息。",
+    "summary": "展示 AI 数字人视频生成效果，并提供视频制作、素材准备和推广页面承接说明。",
+    "video_file": "https://video.9hwh.com/videos/ai-video-service-031.mp4",
+    "thumbnail": "https://video.9hwh.com/thumbnails/ai-video-service-031.jpg",
+    "duration_seconds": 45,
+    "upload_date": "2026-05-19",
+    "tags": [
+      "AI视频生成",
+      "数字人视频",
+      "短视频制作"
+    ],
+    "contact_note": "如需了解视频制作、批量生成或推广页面承接，可以通过联系页提交项目信息。",
+    "related_links": [
+      "/services/traffic-acquisition/",
+      "/services/ad-campaign-support/",
+      "/platforms/google/",
+      "/contact/"
+    ],
+    "source_filename": "37.MP4"
+  },
+  {
+    "id": "auto-032",
+    "status": "published",
+    "slug": "ai-video-service-032",
+    "title": "AI数字人视频生成服务 032",
+    "h1": "AI数字人视频生成服务 032",
+    "description": "本页面展示 AI 数字人短视频生成效果，适合需要批量制作短视频、广告素材、产品展示视频和推广内容的项目参考。如需了解视频制作、批量生成或 Google 搜索获客页面，可以通过联系页提交项目信息。",
+    "summary": "展示 AI 数字人视频生成效果，并提供视频制作、素材准备和推广页面承接说明。",
+    "video_file": "https://video.9hwh.com/videos/ai-video-service-032.mp4",
+    "thumbnail": "https://video.9hwh.com/thumbnails/ai-video-service-032.jpg",
+    "duration_seconds": 45,
+    "upload_date": "2026-05-19",
+    "tags": [
+      "AI视频生成",
+      "数字人视频",
+      "短视频制作"
+    ],
+    "contact_note": "如需了解视频制作、批量生成或推广页面承接，可以通过联系页提交项目信息。",
+    "related_links": [
+      "/services/traffic-acquisition/",
+      "/services/ad-campaign-support/",
+      "/platforms/google/",
+      "/contact/"
+    ],
+    "source_filename": "38.MP4"
+  },
+  {
+    "id": "auto-033",
+    "status": "published",
+    "slug": "ai-video-service-033",
+    "title": "AI数字人视频生成服务 033",
+    "h1": "AI数字人视频生成服务 033",
+    "description": "本页面展示 AI 数字人短视频生成效果，适合需要批量制作短视频、广告素材、产品展示视频和推广内容的项目参考。如需了解视频制作、批量生成或 Google 搜索获客页面，可以通过联系页提交项目信息。",
+    "summary": "展示 AI 数字人视频生成效果，并提供视频制作、素材准备和推广页面承接说明。",
+    "video_file": "https://video.9hwh.com/videos/ai-video-service-033.mp4",
+    "thumbnail": "https://video.9hwh.com/thumbnails/ai-video-service-033.jpg",
+    "duration_seconds": 45,
+    "upload_date": "2026-05-19",
+    "tags": [
+      "AI视频生成",
+      "数字人视频",
+      "短视频制作"
+    ],
+    "contact_note": "如需了解视频制作、批量生成或推广页面承接，可以通过联系页提交项目信息。",
+    "related_links": [
+      "/services/traffic-acquisition/",
+      "/services/ad-campaign-support/",
+      "/platforms/google/",
+      "/contact/"
+    ],
+    "source_filename": "39.MP4"
+  },
+  {
+    "id": "auto-034",
+    "status": "published",
+    "slug": "ai-video-service-034",
+    "title": "AI数字人视频生成服务 034",
+    "h1": "AI数字人视频生成服务 034",
+    "description": "本页面展示 AI 数字人短视频生成效果，适合需要批量制作短视频、广告素材、产品展示视频和推广内容的项目参考。如需了解视频制作、批量生成或 Google 搜索获客页面，可以通过联系页提交项目信息。",
+    "summary": "展示 AI 数字人视频生成效果，并提供视频制作、素材准备和推广页面承接说明。",
+    "video_file": "https://video.9hwh.com/videos/ai-video-service-034.mp4",
+    "thumbnail": "https://video.9hwh.com/thumbnails/ai-video-service-034.jpg",
+    "duration_seconds": 45,
+    "upload_date": "2026-05-19",
+    "tags": [
+      "AI视频生成",
+      "数字人视频",
+      "短视频制作"
+    ],
+    "contact_note": "如需了解视频制作、批量生成或推广页面承接，可以通过联系页提交项目信息。",
+    "related_links": [
+      "/services/traffic-acquisition/",
+      "/services/ad-campaign-support/",
+      "/platforms/google/",
+      "/contact/"
+    ],
+    "source_filename": "4.MP4"
+  },
+  {
+    "id": "auto-035",
+    "status": "published",
+    "slug": "ai-video-service-035",
+    "title": "AI数字人视频生成服务 035",
+    "h1": "AI数字人视频生成服务 035",
+    "description": "本页面展示 AI 数字人短视频生成效果，适合需要批量制作短视频、广告素材、产品展示视频和推广内容的项目参考。如需了解视频制作、批量生成或 Google 搜索获客页面，可以通过联系页提交项目信息。",
+    "summary": "展示 AI 数字人视频生成效果，并提供视频制作、素材准备和推广页面承接说明。",
+    "video_file": "https://video.9hwh.com/videos/ai-video-service-035.mp4",
+    "thumbnail": "https://video.9hwh.com/thumbnails/ai-video-service-035.jpg",
+    "duration_seconds": 45,
+    "upload_date": "2026-05-19",
+    "tags": [
+      "AI视频生成",
+      "数字人视频",
+      "短视频制作"
+    ],
+    "contact_note": "如需了解视频制作、批量生成或推广页面承接，可以通过联系页提交项目信息。",
+    "related_links": [
+      "/services/traffic-acquisition/",
+      "/services/ad-campaign-support/",
+      "/platforms/google/",
+      "/contact/"
+    ],
+    "source_filename": "40.MP4"
+  },
+  {
+    "id": "auto-036",
+    "status": "published",
+    "slug": "ai-video-service-036",
+    "title": "AI数字人视频生成服务 036",
+    "h1": "AI数字人视频生成服务 036",
+    "description": "本页面展示 AI 数字人短视频生成效果，适合需要批量制作短视频、广告素材、产品展示视频和推广内容的项目参考。如需了解视频制作、批量生成或 Google 搜索获客页面，可以通过联系页提交项目信息。",
+    "summary": "展示 AI 数字人视频生成效果，并提供视频制作、素材准备和推广页面承接说明。",
+    "video_file": "https://video.9hwh.com/videos/ai-video-service-036.mp4",
+    "thumbnail": "https://video.9hwh.com/thumbnails/ai-video-service-036.jpg",
+    "duration_seconds": 45,
+    "upload_date": "2026-05-19",
+    "tags": [
+      "AI视频生成",
+      "数字人视频",
+      "短视频制作"
+    ],
+    "contact_note": "如需了解视频制作、批量生成或推广页面承接，可以通过联系页提交项目信息。",
+    "related_links": [
+      "/services/traffic-acquisition/",
+      "/services/ad-campaign-support/",
+      "/platforms/google/",
+      "/contact/"
+    ],
+    "source_filename": "5.MP4"
+  },
+  {
+    "id": "auto-037",
+    "status": "published",
+    "slug": "ai-video-service-037",
+    "title": "AI数字人视频生成服务 037",
+    "h1": "AI数字人视频生成服务 037",
+    "description": "本页面展示 AI 数字人短视频生成效果，适合需要批量制作短视频、广告素材、产品展示视频和推广内容的项目参考。如需了解视频制作、批量生成或 Google 搜索获客页面，可以通过联系页提交项目信息。",
+    "summary": "展示 AI 数字人视频生成效果，并提供视频制作、素材准备和推广页面承接说明。",
+    "video_file": "https://video.9hwh.com/videos/ai-video-service-037.mp4",
+    "thumbnail": "https://video.9hwh.com/thumbnails/ai-video-service-037.jpg",
+    "duration_seconds": 45,
+    "upload_date": "2026-05-19",
+    "tags": [
+      "AI视频生成",
+      "数字人视频",
+      "短视频制作"
+    ],
+    "contact_note": "如需了解视频制作、批量生成或推广页面承接，可以通过联系页提交项目信息。",
+    "related_links": [
+      "/services/traffic-acquisition/",
+      "/services/ad-campaign-support/",
+      "/platforms/google/",
+      "/contact/"
+    ],
+    "source_filename": "6.MP4"
+  },
+  {
+    "id": "auto-038",
+    "status": "published",
+    "slug": "ai-video-service-038",
+    "title": "AI数字人视频生成服务 038",
+    "h1": "AI数字人视频生成服务 038",
+    "description": "本页面展示 AI 数字人短视频生成效果，适合需要批量制作短视频、广告素材、产品展示视频和推广内容的项目参考。如需了解视频制作、批量生成或 Google 搜索获客页面，可以通过联系页提交项目信息。",
+    "summary": "展示 AI 数字人视频生成效果，并提供视频制作、素材准备和推广页面承接说明。",
+    "video_file": "https://video.9hwh.com/videos/ai-video-service-038.mp4",
+    "thumbnail": "https://video.9hwh.com/thumbnails/ai-video-service-038.jpg",
+    "duration_seconds": 45,
+    "upload_date": "2026-05-19",
+    "tags": [
+      "AI视频生成",
+      "数字人视频",
+      "短视频制作"
+    ],
+    "contact_note": "如需了解视频制作、批量生成或推广页面承接，可以通过联系页提交项目信息。",
+    "related_links": [
+      "/services/traffic-acquisition/",
+      "/services/ad-campaign-support/",
+      "/platforms/google/",
+      "/contact/"
+    ],
+    "source_filename": "7.MP4"
+  },
+  {
+    "id": "auto-039",
+    "status": "published",
+    "slug": "ai-video-service-039",
+    "title": "AI数字人视频生成服务 039",
+    "h1": "AI数字人视频生成服务 039",
+    "description": "本页面展示 AI 数字人短视频生成效果，适合需要批量制作短视频、广告素材、产品展示视频和推广内容的项目参考。如需了解视频制作、批量生成或 Google 搜索获客页面，可以通过联系页提交项目信息。",
+    "summary": "展示 AI 数字人视频生成效果，并提供视频制作、素材准备和推广页面承接说明。",
+    "video_file": "https://video.9hwh.com/videos/ai-video-service-039.mp4",
+    "thumbnail": "https://video.9hwh.com/thumbnails/ai-video-service-039.jpg",
+    "duration_seconds": 45,
+    "upload_date": "2026-05-19",
+    "tags": [
+      "AI视频生成",
+      "数字人视频",
+      "短视频制作"
+    ],
+    "contact_note": "如需了解视频制作、批量生成或推广页面承接，可以通过联系页提交项目信息。",
+    "related_links": [
+      "/services/traffic-acquisition/",
+      "/services/ad-campaign-support/",
+      "/platforms/google/",
+      "/contact/"
+    ],
+    "source_filename": "8.MP4"
+  },
+  {
+    "id": "auto-040",
+    "status": "published",
+    "slug": "ai-video-service-040",
+    "title": "AI数字人视频生成服务 040",
+    "h1": "AI数字人视频生成服务 040",
+    "description": "本页面展示 AI 数字人短视频生成效果，适合需要批量制作短视频、广告素材、产品展示视频和推广内容的项目参考。如需了解视频制作、批量生成或 Google 搜索获客页面，可以通过联系页提交项目信息。",
+    "summary": "展示 AI 数字人视频生成效果，并提供视频制作、素材准备和推广页面承接说明。",
+    "video_file": "https://video.9hwh.com/videos/ai-video-service-040.mp4",
+    "thumbnail": "https://video.9hwh.com/thumbnails/ai-video-service-040.jpg",
+    "duration_seconds": 45,
+    "upload_date": "2026-05-19",
+    "tags": [
+      "AI视频生成",
+      "数字人视频",
+      "短视频制作"
+    ],
+    "contact_note": "如需了解视频制作、批量生成或推广页面承接，可以通过联系页提交项目信息。",
+    "related_links": [
+      "/services/traffic-acquisition/",
+      "/services/ad-campaign-support/",
+      "/platforms/google/",
+      "/contact/"
+    ],
+    "source_filename": "9.MP4"
   }
 ]

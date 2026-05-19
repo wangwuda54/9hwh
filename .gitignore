@@ -31,6 +31,10 @@ build/
 backups/
 site/legacy-source/
 data/content-assets/status_update_log.jsonl
+site/public/videos/*
+site/public/thumbnails/*
+!site/public/videos/.gitkeep
+!site/public/thumbnails/.gitkeep
 
 # Env
 .env
