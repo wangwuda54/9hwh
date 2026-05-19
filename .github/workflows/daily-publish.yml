@@ -16,7 +16,7 @@ on:
       limit:
         description: "Optional daily publish limit"
         required: false
-        default: "3"
+        default: "7"
   schedule:
     - cron: "30 2 * * *"
 
@@ -56,7 +56,7 @@ jobs:
         run: |
           set -euo pipefail
           mode="${{ github.event.inputs.mode || 'normal' }}"
-          limit="${{ github.event.inputs.limit || '3' }}"
+          limit="${{ github.event.inputs.limit || '7' }}"
           python scripts/daily_publish.py --dry-run --mode "$mode" --limit "$limit"
 
       - name: Publish reviewed content
@@ -64,7 +64,7 @@ jobs:
         run: |
           set -euo pipefail
           mode="${{ github.event.inputs.mode || 'normal' }}"
-          limit="${{ github.event.inputs.limit || '3' }}"
+          limit="${{ github.event.inputs.limit || '7' }}"
           python scripts/daily_publish.py --mode "$mode" --limit "$limit"
 
       - name: After publish status
