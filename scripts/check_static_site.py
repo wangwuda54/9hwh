@@ -128,6 +128,14 @@ def path_to_file(path: str) -> Path:
     return PUBLIC / path.strip("/") / "index.html"
 
 
+def is_absolute_url(value: str) -> bool:
+    return value.startswith("http://") or value.startswith("https://")
+
+
+def video_asset_path(value: str) -> str:
+    return urlparse(value).path if is_absolute_url(value) else value
+
+
 def file_to_url(path: Path) -> str:
     rel = path.relative_to(PUBLIC).as_posix()
     if rel == "index.html":
@@ -285,13 +293,15 @@ def check_videos(sitemap: set[str]) -> None:
 
         video_file = str(item.get("video_file", ""))
         thumbnail = str(item.get("thumbnail", ""))
-        if not video_file.startswith("/videos/"):
+        video_file_path = video_asset_path(video_file)
+        thumbnail_path = video_asset_path(thumbnail)
+        if not video_file_path.startswith("/videos/"):
             fail(f"video_file must start with /videos/: {slug}")
-        if not thumbnail.startswith("/thumbnails/"):
+        if not thumbnail_path.startswith("/thumbnails/"):
             fail(f"thumbnail must start with /thumbnails/: {slug}")
-        if video_file.startswith("/") and not (PUBLIC / video_file.lstrip("/")).exists():
+        if not is_absolute_url(video_file) and video_file.startswith("/") and not (PUBLIC / video_file.lstrip("/")).exists():
             warn(f"video file missing, page structure only: {video_file}")
-        if thumbnail.startswith("/") and not (PUBLIC / thumbnail.lstrip("/")).exists():
+        if not is_absolute_url(thumbnail) and thumbnail.startswith("/") and not (PUBLIC / thumbnail.lstrip("/")).exists():
             warn(f"thumbnail file missing, page structure only: {thumbnail}")
 
         duration = item.get("duration_seconds")

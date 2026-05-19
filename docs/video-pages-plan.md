@@ -27,8 +27,8 @@ site_src/data/videos.json
 - `h1`：页面主标题，必填。
 - `description`：meta description、页面说明和 VideoObject description，必填。
 - `summary`：视频说明正文。
-- `video_file`：视频文件路径，必须以 `/videos/` 开头。
-- `thumbnail`：封面图路径，必须以 `/thumbnails/` 开头。
+- `video_file`：视频文件路径，可以是 `/videos/<slug>.mp4`，也可以是 `https://video.9hwh.com/videos/<slug>.mp4`。
+- `thumbnail`：封面图路径，可以是 `/thumbnails/<slug>.jpg`，也可以是 `https://video.9hwh.com/thumbnails/<slug>.jpg`。
 - `duration_seconds`：视频秒数，必须是正整数。
 - `upload_date`：上传日期，格式 `YYYY-MM-DD`。
 - `tags`：页面展示用标签。
@@ -151,3 +151,94 @@ python scripts/check_static_site.py
 ```
 
 不要手动修改 `site/public/v/` 下的生成页。`site/public/v/` 是构建产物，下一次运行 `scripts/build_site.py` 会重新生成；长期数据源只应维护 `site_src/data/videos.json` 和 `site/public/videos/`、`site/public/thumbnails/` 里的资产。
+
+## 服务器已上传视频的批量整理流程
+
+如果 RN 服务器上已经把视频批量上传到 `/var/www/video-assets/videos/`，但文件名还没有改成可用于 9HWH 视频页的 slug，不要手动逐个改名。使用服务器端脚本：
+
+```text
+scripts/server_prepare_video_assets.py
+```
+
+这个脚本用于在 RN 服务器上扫描原始视频文件，批量重命名为 `base-slug-001.mp4` 这类规范文件名，生成 `/var/www/video-assets/thumbnails/<slug>.jpg` 封面，并导出可合并进 9HWH 的 JSON / CSV 清单。
+
+先 dry-run 看计划：
+
+```bash
+python3 scripts/server_prepare_video_assets.py \
+  --videos-dir /var/www/video-assets/videos \
+  --thumbnails-dir /var/www/video-assets/thumbnails \
+  --base-slug ai-video-service \
+  --title-prefix "AI数字人视频生成服务" \
+  --asset-base-url https://video.9hwh.com \
+  --output-json /root/video_assets_import.json \
+  --output-csv /root/video_assets_import.csv \
+  --limit 40 \
+  --dry-run
+```
+
+确认计划没问题后正式执行，去掉 `--dry-run`：
+
+```bash
+python3 scripts/server_prepare_video_assets.py \
+  --videos-dir /var/www/video-assets/videos \
+  --thumbnails-dir /var/www/video-assets/thumbnails \
+  --base-slug ai-video-service \
+  --title-prefix "AI数字人视频生成服务" \
+  --asset-base-url https://video.9hwh.com \
+  --output-json /root/video_assets_import.json \
+  --output-csv /root/video_assets_import.csv \
+  --limit 40
+```
+
+脚本会检查 `ffmpeg` 和 `ffprobe`，跳过隐藏文件、0 字节文件和已经符合 `ai-video-service-001.mp4` 这类规则的视频；目标文件存在时会自动递增编号，不覆盖已有 mp4。默认不覆盖已有封面，需要重新生成封面时加：
+
+```bash
+--overwrite-thumbnails
+```
+
+如果服务器上已经有前 40 个编号，可以手动指定起始编号：
+
+```bash
+--start-index 41
+```
+
+正式执行完成后，从服务器下载：
+
+```text
+/root/video_assets_import.json
+/root/video_assets_import.csv
+```
+
+把 JSON 下载到本地后，在 9HWH 仓库里合并：
+
+```bash
+python scripts/merge_video_assets_json.py \
+  --input-json E:/downloads/video_assets_import.json
+```
+
+合并脚本会读取 `site_src/data/videos.json`，按 `slug` 和 `source_filename` 去重，不覆盖已有记录，只把新记录追加到数组末尾。想先预览数量可以加：
+
+```bash
+--dry-run
+```
+
+合并后重新生成和检查：
+
+```bash
+python scripts/build_site.py
+python scripts/check_static_site.py
+```
+
+线上视频 URL 按以下形式测试：
+
+```text
+https://video.9hwh.com/videos/<slug>.mp4
+https://video.9hwh.com/thumbnails/<slug>.jpg
+```
+
+确认资产 URL 可访问后，再检查主站页面：
+
+```text
+https://www.9hwh.com/v/<slug>/
+```

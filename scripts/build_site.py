@@ -64,6 +64,14 @@ def url_path(path: str) -> str:
     return path if path.startswith("/") else "/" + path
 
 
+def is_absolute_url(value: str) -> bool:
+    return value.startswith("http://") or value.startswith("https://")
+
+
+def media_url(value: str, base_url: str = BASE_URL) -> str:
+    return value if is_absolute_url(value) else base_url + value
+
+
 def duration_iso(seconds: int) -> str:
     seconds = int(seconds)
     hours, remainder = divmod(seconds, 3600)
@@ -343,10 +351,10 @@ def video_schema(item: dict, base_url: str = BASE_URL) -> dict:
         "@type": "VideoObject",
         "name": item["title"],
         "description": item["description"],
-        "thumbnailUrl": base_url + item["thumbnail"],
+        "thumbnailUrl": media_url(item["thumbnail"], base_url),
         "uploadDate": item["upload_date"] + "T00:00:00+00:00",
         "duration": duration_iso(item["duration_seconds"]),
-        "contentUrl": base_url + item["video_file"],
+        "contentUrl": media_url(item["video_file"], base_url),
         "embedUrl": base_url + "/v/" + item["slug"] + "/",
     }
 
@@ -777,10 +785,10 @@ def write_video_sitemap(videos: list[dict]) -> None:
                 "  <url>",
                 f"    <loc>{esc(video_url)}</loc>",
                 "    <video:video>",
-                f"      <video:thumbnail_loc>{esc(BASE_URL + item['thumbnail'])}</video:thumbnail_loc>",
+                f"      <video:thumbnail_loc>{esc(media_url(item['thumbnail']))}</video:thumbnail_loc>",
                 f"      <video:title>{esc(item['title'])}</video:title>",
                 f"      <video:description>{esc(item['description'])}</video:description>",
-                f"      <video:content_loc>{esc(BASE_URL + item['video_file'])}</video:content_loc>",
+                f"      <video:content_loc>{esc(media_url(item['video_file']))}</video:content_loc>",
                 f"      <video:duration>{esc(item['duration_seconds'])}</video:duration>",
                 f"      <video:publication_date>{esc(item['upload_date'])}T00:00:00+00:00</video:publication_date>",
                 "    </video:video>",
