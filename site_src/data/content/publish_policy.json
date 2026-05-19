@@ -1,7 +1,7 @@
 {
   "initial_observation_days": 7,
-  "initial_daily_limit": 3,
-  "stable_daily_limit": 5,
+  "initial_daily_limit": 7,
+  "stable_daily_limit": 7,
   "hard_daily_limit": 10,
   "expert_articles_per_week": 2,
   "expert_article_days": [
