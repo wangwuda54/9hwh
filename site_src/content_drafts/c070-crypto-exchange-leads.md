@@ -5,7 +5,7 @@ description: 交易所获客怎么做：渠道选择、注册路径和用户质�
 target_url: /blog/crypto-exchange-leads/
 primary_keyword: 交易所获客怎么做
 secondary_keywords: 交易所获客, 交易所拉新, 虚拟币推广
-status: reviewed
+status: published
 ---
 
 ## 交易所获客怎么做：渠道选择、注册路径和用户质量

@@ -78,7 +78,7 @@
       "虚拟币怎么做"
     ],
     "page_type": "blog_article",
-    "status": "reviewed",
+    "status": "prompt_ready",
     "priority": 3,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -264,7 +264,7 @@
       "真人交友怎么做"
     ],
     "page_type": "blog_article",
-    "status": "published",
+    "status": "prompt_ready",
     "priority": 9,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -419,7 +419,7 @@
       "保险怎么做"
     ],
     "page_type": "blog_article",
-    "status": "reviewed",
+    "status": "published",
     "priority": 14,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -481,7 +481,7 @@
       "移民怎么做"
     ],
     "page_type": "blog_article",
-    "status": "reviewed",
+    "status": "prompt_ready",
     "priority": 16,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -512,7 +512,7 @@
       "贷款怎么做"
     ],
     "page_type": "blog_article",
-    "status": "reviewed",
+    "status": "prompt_ready",
     "priority": 17,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -574,7 +574,7 @@
       "理财费用"
     ],
     "page_type": "blog_article",
-    "status": "published",
+    "status": "prompt_ready",
     "priority": 19,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -605,7 +605,7 @@
       "虚拟币费用"
     ],
     "page_type": "blog_article",
-    "status": "reviewed",
+    "status": "published",
     "priority": 20,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -1906,7 +1906,7 @@
       "引流"
     ],
     "page_type": "blog_article",
-    "status": "published",
+    "status": "prompt_ready",
     "priority": 61,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -1940,7 +1940,7 @@
       "投流"
     ],
     "page_type": "blog_article",
-    "status": "published",
+    "status": "prompt_ready",
     "priority": 62,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -2008,7 +2008,7 @@
       "素材测试"
     ],
     "page_type": "blog_article",
-    "status": "published",
+    "status": "prompt_ready",
     "priority": 64,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -2179,7 +2179,7 @@
       "交友获客"
     ],
     "page_type": "blog_article",
-    "status": "reviewed",
+    "status": "prompt_ready",
     "priority": 69,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -2214,7 +2214,7 @@
       "虚拟币"
     ],
     "page_type": "blog_article",
-    "status": "reviewed",
+    "status": "published",
     "priority": 70,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -2249,7 +2249,7 @@
       "获客页面"
     ],
     "page_type": "blog_article",
-    "status": "reviewed",
+    "status": "prompt_ready",
     "priority": 71,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -2284,7 +2284,7 @@
       "线索跟进"
     ],
     "page_type": "blog_article",
-    "status": "reviewed",
+    "status": "prompt_ready",
     "priority": 72,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -2319,7 +2319,7 @@
       "咨询获客"
     ],
     "page_type": "blog_article",
-    "status": "reviewed",
+    "status": "prompt_ready",
     "priority": 73,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -2354,7 +2354,7 @@
       "在线项目"
     ],
     "page_type": "blog_article",
-    "status": "reviewed",
+    "status": "prompt_ready",
     "priority": 74,
     "word_count_target": 1800,
     "deepseek_required": true,

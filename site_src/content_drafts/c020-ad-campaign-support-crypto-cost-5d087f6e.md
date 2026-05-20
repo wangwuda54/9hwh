@@ -5,7 +5,7 @@ description: 虚拟币费用：影响因素、预算准备和沟通要点，围�
 target_url: /blog/crypto-cost-5d087f6e/
 primary_keyword: 虚拟币费用
 secondary_keywords: 虚拟币, 费用
-status: reviewed
+status: published
 ---
 
 ## 虚拟币费用：为什么同行业差距这么大？

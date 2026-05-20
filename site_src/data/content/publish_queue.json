@@ -157,12 +157,12 @@
     "content_type": "blog_article",
     "priority_score": 3,
     "risk_level": "low",
-    "publish_status": "queued",
+    "publish_status": "needs_generation",
     "planned_publish_date": "",
     "batch": "",
-    "review_status": "pass",
+    "review_status": "needs_generation",
     "internal_link_count": 4,
-    "notes": "approved_from_review"
+    "notes": "approved_from_review reset_for_ad_platform_focus"
   },
   {
     "content_id": "c065-fb-leads-form-setup",
@@ -202,12 +202,12 @@
     "content_type": "blog_article",
     "priority_score": 69,
     "risk_level": "medium",
-    "publish_status": "queued",
+    "publish_status": "needs_generation",
     "planned_publish_date": "",
     "batch": "",
-    "review_status": "pass",
+    "review_status": "needs_generation",
     "internal_link_count": 5,
-    "notes": "approved_from_review"
+    "notes": "approved_from_review reset_for_ad_platform_focus"
   },
   {
     "content_id": "c070-crypto-exchange-leads",
@@ -217,12 +217,12 @@
     "content_type": "blog_article",
     "priority_score": 70,
     "risk_level": "medium",
-    "publish_status": "queued",
-    "planned_publish_date": "",
+    "publish_status": "published",
+    "planned_publish_date": "2026-05-20",
     "batch": "",
     "review_status": "pass",
     "internal_link_count": 5,
-    "notes": "approved_from_review"
+    "notes": "approved_from_review published_at=2026-05-20"
   },
   {
     "content_id": "c071-loan-leads-page-copy",
@@ -232,12 +232,12 @@
     "content_type": "blog_article",
     "priority_score": 71,
     "risk_level": "medium",
-    "publish_status": "queued",
+    "publish_status": "needs_generation",
     "planned_publish_date": "",
     "batch": "",
-    "review_status": "pass",
+    "review_status": "needs_generation",
     "internal_link_count": 5,
-    "notes": "approved_from_review"
+    "notes": "approved_from_review reset_for_ad_platform_focus"
   },
   {
     "content_id": "c072-insurance-leads-follow-up",
@@ -247,12 +247,12 @@
     "content_type": "blog_article",
     "priority_score": 72,
     "risk_level": "medium",
-    "publish_status": "queued",
+    "publish_status": "needs_generation",
     "planned_publish_date": "",
     "batch": "",
-    "review_status": "pass",
+    "review_status": "needs_generation",
     "internal_link_count": 5,
-    "notes": "approved_from_review"
+    "notes": "approved_from_review reset_for_ad_platform_focus"
   },
   {
     "content_id": "c073-immigration-consultation-leads",
@@ -262,12 +262,12 @@
     "content_type": "blog_article",
     "priority_score": 73,
     "risk_level": "medium",
-    "publish_status": "queued",
+    "publish_status": "needs_generation",
     "planned_publish_date": "",
     "batch": "",
-    "review_status": "pass",
+    "review_status": "needs_generation",
     "internal_link_count": 5,
-    "notes": "approved_from_review"
+    "notes": "approved_from_review reset_for_ad_platform_focus"
   },
   {
     "content_id": "c074-online-work-leads-test",
@@ -277,12 +277,12 @@
     "content_type": "blog_article",
     "priority_score": 74,
     "risk_level": "medium",
-    "publish_status": "queued",
+    "publish_status": "needs_generation",
     "planned_publish_date": "",
     "batch": "",
-    "review_status": "pass",
+    "review_status": "needs_generation",
     "internal_link_count": 5,
-    "notes": "approved_from_review"
+    "notes": "approved_from_review reset_for_ad_platform_focus"
   },
   {
     "content_id": "c002-ad-campaign-support-how-to-f12343f8",
@@ -323,11 +323,11 @@
     "priority_score": 6,
     "risk_level": "low",
     "publish_status": "published",
-    "planned_publish_date": "2026-05-18",
+    "planned_publish_date": "2026-05-20",
     "batch": "",
     "review_status": "pass",
     "internal_link_count": 4,
-    "notes": "approved_from_review published_at=2026-05-18"
+    "notes": "approved_from_review published_at=2026-05-20"
   },
   {
     "content_id": "c008-dating-traffic-dating-how-to-e74a54f4",
@@ -352,12 +352,12 @@
     "content_type": "blog_article",
     "priority_score": 9,
     "risk_level": "low",
-    "publish_status": "published",
-    "planned_publish_date": "2026-05-16",
+    "publish_status": "needs_generation",
+    "planned_publish_date": "",
     "batch": "",
-    "review_status": "pass",
+    "review_status": "needs_generation",
     "internal_link_count": 4,
-    "notes": "approved_from_review published_at=2026-05-16"
+    "notes": "approved_from_review reset_for_ad_platform_focus"
   },
   {
     "content_id": "c011-media-buying-online-work-how-to-60caf548",
@@ -397,12 +397,12 @@
     "content_type": "blog_article",
     "priority_score": 14,
     "risk_level": "low",
-    "publish_status": "queued",
-    "planned_publish_date": "",
+    "publish_status": "published",
+    "planned_publish_date": "2026-05-20",
     "batch": "",
     "review_status": "pass",
     "internal_link_count": 4,
-    "notes": "approved_from_review"
+    "notes": "approved_from_review reset_for_ad_platform_focus approved_for_2026-05-20_publish published_at=2026-05-20"
   },
   {
     "content_id": "c015-traffic-acquisition-game-how-to-ce12eefa",
@@ -413,11 +413,11 @@
     "priority_score": 15,
     "risk_level": "low",
     "publish_status": "published",
-    "planned_publish_date": "2026-05-16",
+    "planned_publish_date": "2026-05-20",
     "batch": "",
     "review_status": "pass",
     "internal_link_count": 4,
-    "notes": "approved_from_review published_at=2026-05-16"
+    "notes": "approved_from_review reset_for_ad_platform_focus approved_for_2026-05-20_publish published_at=2026-05-20"
   },
   {
     "content_id": "c016-traffic-acquisition-immigration-how-to-38e8c4a4",
@@ -427,12 +427,12 @@
     "content_type": "blog_article",
     "priority_score": 16,
     "risk_level": "low",
-    "publish_status": "queued",
+    "publish_status": "needs_generation",
     "planned_publish_date": "",
     "batch": "",
-    "review_status": "pass",
+    "review_status": "needs_generation",
     "internal_link_count": 4,
-    "notes": "approved_from_review"
+    "notes": "approved_from_review reset_for_ad_platform_focus"
   },
   {
     "content_id": "c017-traffic-acquisition-loan-how-to-ee56b631",
@@ -442,12 +442,12 @@
     "content_type": "blog_article",
     "priority_score": 17,
     "risk_level": "low",
-    "publish_status": "queued",
+    "publish_status": "needs_generation",
     "planned_publish_date": "",
     "batch": "",
-    "review_status": "pass",
+    "review_status": "needs_generation",
     "internal_link_count": 4,
-    "notes": "approved_from_review"
+    "notes": "approved_from_review reset_for_ad_platform_focus"
   },
   {
     "content_id": "c018-ad-campaign-support-cost-6e550a25",
@@ -458,11 +458,11 @@
     "priority_score": 18,
     "risk_level": "low",
     "publish_status": "published",
-    "planned_publish_date": "2026-05-16",
+    "planned_publish_date": "2026-05-20",
     "batch": "",
     "review_status": "pass",
     "internal_link_count": 4,
-    "notes": "approved_from_review published_at=2026-05-16"
+    "notes": "approved_from_review published_at=2026-05-20"
   },
   {
     "content_id": "c019-ad-campaign-support-cost-cafc4fef",
@@ -472,12 +472,12 @@
     "content_type": "blog_article",
     "priority_score": 19,
     "risk_level": "low",
-    "publish_status": "published",
-    "planned_publish_date": "2026-05-17",
+    "publish_status": "needs_generation",
+    "planned_publish_date": "",
     "batch": "",
-    "review_status": "pass",
+    "review_status": "needs_generation",
     "internal_link_count": 4,
-    "notes": "approved_from_review published_at=2026-05-17"
+    "notes": "approved_from_review reset_for_ad_platform_focus"
   },
   {
     "content_id": "c020-ad-campaign-support-crypto-cost-5d087f6e",
@@ -487,12 +487,12 @@
     "content_type": "blog_article",
     "priority_score": 20,
     "risk_level": "low",
-    "publish_status": "queued",
-    "planned_publish_date": "",
+    "publish_status": "published",
+    "planned_publish_date": "2026-05-20",
     "batch": "",
     "review_status": "pass",
     "internal_link_count": 4,
-    "notes": "approved_from_review"
+    "notes": "approved_from_review published_at=2026-05-20"
   },
   {
     "content_id": "c061-traffic-acquisition-leads-quality-test",
@@ -502,12 +502,12 @@
     "content_type": "blog_article",
     "priority_score": 61,
     "risk_level": "low",
-    "publish_status": "published",
-    "planned_publish_date": "2026-05-17",
+    "publish_status": "needs_generation",
+    "planned_publish_date": "",
     "batch": "",
-    "review_status": "pass",
+    "review_status": "needs_generation",
     "internal_link_count": 4,
-    "notes": "approved_from_review published_at=2026-05-17"
+    "notes": "approved_from_review reset_for_ad_platform_focus"
   },
   {
     "content_id": "c062-media-buying-small-budget-test",
@@ -517,12 +517,12 @@
     "content_type": "blog_article",
     "priority_score": 62,
     "risk_level": "low",
-    "publish_status": "published",
-    "planned_publish_date": "2026-05-17",
+    "publish_status": "needs_generation",
+    "planned_publish_date": "",
     "batch": "",
-    "review_status": "pass",
+    "review_status": "needs_generation",
     "internal_link_count": 4,
-    "notes": "approved_from_review published_at=2026-05-17"
+    "notes": "approved_from_review reset_for_ad_platform_focus"
   },
   {
     "content_id": "c063-overseas-promotion-landing-page",
@@ -547,12 +547,12 @@
     "content_type": "blog_article",
     "priority_score": 64,
     "risk_level": "low",
-    "publish_status": "published",
-    "planned_publish_date": "2026-05-18",
+    "publish_status": "needs_generation",
+    "planned_publish_date": "",
     "batch": "",
-    "review_status": "pass",
+    "review_status": "needs_generation",
     "internal_link_count": 4,
-    "notes": "approved_from_review published_at=2026-05-18"
+    "notes": "approved_from_review reset_for_ad_platform_focus"
   },
   {
     "content_id": "c066-google-search-leads-keywords",
@@ -593,10 +593,10 @@
     "priority_score": 75,
     "risk_level": "low",
     "publish_status": "published",
-    "planned_publish_date": "2026-05-18",
+    "planned_publish_date": "2026-05-20",
     "batch": "",
     "review_status": "pass",
     "internal_link_count": 4,
-    "notes": "approved_from_review published_at=2026-05-18"
+    "notes": "approved_from_review published_at=2026-05-20"
   }
 ]

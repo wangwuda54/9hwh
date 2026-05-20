@@ -5,7 +5,7 @@ description: 保险怎么做：推广路径、渠道判断和准备清单，围�
 target_url: /blog/insurance-how-to-1d0e89ba/
 primary_keyword: 保险怎么做
 secondary_keywords: 保险, 怎么做
-status: reviewed
+status: published
 ---
 
 ## 保险怎么做：推广路径、渠道判断和准备清单
