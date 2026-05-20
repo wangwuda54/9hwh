@@ -50,7 +50,7 @@ The video image does not show a URL. URLs are allowed in `platform_publish.csv` 
 
 ## Dry Run
 
-Dry-run prints the processing plan and writes nothing:
+Dry-run prints the processing plan and writes nothing. It checks `topics-json` and `videos-json`, but it does not require FFmpeg, SCP, SSH, center videos, or `sucai` videos.
 
 ```powershell
 python video_pipeline.py run `
@@ -67,13 +67,25 @@ python video_pipeline.py run `
   --dry-run
 ```
 
+`--start-index` is 1-based. `--start-index 1 --limit 3` processes:
+
+```text
+ai-video-service-001
+ai-video-service-002
+ai-video-service-003
+```
+
+`--start-index 40` starts from the 40th item in `video_topics.json`.
+
 ## Only Missing
 
-Use `--only-missing` to skip a slug when the local output video already exists:
+Use `--only-missing` to avoid regenerating a local video/thumbnail that already exists:
 
 ```powershell
 python video_pipeline.py run ... --target both --limit 40 --only-missing
 ```
+
+This does not drop the topic from later steps. Existing site videos can still be uploaded, reused remotely, and written to `videos.json` when the upload/reuse path calls for it. Existing platform videos are still written into `platform_publish.csv` with `status=existing`.
 
 Use `--overwrite` only when local output videos or remote RN files are intentionally being replaced.
 
@@ -98,7 +110,7 @@ python video_pipeline.py run `
 python video_pipeline.py run ... --target platform --skip-upload
 ```
 
-This creates `platform_publish.csv` with title, description, tags, video path, thumbnail path, and `site_url`.
+This creates `platform_publish.csv` with title, description, tags, video path, thumbnail path, `site_url`, and `status`. Platform-only runs skip build/check by default unless `--force-build` is passed.
 
 ## Generate Both
 
@@ -126,9 +138,17 @@ chmod -R 755 /var/www/video-assets
 
 It does not delete remote files. It does not overwrite remote files unless `--overwrite` is passed.
 
+Use `--reuse-remote` when the RN video and thumbnail already exist and should be reused:
+
+```powershell
+python video_pipeline.py run ... --target site --reuse-remote --only-missing
+```
+
+With `--reuse-remote`, if both remote files exist, the script skips SCP, marks `remote_reused=true`, updates `videos.json`, and can still run build/check. If only one remote file exists, the script stops that item with an incomplete remote resource error. If `--overwrite` is passed together with `--reuse-remote`, overwrite wins and the script uploads.
+
 ## Update videos.json
 
-After a successful site upload, the script updates `site_src/data/videos.json` by `slug`:
+After a successful site upload or remote reuse, the script updates `site_src/data/videos.json` by `slug`:
 
 ```json
 {
@@ -143,18 +163,20 @@ After a successful site upload, the script updates `site_src/data/videos.json` b
 }
 ```
 
+`duration_seconds` is probed from the actual output MP4. If probing fails, the script falls back to `--duration` and writes a warning.
+
 Existing `draft` or `rejected` records keep their status unless `--force-published` is passed. `video_topics.json` is never changed.
 
 ## Build and Check
 
-Unless `--skip-build` is passed, the pipeline runs:
+For `--target site` and `--target both`, unless `--skip-build` is passed, the pipeline runs:
 
 ```powershell
 python scripts/build_site.py
 python scripts/check_static_site.py
 ```
 
-These commands only build and check the 9HWH static site.
+For `--target platform`, build/check is skipped by default. Pass `--force-build` if a platform-only run should also build and check the site.
 
 ## Commit and Push
 
@@ -168,6 +190,8 @@ git -c http.proxy= -c https.proxy= push origin main
 
 Do not commit generated MP4/JPG assets.
 
+The commit path runs `git status --short`, stages only explicit site data/build paths, refuses media/output files in the cached diff, and never uses `git add .`.
+
 ## Common Errors
 
 `missing dependency: ffmpeg` means FFmpeg is not on `PATH`.
@@ -178,7 +202,11 @@ Do not commit generated MP4/JPG assets.
 
 `remote file exists; use --overwrite to replace` means the RN server already has that file.
 
+`remote resources incomplete` means `--reuse-remote` found only the video or only the thumbnail on RN.
+
 `forbidden visual term` means the title, tags, or Telegram text would put blocked wording into the video frame.
+
+`topic validation failed` means `video_topics.json` has a missing required field, too few tags, or forbidden wording.
 
 ## External Publishing
 
@@ -188,4 +216,40 @@ For Dailymotion / Rumble / Odysee, use:
 E:/ceshhi/output/platform/platform_publish.csv
 ```
 
-The CSV includes local video path, thumbnail path, platform title, description, tags, and the `/v/<slug>/` site URL for the platform description field. The site URL is not written into the video image.
+The CSV includes local video path, thumbnail path, platform title, description, tags, status, and the `/v/<slug>/` site URL for the platform description field. The site URL is not written into the video image.
+
+Rows use:
+
+```text
+ok        newly generated platform video
+existing  local platform video and thumbnail already existed
+error     generation failed for this topic
+```
+
+## Recommended Test Flow
+
+Run syntax check first:
+
+```powershell
+python -m py_compile video_pipeline.py
+```
+
+Preview the first three topics without media dependencies:
+
+```powershell
+python video_pipeline.py run ... --target both --limit 3 --dry-run
+```
+
+Verify existing platform assets still enter the CSV:
+
+```powershell
+python video_pipeline.py run ... --target platform --limit 3 --only-missing --skip-build
+```
+
+Verify site local reuse without upload:
+
+```powershell
+python video_pipeline.py run ... --target site --limit 1 --only-missing --skip-upload --skip-build
+```
+
+For real RN replacement, use `--overwrite`. For real RN reuse, use `--reuse-remote`.

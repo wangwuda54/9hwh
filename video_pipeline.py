@@ -117,20 +117,52 @@ def require_tool(name: str) -> str:
     return found
 
 
+def target_includes_site(args: argparse.Namespace) -> bool:
+    return args.target in {"site", "both"}
+
+
+def target_includes_platform(args: argparse.Namespace) -> bool:
+    return args.target in {"platform", "both"}
+
+
+def upload_required(args: argparse.Namespace) -> bool:
+    return target_includes_site(args) and not args.skip_upload and not args.dry_run
+
+
+def validate_path_value(args: argparse.Namespace, label: str) -> Path:
+    value = str(getattr(args, label, "")).strip()
+    if not value:
+        raise RuntimeError(f"{label.replace('_', '-')} is required")
+    return path_arg(value)
+
+
 def validate_dependencies(args: argparse.Namespace, logger: logging.Logger) -> None:
     if sys.version_info < (3, 10):
         raise RuntimeError("Python 3.10+ is required")
-    tools = {name: require_tool(name) for name in ("ffmpeg", "ffprobe", "scp", "ssh")}
+
+    topics_json = validate_path_value(args, "topics_json")
+    videos_json = validate_path_value(args, "videos_json")
+    site_root = validate_path_value(args, "site_root")
+    input_dir = validate_path_value(args, "input_dir")
+    validate_path_value(args, "output_dir")
+
+    for label, path in (("topics-json", topics_json), ("videos-json", videos_json)):
+        if not path.is_file():
+            raise RuntimeError(f"{label} does not exist: {path}")
+
+    if args.dry_run:
+        logger.info("dry-run dependency check: skipped ffmpeg/ffprobe/scp/ssh and media asset checks")
+        return
+
+    for label, path in (("site-root", site_root), ("input-dir", input_dir)):
+        if not path.exists():
+            raise RuntimeError(f"{label} does not exist: {path}")
+
+    tools = {name: require_tool(name) for name in ("ffmpeg", "ffprobe")}
+    if upload_required(args):
+        tools.update({name: require_tool(name) for name in ("scp", "ssh")})
     for name, exe in tools.items():
         logger.info("dependency ok: %s -> %s", name, exe)
-
-    for label in ("topics_json", "videos_json", "site_root", "input_dir"):
-        path = path_arg(getattr(args, label))
-        if label.endswith("_json"):
-            if not path.is_file():
-                raise RuntimeError(f"{label.replace('_', '-') } does not exist: {path}")
-        elif not path.exists():
-            raise RuntimeError(f"{label.replace('_', '-') } does not exist: {path}")
 
     assets = collect_assets(path_arg(args.input_dir), path_arg(args.bgm_dir), logger)
     if not assets.centers:
@@ -185,27 +217,45 @@ def find_font_name(fonts_dir: Path, logger: logging.Logger) -> str:
     return "Arial Unicode MS"
 
 
+def validate_topic(topic: dict[str, Any], index: int) -> None:
+    label = str(topic.get("slug") or f"index {index}").strip()
+    for field in REQUIRED_TOPIC_FIELDS:
+        if field == "tags":
+            continue
+        value = topic.get(field)
+        if not isinstance(value, str) or not value.strip():
+            raise RuntimeError(f"topic validation failed: {label} field {field} must be a non-empty string")
+
+    tags = topic.get("tags")
+    if not isinstance(tags, list):
+        raise RuntimeError(f"topic validation failed: {label} field tags must be a non-empty array")
+    clean_tags = [tag.strip() for tag in tags if isinstance(tag, str) and tag.strip()]
+    if len(clean_tags) < 2:
+        raise RuntimeError(f"topic validation failed: {label} field tags must contain at least 2 non-empty strings")
+
+    for field in ("title", "h1", "description", "summary"):
+        text = topic[field]
+        for term in FORBIDDEN_VISUAL_TERMS:
+            if term.lower() in text.lower():
+                raise RuntimeError(f"topic validation failed: {label} field {field} contains forbidden term: {term}")
+
+
 def load_topics(path: Path, start_index: int, limit: int | None, logger: logging.Logger) -> list[dict[str, Any]]:
     if not path.is_file():
         raise RuntimeError(f"video_topics.json does not exist: {path}")
     data = read_json(path)
     if not isinstance(data, list):
         raise RuntimeError("video_topics.json top-level value must be a list")
-    selected = data[start_index:]
+    zero_based_start = start_index - 1
+    selected = data[zero_based_start:]
     if limit is not None:
         selected = selected[:limit]
 
     topics: list[dict[str, Any]] = []
     for index, item in enumerate(selected, start=start_index):
         if not isinstance(item, dict):
-            logger.warning("skip topic at index %s: not an object", index)
-            continue
-        slug = str(item.get("slug", "")).strip()
-        if not slug:
-            logger.warning("skip topic at index %s: missing slug", index)
-            continue
-        if not str(item.get("title", "")).strip() or not str(item.get("h1", "")).strip():
-            raise RuntimeError(f"topic missing title or h1: {slug}")
+            raise RuntimeError(f"topic validation failed: index {index} must be an object")
+        validate_topic(item, index)
         topics.append(item)
     return topics
 
@@ -285,6 +335,15 @@ def probe_duration(path: Path, logger: logging.Logger) -> float:
         return value if value > 0 else 0.0
     except ValueError:
         return 0.0
+
+
+def probe_duration_seconds(path: Path, fallback: int, logger: logging.Logger) -> int:
+    if path.exists():
+        seconds = probe_duration(path, logger)
+        if seconds > 0:
+            return max(1, int(round(seconds)))
+    logger.warning("could not probe output duration for %s; fallback to %s seconds", path, fallback)
+    return max(1, int(fallback))
 
 
 def visual_width(char: str) -> int:
@@ -476,15 +535,17 @@ def build_ffmpeg_command(
     return cmd
 
 
-def ensure_can_write_output(path: Path, args: argparse.Namespace, logger: logging.Logger) -> bool:
-    if path.exists():
-        if args.only_missing:
-            logger.info("skip existing output video because --only-missing: %s", path)
-            return False
-        if not args.overwrite:
-            raise RuntimeError(f"local output exists; use --overwrite or --only-missing: {path}")
-    path.parent.mkdir(parents=True, exist_ok=True)
-    return True
+def local_assets_ready(paths: TargetPaths) -> bool:
+    return paths.video.exists() and paths.video.stat().st_size > 0 and paths.thumbnail.exists() and paths.thumbnail.stat().st_size > 0
+
+
+def ensure_can_generate(paths: TargetPaths, args: argparse.Namespace) -> None:
+    if paths.video.exists() and not args.overwrite:
+        raise RuntimeError(f"local output exists; use --overwrite or --only-missing: {paths.video}")
+    if paths.thumbnail.exists() and not args.overwrite:
+        raise RuntimeError(f"local thumbnail exists; use --overwrite or --only-missing: {paths.thumbnail}")
+    paths.video.parent.mkdir(parents=True, exist_ok=True)
+    paths.thumbnail.parent.mkdir(parents=True, exist_ok=True)
 
 
 def generate_video(
@@ -495,8 +556,7 @@ def generate_video(
     assets: Assets,
     logger: logging.Logger,
 ) -> bool:
-    if not ensure_can_write_output(paths.video, args, logger):
-        return False
+    ensure_can_generate(paths, args)
     rng = rng_for(args, str(topic["slug"]), target)
     center = rng.choice(assets.centers)
     left, right = rng.sample(assets.sucai, 2)
@@ -560,10 +620,19 @@ def remote_exists(args: argparse.Namespace, remote_path: str, logger: logging.Lo
     return "exists" in result.stdout
 
 
+def remote_assets_state(args: argparse.Namespace, paths: TargetPaths, logger: logging.Logger) -> tuple[bool, bool]:
+    return (
+        remote_exists(args, paths.remote_video, logger),
+        remote_exists(args, paths.remote_thumbnail, logger),
+    )
+
+
 def upload_site(args: argparse.Namespace, paths: TargetPaths, logger: logging.Logger) -> bool:
     if args.skip_upload:
         logger.info("skip upload for %s because --skip-upload is set", paths.video.name)
         return False
+    if not local_assets_ready(paths):
+        raise RuntimeError(f"local site video/thumbnail missing or empty: {paths.video} / {paths.thumbnail}")
     remote_dirs = f"mkdir -p {sh_quote(str(args.remote_root).rstrip('/') + '/videos')} {sh_quote(str(args.remote_root).rstrip('/') + '/thumbnails')}"
     run_command(["ssh", str(args.server), remote_dirs], logger=logger, summary="ensure remote video directories")
     for remote_path in (paths.remote_video, paths.remote_thumbnail):
@@ -584,10 +653,11 @@ def update_videos_json(args: argparse.Namespace, topic: dict[str, Any], paths: T
         raise RuntimeError("videos.json top-level value must be a list")
     slug = str(topic["slug"])
     upload_date = datetime.now().strftime("%Y-%m-%d")
+    duration_seconds = probe_duration_seconds(paths.video, int(args.duration), logger)
     asset_fields = {
         "video_file": paths.video_url,
         "thumbnail": paths.thumbnail_url,
-        "duration_seconds": int(args.duration),
+        "duration_seconds": duration_seconds,
         "upload_date": upload_date,
         "source_filename": f"{slug}.mp4",
     }
@@ -661,7 +731,9 @@ def write_state(output_dir: Path, states: list[dict[str, Any]]) -> None:
             "total": len(states),
             "failed": sum(1 for item in states if item.get("error")),
             "generated": sum(1 for item in states if item.get("generated")),
+            "used_existing_local": sum(1 for item in states if item.get("used_existing_local")),
             "uploaded": sum(1 for item in states if item.get("uploaded")),
+            "remote_reused": sum(1 for item in states if item.get("remote_reused")),
         },
         "items": states,
     }
@@ -681,14 +753,14 @@ def write_platform_csv(output_dir: Path, rows: list[dict[str, str]]) -> None:
     platform_dir = output_dir / "platform"
     platform_dir.mkdir(parents=True, exist_ok=True)
     path = platform_dir / "platform_publish.csv"
-    fields = ["slug", "platform_title", "platform_description", "tags", "video_path", "thumbnail_path", "site_url"]
+    fields = ["slug", "platform_title", "platform_description", "tags", "video_path", "thumbnail_path", "site_url", "status"]
     with path.open("w", newline="", encoding="utf-8-sig") as handle:
         writer = csv.DictWriter(handle, fieldnames=fields)
         writer.writeheader()
         writer.writerows(rows)
 
 
-def build_platform_row(topic: dict[str, Any], paths: TargetPaths) -> dict[str, str]:
+def build_platform_row(topic: dict[str, Any], paths: TargetPaths, status: str) -> dict[str, str]:
     slug = str(topic["slug"])
     tags = topic_tags(topic)
     return {
@@ -699,12 +771,42 @@ def build_platform_row(topic: dict[str, Any], paths: TargetPaths) -> dict[str, s
         "video_path": str(paths.video),
         "thumbnail_path": str(paths.thumbnail),
         "site_url": f"{BASE_SITE_URL}/v/{slug}/",
+        "status": status,
     }
+
+
+def ensure_local_assets(
+    args: argparse.Namespace,
+    topic: dict[str, Any],
+    target: str,
+    paths: TargetPaths,
+    assets: Assets,
+    logger: logging.Logger,
+) -> str:
+    if local_assets_ready(paths) and args.only_missing and not args.overwrite:
+        logger.info("reuse existing local %s assets: %s / %s", target, paths.video, paths.thumbnail)
+        return "existing"
+
+    if paths.video.exists() and not args.overwrite:
+        if args.only_missing:
+            if not paths.thumbnail.exists():
+                logger.info("reuse existing local %s video and generate missing thumbnail: %s", target, paths.video)
+                generate_thumbnail(args, paths, logger)
+                return "existing"
+            raise RuntimeError(f"local {target} assets are incomplete or empty: {paths.video} / {paths.thumbnail}")
+        raise RuntimeError(f"local output exists; use --overwrite or --only-missing: {paths.video}")
+
+    generate_video(args, topic, target, paths, assets, logger)
+    generate_thumbnail(args, paths, logger)
+    return "generated"
 
 
 def run_build_check(args: argparse.Namespace, states: list[dict[str, Any]], logger: logging.Logger) -> bool:
     if args.skip_build:
         logger.info("skip build/check because --skip-build is set")
+        return False
+    if args.target == "platform" and not args.force_build:
+        logger.info("skip build/check for platform-only target; pass --force-build to run it")
         return False
     site_root = path_arg(args.site_root)
     run_command(["python", "scripts/build_site.py"], cwd=site_root, logger=logger, summary="build site")
@@ -717,6 +819,7 @@ def run_build_check(args: argparse.Namespace, states: list[dict[str, Any]], logg
 def maybe_commit_push(args: argparse.Namespace, logger: logging.Logger) -> None:
     site_root = path_arg(args.site_root)
     if args.commit:
+        run_command(["git", "status", "--short"], cwd=site_root, logger=logger, summary="git status before commit")
         add_paths = [
             "site_src/data/videos.json",
             "site/public/v",
@@ -729,6 +832,15 @@ def maybe_commit_push(args: argparse.Namespace, logger: logging.Logger) -> None:
             full = site_root / rel
             if full.exists():
                 run_command(["git", "add", rel], cwd=site_root, logger=logger, summary=f"git add {rel}")
+        cached_names = run_command(["git", "diff", "--cached", "--name-only"], cwd=site_root, logger=logger, summary="git cached names")
+        forbidden_exts = VIDEO_EXTS | {".jpg", ".jpeg"}
+        forbidden_files = [
+            name
+            for name in cached_names.stdout.splitlines()
+            if Path(name).suffix.lower() in forbidden_exts or name.startswith("output/")
+        ]
+        if forbidden_files:
+            raise RuntimeError("refuse to commit generated media/output files: " + ", ".join(forbidden_files))
         diff = run_command(["git", "diff", "--cached", "--quiet"], cwd=site_root, logger=logger, summary="git staged diff", check=False)
         if diff.returncode == 0:
             logger.info("no staged changes for commit")
@@ -760,30 +872,54 @@ def process(args: argparse.Namespace, logger: logging.Logger) -> int:
                 "slug": slug,
                 "target": target,
                 "generated": False,
+                "used_existing_local": False,
                 "uploaded": False,
+                "remote_reused": False,
                 "videos_json_updated": False,
                 "build_checked": False,
                 "error": "",
             }
+            manifest_status = "ok"
             try:
-                generated = generate_video(args, topic, target, paths, assets, logger)
-                if not generated:
-                    append_manifest_row(manifest_rows, topic, paths, "skipped existing")
-                    states.append(state)
-                    continue
-                state["generated"] = True
-                generate_thumbnail(args, paths, logger)
                 if target == "site":
-                    state["uploaded"] = upload_site(args, paths, logger)
-                    if state["uploaded"]:
+                    if upload_required(args) and args.reuse_remote and not args.overwrite:
+                        remote_video_exists, remote_thumbnail_exists = remote_assets_state(args, paths, logger)
+                        if remote_video_exists and remote_thumbnail_exists:
+                            state["remote_reused"] = True
+                            state["used_existing_local"] = local_assets_ready(paths)
+                            state["videos_json_updated"] = update_videos_json(args, topic, paths, logger)
+                            manifest_status = "reused remote"
+                            append_manifest_row(manifest_rows, topic, paths, manifest_status)
+                            states.append(state)
+                            continue
+                        if remote_video_exists != remote_thumbnail_exists:
+                            missing = "thumbnail" if remote_video_exists else "video"
+                            raise RuntimeError(f"remote resources incomplete for {slug}; missing {missing}")
+
+                    local_status = ensure_local_assets(args, topic, target, paths, assets, logger)
+                    state["generated"] = local_status == "generated"
+                    state["used_existing_local"] = local_status == "existing"
+                    manifest_status = "skipped existing" if local_status == "existing" else "ok"
+
+                    if upload_required(args):
+                        state["uploaded"] = upload_site(args, paths, logger)
                         state["videos_json_updated"] = update_videos_json(args, topic, paths, logger)
-                if target == "platform":
-                    platform_rows.append(build_platform_row(topic, paths))
-                append_manifest_row(manifest_rows, topic, paths, "ok")
+                        if local_status == "existing":
+                            manifest_status = "existing local uploaded"
+                    append_manifest_row(manifest_rows, topic, paths, manifest_status)
+                else:
+                    local_status = ensure_local_assets(args, topic, target, paths, assets, logger)
+                    state["generated"] = local_status == "generated"
+                    state["used_existing_local"] = local_status == "existing"
+                    manifest_status = "skipped existing" if local_status == "existing" else "ok"
+                    platform_rows.append(build_platform_row(topic, paths, "existing" if local_status == "existing" else "ok"))
+                    append_manifest_row(manifest_rows, topic, paths, manifest_status)
             except Exception as exc:
                 failures += 1
                 state["error"] = str(exc)
                 append_manifest_row(manifest_rows, topic, paths, f"error: {exc}")
+                if target == "platform":
+                    platform_rows.append(build_platform_row(topic, paths, "error"))
                 logger.exception("failed %s/%s: %s", target, slug, exc)
             states.append(state)
 
@@ -816,12 +952,14 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
     run.add_argument("--target", choices=["site", "platform", "both"], default="site")
     run.add_argument("--dry-run", action="store_true")
     run.add_argument("--limit", type=int, default=None)
-    run.add_argument("--start-index", type=int, default=0)
+    run.add_argument("--start-index", type=int, default=1, help="1-based topic index; 1 means the first item in video_topics.json")
     run.add_argument("--only-missing", action="store_true")
     run.add_argument("--seed", type=int, default=None)
     run.add_argument("--overwrite", action="store_true")
+    run.add_argument("--reuse-remote", action="store_true")
     run.add_argument("--skip-upload", action="store_true")
     run.add_argument("--skip-build", action="store_true")
+    run.add_argument("--force-build", action="store_true")
     run.add_argument("--commit", action="store_true")
     run.add_argument("--push", action="store_true")
     run.add_argument("--no-audio", action="store_true")
@@ -832,8 +970,8 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
     args = parser.parse_args(argv)
     if args.limit is not None and args.limit < 0:
         parser.error("--limit must be >= 0")
-    if args.start_index < 0:
-        parser.error("--start-index must be >= 0")
+    if args.start_index < 1:
+        parser.error("--start-index is 1-based and must be >= 1")
     if args.duration <= 0:
         parser.error("--duration must be > 0")
     return args
