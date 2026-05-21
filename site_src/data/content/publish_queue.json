@@ -202,12 +202,12 @@
     "content_type": "blog_article",
     "priority_score": 69,
     "risk_level": "medium",
-    "publish_status": "needs_generation",
-    "planned_publish_date": "",
+    "publish_status": "published",
+    "planned_publish_date": "2026-05-21",
     "batch": "",
-    "review_status": "needs_generation",
+    "review_status": "pass",
     "internal_link_count": 5,
-    "notes": "approved_from_review reset_for_ad_platform_focus"
+    "notes": "approved_from_review reset_for_ad_platform_focus approved_for_2026-05-21_publish published_at=2026-05-21"
   },
   {
     "content_id": "c070-crypto-exchange-leads",
@@ -232,12 +232,12 @@
     "content_type": "blog_article",
     "priority_score": 71,
     "risk_level": "medium",
-    "publish_status": "needs_generation",
-    "planned_publish_date": "",
+    "publish_status": "published",
+    "planned_publish_date": "2026-05-21",
     "batch": "",
-    "review_status": "needs_generation",
+    "review_status": "pass",
     "internal_link_count": 5,
-    "notes": "approved_from_review reset_for_ad_platform_focus"
+    "notes": "approved_from_review reset_for_ad_platform_focus approved_for_2026-05-21_publish published_at=2026-05-21"
   },
   {
     "content_id": "c072-insurance-leads-follow-up",
@@ -247,12 +247,12 @@
     "content_type": "blog_article",
     "priority_score": 72,
     "risk_level": "medium",
-    "publish_status": "needs_generation",
-    "planned_publish_date": "",
+    "publish_status": "published",
+    "planned_publish_date": "2026-05-21",
     "batch": "",
-    "review_status": "needs_generation",
+    "review_status": "pass",
     "internal_link_count": 5,
-    "notes": "approved_from_review reset_for_ad_platform_focus"
+    "notes": "approved_from_review reset_for_ad_platform_focus approved_for_2026-05-21_publish published_at=2026-05-21"
   },
   {
     "content_id": "c073-immigration-consultation-leads",
@@ -277,12 +277,12 @@
     "content_type": "blog_article",
     "priority_score": 74,
     "risk_level": "medium",
-    "publish_status": "needs_generation",
-    "planned_publish_date": "",
+    "publish_status": "published",
+    "planned_publish_date": "2026-05-21",
     "batch": "",
-    "review_status": "needs_generation",
+    "review_status": "pass",
     "internal_link_count": 5,
-    "notes": "approved_from_review reset_for_ad_platform_focus"
+    "notes": "approved_from_review reset_for_ad_platform_focus approved_for_2026-05-21_publish published_at=2026-05-21"
   },
   {
     "content_id": "c002-ad-campaign-support-how-to-f12343f8",
@@ -502,12 +502,12 @@
     "content_type": "blog_article",
     "priority_score": 61,
     "risk_level": "low",
-    "publish_status": "needs_generation",
-    "planned_publish_date": "",
+    "publish_status": "published",
+    "planned_publish_date": "2026-05-21",
     "batch": "",
-    "review_status": "needs_generation",
+    "review_status": "pass",
     "internal_link_count": 4,
-    "notes": "approved_from_review reset_for_ad_platform_focus"
+    "notes": "approved_from_review reset_for_ad_platform_focus approved_for_2026-05-21_publish published_at=2026-05-21"
   },
   {
     "content_id": "c062-media-buying-small-budget-test",
@@ -517,12 +517,12 @@
     "content_type": "blog_article",
     "priority_score": 62,
     "risk_level": "low",
-    "publish_status": "needs_generation",
-    "planned_publish_date": "",
+    "publish_status": "published",
+    "planned_publish_date": "2026-05-21",
     "batch": "",
-    "review_status": "needs_generation",
+    "review_status": "pass",
     "internal_link_count": 4,
-    "notes": "approved_from_review reset_for_ad_platform_focus"
+    "notes": "approved_from_review reset_for_ad_platform_focus approved_for_2026-05-21_publish published_at=2026-05-21"
   },
   {
     "content_id": "c063-overseas-promotion-landing-page",
@@ -547,12 +547,12 @@
     "content_type": "blog_article",
     "priority_score": 64,
     "risk_level": "low",
-    "publish_status": "needs_generation",
-    "planned_publish_date": "",
+    "publish_status": "published",
+    "planned_publish_date": "2026-05-21",
     "batch": "",
-    "review_status": "needs_generation",
+    "review_status": "pass",
     "internal_link_count": 4,
-    "notes": "approved_from_review reset_for_ad_platform_focus"
+    "notes": "approved_from_review reset_for_ad_platform_focus approved_for_2026-05-21_publish published_at=2026-05-21"
   },
   {
     "content_id": "c066-google-search-leads-keywords",

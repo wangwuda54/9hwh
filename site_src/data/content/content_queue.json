@@ -1906,7 +1906,7 @@
       "引流"
     ],
     "page_type": "blog_article",
-    "status": "prompt_ready",
+    "status": "published",
     "priority": 61,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -1940,7 +1940,7 @@
       "投流"
     ],
     "page_type": "blog_article",
-    "status": "prompt_ready",
+    "status": "published",
     "priority": 62,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -2008,7 +2008,7 @@
       "素材测试"
     ],
     "page_type": "blog_article",
-    "status": "prompt_ready",
+    "status": "published",
     "priority": 64,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -2179,7 +2179,7 @@
       "交友获客"
     ],
     "page_type": "blog_article",
-    "status": "prompt_ready",
+    "status": "published",
     "priority": 69,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -2249,7 +2249,7 @@
       "获客页面"
     ],
     "page_type": "blog_article",
-    "status": "prompt_ready",
+    "status": "published",
     "priority": 71,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -2284,7 +2284,7 @@
       "线索跟进"
     ],
     "page_type": "blog_article",
-    "status": "prompt_ready",
+    "status": "published",
     "priority": 72,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -2354,7 +2354,7 @@
       "在线项目"
     ],
     "page_type": "blog_article",
-    "status": "prompt_ready",
+    "status": "published",
     "priority": 74,
     "word_count_target": 1800,
     "deepseek_required": true,
