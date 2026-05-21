@@ -1,68 +1,21 @@
 {
-  "status": "success",
-  "run_date": "2026-05-18",
-  "date": "2026-05-18",
+  "status": "no_changes",
+  "run_date": "2026-05-21",
+  "date": "2026-05-21",
   "mode": "normal",
-  "daily_limit": 3,
+  "daily_limit": 7,
   "hard_limit": 10,
   "dry_run": true,
-  "reviewed_candidate_count": 14,
-  "selected_count": 3,
+  "reviewed_candidate_count": 0,
+  "selected_count": 0,
   "published_count": 0,
-  "total_published": 26,
-  "selected_items": [
-    {
-      "content_id": "c064-ad-campaign-support-material-test",
-      "title": "广告素材怎么测试：角度、预算和反馈复盘方法",
-      "target_url": "/blog/ad-material-test/",
-      "full_url": "https://www.9hwh.com/blog/ad-material-test/",
-      "planned_publish_date": "2026-05-18",
-      "risk_level": "low",
-      "content_type": "blog_article",
-      "internal_link_count": 5
-    },
-    {
-      "content_id": "c075-youtube-promotion-leads",
-      "title": "YouTube推广获客怎么做：内容渠道、落地页和再营销准备",
-      "target_url": "/blog/youtube-promotion-leads/",
-      "full_url": "https://www.9hwh.com/blog/youtube-promotion-leads/",
-      "planned_publish_date": "2026-05-18",
-      "risk_level": "low",
-      "content_type": "blog_article",
-      "internal_link_count": 5
-    },
-    {
-      "content_id": "c006-crypto-promotion-crypto-promotion-how-to-1b5b5379",
-      "title": "虚拟币推广怎么做：推广路径、渠道判断和准备清单",
-      "target_url": "/blog/crypto-promotion-how-to-1b5b5379/",
-      "full_url": "https://www.9hwh.com/blog/crypto-promotion-how-to-1b5b5379/",
-      "planned_publish_date": "2026-05-18",
-      "risk_level": "low",
-      "content_type": "blog_article",
-      "internal_link_count": 5
-    }
-  ],
+  "total_published": 27,
+  "selected_items": [],
   "published_items": [],
-  "skipped_items": [
-    {
-      "content_id": "c003-ad-campaign-support-crypto-how-to-887db2f2",
-      "title": "虚拟币怎么做：推广路径、渠道判断和准备清单",
-      "target_url": "/blog/crypto-how-to-887db2f2/",
-      "primary_keyword": "虚拟币怎么做",
-      "description": "虚拟币怎么做：推广路径、渠道判断和准备清单，围绕真实搜索需求梳理推广准备、渠道判断、素材测试、落地页承接和咨询转化路径。",
-      "risk_level": "low",
-      "content_type": "blog_article",
-      "cluster_id": "ad-campaign-support",
-      "planned_publish_date": "",
-      "internal_link_count": 6,
-      "shape": "ordinary_long_tail",
-      "notes": "approved_from_review",
-      "skip_reason": "same_cluster"
-    }
-  ],
+  "skipped_items": [],
   "errors": [],
   "post_publish_checks": [],
   "site_url": "https://www.9hwh.com",
-  "message": "Dry-run selected 3 reviewed item(s).",
-  "generated_at": "2026-05-18T06:37:07+00:00"
+  "message": "Dry-run found no reviewed content to publish.",
+  "generated_at": "2026-05-21T06:34:06+00:00"
 }

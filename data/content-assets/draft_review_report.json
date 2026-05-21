@@ -1,7 +1,7 @@
 {
-  "draft_count": 40,
-  "pass_count": 36,
-  "warning_count": 4,
+  "draft_count": 27,
+  "pass_count": 26,
+  "warning_count": 1,
   "fail_count": 0,
   "articles": [
     {
@@ -21,14 +21,6 @@
       "warnings": [
         "possible keyword stuffing"
       ]
-    },
-    {
-      "file": "c003-ad-campaign-support-crypto-how-to-887db2f2.md",
-      "content_id": "c003-ad-campaign-support-crypto-how-to-887db2f2",
-      "target_url": "/blog/crypto-how-to-887db2f2/",
-      "status": "pass",
-      "issues": [],
-      "warnings": []
     },
     {
       "file": "c004-crypto-promotion-exchange-acquisition-how-to-efd74e87.md",
@@ -66,14 +58,6 @@
       "file": "c008-dating-traffic-dating-how-to-e74a54f4.md",
       "content_id": "c008-dating-traffic-dating-how-to-e74a54f4",
       "target_url": "/blog/dating-how-to-e74a54f4/",
-      "status": "pass",
-      "issues": [],
-      "warnings": []
-    },
-    {
-      "file": "c009-dating-traffic-dating-how-to-ad9ee1af.md",
-      "content_id": "c009-dating-traffic-dating-how-to-ad9ee1af",
-      "target_url": "/blog/dating-how-to-ad9ee1af/",
       "status": "pass",
       "issues": [],
       "warnings": []
@@ -127,42 +111,12 @@
       "warnings": []
     },
     {
-      "file": "c016-traffic-acquisition-immigration-how-to-38e8c4a4.md",
-      "content_id": "c016-traffic-acquisition-immigration-how-to-38e8c4a4",
-      "target_url": "/blog/immigration-how-to-38e8c4a4/",
-      "status": "warning",
-      "issues": [],
-      "warnings": [
-        "possible keyword stuffing"
-      ]
-    },
-    {
-      "file": "c017-traffic-acquisition-loan-how-to-ee56b631.md",
-      "content_id": "c017-traffic-acquisition-loan-how-to-ee56b631",
-      "target_url": "/blog/loan-how-to-ee56b631/",
-      "status": "warning",
-      "issues": [],
-      "warnings": [
-        "possible keyword stuffing"
-      ]
-    },
-    {
       "file": "c018-ad-campaign-support-cost-6e550a25.md",
       "content_id": "c018-ad-campaign-support-cost-6e550a25",
       "target_url": "/blog/cost-6e550a25/",
       "status": "pass",
       "issues": [],
       "warnings": []
-    },
-    {
-      "file": "c019-ad-campaign-support-cost-cafc4fef.md",
-      "content_id": "c019-ad-campaign-support-cost-cafc4fef",
-      "target_url": "/blog/cost-cafc4fef/",
-      "status": "warning",
-      "issues": [],
-      "warnings": [
-        "possible keyword stuffing"
-      ]
     },
     {
       "file": "c020-ad-campaign-support-crypto-cost-5d087f6e.md",
@@ -213,33 +167,9 @@
       "warnings": []
     },
     {
-      "file": "c061-traffic-acquisition-leads-quality-test.md",
-      "content_id": "c061-traffic-acquisition-leads-quality-test",
-      "target_url": "/blog/leads-quality-test/",
-      "status": "pass",
-      "issues": [],
-      "warnings": []
-    },
-    {
-      "file": "c062-media-buying-small-budget-test.md",
-      "content_id": "c062-media-buying-small-budget-test",
-      "target_url": "/blog/small-budget-media-buying-test/",
-      "status": "pass",
-      "issues": [],
-      "warnings": []
-    },
-    {
       "file": "c063-overseas-promotion-landing-page.md",
       "content_id": "c063-overseas-promotion-landing-page",
       "target_url": "/blog/overseas-promotion-landing-page/",
-      "status": "pass",
-      "issues": [],
-      "warnings": []
-    },
-    {
-      "file": "c064-ad-campaign-support-material-test.md",
-      "content_id": "c064-ad-campaign-support-material-test",
-      "target_url": "/blog/ad-material-test/",
       "status": "pass",
       "issues": [],
       "warnings": []
@@ -277,49 +207,9 @@
       "warnings": []
     },
     {
-      "file": "c069-dating-app-registration-flow.md",
-      "content_id": "c069-dating-app-registration-flow",
-      "target_url": "/blog/dating-app-registration-flow/",
-      "status": "pass",
-      "issues": [],
-      "warnings": []
-    },
-    {
       "file": "c070-crypto-exchange-leads.md",
       "content_id": "c070-crypto-exchange-leads",
       "target_url": "/blog/crypto-exchange-leads/",
-      "status": "pass",
-      "issues": [],
-      "warnings": []
-    },
-    {
-      "file": "c071-loan-leads-page-copy.md",
-      "content_id": "c071-loan-leads-page-copy",
-      "target_url": "/blog/loan-leads-page-copy/",
-      "status": "pass",
-      "issues": [],
-      "warnings": []
-    },
-    {
-      "file": "c072-insurance-leads-follow-up.md",
-      "content_id": "c072-insurance-leads-follow-up",
-      "target_url": "/blog/insurance-leads-follow-up/",
-      "status": "pass",
-      "issues": [],
-      "warnings": []
-    },
-    {
-      "file": "c073-immigration-consultation-leads.md",
-      "content_id": "c073-immigration-consultation-leads",
-      "target_url": "/blog/immigration-consultation-leads/",
-      "status": "pass",
-      "issues": [],
-      "warnings": []
-    },
-    {
-      "file": "c074-online-work-leads-test.md",
-      "content_id": "c074-online-work-leads-test",
-      "target_url": "/blog/online-work-leads-test/",
       "status": "pass",
       "issues": [],
       "warnings": []
