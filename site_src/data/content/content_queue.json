@@ -78,7 +78,7 @@
       "虚拟币怎么做"
     ],
     "page_type": "blog_article",
-    "status": "prompt_ready",
+    "status": "published",
     "priority": 3,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -264,7 +264,7 @@
       "真人交友怎么做"
     ],
     "page_type": "blog_article",
-    "status": "prompt_ready",
+    "status": "published",
     "priority": 9,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -481,7 +481,7 @@
       "移民怎么做"
     ],
     "page_type": "blog_article",
-    "status": "prompt_ready",
+    "status": "published",
     "priority": 16,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -512,7 +512,7 @@
       "贷款怎么做"
     ],
     "page_type": "blog_article",
-    "status": "prompt_ready",
+    "status": "published",
     "priority": 17,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -574,7 +574,7 @@
       "理财费用"
     ],
     "page_type": "blog_article",
-    "status": "prompt_ready",
+    "status": "published",
     "priority": 19,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -636,7 +636,7 @@
       "交易所拉新费用"
     ],
     "page_type": "blog_article",
-    "status": "planned",
+    "status": "published",
     "priority": 21,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -2319,7 +2319,7 @@
       "咨询获客"
     ],
     "page_type": "blog_article",
-    "status": "prompt_ready",
+    "status": "published",
     "priority": 73,
     "word_count_target": 1800,
     "deepseek_required": true,

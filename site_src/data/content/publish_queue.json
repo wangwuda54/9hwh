@@ -157,12 +157,12 @@
     "content_type": "blog_article",
     "priority_score": 3,
     "risk_level": "low",
-    "publish_status": "needs_generation",
-    "planned_publish_date": "",
+    "publish_status": "published",
+    "planned_publish_date": "2026-05-22",
     "batch": "",
-    "review_status": "needs_generation",
+    "review_status": "pass",
     "internal_link_count": 4,
-    "notes": "approved_from_review reset_for_ad_platform_focus"
+    "notes": "approved_from_review reset_for_ad_platform_focus published_at=2026-05-22"
   },
   {
     "content_id": "c065-fb-leads-form-setup",
@@ -262,12 +262,12 @@
     "content_type": "blog_article",
     "priority_score": 73,
     "risk_level": "medium",
-    "publish_status": "needs_generation",
-    "planned_publish_date": "",
+    "publish_status": "published",
+    "planned_publish_date": "2026-05-22",
     "batch": "",
-    "review_status": "needs_generation",
+    "review_status": "pass",
     "internal_link_count": 5,
-    "notes": "approved_from_review reset_for_ad_platform_focus"
+    "notes": "approved_from_review reset_for_ad_platform_focus published_at=2026-05-22"
   },
   {
     "content_id": "c074-online-work-leads-test",
@@ -352,12 +352,12 @@
     "content_type": "blog_article",
     "priority_score": 9,
     "risk_level": "low",
-    "publish_status": "needs_generation",
-    "planned_publish_date": "",
+    "publish_status": "published",
+    "planned_publish_date": "2026-05-22",
     "batch": "",
-    "review_status": "needs_generation",
+    "review_status": "pass",
     "internal_link_count": 4,
-    "notes": "approved_from_review reset_for_ad_platform_focus"
+    "notes": "approved_from_review reset_for_ad_platform_focus published_at=2026-05-22"
   },
   {
     "content_id": "c011-media-buying-online-work-how-to-60caf548",
@@ -427,12 +427,12 @@
     "content_type": "blog_article",
     "priority_score": 16,
     "risk_level": "low",
-    "publish_status": "needs_generation",
-    "planned_publish_date": "",
+    "publish_status": "published",
+    "planned_publish_date": "2026-05-22",
     "batch": "",
-    "review_status": "needs_generation",
+    "review_status": "pass",
     "internal_link_count": 4,
-    "notes": "approved_from_review reset_for_ad_platform_focus"
+    "notes": "approved_from_review reset_for_ad_platform_focus published_at=2026-05-22"
   },
   {
     "content_id": "c017-traffic-acquisition-loan-how-to-ee56b631",
@@ -442,12 +442,12 @@
     "content_type": "blog_article",
     "priority_score": 17,
     "risk_level": "low",
-    "publish_status": "needs_generation",
-    "planned_publish_date": "",
+    "publish_status": "published",
+    "planned_publish_date": "2026-05-22",
     "batch": "",
-    "review_status": "needs_generation",
+    "review_status": "pass",
     "internal_link_count": 4,
-    "notes": "approved_from_review reset_for_ad_platform_focus"
+    "notes": "approved_from_review reset_for_ad_platform_focus published_at=2026-05-22"
   },
   {
     "content_id": "c018-ad-campaign-support-cost-6e550a25",
@@ -472,12 +472,12 @@
     "content_type": "blog_article",
     "priority_score": 19,
     "risk_level": "low",
-    "publish_status": "needs_generation",
-    "planned_publish_date": "",
+    "publish_status": "published",
+    "planned_publish_date": "2026-05-22",
     "batch": "",
-    "review_status": "needs_generation",
+    "review_status": "pass",
     "internal_link_count": 4,
-    "notes": "approved_from_review reset_for_ad_platform_focus"
+    "notes": "approved_from_review reset_for_ad_platform_focus published_at=2026-05-22"
   },
   {
     "content_id": "c020-ad-campaign-support-crypto-cost-5d087f6e",
@@ -598,5 +598,20 @@
     "review_status": "pass",
     "internal_link_count": 4,
     "notes": "approved_from_review published_at=2026-05-20"
+  },
+  {
+    "content_id": "c021-crypto-promotion-exchange-acquisition-cost-e9eee289",
+    "title": "交易所拉新费用：影响因素、预算准备和沟通要点",
+    "target_url": "/blog/exchange-acquisition-cost-e9eee289/",
+    "primary_keyword": "交易所拉新费用",
+    "content_type": "blog_article",
+    "priority_score": 21,
+    "risk_level": "low",
+    "publish_status": "published",
+    "planned_publish_date": "2026-05-22",
+    "batch": "",
+    "review_status": "pass",
+    "internal_link_count": 4,
+    "notes": "approved_from_review published_at=2026-05-22"
   }
 ]
