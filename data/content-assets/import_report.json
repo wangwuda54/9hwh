@@ -1,97 +1,6 @@
 {
-  "generated_at": "2026-05-15T15:56:41",
-  "imported": [
-    {
-      "file": "c002-ad-campaign-support-how-to-f12343f8.md",
-      "article": 1,
-      "content_id": "c002-ad-campaign-support-how-to-f12343f8",
-      "target": "site_src/content_drafts/c002-ad-campaign-support-how-to-f12343f8.md"
-    },
-    {
-      "file": "c003-ad-campaign-support-crypto-how-to-887db2f2.md",
-      "article": 1,
-      "content_id": "c003-ad-campaign-support-crypto-how-to-887db2f2",
-      "target": "site_src/content_drafts/c003-ad-campaign-support-crypto-how-to-887db2f2.md"
-    },
-    {
-      "file": "c005-crypto-promotion-crypto-traffic-how-to-a32df87d.md",
-      "article": 1,
-      "content_id": "c005-crypto-promotion-crypto-traffic-how-to-a32df87d",
-      "target": "site_src/content_drafts/c005-crypto-promotion-crypto-traffic-how-to-a32df87d.md"
-    },
-    {
-      "file": "c006-crypto-promotion-crypto-promotion-how-to-1b5b5379.md",
-      "article": 1,
-      "content_id": "c006-crypto-promotion-crypto-promotion-how-to-1b5b5379",
-      "target": "site_src/content_drafts/c006-crypto-promotion-crypto-promotion-how-to-1b5b5379.md"
-    },
-    {
-      "file": "c008-dating-traffic-dating-how-to-e74a54f4.md",
-      "article": 1,
-      "content_id": "c008-dating-traffic-dating-how-to-e74a54f4",
-      "target": "site_src/content_drafts/c008-dating-traffic-dating-how-to-e74a54f4.md"
-    },
-    {
-      "file": "c009-dating-traffic-dating-how-to-ad9ee1af.md",
-      "article": 1,
-      "content_id": "c009-dating-traffic-dating-how-to-ad9ee1af",
-      "target": "site_src/content_drafts/c009-dating-traffic-dating-how-to-ad9ee1af.md"
-    },
-    {
-      "file": "c011-media-buying-online-work-how-to-60caf548.md",
-      "article": 1,
-      "content_id": "c011-media-buying-online-work-how-to-60caf548",
-      "target": "site_src/content_drafts/c011-media-buying-online-work-how-to-60caf548.md"
-    },
-    {
-      "file": "c013-traffic-acquisition-dating-traffic-how-to-a23563ce.md",
-      "article": 1,
-      "content_id": "c013-traffic-acquisition-dating-traffic-how-to-a23563ce",
-      "target": "site_src/content_drafts/c013-traffic-acquisition-dating-traffic-how-to-a23563ce.md"
-    },
-    {
-      "file": "c014-traffic-acquisition-insurance-how-to-1d0e89ba.md",
-      "article": 1,
-      "content_id": "c014-traffic-acquisition-insurance-how-to-1d0e89ba",
-      "target": "site_src/content_drafts/c014-traffic-acquisition-insurance-how-to-1d0e89ba.md"
-    },
-    {
-      "file": "c015-traffic-acquisition-game-how-to-ce12eefa.md",
-      "article": 1,
-      "content_id": "c015-traffic-acquisition-game-how-to-ce12eefa",
-      "target": "site_src/content_drafts/c015-traffic-acquisition-game-how-to-ce12eefa.md"
-    },
-    {
-      "file": "c016-traffic-acquisition-immigration-how-to-38e8c4a4.md",
-      "article": 1,
-      "content_id": "c016-traffic-acquisition-immigration-how-to-38e8c4a4",
-      "target": "site_src/content_drafts/c016-traffic-acquisition-immigration-how-to-38e8c4a4.md"
-    },
-    {
-      "file": "c017-traffic-acquisition-loan-how-to-ee56b631.md",
-      "article": 1,
-      "content_id": "c017-traffic-acquisition-loan-how-to-ee56b631",
-      "target": "site_src/content_drafts/c017-traffic-acquisition-loan-how-to-ee56b631.md"
-    },
-    {
-      "file": "c018-ad-campaign-support-cost-6e550a25.md",
-      "article": 1,
-      "content_id": "c018-ad-campaign-support-cost-6e550a25",
-      "target": "site_src/content_drafts/c018-ad-campaign-support-cost-6e550a25.md"
-    },
-    {
-      "file": "c019-ad-campaign-support-cost-cafc4fef.md",
-      "article": 1,
-      "content_id": "c019-ad-campaign-support-cost-cafc4fef",
-      "target": "site_src/content_drafts/c019-ad-campaign-support-cost-cafc4fef.md"
-    },
-    {
-      "file": "c020-ad-campaign-support-crypto-cost-5d087f6e.md",
-      "article": 1,
-      "content_id": "c020-ad-campaign-support-crypto-cost-5d087f6e",
-      "target": "site_src/content_drafts/c020-ad-campaign-support-crypto-cost-5d087f6e.md"
-    }
-  ],
+  "generated_at": "2026-05-27T09:06:35",
+  "imported": [],
   "skipped": [
     {
       "file": "c001-ad-campaign-support-how-to-17e66750.md",
@@ -154,94 +63,184 @@
       "reason": "published content is protected"
     },
     {
-      "file": "c061-traffic-acquisition-leads-quality-test.md",
+      "file": "c003-ad-campaign-support-crypto-how-to-887db2f2.md",
       "article": 1,
-      "content_id": "c061-traffic-acquisition-leads-quality-test",
-      "reason": "draft file already exists"
+      "content_id": "c003-ad-campaign-support-crypto-how-to-887db2f2",
+      "reason": "published content is protected"
     },
     {
-      "file": "c062-media-buying-small-budget-test.md",
+      "file": "c009-dating-traffic-dating-how-to-ad9ee1af.md",
       "article": 1,
-      "content_id": "c062-media-buying-small-budget-test",
-      "reason": "draft file already exists"
+      "content_id": "c009-dating-traffic-dating-how-to-ad9ee1af",
+      "reason": "published content is protected"
     },
     {
-      "file": "c063-overseas-promotion-landing-page.md",
+      "file": "c014-traffic-acquisition-insurance-how-to-1d0e89ba.md",
       "article": 1,
-      "content_id": "c063-overseas-promotion-landing-page",
-      "reason": "draft file already exists"
+      "content_id": "c014-traffic-acquisition-insurance-how-to-1d0e89ba",
+      "reason": "published content is protected"
     },
     {
-      "file": "c064-ad-campaign-support-material-test.md",
+      "file": "c015-traffic-acquisition-game-how-to-ce12eefa.md",
       "article": 1,
-      "content_id": "c064-ad-campaign-support-material-test",
-      "reason": "draft file already exists"
+      "content_id": "c015-traffic-acquisition-game-how-to-ce12eefa",
+      "reason": "published content is protected"
     },
     {
-      "file": "c065-fb-leads-form-setup.md",
+      "file": "c016-traffic-acquisition-immigration-how-to-38e8c4a4.md",
       "article": 1,
-      "content_id": "c065-fb-leads-form-setup",
-      "reason": "draft file already exists"
+      "content_id": "c016-traffic-acquisition-immigration-how-to-38e8c4a4",
+      "reason": "published content is protected"
     },
     {
-      "file": "c066-google-search-leads-keywords.md",
+      "file": "c017-traffic-acquisition-loan-how-to-ee56b631.md",
       "article": 1,
-      "content_id": "c066-google-search-leads-keywords",
-      "reason": "draft file already exists"
+      "content_id": "c017-traffic-acquisition-loan-how-to-ee56b631",
+      "reason": "published content is protected"
     },
     {
-      "file": "c067-tk-short-video-leads.md",
+      "file": "c019-ad-campaign-support-cost-cafc4fef.md",
       "article": 1,
-      "content_id": "c067-tk-short-video-leads",
-      "reason": "draft file already exists"
+      "content_id": "c019-ad-campaign-support-cost-cafc4fef",
+      "reason": "published content is protected"
     },
     {
-      "file": "c068-game-user-acquisition-cost.md",
+      "file": "c021-crypto-promotion-exchange-acquisition-cost-e9eee289.md",
       "article": 1,
-      "content_id": "c068-game-user-acquisition-cost",
-      "reason": "draft file already exists"
+      "content_id": "c021-crypto-promotion-exchange-acquisition-cost-e9eee289",
+      "reason": "published content is protected"
     },
     {
-      "file": "c069-dating-app-registration-flow.md",
+      "file": "c022-crypto-promotion-crypto-traffic-cost-60d08e20.md",
       "article": 1,
-      "content_id": "c069-dating-app-registration-flow",
-      "reason": "draft file already exists"
+      "content_id": "c022-crypto-promotion-crypto-traffic-cost-60d08e20",
+      "reason": "published content is protected"
     },
     {
-      "file": "c070-crypto-exchange-leads.md",
+      "file": "c023-crypto-promotion-crypto-promotion-cost-8bd82714.md",
       "article": 1,
-      "content_id": "c070-crypto-exchange-leads",
-      "reason": "draft file already exists"
+      "content_id": "c023-crypto-promotion-crypto-promotion-cost-8bd82714",
+      "reason": "published content is protected"
     },
     {
-      "file": "c071-loan-leads-page-copy.md",
+      "file": "c024-dating-traffic-dating-cost-c02dc08c.md",
       "article": 1,
-      "content_id": "c071-loan-leads-page-copy",
-      "reason": "draft file already exists"
+      "content_id": "c024-dating-traffic-dating-cost-c02dc08c",
+      "reason": "published content is protected"
     },
     {
-      "file": "c072-insurance-leads-follow-up.md",
+      "file": "c025-dating-traffic-dating-cost-efaada52.md",
       "article": 1,
-      "content_id": "c072-insurance-leads-follow-up",
-      "reason": "draft file already exists"
+      "content_id": "c025-dating-traffic-dating-cost-efaada52",
+      "reason": "published content is protected"
+    },
+    {
+      "file": "c026-dating-traffic-dating-cost-5121c26c.md",
+      "article": 1,
+      "content_id": "c026-dating-traffic-dating-cost-5121c26c",
+      "reason": "published content is protected"
+    },
+    {
+      "file": "c027-media-buying-part-time-cost-03f7eb1a.md",
+      "article": 1,
+      "content_id": "c027-media-buying-part-time-cost-03f7eb1a",
+      "reason": "published content is protected"
+    },
+    {
+      "file": "c028-media-buying-online-work-cost-a08b89cf.md",
+      "article": 1,
+      "content_id": "c028-media-buying-online-work-cost-a08b89cf",
+      "reason": "published content is protected"
+    },
+    {
+      "file": "c029-media-buying-part-time-price-ad6e38c9.md",
+      "article": 1,
+      "content_id": "c029-media-buying-part-time-price-ad6e38c9",
+      "reason": "published content is protected"
+    },
+    {
+      "file": "c030-media-buying-online-work-price-41007274.md",
+      "article": 1,
+      "content_id": "c030-media-buying-online-work-price-41007274",
+      "reason": "published content is protected"
+    },
+    {
+      "file": "c032-fb-promotion-fb-dating-traffic-promotion-8c6d82f2.md",
+      "article": 1,
+      "content_id": "c032-fb-promotion-fb-dating-traffic-promotion-8c6d82f2",
+      "reason": "published content is protected"
+    },
+    {
+      "file": "c033-fb-promotion-fb-insurance-traffic-13b27c41.md",
+      "article": 1,
+      "content_id": "c033-fb-promotion-fb-insurance-traffic-13b27c41",
+      "reason": "published content is protected"
+    },
+    {
+      "file": "c034-fb-promotion-fb-insurance-promotion-bab1f292.md",
+      "article": 1,
+      "content_id": "c034-fb-promotion-fb-insurance-promotion-bab1f292",
+      "reason": "published content is protected"
+    },
+    {
+      "file": "c035-fb-promotion-fb-traffic-7739c80e.md",
+      "article": 1,
+      "content_id": "c035-fb-promotion-fb-traffic-7739c80e",
+      "reason": "published content is protected"
+    },
+    {
+      "file": "c036-fb-promotion-fb-immigration-media-buying-733005f8.md",
+      "article": 1,
+      "content_id": "c036-fb-promotion-fb-immigration-media-buying-733005f8",
+      "reason": "published content is protected"
+    },
+    {
+      "file": "c037-finance-leads-fb-traffic-a2c032e7.md",
+      "article": 1,
+      "content_id": "c037-finance-leads-fb-traffic-a2c032e7",
+      "reason": "published content is protected"
+    },
+    {
+      "file": "c038-finance-leads-fb-promotion-8f13c6c4.md",
+      "article": 1,
+      "content_id": "c038-finance-leads-fb-promotion-8f13c6c4",
+      "reason": "published content is protected"
+    },
+    {
+      "file": "c039-finance-leads-fb-leads-b109c740.md",
+      "article": 1,
+      "content_id": "c039-finance-leads-fb-leads-b109c740",
+      "reason": "published content is protected"
+    },
+    {
+      "file": "c040-finance-leads-traffic-b2c664e0.md",
+      "article": 1,
+      "content_id": "c040-finance-leads-traffic-b2c664e0",
+      "reason": "published content is protected"
+    },
+    {
+      "file": "c041-finance-leads-traffic-04318358.md",
+      "article": 1,
+      "content_id": "c041-finance-leads-traffic-04318358",
+      "reason": "published content is protected"
+    },
+    {
+      "file": "c042-finance-leads-traffic-e92e6ae0.md",
+      "article": 1,
+      "content_id": "c042-finance-leads-traffic-e92e6ae0",
+      "reason": "published content is protected"
+    },
+    {
+      "file": "c044-game-promotion-google-game-promotion-0d865324.md",
+      "article": 1,
+      "content_id": "c044-game-promotion-google-game-promotion-0d865324",
+      "reason": "published content is protected"
     },
     {
       "file": "c073-immigration-consultation-leads.md",
       "article": 1,
       "content_id": "c073-immigration-consultation-leads",
-      "reason": "draft file already exists"
-    },
-    {
-      "file": "c074-online-work-leads-test.md",
-      "article": 1,
-      "content_id": "c074-online-work-leads-test",
-      "reason": "draft file already exists"
-    },
-    {
-      "file": "c075-youtube-promotion-leads.md",
-      "article": 1,
-      "content_id": "c075-youtube-promotion-leads",
-      "reason": "draft file already exists"
+      "reason": "published content is protected"
     }
   ],
   "failed": []

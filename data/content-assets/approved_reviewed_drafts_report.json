@@ -1,193 +1,55 @@
 {
   "status": "success",
   "dry_run": false,
-  "limit": 30,
-  "pass_count": 19,
-  "warning_count": 21,
-  "approvable_count": 40,
-  "eligible_count": 30,
-  "approved_count": 30,
-  "skipped_count": 10,
+  "limit": 7,
+  "pass_count": 51,
+  "warning_count": 11,
+  "approvable_count": 62,
+  "eligible_count": 7,
+  "approved_count": 7,
+  "skipped_count": 55,
   "approved_items": [
     {
-      "content_id": "c003-ad-campaign-support-crypto-how-to-887db2f2",
-      "title": "虚拟币怎么做：推广路径、渠道判断和准备清单",
-      "target_url": "/blog/crypto-how-to-887db2f2/",
-      "draft_file": "site_src/content_drafts/c003-ad-campaign-support-crypto-how-to-887db2f2.md"
+      "content_id": "c037-finance-leads-fb-traffic-a2c032e7",
+      "title": "FB理财引流：海外推广与获客准备指南",
+      "target_url": "/blog/topics/fb-traffic-a2c032e7/",
+      "draft_file": "site_src/content_drafts/c037-finance-leads-fb-traffic-a2c032e7.md"
     },
     {
-      "content_id": "c065-fb-leads-form-setup",
-      "title": "FB获客表单怎么设置：字段、线索质量和客服承接",
-      "target_url": "/blog/fb-leads-form-setup/",
-      "draft_file": "site_src/content_drafts/c065-fb-leads-form-setup.md"
+      "content_id": "c038-finance-leads-fb-promotion-8f13c6c4",
+      "title": "FB理财推广：海外推广与获客准备指南",
+      "target_url": "/blog/topics/fb-promotion-8f13c6c4/",
+      "draft_file": "site_src/content_drafts/c038-finance-leads-fb-promotion-8f13c6c4.md"
     },
     {
-      "content_id": "c068-game-user-acquisition-cost",
-      "title": "游戏获客成本怎么看：买量预算、注册质量和数据回传",
-      "target_url": "/blog/game-user-acquisition-cost/",
-      "draft_file": "site_src/content_drafts/c068-game-user-acquisition-cost.md"
+      "content_id": "c039-finance-leads-fb-leads-b109c740",
+      "title": "FB理财获客：海外推广与获客准备指南",
+      "target_url": "/blog/topics/fb-leads-b109c740/",
+      "draft_file": "site_src/content_drafts/c039-finance-leads-fb-leads-b109c740.md"
     },
     {
-      "content_id": "c069-dating-app-registration-flow",
-      "title": "交友App注册路径怎么优化：素材、页面和注册质量",
-      "target_url": "/blog/dating-app-registration-flow/",
-      "draft_file": "site_src/content_drafts/c069-dating-app-registration-flow.md"
+      "content_id": "c040-finance-leads-traffic-b2c664e0",
+      "title": "中东理财引流：海外推广与获客准备指南",
+      "target_url": "/blog/topics/traffic-b2c664e0/",
+      "draft_file": "site_src/content_drafts/c040-finance-leads-traffic-b2c664e0.md"
     },
     {
-      "content_id": "c070-crypto-exchange-leads",
-      "title": "交易所获客怎么做：渠道选择、注册路径和用户质量",
-      "target_url": "/blog/crypto-exchange-leads/",
-      "draft_file": "site_src/content_drafts/c070-crypto-exchange-leads.md"
+      "content_id": "c041-finance-leads-traffic-04318358",
+      "title": "俄罗斯理财引流：海外推广与获客准备指南",
+      "target_url": "/blog/topics/traffic-04318358/",
+      "draft_file": "site_src/content_drafts/c041-finance-leads-traffic-04318358.md"
     },
     {
-      "content_id": "c071-loan-leads-page-copy",
-      "title": "贷款获客页面怎么写：表单、信任信息和咨询路径",
-      "target_url": "/blog/loan-leads-page-copy/",
-      "draft_file": "site_src/content_drafts/c071-loan-leads-page-copy.md"
+      "content_id": "c042-finance-leads-traffic-e92e6ae0",
+      "title": "加拿大理财引流：海外推广与获客准备指南",
+      "target_url": "/blog/topics/traffic-e92e6ae0/",
+      "draft_file": "site_src/content_drafts/c042-finance-leads-traffic-e92e6ae0.md"
     },
     {
-      "content_id": "c072-insurance-leads-follow-up",
-      "title": "保险获客线索怎么跟进：表单字段、客服承接和质量判断",
-      "target_url": "/blog/insurance-leads-follow-up/",
-      "draft_file": "site_src/content_drafts/c072-insurance-leads-follow-up.md"
-    },
-    {
-      "content_id": "c073-immigration-consultation-leads",
-      "title": "移民咨询获客怎么做：关键词、页面信任和预约路径",
-      "target_url": "/blog/immigration-consultation-leads/",
-      "draft_file": "site_src/content_drafts/c073-immigration-consultation-leads.md"
-    },
-    {
-      "content_id": "c074-online-work-leads-test",
-      "title": "兼职项目获客怎么测：人群、素材和报名质量",
-      "target_url": "/blog/online-work-leads-test/",
-      "draft_file": "site_src/content_drafts/c074-online-work-leads-test.md"
-    },
-    {
-      "content_id": "c002-ad-campaign-support-how-to-f12343f8",
-      "title": "理财怎么做：推广路径、渠道判断和准备清单",
-      "target_url": "/blog/how-to-f12343f8/",
-      "draft_file": "site_src/content_drafts/c002-ad-campaign-support-how-to-f12343f8.md"
-    },
-    {
-      "content_id": "c005-crypto-promotion-crypto-traffic-how-to-a32df87d",
-      "title": "币圈引流怎么做：推广路径、渠道判断和准备清单",
-      "target_url": "/blog/crypto-traffic-how-to-a32df87d/",
-      "draft_file": "site_src/content_drafts/c005-crypto-promotion-crypto-traffic-how-to-a32df87d.md"
-    },
-    {
-      "content_id": "c006-crypto-promotion-crypto-promotion-how-to-1b5b5379",
-      "title": "虚拟币推广怎么做：推广路径、渠道判断和准备清单",
-      "target_url": "/blog/crypto-promotion-how-to-1b5b5379/",
-      "draft_file": "site_src/content_drafts/c006-crypto-promotion-crypto-promotion-how-to-1b5b5379.md"
-    },
-    {
-      "content_id": "c008-dating-traffic-dating-how-to-e74a54f4",
-      "title": "交友聊天怎么做：推广路径、渠道判断和准备清单",
-      "target_url": "/blog/dating-how-to-e74a54f4/",
-      "draft_file": "site_src/content_drafts/c008-dating-traffic-dating-how-to-e74a54f4.md"
-    },
-    {
-      "content_id": "c009-dating-traffic-dating-how-to-ad9ee1af",
-      "title": "真人交友怎么做：推广路径、渠道判断和准备清单",
-      "target_url": "/blog/dating-how-to-ad9ee1af/",
-      "draft_file": "site_src/content_drafts/c009-dating-traffic-dating-how-to-ad9ee1af.md"
-    },
-    {
-      "content_id": "c011-media-buying-online-work-how-to-60caf548",
-      "title": "网赚怎么做：推广路径、渠道判断和准备清单",
-      "target_url": "/blog/online-work-how-to-60caf548/",
-      "draft_file": "site_src/content_drafts/c011-media-buying-online-work-how-to-60caf548.md"
-    },
-    {
-      "content_id": "c013-traffic-acquisition-dating-traffic-how-to-a23563ce",
-      "title": "交友引流怎么做：推广路径、渠道判断和准备清单",
-      "target_url": "/blog/dating-traffic-how-to-a23563ce/",
-      "draft_file": "site_src/content_drafts/c013-traffic-acquisition-dating-traffic-how-to-a23563ce.md"
-    },
-    {
-      "content_id": "c014-traffic-acquisition-insurance-how-to-1d0e89ba",
-      "title": "保险怎么做：推广路径、渠道判断和准备清单",
-      "target_url": "/blog/insurance-how-to-1d0e89ba/",
-      "draft_file": "site_src/content_drafts/c014-traffic-acquisition-insurance-how-to-1d0e89ba.md"
-    },
-    {
-      "content_id": "c015-traffic-acquisition-game-how-to-ce12eefa",
-      "title": "游戏怎么做：推广路径、渠道判断和准备清单",
-      "target_url": "/blog/game-how-to-ce12eefa/",
-      "draft_file": "site_src/content_drafts/c015-traffic-acquisition-game-how-to-ce12eefa.md"
-    },
-    {
-      "content_id": "c016-traffic-acquisition-immigration-how-to-38e8c4a4",
-      "title": "移民怎么做：推广路径、渠道判断和准备清单",
-      "target_url": "/blog/immigration-how-to-38e8c4a4/",
-      "draft_file": "site_src/content_drafts/c016-traffic-acquisition-immigration-how-to-38e8c4a4.md"
-    },
-    {
-      "content_id": "c017-traffic-acquisition-loan-how-to-ee56b631",
-      "title": "贷款怎么做：推广路径、渠道判断和准备清单",
-      "target_url": "/blog/loan-how-to-ee56b631/",
-      "draft_file": "site_src/content_drafts/c017-traffic-acquisition-loan-how-to-ee56b631.md"
-    },
-    {
-      "content_id": "c018-ad-campaign-support-cost-6e550a25",
-      "title": "加密货币费用：影响因素、预算准备和沟通要点",
-      "target_url": "/blog/cost-6e550a25/",
-      "draft_file": "site_src/content_drafts/c018-ad-campaign-support-cost-6e550a25.md"
-    },
-    {
-      "content_id": "c019-ad-campaign-support-cost-cafc4fef",
-      "title": "理财费用：影响因素、预算准备和沟通要点",
-      "target_url": "/blog/cost-cafc4fef/",
-      "draft_file": "site_src/content_drafts/c019-ad-campaign-support-cost-cafc4fef.md"
-    },
-    {
-      "content_id": "c020-ad-campaign-support-crypto-cost-5d087f6e",
-      "title": "虚拟币费用：影响因素、预算准备和沟通要点",
-      "target_url": "/blog/crypto-cost-5d087f6e/",
-      "draft_file": "site_src/content_drafts/c020-ad-campaign-support-crypto-cost-5d087f6e.md"
-    },
-    {
-      "content_id": "c061-traffic-acquisition-leads-quality-test",
-      "title": "线索质量怎么测试：渠道判断、表单承接和跟进节奏",
-      "target_url": "/blog/leads-quality-test/",
-      "draft_file": "site_src/content_drafts/c061-traffic-acquisition-leads-quality-test.md"
-    },
-    {
-      "content_id": "c062-media-buying-small-budget-test",
-      "title": "小预算买量怎么测：素材、渠道和转化路径准备",
-      "target_url": "/blog/small-budget-media-buying-test/",
-      "draft_file": "site_src/content_drafts/c062-media-buying-small-budget-test.md"
-    },
-    {
-      "content_id": "c063-overseas-promotion-landing-page",
-      "title": "海外推广落地页怎么准备：内容、表单和咨询承接",
-      "target_url": "/blog/overseas-promotion-landing-page/",
-      "draft_file": "site_src/content_drafts/c063-overseas-promotion-landing-page.md"
-    },
-    {
-      "content_id": "c064-ad-campaign-support-material-test",
-      "title": "广告素材怎么测试：角度、预算和反馈复盘方法",
-      "target_url": "/blog/ad-material-test/",
-      "draft_file": "site_src/content_drafts/c064-ad-campaign-support-material-test.md"
-    },
-    {
-      "content_id": "c066-google-search-leads-keywords",
-      "title": "Google搜索获客关键词怎么选：意图、页面和转化追踪",
-      "target_url": "/blog/google-search-leads-keywords/",
-      "draft_file": "site_src/content_drafts/c066-google-search-leads-keywords.md"
-    },
-    {
-      "content_id": "c067-tk-short-video-leads",
-      "title": "TK短视频获客怎么做：素材前三秒、落地页和表单路径",
-      "target_url": "/blog/tk-short-video-leads/",
-      "draft_file": "site_src/content_drafts/c067-tk-short-video-leads.md"
-    },
-    {
-      "content_id": "c075-youtube-promotion-leads",
-      "title": "YouTube推广获客怎么做：内容渠道、落地页和再营销准备",
-      "target_url": "/blog/youtube-promotion-leads/",
-      "draft_file": "site_src/content_drafts/c075-youtube-promotion-leads.md"
+      "content_id": "c044-game-promotion-google-game-promotion-0d865324",
+      "title": "谷歌游戏推广：海外推广与获客准备指南",
+      "target_url": "/blog/topics/google-game-promotion-0d865324/",
+      "draft_file": "site_src/content_drafts/c044-game-promotion-google-game-promotion-0d865324.md"
     }
   ],
   "skipped_items": [
@@ -196,7 +58,19 @@
       "reason": "already_published"
     },
     {
+      "content_id": "c003-ad-campaign-support-crypto-how-to-887db2f2",
+      "reason": "already_published"
+    },
+    {
       "content_id": "c004-crypto-promotion-exchange-acquisition-how-to-efd74e87",
+      "reason": "already_published"
+    },
+    {
+      "content_id": "c005-crypto-promotion-crypto-traffic-how-to-a32df87d",
+      "reason": "already_published"
+    },
+    {
+      "content_id": "c006-crypto-promotion-crypto-promotion-how-to-1b5b5379",
       "reason": "already_published"
     },
     {
@@ -204,7 +78,19 @@
       "reason": "already_published"
     },
     {
+      "content_id": "c008-dating-traffic-dating-how-to-e74a54f4",
+      "reason": "already_published"
+    },
+    {
+      "content_id": "c009-dating-traffic-dating-how-to-ad9ee1af",
+      "reason": "already_published"
+    },
+    {
       "content_id": "c010-media-buying-part-time-how-to-5875d40e",
+      "reason": "already_published"
+    },
+    {
+      "content_id": "c011-media-buying-online-work-how-to-60caf548",
       "reason": "already_published"
     },
     {
@@ -212,7 +98,87 @@
       "reason": "already_published"
     },
     {
+      "content_id": "c013-traffic-acquisition-dating-traffic-how-to-a23563ce",
+      "reason": "already_published"
+    },
+    {
+      "content_id": "c014-traffic-acquisition-insurance-how-to-1d0e89ba",
+      "reason": "already_published"
+    },
+    {
+      "content_id": "c015-traffic-acquisition-game-how-to-ce12eefa",
+      "reason": "already_published"
+    },
+    {
+      "content_id": "c016-traffic-acquisition-immigration-how-to-38e8c4a4",
+      "reason": "already_published"
+    },
+    {
+      "content_id": "c017-traffic-acquisition-loan-how-to-ee56b631",
+      "reason": "already_published"
+    },
+    {
+      "content_id": "c018-ad-campaign-support-cost-6e550a25",
+      "reason": "already_published"
+    },
+    {
+      "content_id": "c019-ad-campaign-support-cost-cafc4fef",
+      "reason": "already_published"
+    },
+    {
+      "content_id": "c020-ad-campaign-support-crypto-cost-5d087f6e",
+      "reason": "already_published"
+    },
+    {
+      "content_id": "c021-crypto-promotion-exchange-acquisition-cost-e9eee289",
+      "reason": "already_published"
+    },
+    {
+      "content_id": "c022-crypto-promotion-crypto-traffic-cost-60d08e20",
+      "reason": "already_published"
+    },
+    {
+      "content_id": "c023-crypto-promotion-crypto-promotion-cost-8bd82714",
+      "reason": "already_published"
+    },
+    {
+      "content_id": "c024-dating-traffic-dating-cost-c02dc08c",
+      "reason": "already_published"
+    },
+    {
+      "content_id": "c025-dating-traffic-dating-cost-efaada52",
+      "reason": "already_published"
+    },
+    {
+      "content_id": "c027-media-buying-part-time-cost-03f7eb1a",
+      "reason": "already_published"
+    },
+    {
+      "content_id": "c028-media-buying-online-work-cost-a08b89cf",
+      "reason": "already_published"
+    },
+    {
+      "content_id": "c030-media-buying-online-work-price-41007274",
+      "reason": "already_published"
+    },
+    {
       "content_id": "c031-fb-promotion-fb-dating-traffic-5035e1c0",
+      "reason": "already_published"
+    },
+    {
+      "content_id": "c032-fb-promotion-fb-dating-traffic-promotion-8c6d82f2",
+      "reason": "already_published"
+    },
+    {
+      "content_id": "c033-fb-promotion-fb-insurance-traffic-13b27c41",
+      "reason": "already_published"
+    },
+    {
+      "content_id": "c034-fb-promotion-fb-insurance-promotion-bab1f292",
+      "reason": "already_published"
+    },
+    {
+      "content_id": "c036-fb-promotion-fb-immigration-media-buying-733005f8",
       "reason": "already_published"
     },
     {
@@ -230,9 +196,85 @@
     {
       "content_id": "c055-loan-leads-fb-loan-leads-60d3dc0c",
       "reason": "already_published"
+    },
+    {
+      "content_id": "c061-traffic-acquisition-leads-quality-test",
+      "reason": "already_published"
+    },
+    {
+      "content_id": "c062-media-buying-small-budget-test",
+      "reason": "already_published"
+    },
+    {
+      "content_id": "c063-overseas-promotion-landing-page",
+      "reason": "already_published"
+    },
+    {
+      "content_id": "c064-ad-campaign-support-material-test",
+      "reason": "already_published"
+    },
+    {
+      "content_id": "c065-fb-leads-form-setup",
+      "reason": "already_published"
+    },
+    {
+      "content_id": "c066-google-search-leads-keywords",
+      "reason": "already_published"
+    },
+    {
+      "content_id": "c067-tk-short-video-leads",
+      "reason": "already_published"
+    },
+    {
+      "content_id": "c068-game-user-acquisition-cost",
+      "reason": "already_published"
+    },
+    {
+      "content_id": "c069-dating-app-registration-flow",
+      "reason": "already_published"
+    },
+    {
+      "content_id": "c070-crypto-exchange-leads",
+      "reason": "already_published"
+    },
+    {
+      "content_id": "c071-loan-leads-page-copy",
+      "reason": "already_published"
+    },
+    {
+      "content_id": "c072-insurance-leads-follow-up",
+      "reason": "already_published"
+    },
+    {
+      "content_id": "c073-immigration-consultation-leads",
+      "reason": "already_published"
+    },
+    {
+      "content_id": "c074-online-work-leads-test",
+      "reason": "already_published"
+    },
+    {
+      "content_id": "c075-youtube-promotion-leads",
+      "reason": "already_published"
+    },
+    {
+      "content_id": "c002-ad-campaign-support-how-to-f12343f8",
+      "reason": "already_published"
+    },
+    {
+      "content_id": "c026-dating-traffic-dating-cost-5121c26c",
+      "reason": "already_published"
+    },
+    {
+      "content_id": "c029-media-buying-part-time-price-ad6e38c9",
+      "reason": "already_published"
+    },
+    {
+      "content_id": "c035-fb-promotion-fb-traffic-7739c80e",
+      "reason": "already_published"
     }
   ],
   "errors": [],
-  "generated_at": "2026-05-15T15:57:34+08:00",
-  "message": "Approved 30 reviewed draft(s)."
+  "generated_at": "2026-05-26T14:24:31+08:00",
+  "message": "Approved 7 reviewed draft(s)."
 }

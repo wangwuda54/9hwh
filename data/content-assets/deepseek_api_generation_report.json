@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-30T23:22:01",
+  "generated_at": "2026-05-27T09:06:36",
   "batch_id": "batch-001",
   "dry_run": false,
   "config_source": "E:\\py9\\config.py",
@@ -19,7 +19,7 @@
     {
       "content_id": "c001-ad-campaign-support-how-to-17e66750",
       "target_url": "/blog/crypto-promotion-how-to-17e66750/",
-      "title": "加密货币推广怎么做：渠道判断、投放准备和服务边界"
+      "title": "加密货币推广怎么做：渠道判断、投放准备和合规评估"
     },
     {
       "content_id": "c010-media-buying-part-time-how-to-5875d40e",
@@ -45,21 +45,6 @@
       "content_id": "c055-loan-leads-fb-loan-leads-60d3dc0c",
       "target_url": "/blog/topics/fb-loan-leads-60d3dc0c/",
       "title": "FB贷款获客：海外推广与获客准备指南"
-    },
-    {
-      "content_id": "c053-insurance-leads-fb-insurance-leads-b01d5372",
-      "target_url": "/blog/topics/fb-insurance-leads-b01d5372/",
-      "title": "FB保险获客：海外推广与获客准备指南"
-    },
-    {
-      "content_id": "c051-immigration-leads-fb-immigration-leads-b33be086",
-      "target_url": "/blog/topics/fb-immigration-leads-b33be086/",
-      "title": "FB移民获客：海外推广与获客准备指南"
-    },
-    {
-      "content_id": "c031-fb-promotion-fb-dating-traffic-5035e1c0",
-      "target_url": "/blog/topics/fb-dating-traffic-5035e1c0/",
-      "title": "FB交友引流：海外推广与获客准备指南"
     }
   ],
   "generated": [],
@@ -98,21 +83,6 @@
       "content_id": "c055-loan-leads-fb-loan-leads-60d3dc0c",
       "reason": "output file already exists; use --overwrite to replace or --resume to continue",
       "output_file": "data/deepseek-inbox/batch-001/c055-loan-leads-fb-loan-leads-60d3dc0c.md"
-    },
-    {
-      "content_id": "c053-insurance-leads-fb-insurance-leads-b01d5372",
-      "reason": "output file already exists; use --overwrite to replace or --resume to continue",
-      "output_file": "data/deepseek-inbox/batch-001/c053-insurance-leads-fb-insurance-leads-b01d5372.md"
-    },
-    {
-      "content_id": "c051-immigration-leads-fb-immigration-leads-b33be086",
-      "reason": "output file already exists; use --overwrite to replace or --resume to continue",
-      "output_file": "data/deepseek-inbox/batch-001/c051-immigration-leads-fb-immigration-leads-b33be086.md"
-    },
-    {
-      "content_id": "c031-fb-promotion-fb-dating-traffic-5035e1c0",
-      "reason": "output file already exists; use --overwrite to replace or --resume to continue",
-      "output_file": "data/deepseek-inbox/batch-001/c031-fb-promotion-fb-dating-traffic-5035e1c0.md"
     }
   ],
   "failed": [],
@@ -129,6 +99,9 @@
     "data/deepseek-inbox/batch-001/c053-insurance-leads-fb-insurance-leads-b01d5372.md",
     "data/deepseek-inbox/batch-001/c055-loan-leads-fb-loan-leads-60d3dc0c.md"
   ],
-  "combined_output": "E:\\9HWH\\data\\deepseek-inbox\\batch-001-deepseek-output.md",
-  "run_import_review": {}
+  "combined_output": "E:\\sites\\9hwh\\data\\deepseek-inbox\\batch-001-deepseek-output.md",
+  "run_import_review": {
+    "import_exit_code": 0,
+    "review_exit_code": 0
+  }
 }

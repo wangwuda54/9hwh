@@ -1,7 +1,7 @@
 {
   "status": "no_changes",
-  "run_date": "2026-05-21",
-  "date": "2026-05-21",
+  "run_date": "2026-05-27",
+  "date": "2026-05-27",
   "mode": "normal",
   "daily_limit": 7,
   "hard_limit": 10,
@@ -9,7 +9,7 @@
   "reviewed_candidate_count": 0,
   "selected_count": 0,
   "published_count": 0,
-  "total_published": 27,
+  "total_published": 62,
   "selected_items": [],
   "published_items": [],
   "skipped_items": [],
@@ -18,23 +18,23 @@
     {
       "command": "python scripts/build_site.py",
       "returncode": 0,
-      "stdout": "[OK] Generated 91 indexed pages into /home/runner/work/9hwh/9hwh/site/public",
+      "stdout": "[OK] Generated 126 indexed pages into E:\\sites\\9hwh\\site\\public",
       "stderr": ""
     },
     {
       "command": "python scripts/check_static_site.py",
       "returncode": 0,
-      "stdout": "[OK] sitemap checks completed\n[OK] robots checks completed\n[OK] HTML quality checks completed\n[OK] video page checks completed\n[OK] keyword asset checks completed\n[OK] content pipeline checks completed\n[OK] DeepSeek batch checks completed\n[OK] static site checks passed",
+      "stdout": "[OK] sitemap checks completed\n[OK] robots checks completed\n[OK] HTML quality checks completed\n[OK] video page checks completed\n[OK] keyword asset checks completed\n[WARN] blog page may show too many unfinished content cards\n[OK] content pipeline checks completed\n[OK] DeepSeek batch checks completed\n[WARN] 1 warning(s) found\n[OK] static site checks passed",
       "stderr": ""
     },
     {
       "command": "python scripts/check_sitemap_readiness.py",
       "returncode": 0,
-      "stdout": "[OK] sitemap readiness passed: urls=91 published_queue_urls=27",
+      "stdout": "[OK] sitemap readiness passed: urls=126 published_queue_urls=62",
       "stderr": ""
     }
   ],
   "site_url": "https://www.9hwh.com",
   "message": "No reviewed content was available for publication.",
-  "generated_at": "2026-05-21T06:34:07+00:00"
+  "generated_at": "2026-05-27T09:06:41+08:00"
 }

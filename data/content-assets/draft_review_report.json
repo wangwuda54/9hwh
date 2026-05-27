@@ -1,7 +1,7 @@
 {
-  "draft_count": 27,
-  "pass_count": 26,
-  "warning_count": 1,
+  "draft_count": 62,
+  "pass_count": 58,
+  "warning_count": 4,
   "fail_count": 0,
   "articles": [
     {
@@ -21,6 +21,14 @@
       "warnings": [
         "possible keyword stuffing"
       ]
+    },
+    {
+      "file": "c003-ad-campaign-support-crypto-how-to-887db2f2.md",
+      "content_id": "c003-ad-campaign-support-crypto-how-to-887db2f2",
+      "target_url": "/blog/crypto-how-to-887db2f2/",
+      "status": "pass",
+      "issues": [],
+      "warnings": []
     },
     {
       "file": "c004-crypto-promotion-exchange-acquisition-how-to-efd74e87.md",
@@ -58,6 +66,14 @@
       "file": "c008-dating-traffic-dating-how-to-e74a54f4.md",
       "content_id": "c008-dating-traffic-dating-how-to-e74a54f4",
       "target_url": "/blog/dating-how-to-e74a54f4/",
+      "status": "pass",
+      "issues": [],
+      "warnings": []
+    },
+    {
+      "file": "c009-dating-traffic-dating-how-to-ad9ee1af.md",
+      "content_id": "c009-dating-traffic-dating-how-to-ad9ee1af",
+      "target_url": "/blog/dating-how-to-ad9ee1af/",
       "status": "pass",
       "issues": [],
       "warnings": []
@@ -111,9 +127,33 @@
       "warnings": []
     },
     {
+      "file": "c016-traffic-acquisition-immigration-how-to-38e8c4a4.md",
+      "content_id": "c016-traffic-acquisition-immigration-how-to-38e8c4a4",
+      "target_url": "/blog/immigration-how-to-38e8c4a4/",
+      "status": "pass",
+      "issues": [],
+      "warnings": []
+    },
+    {
+      "file": "c017-traffic-acquisition-loan-how-to-ee56b631.md",
+      "content_id": "c017-traffic-acquisition-loan-how-to-ee56b631",
+      "target_url": "/blog/loan-how-to-ee56b631/",
+      "status": "pass",
+      "issues": [],
+      "warnings": []
+    },
+    {
       "file": "c018-ad-campaign-support-cost-6e550a25.md",
       "content_id": "c018-ad-campaign-support-cost-6e550a25",
       "target_url": "/blog/cost-6e550a25/",
+      "status": "pass",
+      "issues": [],
+      "warnings": []
+    },
+    {
+      "file": "c019-ad-campaign-support-cost-cafc4fef.md",
+      "content_id": "c019-ad-campaign-support-cost-cafc4fef",
+      "target_url": "/blog/cost-cafc4fef/",
       "status": "pass",
       "issues": [],
       "warnings": []
@@ -127,6 +167,90 @@
       "warnings": []
     },
     {
+      "file": "c021-crypto-promotion-exchange-acquisition-cost-e9eee289.md",
+      "content_id": "c021-crypto-promotion-exchange-acquisition-cost-e9eee289",
+      "target_url": "/blog/exchange-acquisition-cost-e9eee289/",
+      "status": "pass",
+      "issues": [],
+      "warnings": []
+    },
+    {
+      "file": "c022-crypto-promotion-crypto-traffic-cost-60d08e20.md",
+      "content_id": "c022-crypto-promotion-crypto-traffic-cost-60d08e20",
+      "target_url": "/blog/crypto-traffic-cost-60d08e20/",
+      "status": "pass",
+      "issues": [],
+      "warnings": []
+    },
+    {
+      "file": "c023-crypto-promotion-crypto-promotion-cost-8bd82714.md",
+      "content_id": "c023-crypto-promotion-crypto-promotion-cost-8bd82714",
+      "target_url": "/blog/crypto-promotion-cost-8bd82714/",
+      "status": "pass",
+      "issues": [],
+      "warnings": []
+    },
+    {
+      "file": "c024-dating-traffic-dating-cost-c02dc08c.md",
+      "content_id": "c024-dating-traffic-dating-cost-c02dc08c",
+      "target_url": "/blog/dating-cost-c02dc08c/",
+      "status": "pass",
+      "issues": [],
+      "warnings": []
+    },
+    {
+      "file": "c025-dating-traffic-dating-cost-efaada52.md",
+      "content_id": "c025-dating-traffic-dating-cost-efaada52",
+      "target_url": "/blog/dating-cost-efaada52/",
+      "status": "pass",
+      "issues": [],
+      "warnings": []
+    },
+    {
+      "file": "c026-dating-traffic-dating-cost-5121c26c.md",
+      "content_id": "c026-dating-traffic-dating-cost-5121c26c",
+      "target_url": "/blog/dating-cost-5121c26c/",
+      "status": "warning",
+      "issues": [],
+      "warnings": [
+        "possible keyword stuffing"
+      ]
+    },
+    {
+      "file": "c027-media-buying-part-time-cost-03f7eb1a.md",
+      "content_id": "c027-media-buying-part-time-cost-03f7eb1a",
+      "target_url": "/blog/part-time-cost-03f7eb1a/",
+      "status": "pass",
+      "issues": [],
+      "warnings": []
+    },
+    {
+      "file": "c028-media-buying-online-work-cost-a08b89cf.md",
+      "content_id": "c028-media-buying-online-work-cost-a08b89cf",
+      "target_url": "/blog/online-work-cost-a08b89cf/",
+      "status": "pass",
+      "issues": [],
+      "warnings": []
+    },
+    {
+      "file": "c029-media-buying-part-time-price-ad6e38c9.md",
+      "content_id": "c029-media-buying-part-time-price-ad6e38c9",
+      "target_url": "/blog/part-time-price-ad6e38c9/",
+      "status": "warning",
+      "issues": [],
+      "warnings": [
+        "possible keyword stuffing"
+      ]
+    },
+    {
+      "file": "c030-media-buying-online-work-price-41007274.md",
+      "content_id": "c030-media-buying-online-work-price-41007274",
+      "target_url": "/blog/online-work-price-41007274/",
+      "status": "pass",
+      "issues": [],
+      "warnings": []
+    },
+    {
       "file": "c031-fb-promotion-fb-dating-traffic-5035e1c0.md",
       "content_id": "c031-fb-promotion-fb-dating-traffic-5035e1c0",
       "target_url": "/blog/topics/fb-dating-traffic-5035e1c0/",
@@ -135,9 +259,107 @@
       "warnings": []
     },
     {
+      "file": "c032-fb-promotion-fb-dating-traffic-promotion-8c6d82f2.md",
+      "content_id": "c032-fb-promotion-fb-dating-traffic-promotion-8c6d82f2",
+      "target_url": "/blog/topics/fb-dating-traffic-promotion-8c6d82f2/",
+      "status": "pass",
+      "issues": [],
+      "warnings": []
+    },
+    {
+      "file": "c033-fb-promotion-fb-insurance-traffic-13b27c41.md",
+      "content_id": "c033-fb-promotion-fb-insurance-traffic-13b27c41",
+      "target_url": "/blog/topics/fb-insurance-traffic-13b27c41/",
+      "status": "pass",
+      "issues": [],
+      "warnings": []
+    },
+    {
+      "file": "c034-fb-promotion-fb-insurance-promotion-bab1f292.md",
+      "content_id": "c034-fb-promotion-fb-insurance-promotion-bab1f292",
+      "target_url": "/blog/topics/fb-insurance-promotion-bab1f292/",
+      "status": "pass",
+      "issues": [],
+      "warnings": []
+    },
+    {
+      "file": "c035-fb-promotion-fb-traffic-7739c80e.md",
+      "content_id": "c035-fb-promotion-fb-traffic-7739c80e",
+      "target_url": "/blog/topics/fb-traffic-7739c80e/",
+      "status": "warning",
+      "issues": [],
+      "warnings": [
+        "possible keyword stuffing"
+      ]
+    },
+    {
+      "file": "c036-fb-promotion-fb-immigration-media-buying-733005f8.md",
+      "content_id": "c036-fb-promotion-fb-immigration-media-buying-733005f8",
+      "target_url": "/blog/topics/fb-immigration-media-buying-733005f8/",
+      "status": "pass",
+      "issues": [],
+      "warnings": []
+    },
+    {
+      "file": "c037-finance-leads-fb-traffic-a2c032e7.md",
+      "content_id": "c037-finance-leads-fb-traffic-a2c032e7",
+      "target_url": "/blog/topics/fb-traffic-a2c032e7/",
+      "status": "pass",
+      "issues": [],
+      "warnings": []
+    },
+    {
+      "file": "c038-finance-leads-fb-promotion-8f13c6c4.md",
+      "content_id": "c038-finance-leads-fb-promotion-8f13c6c4",
+      "target_url": "/blog/topics/fb-promotion-8f13c6c4/",
+      "status": "pass",
+      "issues": [],
+      "warnings": []
+    },
+    {
+      "file": "c039-finance-leads-fb-leads-b109c740.md",
+      "content_id": "c039-finance-leads-fb-leads-b109c740",
+      "target_url": "/blog/topics/fb-leads-b109c740/",
+      "status": "pass",
+      "issues": [],
+      "warnings": []
+    },
+    {
+      "file": "c040-finance-leads-traffic-b2c664e0.md",
+      "content_id": "c040-finance-leads-traffic-b2c664e0",
+      "target_url": "/blog/topics/traffic-b2c664e0/",
+      "status": "pass",
+      "issues": [],
+      "warnings": []
+    },
+    {
+      "file": "c041-finance-leads-traffic-04318358.md",
+      "content_id": "c041-finance-leads-traffic-04318358",
+      "target_url": "/blog/topics/traffic-04318358/",
+      "status": "pass",
+      "issues": [],
+      "warnings": []
+    },
+    {
+      "file": "c042-finance-leads-traffic-e92e6ae0.md",
+      "content_id": "c042-finance-leads-traffic-e92e6ae0",
+      "target_url": "/blog/topics/traffic-e92e6ae0/",
+      "status": "pass",
+      "issues": [],
+      "warnings": []
+    },
+    {
       "file": "c043-game-promotion-fb-game-promotion-eec369fd.md",
       "content_id": "c043-game-promotion-fb-game-promotion-eec369fd",
       "target_url": "/blog/topics/fb-game-promotion-eec369fd/",
+      "status": "pass",
+      "issues": [],
+      "warnings": []
+    },
+    {
+      "file": "c044-game-promotion-google-game-promotion-0d865324.md",
+      "content_id": "c044-game-promotion-google-game-promotion-0d865324",
+      "target_url": "/blog/topics/google-game-promotion-0d865324/",
       "status": "pass",
       "issues": [],
       "warnings": []
@@ -167,9 +389,33 @@
       "warnings": []
     },
     {
+      "file": "c061-traffic-acquisition-leads-quality-test.md",
+      "content_id": "c061-traffic-acquisition-leads-quality-test",
+      "target_url": "/blog/leads-quality-test/",
+      "status": "pass",
+      "issues": [],
+      "warnings": []
+    },
+    {
+      "file": "c062-media-buying-small-budget-test.md",
+      "content_id": "c062-media-buying-small-budget-test",
+      "target_url": "/blog/small-budget-media-buying-test/",
+      "status": "pass",
+      "issues": [],
+      "warnings": []
+    },
+    {
       "file": "c063-overseas-promotion-landing-page.md",
       "content_id": "c063-overseas-promotion-landing-page",
       "target_url": "/blog/overseas-promotion-landing-page/",
+      "status": "pass",
+      "issues": [],
+      "warnings": []
+    },
+    {
+      "file": "c064-ad-campaign-support-material-test.md",
+      "content_id": "c064-ad-campaign-support-material-test",
+      "target_url": "/blog/ad-material-test/",
       "status": "pass",
       "issues": [],
       "warnings": []
@@ -207,9 +453,49 @@
       "warnings": []
     },
     {
+      "file": "c069-dating-app-registration-flow.md",
+      "content_id": "c069-dating-app-registration-flow",
+      "target_url": "/blog/dating-app-registration-flow/",
+      "status": "pass",
+      "issues": [],
+      "warnings": []
+    },
+    {
       "file": "c070-crypto-exchange-leads.md",
       "content_id": "c070-crypto-exchange-leads",
       "target_url": "/blog/crypto-exchange-leads/",
+      "status": "pass",
+      "issues": [],
+      "warnings": []
+    },
+    {
+      "file": "c071-loan-leads-page-copy.md",
+      "content_id": "c071-loan-leads-page-copy",
+      "target_url": "/blog/loan-leads-page-copy/",
+      "status": "pass",
+      "issues": [],
+      "warnings": []
+    },
+    {
+      "file": "c072-insurance-leads-follow-up.md",
+      "content_id": "c072-insurance-leads-follow-up",
+      "target_url": "/blog/insurance-leads-follow-up/",
+      "status": "pass",
+      "issues": [],
+      "warnings": []
+    },
+    {
+      "file": "c073-immigration-consultation-leads.md",
+      "content_id": "c073-immigration-consultation-leads",
+      "target_url": "/blog/immigration-consultation-leads/",
+      "status": "pass",
+      "issues": [],
+      "warnings": []
+    },
+    {
+      "file": "c074-online-work-leads-test.md",
+      "content_id": "c074-online-work-leads-test",
+      "target_url": "/blog/online-work-leads-test/",
       "status": "pass",
       "issues": [],
       "warnings": []

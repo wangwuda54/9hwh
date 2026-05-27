@@ -4,9 +4,9 @@
 - dry_run: False
 - config_source: E:\py9\config.py
 - recognized_config_fields: AI_PROVIDER, DEEPSEEK_BASE_URL, DEEPSEEK_API_KEY, DEEPSEEK_MODEL, DEEPSEEK_THINKING_ENABLED
-- selected: 10
+- selected: 7
 - generated: 0
-- skipped: 10
+- skipped: 7
 - failed: 0
 - available_output_count: 10
 
@@ -22,9 +22,6 @@
 - c007-dating-traffic-dating-how-to-002063ad: output file already exists; use --overwrite to replace or --resume to continue
 - c043-game-promotion-fb-game-promotion-eec369fd: output file already exists; use --overwrite to replace or --resume to continue
 - c055-loan-leads-fb-loan-leads-60d3dc0c: output file already exists; use --overwrite to replace or --resume to continue
-- c053-insurance-leads-fb-insurance-leads-b01d5372: output file already exists; use --overwrite to replace or --resume to continue
-- c051-immigration-leads-fb-immigration-leads-b33be086: output file already exists; use --overwrite to replace or --resume to continue
-- c031-fb-promotion-fb-dating-traffic-5035e1c0: output file already exists; use --overwrite to replace or --resume to continue
 
 ## Failed
 
@@ -44,4 +41,9 @@
 
 ## Combined Output
 
-- E:\9HWH\data\deepseek-inbox\batch-001-deepseek-output.md
+- E:\sites\9hwh\data\deepseek-inbox\batch-001-deepseek-output.md
+
+## Import / Review
+
+- import_exit_code: 0
+- review_exit_code: 0

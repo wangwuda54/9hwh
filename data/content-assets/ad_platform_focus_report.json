@@ -1,0 +1,1373 @@
+{
+  "generated_at": "2026-05-15T16:21:36+08:00",
+  "fix": true,
+  "scanned_count": 20,
+  "off_focus_count": 15,
+  "reset_count": 15,
+  "scanned_items": [
+    {
+      "content_id": "c003-ad-campaign-support-crypto-how-to-887db2f2",
+      "status": "reviewed",
+      "title": "虚拟币怎么做：推广路径、渠道判断和准备清单",
+      "target_url": "/blog/crypto-how-to-887db2f2/",
+      "draft_file": "site_src/content_drafts/c003-ad-campaign-support-crypto-how-to-887db2f2.md",
+      "issues": [
+        {
+          "type": "domestic_platform_direction",
+          "term": "微信",
+          "line": 23,
+          "snippet": "- 自建社群，每天发优质内容，引导用户加微信/Telegram，再推你的平台或产品。"
+        }
+      ]
+    },
+    {
+      "content_id": "c006-crypto-promotion-crypto-promotion-how-to-1b5b5379",
+      "status": "reviewed",
+      "title": "虚拟币推广怎么做：推广路径、渠道判断和准备清单",
+      "target_url": "/blog/crypto-promotion-how-to-1b5b5379/",
+      "draft_file": "site_src/content_drafts/c006-crypto-promotion-crypto-promotion-how-to-1b5b5379.md",
+      "issues": []
+    },
+    {
+      "content_id": "c009-dating-traffic-dating-how-to-ad9ee1af",
+      "status": "reviewed",
+      "title": "真人交友怎么做：推广路径、渠道判断和准备清单",
+      "target_url": "/blog/dating-how-to-ad9ee1af/",
+      "draft_file": "site_src/content_drafts/c009-dating-traffic-dating-how-to-ad9ee1af.md",
+      "issues": [
+        {
+          "type": "domestic_platform_direction",
+          "term": "小红书",
+          "line": 16,
+          "snippet": "- 知乎、小红书（国内）或Quora、Reddit（国外）做经验贴/测评，流量精准但慢。"
+        }
+      ]
+    },
+    {
+      "content_id": "c014-traffic-acquisition-insurance-how-to-1d0e89ba",
+      "status": "reviewed",
+      "title": "保险怎么做：推广路径、渠道判断和准备清单",
+      "target_url": "/blog/insurance-how-to-1d0e89ba/",
+      "draft_file": "site_src/content_drafts/c014-traffic-acquisition-insurance-how-to-1d0e89ba.md",
+      "issues": [
+        {
+          "type": "domestic_platform_direction",
+          "term": "微信",
+          "line": 11,
+          "snippet": "1. **人群画像**：老年健康险在微信生态（朋友圈、公众号）效果更好，因为用户习惯用微信；年轻一代的意外险或医疗险可以试短视频信息流。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "百度",
+          "line": 12,
+          "snippet": "2. **获客成本**：信息流广告（头条、抖音）的点击成本低，但线索深度弱；搜索广告（百度、搜狗）的流量精准，但单价高。建议从搜索广告开始，因为用户主动搜索“保险怎么做”已经带有明确需求。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "头条",
+          "line": 12,
+          "snippet": "2. **获客成本**：信息流广告（头条、抖音）的点击成本低，但线索深度弱；搜索广告（百度、搜狗）的流量精准，但单价高。建议从搜索广告开始，因为用户主动搜索“保险怎么做”已经带有明确需求。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "抖音",
+          "line": 12,
+          "snippet": "2. **获客成本**：信息流广告（头条、抖音）的点击成本低，但线索深度弱；搜索广告（百度、搜狗）的流量精准，但单价高。建议从搜索广告开始，因为用户主动搜索“保险怎么做”已经带有明确需求。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "微信",
+          "line": 13,
+          "snippet": "3. **线索质量**：留手机号的转化比留微信低，但后续跟进成本也低。如果团队电销能力强，优先收电话；如果主要靠微信私聊，可以设计加微信的落地页。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "微信",
+          "line": 33,
+          "snippet": "3. **表单**：只留姓名、手机号（或微信号），越短越好。加一个“24小时内顾问联系”提示。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "微信",
+          "line": 35,
+          "snippet": "别在落地页放太多产品详细条款，用户看不懂也不会看。重点是引导用户留下联系方式，后面电话或微信沟通。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "微信",
+          "line": 51,
+          "snippet": "- **后端跟单动作慢**：保险顾问一定要在用户留下线索后10分钟内第一次联系（或加微信）。超过1小时，客户热度掉90%。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "微信",
+          "line": 53,
+          "snippet": "建议用企业微信做承接，每条线索自动分配，并记录后续跟进状态。"
+        }
+      ]
+    },
+    {
+      "content_id": "c015-traffic-acquisition-game-how-to-ce12eefa",
+      "status": "reviewed",
+      "title": "游戏怎么做：推广路径、渠道判断和准备清单",
+      "target_url": "/blog/game-how-to-ce12eefa/",
+      "draft_file": "site_src/content_drafts/c015-traffic-acquisition-game-how-to-ce12eefa.md",
+      "issues": [
+        {
+          "type": "domestic_platform_direction",
+          "term": "抖音",
+          "line": 3,
+          "snippet": "“游戏怎么做推广”是每天听到最多的问题之一。很多团队卡在第一步：不知道自己的产品适合什么渠道，上来就砸预算试广点通、Facebook、抖音，结果跑出来的线索全是无效用户，或者成本高到离谱。今天直接拆解游戏推广的路径、渠道判断和准备清单，帮你省掉至少三个月的试错期。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "巨量",
+          "line": 9,
+          "snippet": "- **重度手游（MMO、SLG、策略类）**：用户决策周期长，需要大量内容铺垫。优先考虑信息流广告（广点通、巨量引擎）配合短视频素材。关键是把游戏的核心玩法、社交生态、付费体验打包成15-30秒的短视频。落地页必须包含试玩链接或预约入口，线索质量靠后端充值数据反推。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "抖音",
+          "line": 11,
+          "snippet": "- **休闲、超休闲游戏**：靠短平快素材冲击自然量和买量。抖音、快手的信息流适合量产低成本素材，但用户留存极短。判断渠道的唯一标准是“次留成本”，不要看安装量。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "快手",
+          "line": 11,
+          "snippet": "- **休闲、超休闲游戏**：靠短平快素材冲击自然量和买量。抖音、快手的信息流适合量产低成本素材，但用户留存极短。判断渠道的唯一标准是“次留成本”，不要看安装量。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "小红书",
+          "line": 13,
+          "snippet": "- **中轻度模拟经营、养成类**：小红书、B站的长尾流量性价比极高。这类用户喜欢看“别人玩出的结果”，比如爆款农场、装修视频。建议做系列化图文攻略，引导点击下载。"
+        }
+      ]
+    },
+    {
+      "content_id": "c016-traffic-acquisition-immigration-how-to-38e8c4a4",
+      "status": "reviewed",
+      "title": "移民怎么做：推广路径、渠道判断和准备清单",
+      "target_url": "/blog/immigration-how-to-38e8c4a4/",
+      "draft_file": "site_src/content_drafts/c016-traffic-acquisition-immigration-how-to-38e8c4a4.md",
+      "issues": [
+        {
+          "type": "domestic_platform_direction",
+          "term": "百度",
+          "line": 9,
+          "snippet": "- **搜索渠道**：百度、360、搜狗。用户搜“移民怎么做”时，第一个看到你的落地页。SEM（竞价）见效快，SEO周期长但成本低。我们专门有[流量获取服务](/services/traffic-acquisition/)，帮客户做搜索端的付费与自然流量配合。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "360",
+          "line": 9,
+          "snippet": "- **搜索渠道**：百度、360、搜狗。用户搜“移民怎么做”时，第一个看到你的落地页。SEM（竞价）见效快，SEO周期长但成本低。我们专门有[流量获取服务](/services/traffic-acquisition/)，帮客户做搜索端的付费与自然流量配合。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "抖音",
+          "line": 10,
+          "snippet": "- **社交渠道**：微信朋友圈广告、抖音、小红书。适合做精准定向：年龄、地域、收入、出国意向。素材要用用户关心的问题开头，比如“移民怎么做才能最快拿到身份？”"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "微信",
+          "line": 10,
+          "snippet": "- **社交渠道**：微信朋友圈广告、抖音、小红书。适合做精准定向：年龄、地域、收入、出国意向。素材要用用户关心的问题开头，比如“移民怎么做才能最快拿到身份？”"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "小红书",
+          "line": 10,
+          "snippet": "- **社交渠道**：微信朋友圈广告、抖音、小红书。适合做精准定向：年龄、地域、收入、出国意向。素材要用用户关心的问题开头，比如“移民怎么做才能最快拿到身份？”"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "百度",
+          "line": 62,
+          "snippet": "5. **设置追踪代码**（GA、百度统计、转化事件）"
+        }
+      ]
+    },
+    {
+      "content_id": "c017-traffic-acquisition-loan-how-to-ee56b631",
+      "status": "reviewed",
+      "title": "贷款怎么做：推广路径、渠道判断和准备清单",
+      "target_url": "/blog/loan-how-to-ee56b631/",
+      "draft_file": "site_src/content_drafts/c017-traffic-acquisition-loan-how-to-ee56b631.md",
+      "issues": [
+        {
+          "type": "domestic_platform_direction",
+          "term": "百度",
+          "line": 9,
+          "snippet": "- **个人信用贷**：用户决策快，但竞争激烈。适合做搜索竞价（如百度、360）和信息流（抖音、快手）。素材方向主打“额度高、放款快、无抵押”。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "360",
+          "line": 9,
+          "snippet": "- **个人信用贷**：用户决策快，但竞争激烈。适合做搜索竞价（如百度、360）和信息流（抖音、快手）。素材方向主打“额度高、放款快、无抵押”。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "抖音",
+          "line": 9,
+          "snippet": "- **个人信用贷**：用户决策快，但竞争激烈。适合做搜索竞价（如百度、360）和信息流（抖音、快手）。素材方向主打“额度高、放款快、无抵押”。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "快手",
+          "line": 9,
+          "snippet": "- **个人信用贷**：用户决策快，但竞争激烈。适合做搜索竞价（如百度、360）和信息流（抖音、快手）。素材方向主打“额度高、放款快、无抵押”。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "微信",
+          "line": 10,
+          "snippet": "- **抵押贷/企业贷**：金额大、决策周期长。适合做长尾关键词SEO、地方型落地页、以及微信朋友圈广告（可定向地区+行业）。落地页需要详细展示资质、流程和案例。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "百度",
+          "line": 17,
+          "snippet": "- **百度系（搜索+信息流）**：搜索词精准，用户主动搜“贷款怎么做”就是高意向。信息流可以定向兴趣和人群包，适合个人贷。注意：百度金融行业审核严，资质不全很难开户，建议走代理或用“信贷咨询”类目。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "抖音",
+          "line": 18,
+          "snippet": "- **抖音/快手**：流量大，但容易出无效线索。需要强话术素材，比如“3分钟到账”、“身份证就能贷”。线索必须做实时回访，否则流失率高。前期先测素材，预算5000元起。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "快手",
+          "line": 18,
+          "snippet": "- **抖音/快手**：流量大，但容易出无效线索。需要强话术素材，比如“3分钟到账”、“身份证就能贷”。线索必须做实时回访，否则流失率高。前期先测素材，预算5000元起。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "微信",
+          "line": 19,
+          "snippet": "- **微信生态**：公众号、朋友圈、小程序。适合做私域沉淀，用户信任感强。可以结合企业微信承接，做“贷款顾问”人设。冷启动期比较慢，但转化率稳定。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "小红书",
+          "line": 20,
+          "snippet": "- **小红书/知乎**：适合做长期内容SEO。用户搜“贷款怎么做流程”、“贷款注意事项”，你写详细步骤、避坑指南，建立专业度。这类平台来的线索虽然慢，但愿意主动咨询的通常更刚需。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "抖音",
+          "line": 29,
+          "snippet": "- **答疑式**：用第一人称口吻说“很多人问我贷款怎么做，今天统一回答三个问题”。这种内容在抖音评论区互动率很高。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "百度",
+          "line": 61,
+          "snippet": "3. **选一个渠道先跑**：如果是本地机构优先微信朋友圈搜索；如果是全国性产品优先百度搜索或抖音信息流。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "抖音",
+          "line": 61,
+          "snippet": "3. **选一个渠道先跑**：如果是本地机构优先微信朋友圈搜索；如果是全国性产品优先百度搜索或抖音信息流。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "微信",
+          "line": 61,
+          "snippet": "3. **选一个渠道先跑**：如果是本地机构优先微信朋友圈搜索；如果是全国性产品优先百度搜索或抖音信息流。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "微信",
+          "line": 63,
+          "snippet": "5. **搭建客服承接流程**：设置自动回复话术，企业微信或广告平台自带线索通。确保留资后5分钟内能发短信通知。"
+        }
+      ]
+    },
+    {
+      "content_id": "c018-ad-campaign-support-cost-6e550a25",
+      "status": "reviewed",
+      "title": "加密货币费用：影响因素、预算准备和沟通要点",
+      "target_url": "/blog/cost-6e550a25/",
+      "draft_file": "site_src/content_drafts/c018-ad-campaign-support-cost-6e550a25.md",
+      "issues": []
+    },
+    {
+      "content_id": "c019-ad-campaign-support-cost-cafc4fef",
+      "status": "reviewed",
+      "title": "理财费用：影响因素、预算准备和沟通要点",
+      "target_url": "/blog/cost-cafc4fef/",
+      "draft_file": "site_src/content_drafts/c019-ad-campaign-support-cost-cafc4fef.md",
+      "issues": [
+        {
+          "type": "domestic_platform_direction",
+          "term": "百度",
+          "line": 9,
+          "snippet": "**媒体端**：微信朋友圈、百度、抖音、快手、头条、小红书，每个渠道的竞争程度不一样。比如微信朋友圈的理财类广告审核严，出价必须高于行业均值才能拿到量。百度搜索“理财费用”这个词，如果是品牌词或长尾词，CPC能控制在3-5元；如果是“理财平台推荐”这种行业大词，CPC可能到15-20元。抖音信息流对理财类的用户画像要求高，跑不好容易空耗预算。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "头条",
+          "line": 9,
+          "snippet": "**媒体端**：微信朋友圈、百度、抖音、快手、头条、小红书，每个渠道的竞争程度不一样。比如微信朋友圈的理财类广告审核严，出价必须高于行业均值才能拿到量。百度搜索“理财费用”这个词，如果是品牌词或长尾词，CPC能控制在3-5元；如果是“理财平台推荐”这种行业大词，CPC可能到15-20元。抖音信息流对理财类的用户画像要求高，跑不好容易空耗预算。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "抖音",
+          "line": 9,
+          "snippet": "**媒体端**：微信朋友圈、百度、抖音、快手、头条、小红书，每个渠道的竞争程度不一样。比如微信朋友圈的理财类广告审核严，出价必须高于行业均值才能拿到量。百度搜索“理财费用”这个词，如果是品牌词或长尾词，CPC能控制在3-5元；如果是“理财平台推荐”这种行业大词，CPC可能到15-20元。抖音信息流对理财类的用户画像要求高，跑不好容易空耗预算。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "微信",
+          "line": 9,
+          "snippet": "**媒体端**：微信朋友圈、百度、抖音、快手、头条、小红书，每个渠道的竞争程度不一样。比如微信朋友圈的理财类广告审核严，出价必须高于行业均值才能拿到量。百度搜索“理财费用”这个词，如果是品牌词或长尾词，CPC能控制在3-5元；如果是“理财平台推荐”这种行业大词，CPC可能到15-20元。抖音信息流对理财类的用户画像要求高，跑不好容易空耗预算。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "小红书",
+          "line": 9,
+          "snippet": "**媒体端**：微信朋友圈、百度、抖音、快手、头条、小红书，每个渠道的竞争程度不一样。比如微信朋友圈的理财类广告审核严，出价必须高于行业均值才能拿到量。百度搜索“理财费用”这个词，如果是品牌词或长尾词，CPC能控制在3-5元；如果是“理财平台推荐”这种行业大词，CPC可能到15-20元。抖音信息流对理财类的用户画像要求高，跑不好容易空耗预算。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "快手",
+          "line": 9,
+          "snippet": "**媒体端**：微信朋友圈、百度、抖音、快手、头条、小红书，每个渠道的竞争程度不一样。比如微信朋友圈的理财类广告审核严，出价必须高于行业均值才能拿到量。百度搜索“理财费用”这个词，如果是品牌词或长尾词，CPC能控制在3-5元；如果是“理财平台推荐”这种行业大词，CPC可能到15-20元。抖音信息流对理财类的用户画像要求高，跑不好容易空耗预算。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "百度",
+          "line": 21,
+          "snippet": "2. **优化放量阶段**：预算提高到5-10万。这时候要建立账户结构，区分搜索词和数据回传。比如百度搜索广告，要筛掉“免费”“兼职”等低质词，保留“理财费用多少”“理财规划收费”等真实需求词。信息流要按兴趣包+行为包搭建人群包。"
+        }
+      ]
+    },
+    {
+      "content_id": "c020-ad-campaign-support-crypto-cost-5d087f6e",
+      "status": "reviewed",
+      "title": "虚拟币费用：影响因素、预算准备和沟通要点",
+      "target_url": "/blog/crypto-cost-5d087f6e/",
+      "draft_file": "site_src/content_drafts/c020-ad-campaign-support-crypto-cost-5d087f6e.md",
+      "issues": []
+    },
+    {
+      "content_id": "c061-traffic-acquisition-leads-quality-test",
+      "status": "reviewed",
+      "title": "线索质量怎么测试：渠道判断、表单承接和跟进节奏",
+      "target_url": "/blog/leads-quality-test/",
+      "draft_file": "site_src/content_drafts/c061-traffic-acquisition-leads-quality-test.md",
+      "issues": [
+        {
+          "type": "domestic_platform_direction",
+          "term": "微信",
+          "line": 63,
+          "snippet": "但注意，不是所有线索都要秒跟。对于“只留了手机号，其他全空”的线索，先发一条短信或者加微信，看对方会不会通过。通过的再加权重，不通过的直接降级。"
+        }
+      ]
+    },
+    {
+      "content_id": "c062-media-buying-small-budget-test",
+      "status": "reviewed",
+      "title": "小预算买量怎么测：素材、渠道和转化路径准备",
+      "target_url": "/blog/small-budget-media-buying-test/",
+      "draft_file": "site_src/content_drafts/c062-media-buying-small-budget-test.md",
+      "issues": [
+        {
+          "type": "domestic_platform_direction",
+          "term": "微信",
+          "line": 10,
+          "snippet": "2. **核心转化动作**：你希望用户完成什么？加微信、提交表单、还是直接下单？转化路径越短，小预算越容易跑出数据。建议第一轮只设一个核心目标，别同时测多个。"
+        },
+        {
+          "type": "wrong_primary_platform",
+          "term": "LinkedIn**：B2B首选",
+          "line": 20,
+          "snippet": "- **LinkedIn**：B2B首选，但CPC高，小预算可能只够跑几十个点击。如果你的产品客单价高、决策周期长，可以尝试，但要做好三个月看不到明显效果的准备。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "微信",
+          "line": 40,
+          "snippet": "- **转化路径清晰**：每个页面只有一个核心行动按钮。想要用户填表单，就把表单放在首屏；想要加微信，就放二维码加话术引导。别放七八个链接让用户选择。"
+        }
+      ]
+    },
+    {
+      "content_id": "c064-ad-campaign-support-material-test",
+      "status": "reviewed",
+      "title": "广告素材怎么测试：角度、预算和反馈复盘方法",
+      "target_url": "/blog/ad-material-test/",
+      "draft_file": "site_src/content_drafts/c064-ad-campaign-support-material-test.md",
+      "issues": [
+        {
+          "type": "domestic_platform_direction",
+          "term": "微信",
+          "line": 51,
+          "snippet": "转化高的素材继续跑，但重点看线索质量：留下微信、留电话、开口率、意向度。如果只留手机号但全是无效，就换落地页表单字段或增加选项。"
+        }
+      ]
+    },
+    {
+      "content_id": "c069-dating-app-registration-flow",
+      "status": "reviewed",
+      "title": "交友App注册路径怎么优化：素材、页面和注册质量",
+      "target_url": "/blog/dating-app-registration-flow/",
+      "draft_file": "site_src/content_drafts/c069-dating-app-registration-flow.md",
+      "issues": [
+        {
+          "type": "domestic_platform_direction",
+          "term": "微信",
+          "line": 10,
+          "snippet": "2. **你的注册门槛设在哪？** 手机号、微信授权、还是邮箱？每多一个字段，转化率掉10%-20%。如果产品允许，优先用第三方登录（微信/Apple ID），能有效缩短路径。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "抖音",
+          "line": 15,
+          "snippet": "- **信息流（抖音、快手、朋友圈）：** 用户是被内容吸引的，耐心极短。落地页必须做到“一屏内讲清楚，注册按钮明显”，最好能预填一些信息（如通过设备号、广告标记自动填充推荐偏好）。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "快手",
+          "line": 15,
+          "snippet": "- **信息流（抖音、快手、朋友圈）：** 用户是被内容吸引的，耐心极短。落地页必须做到“一屏内讲清楚，注册按钮明显”，最好能预填一些信息（如通过设备号、广告标记自动填充推荐偏好）。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "百度",
+          "line": 16,
+          "snippet": "- **搜索广告（百度、搜狗）：** 用户有明确意图，比如“交友App注册”。这时候落地页内容要更详细，突出信任要素（用户数、安全认证、真实照片审核）。注册表单可以稍长，但要有明确的进度条提示。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "微信",
+          "line": 34,
+          "snippet": "- 注册流程步骤 <= 2步（第1步选性别/年龄范围，第2步微信/手机绑定）"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "抖音",
+          "line": 65,
+          "snippet": "建议先选一个你最熟悉的渠道（比如抖音信息流），准备2套素材（一套场景型、一套利益型），配2个完全对位的落地页。跑100元，看哪个组合的注册成本最低。同时把注册后1小时内的行为数据也跑出来。如果注册成本在可接受范围内并且用户活跃，就可以复制到其他渠道。"
+        }
+      ]
+    },
+    {
+      "content_id": "c070-crypto-exchange-leads",
+      "status": "reviewed",
+      "title": "交易所获客怎么做：渠道选择、注册路径和用户质量",
+      "target_url": "/blog/crypto-exchange-leads/",
+      "draft_file": "site_src/content_drafts/c070-crypto-exchange-leads.md",
+      "issues": []
+    },
+    {
+      "content_id": "c071-loan-leads-page-copy",
+      "status": "reviewed",
+      "title": "贷款获客页面怎么写：表单、信任信息和咨询路径",
+      "target_url": "/blog/loan-leads-page-copy/",
+      "draft_file": "site_src/content_drafts/c071-loan-leads-page-copy.md",
+      "issues": [
+        {
+          "type": "domestic_platform_direction",
+          "term": "百度",
+          "line": 17,
+          "snippet": "很多人只投百度搜索，但贷款客户还分布在头条、微信、抖音甚至线下渠道。你的页面必须适配渠道特性："
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "头条",
+          "line": 17,
+          "snippet": "很多人只投百度搜索，但贷款客户还分布在头条、微信、抖音甚至线下渠道。你的页面必须适配渠道特性："
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "抖音",
+          "line": 17,
+          "snippet": "很多人只投百度搜索，但贷款客户还分布在头条、微信、抖音甚至线下渠道。你的页面必须适配渠道特性："
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "微信",
+          "line": 17,
+          "snippet": "很多人只投百度搜索，但贷款客户还分布在头条、微信、抖音甚至线下渠道。你的页面必须适配渠道特性："
+        }
+      ]
+    },
+    {
+      "content_id": "c072-insurance-leads-follow-up",
+      "status": "reviewed",
+      "title": "保险获客线索怎么跟进：表单字段、客服承接和质量判断",
+      "target_url": "/blog/insurance-leads-follow-up/",
+      "draft_file": "site_src/content_drafts/c072-insurance-leads-follow-up.md",
+      "issues": [
+        {
+          "type": "domestic_platform_direction",
+          "term": "微信",
+          "line": 21,
+          "snippet": "- **工具**：用企业微信加好友，发个简短的方案资料包，用户打开率比短信高很多。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "百度",
+          "line": 39,
+          "snippet": "- **百度搜索**：线索成本高（80-120元），但成交率最高，因为用户主动找方案。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "抖音",
+          "line": 40,
+          "snippet": "- **抖音信息流**：线索成本低（20-40元），但很多是泛流量，需要在表单里加“是否已购买”或者“计划购买时间”来筛选。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "小红书",
+          "line": 41,
+          "snippet": "- **小红书笔记**：线索成本中等（50-70元），女性用户多，适合重疾险、医疗险，但咨询周期长。"
+        }
+      ]
+    },
+    {
+      "content_id": "c073-immigration-consultation-leads",
+      "status": "reviewed",
+      "title": "移民咨询获客怎么做：关键词、页面信任和预约路径",
+      "target_url": "/blog/immigration-consultation-leads/",
+      "draft_file": "site_src/content_drafts/c073-immigration-consultation-leads.md",
+      "issues": [
+        {
+          "type": "domestic_platform_direction",
+          "term": "百度",
+          "line": 20,
+          "snippet": "不同移民项目，用户来源完全不一样。技术移民类用户更倾向搜知乎、小红书；投资移民类用户更主动联系律师或通过行业展会；留学转移民的用户多在百度、抖音搜攻略。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "抖音",
+          "line": 20,
+          "snippet": "不同移民项目，用户来源完全不一样。技术移民类用户更倾向搜知乎、小红书；投资移民类用户更主动联系律师或通过行业展会；留学转移民的用户多在百度、抖音搜攻略。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "小红书",
+          "line": 20,
+          "snippet": "不同移民项目，用户来源完全不一样。技术移民类用户更倾向搜知乎、小红书；投资移民类用户更主动联系律师或通过行业展会；留学转移民的用户多在百度、抖音搜攻略。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "百度",
+          "line": 22,
+          "snippet": "怎么判断？**小预算测试法**：拿3-5个核心词，每个渠道（百度SEM、抖音信息流、小红书KOC、行业垂直媒体）各投500-1000元，跑一周看线索成本。哪个渠道CPL（每条线索成本）低于你项目利润的30%，就放大投。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "抖音",
+          "line": 22,
+          "snippet": "怎么判断？**小预算测试法**：拿3-5个核心词，每个渠道（百度SEM、抖音信息流、小红书KOC、行业垂直媒体）各投500-1000元，跑一周看线索成本。哪个渠道CPL（每条线索成本）低于你项目利润的30%，就放大投。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "小红书",
+          "line": 22,
+          "snippet": "怎么判断？**小预算测试法**：拿3-5个核心词，每个渠道（百度SEM、抖音信息流、小红书KOC、行业垂直媒体）各投500-1000元，跑一周看线索成本。哪个渠道CPL（每条线索成本）低于你项目利润的30%，就放大投。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "微信",
+          "line": 48,
+          "snippet": "预约路径要短，最好直接是 [联系我们](/contact/) 页面或一个表单弹窗。如果用户犹豫，加一个“免费领取《各国移民对比手册》”的钩子，留下邮箱或微信。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "百度",
+          "line": 53,
+          "snippet": "- 60% 投搜索词（百度SEM、360、搜狗）"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "360",
+          "line": 53,
+          "snippet": "- 60% 投搜索词（百度SEM、360、搜狗）"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "小红书",
+          "line": 54,
+          "snippet": "- 25% 投内容平台（小红书素人铺量、知乎回答）"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "微信",
+          "line": 60,
+          "snippet": "- 用户是否愿意加微信/入群"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "百度",
+          "line": 68,
+          "snippet": "2. 每个项目找10个长尾问题词（用百度下拉、知乎相关搜索）。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "百度",
+          "line": 71,
+          "snippet": "5. 投50元/词的百度搜索广告，观察点击和停留。"
+        }
+      ]
+    },
+    {
+      "content_id": "c074-online-work-leads-test",
+      "status": "reviewed",
+      "title": "兼职项目获客怎么测：人群、素材和报名质量",
+      "target_url": "/blog/online-work-leads-test/",
+      "draft_file": "site_src/content_drafts/c074-online-work-leads-test.md",
+      "issues": [
+        {
+          "type": "domestic_platform_direction",
+          "term": "小红书",
+          "line": 26,
+          "snippet": "- **文字素材先跑**：用朋友圈文案、小红书标题，搭配简单图。看点击率和报名成本。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "微信",
+          "line": 51,
+          "snippet": "很多兼职项目方会问我：“预算到底投哪个渠道？”我的建议是：先从[Topics页面](/topics/)里找用户活跃的地方（比如知乎、小红书、微信小程序），用信息流测试。别一上来就投搜索广告，兼职关键词竞价太贵。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "小红书",
+          "line": 51,
+          "snippet": "很多兼职项目方会问我：“预算到底投哪个渠道？”我的建议是：先从[Topics页面](/topics/)里找用户活跃的地方（比如知乎、小红书、微信小程序），用信息流测试。别一上来就投搜索广告，兼职关键词竞价太贵。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "微信",
+          "line": 56,
+          "snippet": "- **接通率**：客服电话/微信通过率。低于30%说明人群筛选或素材承诺有问题。"
+        }
+      ]
+    },
+    {
+      "content_id": "c075-youtube-promotion-leads",
+      "status": "reviewed",
+      "title": "YouTube推广获客怎么做：内容渠道、落地页和再营销准备",
+      "target_url": "/blog/youtube-promotion-leads/",
+      "draft_file": "site_src/content_drafts/c075-youtube-promotion-leads.md",
+      "issues": []
+    }
+  ],
+  "off_focus_items": [
+    {
+      "content_id": "c003-ad-campaign-support-crypto-how-to-887db2f2",
+      "status": "reviewed",
+      "title": "虚拟币怎么做：推广路径、渠道判断和准备清单",
+      "target_url": "/blog/crypto-how-to-887db2f2/",
+      "draft_file": "site_src/content_drafts/c003-ad-campaign-support-crypto-how-to-887db2f2.md",
+      "issues": [
+        {
+          "type": "domestic_platform_direction",
+          "term": "微信",
+          "line": 23,
+          "snippet": "- 自建社群，每天发优质内容，引导用户加微信/Telegram，再推你的平台或产品。"
+        }
+      ]
+    },
+    {
+      "content_id": "c009-dating-traffic-dating-how-to-ad9ee1af",
+      "status": "reviewed",
+      "title": "真人交友怎么做：推广路径、渠道判断和准备清单",
+      "target_url": "/blog/dating-how-to-ad9ee1af/",
+      "draft_file": "site_src/content_drafts/c009-dating-traffic-dating-how-to-ad9ee1af.md",
+      "issues": [
+        {
+          "type": "domestic_platform_direction",
+          "term": "小红书",
+          "line": 16,
+          "snippet": "- 知乎、小红书（国内）或Quora、Reddit（国外）做经验贴/测评，流量精准但慢。"
+        }
+      ]
+    },
+    {
+      "content_id": "c014-traffic-acquisition-insurance-how-to-1d0e89ba",
+      "status": "reviewed",
+      "title": "保险怎么做：推广路径、渠道判断和准备清单",
+      "target_url": "/blog/insurance-how-to-1d0e89ba/",
+      "draft_file": "site_src/content_drafts/c014-traffic-acquisition-insurance-how-to-1d0e89ba.md",
+      "issues": [
+        {
+          "type": "domestic_platform_direction",
+          "term": "微信",
+          "line": 11,
+          "snippet": "1. **人群画像**：老年健康险在微信生态（朋友圈、公众号）效果更好，因为用户习惯用微信；年轻一代的意外险或医疗险可以试短视频信息流。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "百度",
+          "line": 12,
+          "snippet": "2. **获客成本**：信息流广告（头条、抖音）的点击成本低，但线索深度弱；搜索广告（百度、搜狗）的流量精准，但单价高。建议从搜索广告开始，因为用户主动搜索“保险怎么做”已经带有明确需求。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "头条",
+          "line": 12,
+          "snippet": "2. **获客成本**：信息流广告（头条、抖音）的点击成本低，但线索深度弱；搜索广告（百度、搜狗）的流量精准，但单价高。建议从搜索广告开始，因为用户主动搜索“保险怎么做”已经带有明确需求。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "抖音",
+          "line": 12,
+          "snippet": "2. **获客成本**：信息流广告（头条、抖音）的点击成本低，但线索深度弱；搜索广告（百度、搜狗）的流量精准，但单价高。建议从搜索广告开始，因为用户主动搜索“保险怎么做”已经带有明确需求。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "微信",
+          "line": 13,
+          "snippet": "3. **线索质量**：留手机号的转化比留微信低，但后续跟进成本也低。如果团队电销能力强，优先收电话；如果主要靠微信私聊，可以设计加微信的落地页。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "微信",
+          "line": 33,
+          "snippet": "3. **表单**：只留姓名、手机号（或微信号），越短越好。加一个“24小时内顾问联系”提示。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "微信",
+          "line": 35,
+          "snippet": "别在落地页放太多产品详细条款，用户看不懂也不会看。重点是引导用户留下联系方式，后面电话或微信沟通。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "微信",
+          "line": 51,
+          "snippet": "- **后端跟单动作慢**：保险顾问一定要在用户留下线索后10分钟内第一次联系（或加微信）。超过1小时，客户热度掉90%。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "微信",
+          "line": 53,
+          "snippet": "建议用企业微信做承接，每条线索自动分配，并记录后续跟进状态。"
+        }
+      ]
+    },
+    {
+      "content_id": "c015-traffic-acquisition-game-how-to-ce12eefa",
+      "status": "reviewed",
+      "title": "游戏怎么做：推广路径、渠道判断和准备清单",
+      "target_url": "/blog/game-how-to-ce12eefa/",
+      "draft_file": "site_src/content_drafts/c015-traffic-acquisition-game-how-to-ce12eefa.md",
+      "issues": [
+        {
+          "type": "domestic_platform_direction",
+          "term": "抖音",
+          "line": 3,
+          "snippet": "“游戏怎么做推广”是每天听到最多的问题之一。很多团队卡在第一步：不知道自己的产品适合什么渠道，上来就砸预算试广点通、Facebook、抖音，结果跑出来的线索全是无效用户，或者成本高到离谱。今天直接拆解游戏推广的路径、渠道判断和准备清单，帮你省掉至少三个月的试错期。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "巨量",
+          "line": 9,
+          "snippet": "- **重度手游（MMO、SLG、策略类）**：用户决策周期长，需要大量内容铺垫。优先考虑信息流广告（广点通、巨量引擎）配合短视频素材。关键是把游戏的核心玩法、社交生态、付费体验打包成15-30秒的短视频。落地页必须包含试玩链接或预约入口，线索质量靠后端充值数据反推。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "抖音",
+          "line": 11,
+          "snippet": "- **休闲、超休闲游戏**：靠短平快素材冲击自然量和买量。抖音、快手的信息流适合量产低成本素材，但用户留存极短。判断渠道的唯一标准是“次留成本”，不要看安装量。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "快手",
+          "line": 11,
+          "snippet": "- **休闲、超休闲游戏**：靠短平快素材冲击自然量和买量。抖音、快手的信息流适合量产低成本素材，但用户留存极短。判断渠道的唯一标准是“次留成本”，不要看安装量。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "小红书",
+          "line": 13,
+          "snippet": "- **中轻度模拟经营、养成类**：小红书、B站的长尾流量性价比极高。这类用户喜欢看“别人玩出的结果”，比如爆款农场、装修视频。建议做系列化图文攻略，引导点击下载。"
+        }
+      ]
+    },
+    {
+      "content_id": "c016-traffic-acquisition-immigration-how-to-38e8c4a4",
+      "status": "reviewed",
+      "title": "移民怎么做：推广路径、渠道判断和准备清单",
+      "target_url": "/blog/immigration-how-to-38e8c4a4/",
+      "draft_file": "site_src/content_drafts/c016-traffic-acquisition-immigration-how-to-38e8c4a4.md",
+      "issues": [
+        {
+          "type": "domestic_platform_direction",
+          "term": "百度",
+          "line": 9,
+          "snippet": "- **搜索渠道**：百度、360、搜狗。用户搜“移民怎么做”时，第一个看到你的落地页。SEM（竞价）见效快，SEO周期长但成本低。我们专门有[流量获取服务](/services/traffic-acquisition/)，帮客户做搜索端的付费与自然流量配合。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "360",
+          "line": 9,
+          "snippet": "- **搜索渠道**：百度、360、搜狗。用户搜“移民怎么做”时，第一个看到你的落地页。SEM（竞价）见效快，SEO周期长但成本低。我们专门有[流量获取服务](/services/traffic-acquisition/)，帮客户做搜索端的付费与自然流量配合。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "抖音",
+          "line": 10,
+          "snippet": "- **社交渠道**：微信朋友圈广告、抖音、小红书。适合做精准定向：年龄、地域、收入、出国意向。素材要用用户关心的问题开头，比如“移民怎么做才能最快拿到身份？”"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "微信",
+          "line": 10,
+          "snippet": "- **社交渠道**：微信朋友圈广告、抖音、小红书。适合做精准定向：年龄、地域、收入、出国意向。素材要用用户关心的问题开头，比如“移民怎么做才能最快拿到身份？”"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "小红书",
+          "line": 10,
+          "snippet": "- **社交渠道**：微信朋友圈广告、抖音、小红书。适合做精准定向：年龄、地域、收入、出国意向。素材要用用户关心的问题开头，比如“移民怎么做才能最快拿到身份？”"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "百度",
+          "line": 62,
+          "snippet": "5. **设置追踪代码**（GA、百度统计、转化事件）"
+        }
+      ]
+    },
+    {
+      "content_id": "c017-traffic-acquisition-loan-how-to-ee56b631",
+      "status": "reviewed",
+      "title": "贷款怎么做：推广路径、渠道判断和准备清单",
+      "target_url": "/blog/loan-how-to-ee56b631/",
+      "draft_file": "site_src/content_drafts/c017-traffic-acquisition-loan-how-to-ee56b631.md",
+      "issues": [
+        {
+          "type": "domestic_platform_direction",
+          "term": "百度",
+          "line": 9,
+          "snippet": "- **个人信用贷**：用户决策快，但竞争激烈。适合做搜索竞价（如百度、360）和信息流（抖音、快手）。素材方向主打“额度高、放款快、无抵押”。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "360",
+          "line": 9,
+          "snippet": "- **个人信用贷**：用户决策快，但竞争激烈。适合做搜索竞价（如百度、360）和信息流（抖音、快手）。素材方向主打“额度高、放款快、无抵押”。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "抖音",
+          "line": 9,
+          "snippet": "- **个人信用贷**：用户决策快，但竞争激烈。适合做搜索竞价（如百度、360）和信息流（抖音、快手）。素材方向主打“额度高、放款快、无抵押”。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "快手",
+          "line": 9,
+          "snippet": "- **个人信用贷**：用户决策快，但竞争激烈。适合做搜索竞价（如百度、360）和信息流（抖音、快手）。素材方向主打“额度高、放款快、无抵押”。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "微信",
+          "line": 10,
+          "snippet": "- **抵押贷/企业贷**：金额大、决策周期长。适合做长尾关键词SEO、地方型落地页、以及微信朋友圈广告（可定向地区+行业）。落地页需要详细展示资质、流程和案例。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "百度",
+          "line": 17,
+          "snippet": "- **百度系（搜索+信息流）**：搜索词精准，用户主动搜“贷款怎么做”就是高意向。信息流可以定向兴趣和人群包，适合个人贷。注意：百度金融行业审核严，资质不全很难开户，建议走代理或用“信贷咨询”类目。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "抖音",
+          "line": 18,
+          "snippet": "- **抖音/快手**：流量大，但容易出无效线索。需要强话术素材，比如“3分钟到账”、“身份证就能贷”。线索必须做实时回访，否则流失率高。前期先测素材，预算5000元起。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "快手",
+          "line": 18,
+          "snippet": "- **抖音/快手**：流量大，但容易出无效线索。需要强话术素材，比如“3分钟到账”、“身份证就能贷”。线索必须做实时回访，否则流失率高。前期先测素材，预算5000元起。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "微信",
+          "line": 19,
+          "snippet": "- **微信生态**：公众号、朋友圈、小程序。适合做私域沉淀，用户信任感强。可以结合企业微信承接，做“贷款顾问”人设。冷启动期比较慢，但转化率稳定。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "小红书",
+          "line": 20,
+          "snippet": "- **小红书/知乎**：适合做长期内容SEO。用户搜“贷款怎么做流程”、“贷款注意事项”，你写详细步骤、避坑指南，建立专业度。这类平台来的线索虽然慢，但愿意主动咨询的通常更刚需。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "抖音",
+          "line": 29,
+          "snippet": "- **答疑式**：用第一人称口吻说“很多人问我贷款怎么做，今天统一回答三个问题”。这种内容在抖音评论区互动率很高。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "百度",
+          "line": 61,
+          "snippet": "3. **选一个渠道先跑**：如果是本地机构优先微信朋友圈搜索；如果是全国性产品优先百度搜索或抖音信息流。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "抖音",
+          "line": 61,
+          "snippet": "3. **选一个渠道先跑**：如果是本地机构优先微信朋友圈搜索；如果是全国性产品优先百度搜索或抖音信息流。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "微信",
+          "line": 61,
+          "snippet": "3. **选一个渠道先跑**：如果是本地机构优先微信朋友圈搜索；如果是全国性产品优先百度搜索或抖音信息流。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "微信",
+          "line": 63,
+          "snippet": "5. **搭建客服承接流程**：设置自动回复话术，企业微信或广告平台自带线索通。确保留资后5分钟内能发短信通知。"
+        }
+      ]
+    },
+    {
+      "content_id": "c019-ad-campaign-support-cost-cafc4fef",
+      "status": "reviewed",
+      "title": "理财费用：影响因素、预算准备和沟通要点",
+      "target_url": "/blog/cost-cafc4fef/",
+      "draft_file": "site_src/content_drafts/c019-ad-campaign-support-cost-cafc4fef.md",
+      "issues": [
+        {
+          "type": "domestic_platform_direction",
+          "term": "百度",
+          "line": 9,
+          "snippet": "**媒体端**：微信朋友圈、百度、抖音、快手、头条、小红书，每个渠道的竞争程度不一样。比如微信朋友圈的理财类广告审核严，出价必须高于行业均值才能拿到量。百度搜索“理财费用”这个词，如果是品牌词或长尾词，CPC能控制在3-5元；如果是“理财平台推荐”这种行业大词，CPC可能到15-20元。抖音信息流对理财类的用户画像要求高，跑不好容易空耗预算。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "头条",
+          "line": 9,
+          "snippet": "**媒体端**：微信朋友圈、百度、抖音、快手、头条、小红书，每个渠道的竞争程度不一样。比如微信朋友圈的理财类广告审核严，出价必须高于行业均值才能拿到量。百度搜索“理财费用”这个词，如果是品牌词或长尾词，CPC能控制在3-5元；如果是“理财平台推荐”这种行业大词，CPC可能到15-20元。抖音信息流对理财类的用户画像要求高，跑不好容易空耗预算。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "抖音",
+          "line": 9,
+          "snippet": "**媒体端**：微信朋友圈、百度、抖音、快手、头条、小红书，每个渠道的竞争程度不一样。比如微信朋友圈的理财类广告审核严，出价必须高于行业均值才能拿到量。百度搜索“理财费用”这个词，如果是品牌词或长尾词，CPC能控制在3-5元；如果是“理财平台推荐”这种行业大词，CPC可能到15-20元。抖音信息流对理财类的用户画像要求高，跑不好容易空耗预算。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "微信",
+          "line": 9,
+          "snippet": "**媒体端**：微信朋友圈、百度、抖音、快手、头条、小红书，每个渠道的竞争程度不一样。比如微信朋友圈的理财类广告审核严，出价必须高于行业均值才能拿到量。百度搜索“理财费用”这个词，如果是品牌词或长尾词，CPC能控制在3-5元；如果是“理财平台推荐”这种行业大词，CPC可能到15-20元。抖音信息流对理财类的用户画像要求高，跑不好容易空耗预算。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "小红书",
+          "line": 9,
+          "snippet": "**媒体端**：微信朋友圈、百度、抖音、快手、头条、小红书，每个渠道的竞争程度不一样。比如微信朋友圈的理财类广告审核严，出价必须高于行业均值才能拿到量。百度搜索“理财费用”这个词，如果是品牌词或长尾词，CPC能控制在3-5元；如果是“理财平台推荐”这种行业大词，CPC可能到15-20元。抖音信息流对理财类的用户画像要求高，跑不好容易空耗预算。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "快手",
+          "line": 9,
+          "snippet": "**媒体端**：微信朋友圈、百度、抖音、快手、头条、小红书，每个渠道的竞争程度不一样。比如微信朋友圈的理财类广告审核严，出价必须高于行业均值才能拿到量。百度搜索“理财费用”这个词，如果是品牌词或长尾词，CPC能控制在3-5元；如果是“理财平台推荐”这种行业大词，CPC可能到15-20元。抖音信息流对理财类的用户画像要求高，跑不好容易空耗预算。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "百度",
+          "line": 21,
+          "snippet": "2. **优化放量阶段**：预算提高到5-10万。这时候要建立账户结构，区分搜索词和数据回传。比如百度搜索广告，要筛掉“免费”“兼职”等低质词，保留“理财费用多少”“理财规划收费”等真实需求词。信息流要按兴趣包+行为包搭建人群包。"
+        }
+      ]
+    },
+    {
+      "content_id": "c061-traffic-acquisition-leads-quality-test",
+      "status": "reviewed",
+      "title": "线索质量怎么测试：渠道判断、表单承接和跟进节奏",
+      "target_url": "/blog/leads-quality-test/",
+      "draft_file": "site_src/content_drafts/c061-traffic-acquisition-leads-quality-test.md",
+      "issues": [
+        {
+          "type": "domestic_platform_direction",
+          "term": "微信",
+          "line": 63,
+          "snippet": "但注意，不是所有线索都要秒跟。对于“只留了手机号，其他全空”的线索，先发一条短信或者加微信，看对方会不会通过。通过的再加权重，不通过的直接降级。"
+        }
+      ]
+    },
+    {
+      "content_id": "c062-media-buying-small-budget-test",
+      "status": "reviewed",
+      "title": "小预算买量怎么测：素材、渠道和转化路径准备",
+      "target_url": "/blog/small-budget-media-buying-test/",
+      "draft_file": "site_src/content_drafts/c062-media-buying-small-budget-test.md",
+      "issues": [
+        {
+          "type": "domestic_platform_direction",
+          "term": "微信",
+          "line": 10,
+          "snippet": "2. **核心转化动作**：你希望用户完成什么？加微信、提交表单、还是直接下单？转化路径越短，小预算越容易跑出数据。建议第一轮只设一个核心目标，别同时测多个。"
+        },
+        {
+          "type": "wrong_primary_platform",
+          "term": "LinkedIn**：B2B首选",
+          "line": 20,
+          "snippet": "- **LinkedIn**：B2B首选，但CPC高，小预算可能只够跑几十个点击。如果你的产品客单价高、决策周期长，可以尝试，但要做好三个月看不到明显效果的准备。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "微信",
+          "line": 40,
+          "snippet": "- **转化路径清晰**：每个页面只有一个核心行动按钮。想要用户填表单，就把表单放在首屏；想要加微信，就放二维码加话术引导。别放七八个链接让用户选择。"
+        }
+      ]
+    },
+    {
+      "content_id": "c064-ad-campaign-support-material-test",
+      "status": "reviewed",
+      "title": "广告素材怎么测试：角度、预算和反馈复盘方法",
+      "target_url": "/blog/ad-material-test/",
+      "draft_file": "site_src/content_drafts/c064-ad-campaign-support-material-test.md",
+      "issues": [
+        {
+          "type": "domestic_platform_direction",
+          "term": "微信",
+          "line": 51,
+          "snippet": "转化高的素材继续跑，但重点看线索质量：留下微信、留电话、开口率、意向度。如果只留手机号但全是无效，就换落地页表单字段或增加选项。"
+        }
+      ]
+    },
+    {
+      "content_id": "c069-dating-app-registration-flow",
+      "status": "reviewed",
+      "title": "交友App注册路径怎么优化：素材、页面和注册质量",
+      "target_url": "/blog/dating-app-registration-flow/",
+      "draft_file": "site_src/content_drafts/c069-dating-app-registration-flow.md",
+      "issues": [
+        {
+          "type": "domestic_platform_direction",
+          "term": "微信",
+          "line": 10,
+          "snippet": "2. **你的注册门槛设在哪？** 手机号、微信授权、还是邮箱？每多一个字段，转化率掉10%-20%。如果产品允许，优先用第三方登录（微信/Apple ID），能有效缩短路径。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "抖音",
+          "line": 15,
+          "snippet": "- **信息流（抖音、快手、朋友圈）：** 用户是被内容吸引的，耐心极短。落地页必须做到“一屏内讲清楚，注册按钮明显”，最好能预填一些信息（如通过设备号、广告标记自动填充推荐偏好）。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "快手",
+          "line": 15,
+          "snippet": "- **信息流（抖音、快手、朋友圈）：** 用户是被内容吸引的，耐心极短。落地页必须做到“一屏内讲清楚，注册按钮明显”，最好能预填一些信息（如通过设备号、广告标记自动填充推荐偏好）。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "百度",
+          "line": 16,
+          "snippet": "- **搜索广告（百度、搜狗）：** 用户有明确意图，比如“交友App注册”。这时候落地页内容要更详细，突出信任要素（用户数、安全认证、真实照片审核）。注册表单可以稍长，但要有明确的进度条提示。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "微信",
+          "line": 34,
+          "snippet": "- 注册流程步骤 <= 2步（第1步选性别/年龄范围，第2步微信/手机绑定）"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "抖音",
+          "line": 65,
+          "snippet": "建议先选一个你最熟悉的渠道（比如抖音信息流），准备2套素材（一套场景型、一套利益型），配2个完全对位的落地页。跑100元，看哪个组合的注册成本最低。同时把注册后1小时内的行为数据也跑出来。如果注册成本在可接受范围内并且用户活跃，就可以复制到其他渠道。"
+        }
+      ]
+    },
+    {
+      "content_id": "c071-loan-leads-page-copy",
+      "status": "reviewed",
+      "title": "贷款获客页面怎么写：表单、信任信息和咨询路径",
+      "target_url": "/blog/loan-leads-page-copy/",
+      "draft_file": "site_src/content_drafts/c071-loan-leads-page-copy.md",
+      "issues": [
+        {
+          "type": "domestic_platform_direction",
+          "term": "百度",
+          "line": 17,
+          "snippet": "很多人只投百度搜索，但贷款客户还分布在头条、微信、抖音甚至线下渠道。你的页面必须适配渠道特性："
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "头条",
+          "line": 17,
+          "snippet": "很多人只投百度搜索，但贷款客户还分布在头条、微信、抖音甚至线下渠道。你的页面必须适配渠道特性："
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "抖音",
+          "line": 17,
+          "snippet": "很多人只投百度搜索，但贷款客户还分布在头条、微信、抖音甚至线下渠道。你的页面必须适配渠道特性："
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "微信",
+          "line": 17,
+          "snippet": "很多人只投百度搜索，但贷款客户还分布在头条、微信、抖音甚至线下渠道。你的页面必须适配渠道特性："
+        }
+      ]
+    },
+    {
+      "content_id": "c072-insurance-leads-follow-up",
+      "status": "reviewed",
+      "title": "保险获客线索怎么跟进：表单字段、客服承接和质量判断",
+      "target_url": "/blog/insurance-leads-follow-up/",
+      "draft_file": "site_src/content_drafts/c072-insurance-leads-follow-up.md",
+      "issues": [
+        {
+          "type": "domestic_platform_direction",
+          "term": "微信",
+          "line": 21,
+          "snippet": "- **工具**：用企业微信加好友，发个简短的方案资料包，用户打开率比短信高很多。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "百度",
+          "line": 39,
+          "snippet": "- **百度搜索**：线索成本高（80-120元），但成交率最高，因为用户主动找方案。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "抖音",
+          "line": 40,
+          "snippet": "- **抖音信息流**：线索成本低（20-40元），但很多是泛流量，需要在表单里加“是否已购买”或者“计划购买时间”来筛选。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "小红书",
+          "line": 41,
+          "snippet": "- **小红书笔记**：线索成本中等（50-70元），女性用户多，适合重疾险、医疗险，但咨询周期长。"
+        }
+      ]
+    },
+    {
+      "content_id": "c073-immigration-consultation-leads",
+      "status": "reviewed",
+      "title": "移民咨询获客怎么做：关键词、页面信任和预约路径",
+      "target_url": "/blog/immigration-consultation-leads/",
+      "draft_file": "site_src/content_drafts/c073-immigration-consultation-leads.md",
+      "issues": [
+        {
+          "type": "domestic_platform_direction",
+          "term": "百度",
+          "line": 20,
+          "snippet": "不同移民项目，用户来源完全不一样。技术移民类用户更倾向搜知乎、小红书；投资移民类用户更主动联系律师或通过行业展会；留学转移民的用户多在百度、抖音搜攻略。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "抖音",
+          "line": 20,
+          "snippet": "不同移民项目，用户来源完全不一样。技术移民类用户更倾向搜知乎、小红书；投资移民类用户更主动联系律师或通过行业展会；留学转移民的用户多在百度、抖音搜攻略。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "小红书",
+          "line": 20,
+          "snippet": "不同移民项目，用户来源完全不一样。技术移民类用户更倾向搜知乎、小红书；投资移民类用户更主动联系律师或通过行业展会；留学转移民的用户多在百度、抖音搜攻略。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "百度",
+          "line": 22,
+          "snippet": "怎么判断？**小预算测试法**：拿3-5个核心词，每个渠道（百度SEM、抖音信息流、小红书KOC、行业垂直媒体）各投500-1000元，跑一周看线索成本。哪个渠道CPL（每条线索成本）低于你项目利润的30%，就放大投。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "抖音",
+          "line": 22,
+          "snippet": "怎么判断？**小预算测试法**：拿3-5个核心词，每个渠道（百度SEM、抖音信息流、小红书KOC、行业垂直媒体）各投500-1000元，跑一周看线索成本。哪个渠道CPL（每条线索成本）低于你项目利润的30%，就放大投。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "小红书",
+          "line": 22,
+          "snippet": "怎么判断？**小预算测试法**：拿3-5个核心词，每个渠道（百度SEM、抖音信息流、小红书KOC、行业垂直媒体）各投500-1000元，跑一周看线索成本。哪个渠道CPL（每条线索成本）低于你项目利润的30%，就放大投。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "微信",
+          "line": 48,
+          "snippet": "预约路径要短，最好直接是 [联系我们](/contact/) 页面或一个表单弹窗。如果用户犹豫，加一个“免费领取《各国移民对比手册》”的钩子，留下邮箱或微信。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "百度",
+          "line": 53,
+          "snippet": "- 60% 投搜索词（百度SEM、360、搜狗）"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "360",
+          "line": 53,
+          "snippet": "- 60% 投搜索词（百度SEM、360、搜狗）"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "小红书",
+          "line": 54,
+          "snippet": "- 25% 投内容平台（小红书素人铺量、知乎回答）"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "微信",
+          "line": 60,
+          "snippet": "- 用户是否愿意加微信/入群"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "百度",
+          "line": 68,
+          "snippet": "2. 每个项目找10个长尾问题词（用百度下拉、知乎相关搜索）。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "百度",
+          "line": 71,
+          "snippet": "5. 投50元/词的百度搜索广告，观察点击和停留。"
+        }
+      ]
+    },
+    {
+      "content_id": "c074-online-work-leads-test",
+      "status": "reviewed",
+      "title": "兼职项目获客怎么测：人群、素材和报名质量",
+      "target_url": "/blog/online-work-leads-test/",
+      "draft_file": "site_src/content_drafts/c074-online-work-leads-test.md",
+      "issues": [
+        {
+          "type": "domestic_platform_direction",
+          "term": "小红书",
+          "line": 26,
+          "snippet": "- **文字素材先跑**：用朋友圈文案、小红书标题，搭配简单图。看点击率和报名成本。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "微信",
+          "line": 51,
+          "snippet": "很多兼职项目方会问我：“预算到底投哪个渠道？”我的建议是：先从[Topics页面](/topics/)里找用户活跃的地方（比如知乎、小红书、微信小程序），用信息流测试。别一上来就投搜索广告，兼职关键词竞价太贵。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "小红书",
+          "line": 51,
+          "snippet": "很多兼职项目方会问我：“预算到底投哪个渠道？”我的建议是：先从[Topics页面](/topics/)里找用户活跃的地方（比如知乎、小红书、微信小程序），用信息流测试。别一上来就投搜索广告，兼职关键词竞价太贵。"
+        },
+        {
+          "type": "domestic_platform_direction",
+          "term": "微信",
+          "line": 56,
+          "snippet": "- **接通率**：客服电话/微信通过率。低于30%说明人群筛选或素材承诺有问题。"
+        }
+      ]
+    }
+  ],
+  "reset_items": [
+    {
+      "content_id": "c003-ad-campaign-support-crypto-how-to-887db2f2",
+      "previous_status": "reviewed",
+      "new_status": "prompt_ready",
+      "draft_file": "site_src/content_drafts/c003-ad-campaign-support-crypto-how-to-887db2f2.md"
+    },
+    {
+      "content_id": "c009-dating-traffic-dating-how-to-ad9ee1af",
+      "previous_status": "reviewed",
+      "new_status": "prompt_ready",
+      "draft_file": "site_src/content_drafts/c009-dating-traffic-dating-how-to-ad9ee1af.md"
+    },
+    {
+      "content_id": "c014-traffic-acquisition-insurance-how-to-1d0e89ba",
+      "previous_status": "reviewed",
+      "new_status": "prompt_ready",
+      "draft_file": "site_src/content_drafts/c014-traffic-acquisition-insurance-how-to-1d0e89ba.md"
+    },
+    {
+      "content_id": "c015-traffic-acquisition-game-how-to-ce12eefa",
+      "previous_status": "reviewed",
+      "new_status": "prompt_ready",
+      "draft_file": "site_src/content_drafts/c015-traffic-acquisition-game-how-to-ce12eefa.md"
+    },
+    {
+      "content_id": "c016-traffic-acquisition-immigration-how-to-38e8c4a4",
+      "previous_status": "reviewed",
+      "new_status": "prompt_ready",
+      "draft_file": "site_src/content_drafts/c016-traffic-acquisition-immigration-how-to-38e8c4a4.md"
+    },
+    {
+      "content_id": "c017-traffic-acquisition-loan-how-to-ee56b631",
+      "previous_status": "reviewed",
+      "new_status": "prompt_ready",
+      "draft_file": "site_src/content_drafts/c017-traffic-acquisition-loan-how-to-ee56b631.md"
+    },
+    {
+      "content_id": "c019-ad-campaign-support-cost-cafc4fef",
+      "previous_status": "reviewed",
+      "new_status": "prompt_ready",
+      "draft_file": "site_src/content_drafts/c019-ad-campaign-support-cost-cafc4fef.md"
+    },
+    {
+      "content_id": "c061-traffic-acquisition-leads-quality-test",
+      "previous_status": "reviewed",
+      "new_status": "prompt_ready",
+      "draft_file": "site_src/content_drafts/c061-traffic-acquisition-leads-quality-test.md"
+    },
+    {
+      "content_id": "c062-media-buying-small-budget-test",
+      "previous_status": "reviewed",
+      "new_status": "prompt_ready",
+      "draft_file": "site_src/content_drafts/c062-media-buying-small-budget-test.md"
+    },
+    {
+      "content_id": "c064-ad-campaign-support-material-test",
+      "previous_status": "reviewed",
+      "new_status": "prompt_ready",
+      "draft_file": "site_src/content_drafts/c064-ad-campaign-support-material-test.md"
+    },
+    {
+      "content_id": "c069-dating-app-registration-flow",
+      "previous_status": "reviewed",
+      "new_status": "prompt_ready",
+      "draft_file": "site_src/content_drafts/c069-dating-app-registration-flow.md"
+    },
+    {
+      "content_id": "c071-loan-leads-page-copy",
+      "previous_status": "reviewed",
+      "new_status": "prompt_ready",
+      "draft_file": "site_src/content_drafts/c071-loan-leads-page-copy.md"
+    },
+    {
+      "content_id": "c072-insurance-leads-follow-up",
+      "previous_status": "reviewed",
+      "new_status": "prompt_ready",
+      "draft_file": "site_src/content_drafts/c072-insurance-leads-follow-up.md"
+    },
+    {
+      "content_id": "c073-immigration-consultation-leads",
+      "previous_status": "reviewed",
+      "new_status": "prompt_ready",
+      "draft_file": "site_src/content_drafts/c073-immigration-consultation-leads.md"
+    },
+    {
+      "content_id": "c074-online-work-leads-test",
+      "previous_status": "reviewed",
+      "new_status": "prompt_ready",
+      "draft_file": "site_src/content_drafts/c074-online-work-leads-test.md"
+    }
+  ]
+}
