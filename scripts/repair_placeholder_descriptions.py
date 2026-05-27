@@ -12,6 +12,18 @@ DRAFTS_DIR = ROOT / "site_src" / "content_drafts"
 REPORT_JSON = ROOT / "data" / "content-assets" / "placeholder_description_repair.json"
 REPORT_MD = ROOT / "docs" / "placeholder-description-repair-report.md"
 PLACEHOLDER_RE = re.compile(r"\?{8,}")
+SKIP_FILENAMES = {"README.MD"}
+
+
+def should_skip_file(path: Path) -> bool:
+    return path.name.upper() in SKIP_FILENAMES
+
+
+def iter_draft_files():
+    for path in sorted(DRAFTS_DIR.glob("*.md")):
+        if should_skip_file(path):
+            continue
+        yield path
 
 
 def is_bad_description(value: str) -> bool:
@@ -167,11 +179,7 @@ def main() -> int:
         print(f"[OK] drafts directory does not exist: {DRAFTS_DIR}")
         return 0
 
-    results = []
-    for path in sorted(DRAFTS_DIR.glob("*.md")):
-        if path.name.upper() == "README.MD":
-            continue
-        results.append(repair_file(path, args.write))
+    results = [repair_file(path, args.write) for path in iter_draft_files()]
 
     write_report(results, args.write)
     repaired_count = sum(1 for item in results if item.get("repaired"))
@@ -179,7 +187,7 @@ def main() -> int:
 
     if args.fail_on_remaining:
         remaining = []
-        for path in sorted(DRAFTS_DIR.glob("*.md")):
+        for path in iter_draft_files():
             text = path.read_text(encoding="utf-8-sig")
             meta, _, _ = parse_frontmatter(text)
             description = meta.get("description", "")
