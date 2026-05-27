@@ -17,6 +17,8 @@ on:
         description: "Optional daily publish limit"
         required: false
         default: "7"
+  schedule:
+    - cron: "30 2 * * *"
 
 permissions:
   contents: write
@@ -48,6 +50,12 @@ jobs:
           git rev-parse HEAD
           git status --short
           python --version
+
+      - name: Repair placeholder descriptions
+        shell: bash
+        run: |
+          set -euo pipefail
+          python scripts/repair_placeholder_descriptions.py --write --fail-on-remaining
 
       - name: Dry run daily publish
         shell: bash
@@ -125,6 +133,9 @@ jobs:
 
       - name: Check sitemap readiness
         run: python scripts/check_sitemap_readiness.py
+
+      - name: Check placeholder text
+        run: python scripts/check_placeholder_text.py
 
       - name: Git status
         run: git status --short
