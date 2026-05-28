@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-27T09:06:36",
+  "generated_at": "2026-05-28T10:21:35",
   "batch_id": "batch-001",
   "dry_run": false,
   "config_source": "E:\\py9\\config.py",
@@ -12,81 +12,20 @@
   ],
   "selected": [
     {
-      "content_id": "c012-traffic-acquisition-dating-app-how-to-f56b0dad",
-      "target_url": "/blog/dating-app-how-to-f56b0dad/",
-      "title": "交友App注册怎么做：推广路径、渠道判断和准备清单"
-    },
-    {
-      "content_id": "c001-ad-campaign-support-how-to-17e66750",
-      "target_url": "/blog/crypto-promotion-how-to-17e66750/",
-      "title": "加密货币推广怎么做：渠道判断、投放准备和合规评估"
-    },
-    {
-      "content_id": "c010-media-buying-part-time-how-to-5875d40e",
-      "target_url": "/blog/part-time-how-to-5875d40e/",
-      "title": "兼职怎么做：推广路径、渠道判断和准备清单"
-    },
-    {
-      "content_id": "c004-crypto-promotion-exchange-acquisition-how-to-efd74e87",
-      "target_url": "/blog/exchange-acquisition-how-to-efd74e87/",
-      "title": "交易所拉新怎么做：推广路径、渠道判断和准备清单"
-    },
-    {
-      "content_id": "c007-dating-traffic-dating-how-to-002063ad",
-      "target_url": "/blog/dating-how-to-002063ad/",
-      "title": "交友私聊怎么做：推广路径、渠道判断和准备清单"
-    },
-    {
-      "content_id": "c043-game-promotion-fb-game-promotion-eec369fd",
-      "target_url": "/blog/topics/fb-game-promotion-eec369fd/",
-      "title": "FB游戏推广：海外推广与获客准备指南"
-    },
-    {
-      "content_id": "c055-loan-leads-fb-loan-leads-60d3dc0c",
-      "target_url": "/blog/topics/fb-loan-leads-60d3dc0c/",
-      "title": "FB贷款获客：海外推广与获客准备指南"
+      "content_id": "c046-google-promotion-promotion-588fc030",
+      "target_url": "/blog/topics/promotion-588fc030/",
+      "title": "中东理财推广：海外推广与获客准备指南"
     }
   ],
-  "generated": [],
-  "skipped": [
+  "generated": [
     {
-      "content_id": "c012-traffic-acquisition-dating-app-how-to-f56b0dad",
-      "reason": "output file already exists; use --overwrite to replace or --resume to continue",
-      "output_file": "data/deepseek-inbox/batch-001/c012-traffic-acquisition-dating-app-how-to-f56b0dad.md"
-    },
-    {
-      "content_id": "c001-ad-campaign-support-how-to-17e66750",
-      "reason": "output file already exists; use --overwrite to replace or --resume to continue",
-      "output_file": "data/deepseek-inbox/batch-001/c001-ad-campaign-support-how-to-17e66750.md"
-    },
-    {
-      "content_id": "c010-media-buying-part-time-how-to-5875d40e",
-      "reason": "output file already exists; use --overwrite to replace or --resume to continue",
-      "output_file": "data/deepseek-inbox/batch-001/c010-media-buying-part-time-how-to-5875d40e.md"
-    },
-    {
-      "content_id": "c004-crypto-promotion-exchange-acquisition-how-to-efd74e87",
-      "reason": "output file already exists; use --overwrite to replace or --resume to continue",
-      "output_file": "data/deepseek-inbox/batch-001/c004-crypto-promotion-exchange-acquisition-how-to-efd74e87.md"
-    },
-    {
-      "content_id": "c007-dating-traffic-dating-how-to-002063ad",
-      "reason": "output file already exists; use --overwrite to replace or --resume to continue",
-      "output_file": "data/deepseek-inbox/batch-001/c007-dating-traffic-dating-how-to-002063ad.md"
-    },
-    {
-      "content_id": "c043-game-promotion-fb-game-promotion-eec369fd",
-      "reason": "output file already exists; use --overwrite to replace or --resume to continue",
-      "output_file": "data/deepseek-inbox/batch-001/c043-game-promotion-fb-game-promotion-eec369fd.md"
-    },
-    {
-      "content_id": "c055-loan-leads-fb-loan-leads-60d3dc0c",
-      "reason": "output file already exists; use --overwrite to replace or --resume to continue",
-      "output_file": "data/deepseek-inbox/batch-001/c055-loan-leads-fb-loan-leads-60d3dc0c.md"
+      "content_id": "c046-google-promotion-promotion-588fc030",
+      "output_file": "data/deepseek-inbox/batch-001/c046-google-promotion-promotion-588fc030.md"
     }
   ],
+  "skipped": [],
   "failed": [],
-  "available_output_count": 10,
+  "available_output_count": 14,
   "available_outputs": [
     "data/deepseek-inbox/batch-001/c001-ad-campaign-support-how-to-17e66750.md",
     "data/deepseek-inbox/batch-001/c004-crypto-promotion-exchange-acquisition-how-to-efd74e87.md",
@@ -95,13 +34,14 @@
     "data/deepseek-inbox/batch-001/c012-traffic-acquisition-dating-app-how-to-f56b0dad.md",
     "data/deepseek-inbox/batch-001/c031-fb-promotion-fb-dating-traffic-5035e1c0.md",
     "data/deepseek-inbox/batch-001/c043-game-promotion-fb-game-promotion-eec369fd.md",
+    "data/deepseek-inbox/batch-001/c046-google-promotion-promotion-588fc030.md",
     "data/deepseek-inbox/batch-001/c051-immigration-leads-fb-immigration-leads-b33be086.md",
+    "data/deepseek-inbox/batch-001/c052-immigration-leads-google-immigration-traffic-31aff535.md",
     "data/deepseek-inbox/batch-001/c053-insurance-leads-fb-insurance-leads-b01d5372.md",
-    "data/deepseek-inbox/batch-001/c055-loan-leads-fb-loan-leads-60d3dc0c.md"
+    "data/deepseek-inbox/batch-001/c054-insurance-leads-google-insurance-traffic-7dc33881.md",
+    "data/deepseek-inbox/batch-001/c055-loan-leads-fb-loan-leads-60d3dc0c.md",
+    "data/deepseek-inbox/batch-001/c056-loan-leads-google-loan-traffic-ef51241c.md"
   ],
   "combined_output": "E:\\sites\\9hwh\\data\\deepseek-inbox\\batch-001-deepseek-output.md",
-  "run_import_review": {
-    "import_exit_code": 0,
-    "review_exit_code": 0
-  }
+  "run_import_review": {}
 }

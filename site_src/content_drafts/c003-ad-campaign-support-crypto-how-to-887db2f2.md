@@ -5,7 +5,7 @@ description: 虚拟币怎么做：推广路径、渠道判断和准备清单，�
 target_url: /blog/crypto-how-to-887db2f2/
 primary_keyword: 虚拟币怎么做
 secondary_keywords: 虚拟币, 怎么做
-status: published
+status: reviewed
 ---
 ## 虚拟币怎么做：推广路径、渠道判断和准备清单
 

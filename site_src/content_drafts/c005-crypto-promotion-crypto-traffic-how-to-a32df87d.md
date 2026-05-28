@@ -5,9 +5,8 @@ description: 币圈引流怎么做：推广路径、渠道判断和准备清单�
 target_url: /blog/crypto-traffic-how-to-a32df87d/
 primary_keyword: 币圈引流怎么做
 secondary_keywords: 币圈引流, 怎么做
-status: published
+status: reviewed
 ---
-
 ## 币圈引流怎么做：推广路径、渠道判断和准备清单
 
 币圈引流这件事，问的人多，真能跑通的人少。很多团队上来就砸钱投广告，结果点击量好看，线索全是羊毛党。今天这篇直接拆解**币圈引流怎么做**，包括渠道怎么挑、素材怎么准备、落地页怎么承接、预算怎么测、线索质量怎么看。读完收藏好，下次投流前拿出来对一遍。
@@ -90,4 +89,3 @@ status: published
 ## 继续了解
 
 - [相关服务](/services/ad-campaign-support/)
-

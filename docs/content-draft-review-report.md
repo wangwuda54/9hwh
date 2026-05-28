@@ -1,9 +1,9 @@
 # Content Draft Review Report
 
-- drafts: 62
-- pass: 58
-- warning: 4
-- fail: 0
+- drafts: 66
+- pass: 43
+- warning: 8
+- fail: 15
 
 | File | content_id | Result | Issues | Warnings |
 | --- | --- | --- | --- | --- |
@@ -51,21 +51,25 @@
 | c042-finance-leads-traffic-e92e6ae0.md | c042-finance-leads-traffic-e92e6ae0 | pass | - | - |
 | c043-game-promotion-fb-game-promotion-eec369fd.md | c043-game-promotion-fb-game-promotion-eec369fd | pass | - | - |
 | c044-game-promotion-google-game-promotion-0d865324.md | c044-game-promotion-google-game-promotion-0d865324 | pass | - | - |
+| c046-google-promotion-promotion-588fc030.md | c046-google-promotion-promotion-588fc030 | warning | - | less than 4 internal links; missing topic internal link; missing contact internal link |
 | c051-immigration-leads-fb-immigration-leads-b33be086.md | c051-immigration-leads-fb-immigration-leads-b33be086 | pass | - | - |
+| c052-immigration-leads-google-immigration-traffic-31aff535.md | c052-immigration-leads-google-immigration-traffic-31aff535 | warning | - | less than 4 internal links; missing platform or service internal link; missing topic internal link; missing services/topics listing internal link; missing contact internal link; missing preferred topic link: /topics/immigration-leads/ |
 | c053-insurance-leads-fb-insurance-leads-b01d5372.md | c053-insurance-leads-fb-insurance-leads-b01d5372 | pass | - | - |
+| c054-insurance-leads-google-insurance-traffic-7dc33881.md | c054-insurance-leads-google-insurance-traffic-7dc33881 | warning | - | less than 4 internal links; missing platform or service internal link; missing contact internal link |
 | c055-loan-leads-fb-loan-leads-60d3dc0c.md | c055-loan-leads-fb-loan-leads-60d3dc0c | pass | - | - |
-| c061-traffic-acquisition-leads-quality-test.md | c061-traffic-acquisition-leads-quality-test | pass | - | - |
-| c062-media-buying-small-budget-test.md | c062-media-buying-small-budget-test | pass | - | - |
-| c063-overseas-promotion-landing-page.md | c063-overseas-promotion-landing-page | pass | - | - |
-| c064-ad-campaign-support-material-test.md | c064-ad-campaign-support-material-test | pass | - | - |
-| c065-fb-leads-form-setup.md | c065-fb-leads-form-setup | pass | - | - |
-| c066-google-search-leads-keywords.md | c066-google-search-leads-keywords | pass | - | - |
-| c067-tk-short-video-leads.md | c067-tk-short-video-leads | pass | - | - |
-| c068-game-user-acquisition-cost.md | c068-game-user-acquisition-cost | pass | - | - |
-| c069-dating-app-registration-flow.md | c069-dating-app-registration-flow | pass | - | - |
-| c070-crypto-exchange-leads.md | c070-crypto-exchange-leads | pass | - | - |
-| c071-loan-leads-page-copy.md | c071-loan-leads-page-copy | pass | - | - |
-| c072-insurance-leads-follow-up.md | c072-insurance-leads-follow-up | pass | - | - |
-| c073-immigration-consultation-leads.md | c073-immigration-consultation-leads | pass | - | - |
-| c074-online-work-leads-test.md | c074-online-work-leads-test | pass | - | - |
-| c075-youtube-promotion-leads.md | c075-youtube-promotion-leads | pass | - | - |
+| c056-loan-leads-google-loan-traffic-ef51241c.md | c056-loan-leads-google-loan-traffic-ef51241c | warning | - | less than 4 internal links; missing platform or service internal link; missing topic internal link; missing services/topics listing internal link; missing contact internal link; missing preferred topic link: /topics/loan-leads/ |
+| c061-traffic-acquisition-leads-quality-test.md | c061-traffic-acquisition-leads-quality-test | fail | content_id not found in content_queue | - |
+| c062-media-buying-small-budget-test.md | c062-media-buying-small-budget-test | fail | content_id not found in content_queue | - |
+| c063-overseas-promotion-landing-page.md | c063-overseas-promotion-landing-page | fail | content_id not found in content_queue | - |
+| c064-ad-campaign-support-material-test.md | c064-ad-campaign-support-material-test | fail | content_id not found in content_queue | - |
+| c065-fb-leads-form-setup.md | c065-fb-leads-form-setup | fail | content_id not found in content_queue | - |
+| c066-google-search-leads-keywords.md | c066-google-search-leads-keywords | fail | content_id not found in content_queue | - |
+| c067-tk-short-video-leads.md | c067-tk-short-video-leads | fail | content_id not found in content_queue | - |
+| c068-game-user-acquisition-cost.md | c068-game-user-acquisition-cost | fail | content_id not found in content_queue | - |
+| c069-dating-app-registration-flow.md | c069-dating-app-registration-flow | fail | content_id not found in content_queue | - |
+| c070-crypto-exchange-leads.md | c070-crypto-exchange-leads | fail | content_id not found in content_queue | - |
+| c071-loan-leads-page-copy.md | c071-loan-leads-page-copy | fail | content_id not found in content_queue | - |
+| c072-insurance-leads-follow-up.md | c072-insurance-leads-follow-up | fail | content_id not found in content_queue | - |
+| c073-immigration-consultation-leads.md | c073-immigration-consultation-leads | fail | content_id not found in content_queue | - |
+| c074-online-work-leads-test.md | c074-online-work-leads-test | fail | content_id not found in content_queue | - |
+| c075-youtube-promotion-leads.md | c075-youtube-promotion-leads | fail | content_id not found in content_queue | - |

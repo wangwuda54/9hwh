@@ -5,9 +5,8 @@ description: 为出海团队解析“交友私聊怎么做”的真实需求，�
 target_url: /blog/dating-how-to-002063ad/
 primary_keyword: 交友私聊怎么做
 secondary_keywords: 交友私聊, 怎么做
-status: published
+status: reviewed
 ---
-
 ## 理解“交友私聊怎么做”的真实需求
 
 搜索“交友私聊怎么做”的团队，通常不是在寻找社交软件的使用教程，而是在评估 **如何通过线上推广获取交友类项目的用户**。这类需求的背后，是对海外流量获取、用户私聊转化、以及投流策略的实操疑问。
