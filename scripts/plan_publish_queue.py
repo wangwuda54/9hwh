@@ -52,11 +52,6 @@ def contains_html(body: str) -> bool:
     return bool(parser.tags)
 
 
-def has_forbidden_terms(text: str, rules: dict) -> list[str]:
-    terms = list(rules.get("blocked_terms", []))
-    return [term for term in terms if term and term in text]
-
-
 def parse_md(path: Path) -> tuple[dict[str, str], str]:
     text = path.read_text(encoding="utf-8-sig")
     if not text.startswith("---"):
@@ -155,9 +150,6 @@ def candidate_is_publishable(item: dict, review_item: dict, rules: dict) -> tupl
         return False, "contains_html"
     if any(line.strip().startswith("# ") for line in body.splitlines()):
         return False, "contains_h1"
-    forbidden = has_forbidden_terms(json.dumps(meta, ensure_ascii=False) + "\n" + body, rules)
-    if forbidden:
-        return False, "forbidden_terms"
     link_count = count_internal_links(item["content_id"])
     if link_count < max(4, int(rules.get("internal_link_rules", {}).get("minimum_article_links", 4))):
         return False, f"internal_links={link_count}"

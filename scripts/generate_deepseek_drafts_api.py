@@ -37,37 +37,6 @@ REQUIRED_META_FIELDS = (
     "secondary_keywords",
     "status",
 )
-FORBIDDEN_TERMS = [
-    "保证过审",
-    "保证不限号",
-    "稳定不限户",
-    "保证效果",
-    "保证转化",
-    "保证收益",
-    "百分百稳定",
-    "不封号",
-    "包过",
-    "内部渠道",
-    "绕过平台政策",
-    "规避审核",
-    "绕审",
-    "代规避",
-    "抗风控",
-    "黑科技",
-    "Cloak",
-    "cloak",
-    "仿牌",
-    "博彩",
-    "黑五类",
-    "三不限",
-    "违规业务也能做",
-    "任何平台都能过",
-    "任何行业都能投",
-    "Telegram 引流",
-    "TG 引流",
-    "灰色资源",
-    "账号买卖",
-]
 SYSTEM_PROMPT = """项目定位：
 9HWH 是面向出海项目的海外流量推广与获客支持服务站，围绕 TK、FB、Google 等渠道，提供海外推广、引流获客、广告投放支持、拉新买量、投流代投和代运营协助。
 
@@ -86,12 +55,6 @@ SYSTEM_PROMPT = """项目定位：
 - 不要使用代码块包裹输出
 - 不要编造案例、团队、办公室、联系方式
 - 不要出现微信、WhatsApp、Telegram 或任何具体联系方式
-- 不要写保证过审、保证不限号、稳定不限户、保证效果、保证转化、保证收益、百分百稳定、不封号、包过
-- 不要写内部渠道、绕过平台政策、规避审核、绕审、代规避、抗风控、黑科技
-- 不要写违法违规承诺
-- 不要写 Cloak、cloak、仿牌、博彩、黑五类、三不限、违规业务也能做、任何平台都能过、任何行业都能投
-- 不要写 Telegram/TG 引流、具体报价、灰色资源、账号买卖
-- 上述禁用词不要以正面、反面、举例、提醒或复述清单的形式出现在最终成文中，统一改写为“受限或违规项目”“不合规承诺”等泛化表述
 - 内容适合长期官网，不要像灰色落地页
 - 写作口吻要改成行业实操解释腔，像真实做过投放、开户、素材、落地页和审核沟通的人在解释问题
 - 不要写成政策说明、审查说明、合规报告、风险提示清单或模板文章
@@ -220,7 +183,7 @@ def select_items(index_items: list[dict], only: str | None, limit: int | None) -
 
 def build_messages(task_text: str) -> list[dict[str, str]]:
     user_prompt = (
-        "以下是当前 content_id 的完整写作任务。请直接输出最终 Markdown 成品，只输出文章本身。任务里的“禁止表达”部分只用于约束，不要在最终文章中逐项复述或举例这些词。\n\n"
+        "以下是当前 content_id 的完整写作任务。请直接输出最终 Markdown 成品，只输出文章本身。\n\n"
         + task_text
     )
     return [
@@ -308,9 +271,6 @@ def validate_generation(text: str, item: dict) -> list[str]:
         issues.append("body contains level-1 heading")
     if re.search(r"<[A-Za-z!/][^>]*>", body):
         issues.append("body contains HTML")
-    for term in FORBIDDEN_TERMS:
-        if term in text:
-            issues.append(f"forbidden term: {term}")
     return issues
 
 

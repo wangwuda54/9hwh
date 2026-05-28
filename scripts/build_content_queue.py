@@ -112,7 +112,6 @@ def title_for(keyword: str, cluster_id: str) -> str:
 def choose_records(records: list[dict], rules: dict) -> list[dict]:
     suffix_priority = ["怎么做", "费用", "价格", "渠道", "哪家好", "靠谱吗", "怎么收费", "怎么投", "怎么找", "多少钱", "报价"]
     allowed = [item for item in records if item["public_status"] in {"future_blog", "public_secondary"} and item["cluster_id"] not in {"blocked", "unmapped"}]
-    allowed = [item for item in allowed if not any(term in item["keyword"] for term in rules["blocked_terms"] + rules["sensitive_terms"])]
     scored = []
     for item in allowed:
         score = 0

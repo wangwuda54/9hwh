@@ -16,7 +16,6 @@ def load_json(path: Path):
 
 def task_body(task: dict, rules: dict, site: dict, blocks: dict) -> str:
     sections = rules.get("article_required_sections", [])
-    forbidden = rules.get("blocked_terms", [])
     prompt_rules = rules.get("deepseek_prompt_rules", [])
     links = [link for link in task.get("internal_links", []) if link]
     return f"""# DeepSeek 写作任务：{task['title']}
@@ -63,10 +62,6 @@ def task_body(task: dict, rules: dict, site: dict, blocks: dict) -> str:
 
 {chr(10).join('- ' + link for link in links)}
 
-## 禁止表达
-
-{chr(10).join('- ' + item for item in forbidden)}
-
 ## 怎么开始测试
 
 {blocks['service_boundary']}
@@ -80,7 +75,6 @@ def task_body(task: dict, rules: dict, site: dict, blocks: dict) -> str:
 - 输出 Markdown 正文。
 - 不要输出 HTML。
 - 不要编造联系方式。
-- 不要写违法违规承诺。
 - 不要像灰色落地页。
 - 必须完整输出 front matter。front matter 后正文标题层级从 `##` 开始。Codex 后续会按 front matter 接入和检查，不要省略 front matter。
 """

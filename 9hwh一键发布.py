@@ -153,9 +153,6 @@ def is_recoverable_static_site_failure(stdout: str) -> bool:
 
 
 def is_recoverable_daily_publish_failure(report: dict) -> bool:
-    if int(report.get("published_count") or 0) <= 0:
-        return False
-
     build_check = check_record(report, "scripts/build_site.py")
     static_check = check_record(report, "scripts/check_static_site.py")
     if int(build_check.get("returncode", 999)) != 0:
@@ -167,7 +164,16 @@ def is_recoverable_daily_publish_failure(report: dict) -> bool:
 
     error_text = "\n".join(str(error) for error in report.get("errors") or [])
     message_text = str(report.get("message") or "")
-    return "post publish check failed" in (error_text + "\n" + message_text).lower()
+    if "post publish check failed" not in (error_text + "\n" + message_text).lower():
+        return False
+
+    if int(report.get("published_count") or 0) > 0:
+        return True
+
+    # Some older failed reports were written after content state had already moved,
+    # but counters stayed at zero. Treat the post-publish check evidence as enough
+    # to enter recovery so reruns do not publish the next batch.
+    return True
 
 
 def detect_pending_recoverable_publish() -> dict | None:
@@ -311,10 +317,38 @@ def repair_placeholder_line(line: str) -> str:
     # If only a link remains, turn it into a normal related-resource sentence.
     if links:
         link_text, href = links[0]
+        if has_placeholder(link_text) or is_bad_description(link_text):
+            link_text = readable_link_text(href)
         return f"如果需要继续梳理渠道和投放准备，可以先查看 [{link_text}]({href})，再结合预算、素材和落地页做小范围测试。"
 
     # Otherwise drop the corrupted line.
     return ""
+
+
+def readable_link_text(href: str) -> str:
+    labels = {
+        "/services/ad-campaign-support/": "广告投放支持",
+        "/services/traffic-acquisition/": "海外引流获客",
+        "/services/media-buying/": "海外买量投放",
+        "/services/": "服务范围",
+        "/topics/crypto-promotion/": "加密货币推广",
+        "/topics/dating-traffic/": "交友项目引流",
+        "/topics/finance-leads/": "金融线索获客",
+        "/topics/game-promotion/": "游戏推广",
+        "/topics/immigration-leads/": "移民咨询获客",
+        "/topics/insurance-leads/": "保险线索获客",
+        "/topics/loan-leads/": "贷款线索获客",
+        "/topics/online-work-leads/": "网赚兼职获客",
+        "/platforms/fb/": "Facebook 推广",
+        "/platforms/google/": "Google 推广",
+        "/platforms/tk/": "TikTok 推广",
+        "/topics/": "内容专题",
+        "/contact/": "联系咨询",
+    }
+    if href in labels:
+        return labels[href]
+    slug = href.strip("/").split("/")[-1].replace("-", " ").strip()
+    return slug.title() if slug else "相关页面"
 
 
 def repair_draft_placeholders(path: Path) -> bool:
@@ -340,7 +374,9 @@ def repair_draft_placeholders(path: Path) -> bool:
         if repaired != line:
             changed = True
         if repaired.strip():
-            new_body_lines.append(repaired.rstrip())
+            new_body_lines.append(repaired.rstrip() if repaired != line else line)
+        elif not line.strip():
+            new_body_lines.append("")
 
     if not changed:
         return False
@@ -650,7 +686,7 @@ def import_drafts_soft() -> tuple[int, int, int]:
         log(f"[OK] 导入完成：新增 {imported} 篇，跳过 {skipped} 篇。")
     else:
         log(f"[WARN] 导入脚本返回失败，但不中断：新增 {imported} 篇，跳过 {skipped} 篇，失败 {failed} 篇。")
-        log("[INFO] 失败项通常是 DeepSeek 生成稿含禁用词，后续会跳过，不影响已成功导入的文章。")
+        log("[INFO] 失败项会跳过，不影响已成功导入的文章。")
 
     return imported, skipped, failed
 

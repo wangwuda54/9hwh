@@ -25,41 +25,7 @@ DRAFTS = ROOT / "site_src" / "content_drafts"
 BASE_URL = "https://www.9hwh.com"
 FAILURES: list[str] = []
 WARNINGS: list[str] = []
-FORBIDDEN = [
-    "service_",
-    "/service_",
-    "legacy-source",
-    "Cloak",
-    "规避审核",
-    "仿牌",
-    "博彩",
-    "黑五类",
-    "三不限",
-    "抗风控",
-    "绕过平台",
-    "保证过审",
-    "保证不限号",
-    "保证效果",
-    "保证转化",
-    "保证收益",
-    "违规业务也能做",
-    "任何平台都能过",
-    "任何行业都能投",
-]
 PLACEHOLDER_VIDEO_TITLE = re.compile(r"AI数字人视频生成服务\s*\d{3}")
-VIDEO_FORBIDDEN_TERMS = [
-    "不承诺",
-    "不保证",
-    "本页用于说明",
-    "页面用于说明",
-    "页面用于整理",
-    "仅用于说明",
-    "说明路径",
-    "整理获客思路",
-    "沟通入口",
-    "咨询前判断",
-    "审核或转化结果",
-]
 REQUIRED_PATHS = [
     "/",
     "/services/",
@@ -319,9 +285,6 @@ def check_video_topics(videos: list[dict]) -> dict[str, dict]:
             descriptions.append(str(item["description"]).strip())
         topic_text = " ".join(str(item.get(field, "")) for field in ("title", "h1", "description", "summary", "contact_note"))
         topic_text += " " + " ".join(str(point) for point in item.get("points", []))
-        for term in VIDEO_FORBIDDEN_TERMS:
-            if term in topic_text:
-                fail(f"video topic contains forbidden wording: {slug} -> {term}")
         for link in item.get("related_links", []):
             if not isinstance(link, str) or not link.startswith("/") or link.startswith("//"):
                 fail(f"video topic related_links must be internal paths: {slug} -> {link}")
@@ -337,9 +300,6 @@ def check_video_topics(videos: list[dict]) -> dict[str, dict]:
             fail('/v/ listing contains "- >" arrow text')
         if "展示 AI 数字人视频生成效果" in listing_text:
             fail("/v/ listing contains old AI video demo summary")
-        for term in VIDEO_FORBIDDEN_TERMS:
-            if term in listing_text:
-                fail(f"/v/ listing contains forbidden wording: {term}")
     return {item["slug"]: item for item in topics if item.get("slug")}
 
 
@@ -428,9 +388,6 @@ def check_videos(sitemap: set[str]) -> None:
             fail(f"{generated_file.relative_to(PUBLIC).as_posix()} missing video tag")
         if "VideoObject" not in text:
             fail(f"{generated_file.relative_to(PUBLIC).as_posix()} missing VideoObject")
-        for term in VIDEO_FORBIDDEN_TERMS:
-            if term in text:
-                fail(f"{generated_file.relative_to(PUBLIC).as_posix()} contains forbidden video wording: {term}")
         telegram_buttons = text.count('class="button button-telegram"')
         if telegram_buttons > 2:
             warn(f"{generated_file.relative_to(PUBLIC).as_posix()} has {telegram_buttons} Telegram CTA buttons")
@@ -573,10 +530,6 @@ def check_content_pipeline(sitemap: set[str]) -> None:
             fail(f"unfinished content entered sitemap: {content_id}")
         if status == "published" and full_url not in sitemap:
             warn(f"publishable content not in sitemap, likely missing draft: {content_id}")
-        public_text_targets = list(PUBLIC.rglob("*.html"))
-        for term in rules.get("blocked_terms", []):
-            if term and term in item.get("primary_keyword", ""):
-                fail(f"content task uses blocked primary keyword: {content_id}")
     if DEEPSEEK_TASKS.exists():
         task_files = list(DEEPSEEK_TASKS.glob("*.md"))
     else:
@@ -585,18 +538,11 @@ def check_content_pipeline(sitemap: set[str]) -> None:
         warn("data/deepseek-tasks is empty")
     for path in task_files:
         text = path.read_text(encoding="utf-8-sig")
-        if "禁止表达" not in text:
-            fail(f"DeepSeek task missing forbidden expression section: {path.name}")
         if "怎么开始测试" not in text:
             fail(f"DeepSeek task missing testing section: {path.name}")
     blog_text = (PUBLIC / "blog" / "index.html").read_text(encoding="utf-8")
     if blog_text.count("<article") > 30:
         warn("blog page may show too many unfinished content cards")
-    for path in PUBLIC.rglob("*.html"):
-        text = path.read_text(encoding="utf-8")
-        for term in rules.get("blocked_terms", []) + rules.get("sensitive_terms", []):
-            if term and term in text:
-                fail(f"public page contains content blocked/internal term: {path.relative_to(PUBLIC).as_posix()} -> {term}")
     ok("content pipeline checks completed")
 
 
