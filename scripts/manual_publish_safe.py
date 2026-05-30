@@ -35,14 +35,20 @@ BACKUP_FILES = [
 ]
 
 ALLOWED_ADD_PATHS = [
+    "scripts/manual_expand_tasks_safe.py",
+    "scripts/manual_generate_safe.py",
+    "scripts/manual_daily_safe.py",
+    "scripts/manual_publish_safe.py",
     "site_src/data/content",
     "site_src/content_drafts",
     "site/public",
     "data/content-assets",
+    "data/deepseek-batches/batch-001/batch-001-index.json",
+    "data/deepseek-batches/batch-001/batch-001-tasks.md",
+    "data/deepseek-batches/batch-001/tasks",
     "docs",
 ]
 FORBIDDEN_ADD_PATHS = [
-    "data/deepseek-batches",
     "data/deepseek-inbox",
     "data/deepseek-reviewed",
 ]

@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import argparse
-import shutil
 import subprocess
 from pathlib import Path
 
@@ -11,25 +10,6 @@ import manual_publish_safe as publish_safe
 
 ROOT = Path(__file__).resolve().parents[1]
 PYTHON_EXE = "E:/python/python.exe"
-
-CONTENT_STATUS_PATH = ROOT / "site_src" / "data" / "content" / "content_status.json"
-CONTENT_QUEUE_PATH = ROOT / "site_src" / "data" / "content" / "content_queue.json"
-PUBLISH_QUEUE_PATH = ROOT / "site_src" / "data" / "content" / "publish_queue.json"
-BATCH_INDEX_PATH = ROOT / "data" / "deepseek-batches" / "batch-001" / "batch-001-index.json"
-BATCH_TASKS_PATH = ROOT / "data" / "deepseek-batches" / "batch-001" / "batch-001-tasks.md"
-BLOG_INDEX_PATH = ROOT / "site" / "public" / "blog" / "index.html"
-SITEMAP_PATH = ROOT / "site" / "public" / "sitemap.xml"
-BACKUP_BASE = ROOT / "data" / "content-assets" / "manual-daily-backups"
-
-BACKUP_FILES = [
-    CONTENT_STATUS_PATH,
-    CONTENT_QUEUE_PATH,
-    PUBLISH_QUEUE_PATH,
-    BATCH_INDEX_PATH,
-    BATCH_TASKS_PATH,
-    BLOG_INDEX_PATH,
-    SITEMAP_PATH,
-]
 
 
 class DailyError(Exception):
@@ -44,17 +24,15 @@ def parse_args() -> argparse.Namespace:
         choices=["conservative", "normal", "growth", "aggressive"],
         default="normal",
     )
+    parser.add_argument("--prepare-count", type=int, default=21)
+    parser.add_argument("--expand-count", type=int, default=30)
     parser.add_argument("--dry-run", action="store_true")
     parser.add_argument("--no-push", action="store_true")
     parser.add_argument("--verbose", action="store_true")
-    parser.add_argument("--allow-rebuild-batch", action="store_true")
     parser.add_argument("--generate-only", action="store_true")
     parser.add_argument("--publish-only", action="store_true")
+    parser.add_argument("--allow-rebuild-batch", action="store_true", help="Kept for compatibility; safe expansion is now automatic.")
     return parser.parse_args()
-
-
-def rel(path: Path) -> str:
-    return path.relative_to(ROOT).as_posix()
 
 
 def ok(message: str) -> None:
@@ -95,33 +73,11 @@ def require_good_state() -> tuple[int, int, int]:
     return published, blog_cards, sitemap_blog_urls
 
 
-def create_backup() -> Path:
-    stamp = generate_safe.datetime.now().strftime("%Y%m%d-%H%M%S")
-    backup_dir = BACKUP_BASE / stamp
-    for source in BACKUP_FILES:
-        target = backup_dir / rel(source)
-        target.parent.mkdir(parents=True, exist_ok=True)
-        if source.exists():
-            shutil.copy2(source, target)
-    return backup_dir
-
-
-def restore_backup(backup_dir: Path) -> None:
-    for source in BACKUP_FILES:
-        backup_file = backup_dir / rel(source)
-        if not backup_file.exists():
-            continue
-        source.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copy2(backup_file, source)
-
-
-def final_check(before: tuple[int, int, int], backup_dir: Path | None = None) -> tuple[int, int, int]:
+def final_check(before: tuple[int, int, int]) -> tuple[int, int, int]:
     after = counts()
     labels = ("published", "/blog/ 卡片", "sitemap blog URL")
     for label, before_value, after_value in zip(labels, before, after):
         if after_value < before_value:
-            if backup_dir:
-                restore_backup(backup_dir)
             raise DailyError(f"{label} 数量下降：{before_value} -> {after_value}")
     ok(f"published 未下降：{before[0]} -> {after[0]}")
     ok(f"/blog/ 卡片未下降：{before[1]} -> {after[1]}")
@@ -143,31 +99,36 @@ def run_child(command: list[str], verbose: bool, check: bool = True) -> subproce
     return completed
 
 
-def publish_dry_run(limit: int, mode: str, verbose: bool) -> int:
-    command = [PYTHON_EXE, "scripts/manual_publish_safe.py", "--dry-run", "--limit", str(limit), "--mode", mode]
-    run_child(command, verbose=verbose)
-    selected, _valid_count = publish_safe.find_publish_candidates(limit, mode, False)
-    return len(selected)
+def publish_candidate_count(limit: int, mode: str) -> int:
+    _selected, valid_count = publish_safe.find_publish_candidates(limit, mode, False)
+    return valid_count
 
 
-def generate_dry_run(limit: int, verbose: bool, rebuild_batch: bool = False) -> int:
-    command = [PYTHON_EXE, "scripts/manual_generate_safe.py", "--dry-run", "--limit", str(limit)]
-    if rebuild_batch:
-        command.append("--rebuild-batch")
-    run_child(command, verbose=verbose)
-    if rebuild_batch:
-        warn("manual_generate_safe.py 的 dry-run + --rebuild-batch 暂不支持安全模拟；本次没有写文件。")
+def generate_available_count(limit: int) -> int:
     _tasks, available = generate_safe.find_tasks(limit, False)
     return available
 
 
-def run_generate(limit: int, verbose: bool, rebuild_batch: bool = False) -> None:
+def run_publish_dry_run(limit: int, mode: str, verbose: bool) -> int:
+    run_child([PYTHON_EXE, "scripts/manual_publish_safe.py", "--dry-run", "--limit", str(limit), "--mode", mode], verbose)
+    return publish_candidate_count(limit, mode)
+
+
+def run_generate_dry_run(limit: int, expand_count: int, rebuild_batch: bool, verbose: bool) -> int:
+    command = [PYTHON_EXE, "scripts/manual_generate_safe.py", "--dry-run", "--limit", str(limit)]
+    if rebuild_batch:
+        command.extend(["--rebuild-batch", "--expand-count", str(expand_count)])
+    run_child(command, verbose)
+    return generate_available_count(limit)
+
+
+def run_generate(limit: int, expand_count: int, rebuild_batch: bool, verbose: bool) -> None:
     command = [PYTHON_EXE, "scripts/manual_generate_safe.py", "--limit", str(limit)]
     if rebuild_batch:
-        command.append("--rebuild-batch")
+        command.extend(["--rebuild-batch", "--expand-count", str(expand_count)])
     if verbose:
         command.append("--verbose")
-    run_child(command, verbose=verbose)
+    run_child(command, verbose)
 
 
 def run_publish(limit: int, mode: str, no_push: bool, verbose: bool) -> None:
@@ -176,21 +137,13 @@ def run_publish(limit: int, mode: str, no_push: bool, verbose: bool) -> None:
         command.append("--no-push")
     if verbose:
         command.append("--verbose")
-    run_child(command, verbose=verbose)
-
-
-def print_next_step() -> None:
-    print("下一步：")
-    print("E:/python/python.exe scripts/manual_daily_safe.py --limit 7 --allow-rebuild-batch --dry-run")
-    print()
-    print("确认后正式运行：")
-    print("E:/python/python.exe scripts/manual_daily_safe.py --limit 7 --allow-rebuild-batch")
+    run_child(command, verbose)
 
 
 def main() -> int:
     args = parse_args()
-    if args.limit < 0:
-        fail("limit 不能小于 0")
+    if args.limit < 0 or args.prepare_count < 0 or args.expand_count < 0:
+        fail("limit / prepare-count / expand-count 不能小于 0")
         return 1
     if args.generate_only and args.publish_only:
         fail("--generate-only 和 --publish-only 不能同时使用")
@@ -209,18 +162,18 @@ def main() -> int:
         print()
 
         print("[2/7] 检查可发布候选")
-        publish_candidates = publish_dry_run(args.limit, args.mode, args.verbose)
+        publish_candidates = run_publish_dry_run(args.limit, args.mode, args.verbose)
         info(f"可发布候选：{publish_candidates} 篇")
         print()
 
         if args.publish_only:
             if args.dry_run:
-                info("dry-run：只检查发布，不执行正式发布。")
+                info("dry-run：只检查发布，不执行真实发布。")
                 return 0
             if publish_candidates <= 0:
                 warn("当前没有可发布候选。")
                 return 0
-            run_publish(args.limit, args.mode, args.no_push, args.verbose)
+            run_publish(min(args.limit, publish_candidates), args.mode, args.no_push, args.verbose)
             final_check(before)
             return 0
 
@@ -236,72 +189,44 @@ def main() -> int:
             final_check(before)
             return 0
 
-        gap = args.limit - publish_candidates
-
         print("[3/7] 检查可生成任务")
-        generate_available = generate_dry_run(gap, args.verbose)
+        generate_available = generate_available_count(args.prepare_count)
         info(f"可生成任务：{generate_available} 篇")
+        rebuild_batch = generate_available < args.prepare_count
+        if rebuild_batch:
+            info(f"任务池不足，准备安全追加任务：{args.expand_count} 篇")
         print()
 
-        if generate_available > 0:
-            if args.dry_run:
-                info("dry-run：正式运行会先生成缺口草稿，再重新检查发布候选。")
-                return 0
-            print("[4/7] 安全生成草稿")
-            run_generate(gap, args.verbose)
-            final_check(before)
-            print()
-        else:
-            print("[4/7] 扩展任务池")
-            if not args.allow_rebuild_batch:
-                warn("当前无可发布候选，且任务池不足。需要确认后用 --allow-rebuild-batch 扩展任务池。")
-                print()
-                print("[结果]")
-                print("没有发布。")
-                print("原因：无可发布候选，任务池不足。")
-                print_next_step()
-                return 0
-
-            generate_dry_run(gap, args.verbose, rebuild_batch=True)
-            if args.dry_run:
-                warn("dry-run 不执行真实任务池扩展。")
-                return 0
-
-            warn("当前暂不执行真实任务池扩展：manual_generate_safe.py 已阻止旧重建脚本写入，避免破坏 published。")
+        if args.dry_run:
+            print("[4/7] dry-run 生成预览")
+            run_generate_dry_run(args.prepare_count, args.expand_count, rebuild_batch, args.verbose)
             print()
             print("[结果]")
-            print("没有发布。")
-            print("原因：无可发布候选，任务池扩展暂未开放真实执行。")
+            info("dry-run 不写入、不生成、不发布、不提交。")
             return 0
 
-            backup_dir = create_backup()
-            try:
-                run_generate(gap, args.verbose, rebuild_batch=True)
-                final_check(before, backup_dir)
-            except Exception:
-                restore_backup(backup_dir)
-                raise
-            print()
+        print("[4/7] 安全生成草稿")
+        run_generate(args.prepare_count, args.expand_count, rebuild_batch, args.verbose)
+        final_check(before)
+        print()
 
         if args.generate_only:
             info("--generate-only 已完成，不执行发布。")
             return 0
 
         print("[5/7] 生成后检查可发布候选")
-        publish_candidates = publish_dry_run(args.limit, args.mode, args.verbose)
+        publish_candidates = run_publish_dry_run(args.limit, args.mode, args.verbose)
         info(f"可发布候选：{publish_candidates} 篇")
         print()
 
         if publish_candidates <= 0:
-            warn("生成后仍无可发布候选，已停止。")
+            warn("生成后仍无可发布候选，安全退出。")
+            final_check(before)
             return 0
 
-        if args.dry_run:
-            info("dry-run：正式运行会执行安全发布。")
-            return 0
-
+        publish_limit = min(args.limit, publish_candidates)
         print("[6/7] 安全发布")
-        run_publish(args.limit, args.mode, args.no_push, args.verbose)
+        run_publish(publish_limit, args.mode, args.no_push, args.verbose)
         print()
 
         print("[7/7] 最终保护检查")

@@ -20,6 +20,8 @@ BATCH_ID = "batch-001"
 BATCH_DIR = ROOT / "data" / "deepseek-batches" / BATCH_ID
 BATCH_INDEX_PATH = BATCH_DIR / f"{BATCH_ID}-index.json"
 BATCH_TASKS_PATH = BATCH_DIR / f"{BATCH_ID}-tasks.md"
+EXPAND_SCRIPT = ROOT / "scripts" / "manual_expand_tasks_safe.py"
+GENERATOR_PATH = ROOT / "scripts" / "generate_deepseek_drafts_api.py"
 INBOX_DIR = ROOT / "data" / "deepseek-inbox" / BATCH_ID
 BLOG_INDEX_PATH = ROOT / "site" / "public" / "blog" / "index.html"
 SITEMAP_PATH = ROOT / "site" / "public" / "sitemap.xml"
@@ -39,12 +41,18 @@ REBUILD_BACKUP_FILES = [
 ]
 
 ALLOWED_ADD_PATHS = [
+    "scripts/manual_expand_tasks_safe.py",
+    "scripts/manual_generate_safe.py",
+    "scripts/manual_daily_safe.py",
+    "scripts/manual_publish_safe.py",
     "site_src/content_drafts",
     "data/content-assets",
+    "data/deepseek-batches/batch-001/batch-001-index.json",
+    "data/deepseek-batches/batch-001/batch-001-tasks.md",
+    "data/deepseek-batches/batch-001/tasks",
     "docs",
 ]
 FORBIDDEN_ADD_PATHS = [
-    "data/deepseek-batches",
     "data/deepseek-inbox",
     "data/deepseek-reviewed",
 ]
@@ -53,6 +61,16 @@ BLOG_LOC_RE = re.compile(r"<loc>[^<]*/blog/[^<]*</loc>")
 GENERATE_OK_RE = re.compile(r"generated\s+(\d+)\s+drafts,\s+skipped\s+(\d+),\s+failed\s+(\d+)", re.I)
 IMPORT_RE = re.compile(r"imported\s+(\d+)\s+drafts,\s+skipped\s+(\d+),\s+failed\s+(\d+)", re.I)
 REVIEW_RE = re.compile(r"reviewed\s+(\d+)\s+drafts,\s+failures\s+(\d+),\s+warnings\s+(\d+)", re.I)
+UNSAFE_GENERATOR_TERMS = [
+    "黑灰产",
+    "暴力洗量",
+    "Cloak",
+    "规避审核",
+    "绕过平台政策",
+    "抗封",
+    "三不限",
+    "借尸还魂",
+]
 
 
 class GenerateError(Exception):
@@ -66,6 +84,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--overwrite", action="store_true", help="Allow replacing existing inbox output files.")
     parser.add_argument("--sleep-seconds", type=float, default=1.0, help="Delay passed to the generator between calls.")
     parser.add_argument("--rebuild-batch", action="store_true", help="Rebuild the task batch after protected backup.")
+    parser.add_argument("--expand-count", type=int, default=30, help="How many new tasks to append when --rebuild-batch is used.")
     parser.add_argument("--commit", action="store_true", help="Commit generated drafts and reports.")
     parser.add_argument("--no-push", action="store_true", help="Do not push after --commit.")
     parser.add_argument("--verbose", action="store_true", help="Show subprocess output.")
@@ -191,6 +210,17 @@ def check_protection() -> int:
     return published
 
 
+def check_generator_prompt_safe() -> None:
+    text = GENERATOR_PATH.read_text(encoding="utf-8-sig") if GENERATOR_PATH.exists() else ""
+    matched = [term for term in UNSAFE_GENERATOR_TERMS if term in text]
+    if matched:
+        raise GenerateError(
+            "真实生成已停止：generate_deepseek_drafts_api.py 当前提示词包含高风险表达："
+            + ", ".join(matched[:8])
+            + "。请先改成合规、长期官网内容提示词后再生成。"
+        )
+
+
 def ensure_published_not_down(before: int, backup_dir: Path | None = None) -> int:
     after = count_published()
     if before > 0 and after == 0:
@@ -267,6 +297,23 @@ def maybe_rebuild_batch(before_published: int, verbose: bool) -> None:
     except Exception:
         restore_backup(backup_dir, REBUILD_BACKUP_FILES)
         raise
+
+
+def run_expand_tasks(expand_count: int, dry_run_mode: bool, verbose: bool) -> None:
+    command = [
+        PYTHON_EXE,
+        "scripts/manual_expand_tasks_safe.py",
+        "--target-new",
+        str(expand_count),
+    ]
+    if dry_run_mode:
+        command.append("--dry-run")
+    if verbose:
+        command.append("--verbose")
+    completed = run(command, check=False, verbose=verbose)
+    if completed.returncode != 0:
+        output = completed.stderr.strip() or completed.stdout.strip() or "manual_expand_tasks_safe.py failed"
+        raise GenerateError(output)
 
 
 def find_tasks(limit: int, overwrite: bool) -> tuple[list[dict], int]:
@@ -418,7 +465,7 @@ def print_next_step() -> None:
     print("E:/python/python.exe scripts/manual_publish_safe.py --dry-run --limit 7")
 
 
-def dry_run(limit: int, overwrite: bool, rebuild_batch: bool) -> int:
+def dry_run(limit: int, overwrite: bool, rebuild_batch: bool, expand_count: int, verbose: bool) -> int:
     before_published = count_published()
     tasks, available = find_tasks(limit, overwrite)
     print(f"当前 published 数：{before_published}")
@@ -429,7 +476,8 @@ def dry_run(limit: int, overwrite: bool, rebuild_batch: bool) -> int:
     if available < limit:
         warn("可生成任务不足，请人工确认是否需要扩展任务池。")
     if rebuild_batch:
-        warn("dry-run + --rebuild-batch 暂不支持安全模拟；本次不会写文件。需要正式扩展时请显式运行非 dry-run 命令。")
+        info(f"dry-run + --rebuild-batch：预览追加 {expand_count} 个任务，不写文件。")
+        run_expand_tasks(expand_count, True, verbose)
     return 0
 
 
@@ -452,19 +500,23 @@ def main() -> int:
         check_git_identity()
         if args.dry_run:
             check_protection()
-            return dry_run(args.limit, args.overwrite, args.rebuild_batch)
+            return dry_run(args.limit, args.overwrite, args.rebuild_batch, args.expand_count, args.verbose)
 
         print("[1/6] 检查保护状态")
         before_published = check_protection()
         before_blog_cards = count_blog_cards()
         before_sitemap_blog_urls = count_sitemap_blog_urls()
-        if args.rebuild_batch:
-            warn("正式 --rebuild-batch 暂停执行：当前旧重建脚本会重建 content_status，需先实现安全模拟后再开放。")
+        check_generator_prompt_safe()
         print()
 
         print("[2/6] 查找可生成任务")
         tasks, available = find_tasks(args.limit, args.overwrite)
-        if available < args.limit:
+        if available < args.limit and args.rebuild_batch:
+            info(f"可生成任务不足，安全追加任务池：{args.expand_count} 篇")
+            run_expand_tasks(args.expand_count, False, args.verbose)
+            final_protection_check(before_published, before_blog_cards, before_sitemap_blog_urls)
+            tasks, available = find_tasks(args.limit, args.overwrite)
+        elif available < args.limit:
             warn("可生成任务不足，请人工确认是否需要扩展任务池。")
         if not tasks:
             ok("可生成任务：0 篇，本次无需生成。")
