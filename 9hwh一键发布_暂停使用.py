@@ -32,6 +32,7 @@ TRACKED_OUTPUTS = [
 ]
 
 RUNTIME_DIR_MARKERS = [
+    "data/deepseek-batches",
     "data/deepseek-inbox",
     "data/deepseek-reviewed",
 ]
@@ -116,6 +117,42 @@ def run_cmd(
     return completed
 
 
+def output_tail(text: str, max_lines: int = 60) -> list[str]:
+    lines = [line for line in str(text or "").splitlines()]
+    if len(lines) > max_lines:
+        return [f"[INFO] 只显示最后 {max_lines} 行：", *lines[-max_lines:]]
+    return lines
+
+
+def log_completed_output_tail(completed: subprocess.CompletedProcess, max_lines: int = 60) -> None:
+    stdout = completed.stdout or ""
+    stderr = completed.stderr or ""
+    if stdout.strip():
+        log("[INFO] stdout:")
+        for line in output_tail(stdout, max_lines):
+            log(line)
+    if stderr.strip():
+        log("[INFO] stderr:")
+        for line in output_tail(stderr, max_lines):
+            log(line)
+
+
+def ensure_git_identity() -> None:
+    name_result = run_cmd(["git", "config", "--local", "--get", "user.name"], "读取 Git user.name", check=False, show_success=False)
+    email_result = run_cmd(["git", "config", "--local", "--get", "user.email"], "读取 Git user.email", check=False, show_success=False)
+
+    name = (name_result.stdout or "").strip()
+    email = (email_result.stdout or "").strip()
+    if not name:
+        name = "9hwh-local-publisher"
+        run_cmd(["git", "config", "user.name", name], "配置 Git user.name", show_success=False)
+    if not email:
+        email = "9hwh-local-publisher@users.noreply.github.com"
+        run_cmd(["git", "config", "user.email", email], "配置 Git user.email", show_success=False)
+
+    log(f"[OK] Git 提交身份已配置：{name} <{email}>")
+
+
 def load_json(path: Path, default):
     if not path.exists():
         return default
@@ -153,6 +190,10 @@ def is_recoverable_static_site_failure(stdout: str) -> bool:
 
 
 def is_recoverable_daily_publish_failure(report: dict) -> bool:
+    published_count = int(report.get("published_count") or 0)
+    if published_count <= 0:
+        return False
+
     build_check = check_record(report, "scripts/build_site.py")
     static_check = check_record(report, "scripts/check_static_site.py")
     if int(build_check.get("returncode", 999)) != 0:
@@ -167,18 +208,17 @@ def is_recoverable_daily_publish_failure(report: dict) -> bool:
     if "post publish check failed" not in (error_text + "\n" + message_text).lower():
         return False
 
-    if int(report.get("published_count") or 0) > 0:
-        return True
-
-    # Some older failed reports were written after content state had already moved,
-    # but counters stayed at zero. Treat the post-publish check evidence as enough
-    # to enter recovery so reruns do not publish the next batch.
     return True
 
 
 def detect_pending_recoverable_publish() -> dict | None:
     report = load_json(ASSETS / "daily_publish_report.json", {})
-    if report.get("status") == "failure" and is_recoverable_daily_publish_failure(report):
+    published_count = int(report.get("published_count") or 0)
+    if (
+        report.get("status") == "failure"
+        and published_count > 0
+        and is_recoverable_daily_publish_failure(report)
+    ):
         return report
     return None
 
@@ -969,6 +1009,8 @@ def build_and_check() -> None:
 
 def git_commit_and_push(push: bool) -> None:
     title("[10/12] 提交站点变更")
+    ensure_git_identity()
+
     for item in TRACKED_OUTPUTS:
         run_cmd(["git", "add", item], f"加入提交：{item}", show_success=False)
 
@@ -984,8 +1026,11 @@ def git_commit_and_push(push: bool) -> None:
     if commit_result.returncode != 0:
         output = (commit_result.stdout + "\n" + commit_result.stderr).strip().lower()
         if "nothing to commit" in output or "no changes added" in output:
+            log_completed_output_tail(commit_result)
             log("[INFO] Git 没有新提交。")
             return
+        log("[FAIL] git commit 失败")
+        log_completed_output_tail(commit_result)
         raise StepError("git commit 失败")
 
     if push:
