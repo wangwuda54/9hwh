@@ -459,7 +459,7 @@ def main() -> int:
         before_blog_cards = count_blog_cards()
         before_sitemap_blog_urls = count_sitemap_blog_urls()
         if args.rebuild_batch:
-            maybe_rebuild_batch(before_published, args.verbose)
+            warn("正式 --rebuild-batch 暂停执行：当前旧重建脚本会重建 content_status，需先实现安全模拟后再开放。")
         print()
 
         print("[2/6] 查找可生成任务")

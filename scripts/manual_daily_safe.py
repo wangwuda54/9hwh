@@ -267,6 +267,13 @@ def main() -> int:
                 warn("dry-run 不执行真实任务池扩展。")
                 return 0
 
+            warn("当前暂不执行真实任务池扩展：manual_generate_safe.py 已阻止旧重建脚本写入，避免破坏 published。")
+            print()
+            print("[结果]")
+            print("没有发布。")
+            print("原因：无可发布候选，任务池扩展暂未开放真实执行。")
+            return 0
+
             backup_dir = create_backup()
             try:
                 run_generate(gap, args.verbose, rebuild_batch=True)
