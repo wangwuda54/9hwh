@@ -1,8 +1,8 @@
 # Content Draft Review Report
 
-- drafts: 82
-- pass: 70
-- warning: 12
+- drafts: 92
+- pass: 76
+- warning: 16
 - fail: 0
 
 | File | content_id | Result | Issues | Warnings |
@@ -89,3 +89,13 @@
 | c094-tiktok-spark-ads-testing.md | c094-tiktok-spark-ads-testing | warning | - | missing topic internal link |
 | c095-ad-budget-testing-overseas.md | c095-ad-budget-testing-overseas | warning | - | missing topic internal link |
 | c096-ad-rejection-diagnosis.md | c096-ad-rejection-diagnosis | warning | - | missing topic internal link |
+| c097-ad-account-stability-checklist.md | c097-ad-account-stability-checklist | pass | - | - |
+| c098-creative-localization-overseas.md | c098-creative-localization-overseas | pass | - | - |
+| c099-cross-border-lead-quality.md | c099-cross-border-lead-quality | pass | - | - |
+| c100-consultation-conversion-path.md | c100-consultation-conversion-path | pass | - | - |
+| c101-overseas-landing-page-speed.md | c101-overseas-landing-page-speed | pass | - | - |
+| c102-google-ads-keyword-match.md | c102-google-ads-keyword-match | warning | - | missing contact internal link |
+| c103-meta-audience-testing-overseas.md | c103-meta-audience-testing-overseas | warning | - | missing contact internal link |
+| c104-tiktok-creative-fatigue.md | c104-tiktok-creative-fatigue | warning | - | missing contact internal link |
+| c105-form-leads-follow-up.md | c105-form-leads-follow-up | pass | - | - |
+| c106-overseas-ad-consultation-prep.md | c106-overseas-ad-consultation-prep | warning | - | missing platform or service internal link |

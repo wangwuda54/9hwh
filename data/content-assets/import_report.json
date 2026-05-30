@@ -1,127 +1,6 @@
 {
-  "generated_at": "2026-05-30T19:30:55",
-  "imported": [
-    {
-      "file": "c076-google-ads-overseas-lead-generation.md",
-      "article": 1,
-      "content_id": "c076-google-ads-overseas-lead-generation",
-      "target": "site_src/content_drafts/c076-google-ads-overseas-lead-generation.md"
-    },
-    {
-      "file": "c077-meta-lead-forms-overseas.md",
-      "article": 1,
-      "content_id": "c077-meta-lead-forms-overseas",
-      "target": "site_src/content_drafts/c077-meta-lead-forms-overseas.md"
-    },
-    {
-      "file": "c078-tiktok-ads-overseas-testing.md",
-      "article": 1,
-      "content_id": "c078-tiktok-ads-overseas-testing",
-      "target": "site_src/content_drafts/c078-tiktok-ads-overseas-testing.md"
-    },
-    {
-      "file": "c079-overseas-loan-leads-preparation.md",
-      "article": 1,
-      "content_id": "c079-overseas-loan-leads-preparation",
-      "target": "site_src/content_drafts/c079-overseas-loan-leads-preparation.md"
-    },
-    {
-      "file": "c080-insurance-leads-overseas-ad-checklist.md",
-      "article": 1,
-      "content_id": "c080-insurance-leads-overseas-ad-checklist",
-      "target": "site_src/content_drafts/c080-insurance-leads-overseas-ad-checklist.md"
-    },
-    {
-      "file": "c081-immigration-leads-landing-page-review.md",
-      "article": 1,
-      "content_id": "c081-immigration-leads-landing-page-review",
-      "target": "site_src/content_drafts/c081-immigration-leads-landing-page-review.md"
-    },
-    {
-      "file": "c082-dating-app-overseas-promotion.md",
-      "article": 1,
-      "content_id": "c082-dating-app-overseas-promotion",
-      "target": "site_src/content_drafts/c082-dating-app-overseas-promotion.md"
-    },
-    {
-      "file": "c083-mobile-game-user-acquisition-overseas.md",
-      "article": 1,
-      "content_id": "c083-mobile-game-user-acquisition-overseas",
-      "target": "site_src/content_drafts/c083-mobile-game-user-acquisition-overseas.md"
-    },
-    {
-      "file": "c084-finance-ads-landing-page.md",
-      "article": 1,
-      "content_id": "c084-finance-ads-landing-page",
-      "target": "site_src/content_drafts/c084-finance-ads-landing-page.md"
-    },
-    {
-      "file": "c085-crypto-ads-compliance-boundary.md",
-      "article": 1,
-      "content_id": "c085-crypto-ads-compliance-boundary",
-      "target": "site_src/content_drafts/c085-crypto-ads-compliance-boundary.md"
-    },
-    {
-      "file": "c086-high-risk-project-creative-review.md",
-      "article": 1,
-      "content_id": "c086-high-risk-project-creative-review",
-      "target": "site_src/content_drafts/c086-high-risk-project-creative-review.md"
-    },
-    {
-      "file": "c087-ad-account-setup-overseas.md",
-      "article": 1,
-      "content_id": "c087-ad-account-setup-overseas",
-      "target": "site_src/content_drafts/c087-ad-account-setup-overseas.md"
-    },
-    {
-      "file": "c088-ad-creative-review-checklist.md",
-      "article": 1,
-      "content_id": "c088-ad-creative-review-checklist",
-      "target": "site_src/content_drafts/c088-ad-creative-review-checklist.md"
-    },
-    {
-      "file": "c089-landing-page-review-before-ads.md",
-      "article": 1,
-      "content_id": "c089-landing-page-review-before-ads",
-      "target": "site_src/content_drafts/c089-landing-page-review-before-ads.md"
-    },
-    {
-      "file": "c091-multilingual-landing-pages-overseas.md",
-      "article": 1,
-      "content_id": "c091-multilingual-landing-pages-overseas",
-      "target": "site_src/content_drafts/c091-multilingual-landing-pages-overseas.md"
-    },
-    {
-      "file": "c092-google-search-ads-paths.md",
-      "article": 1,
-      "content_id": "c092-google-search-ads-paths",
-      "target": "site_src/content_drafts/c092-google-search-ads-paths.md"
-    },
-    {
-      "file": "c093-facebook-lead-ads-fields.md",
-      "article": 1,
-      "content_id": "c093-facebook-lead-ads-fields",
-      "target": "site_src/content_drafts/c093-facebook-lead-ads-fields.md"
-    },
-    {
-      "file": "c094-tiktok-spark-ads-testing.md",
-      "article": 1,
-      "content_id": "c094-tiktok-spark-ads-testing",
-      "target": "site_src/content_drafts/c094-tiktok-spark-ads-testing.md"
-    },
-    {
-      "file": "c095-ad-budget-testing-overseas.md",
-      "article": 1,
-      "content_id": "c095-ad-budget-testing-overseas",
-      "target": "site_src/content_drafts/c095-ad-budget-testing-overseas.md"
-    },
-    {
-      "file": "c096-ad-rejection-diagnosis.md",
-      "article": 1,
-      "content_id": "c096-ad-rejection-diagnosis",
-      "target": "site_src/content_drafts/c096-ad-rejection-diagnosis.md"
-    }
-  ],
+  "generated_at": "2026-05-30T21:37:24",
+  "imported": [],
   "skipped": [
     {
       "file": "c001-ad-campaign-support-how-to-17e66750.md",
@@ -182,6 +61,186 @@
       "article": 1,
       "content_id": "c055-loan-leads-fb-loan-leads-60d3dc0c",
       "reason": "published content is protected"
+    },
+    {
+      "file": "c076-google-ads-overseas-lead-generation.md",
+      "article": 1,
+      "content_id": "c076-google-ads-overseas-lead-generation",
+      "reason": "draft file already exists"
+    },
+    {
+      "file": "c077-meta-lead-forms-overseas.md",
+      "article": 1,
+      "content_id": "c077-meta-lead-forms-overseas",
+      "reason": "draft file already exists"
+    },
+    {
+      "file": "c078-tiktok-ads-overseas-testing.md",
+      "article": 1,
+      "content_id": "c078-tiktok-ads-overseas-testing",
+      "reason": "draft file already exists"
+    },
+    {
+      "file": "c079-overseas-loan-leads-preparation.md",
+      "article": 1,
+      "content_id": "c079-overseas-loan-leads-preparation",
+      "reason": "published content is protected"
+    },
+    {
+      "file": "c080-insurance-leads-overseas-ad-checklist.md",
+      "article": 1,
+      "content_id": "c080-insurance-leads-overseas-ad-checklist",
+      "reason": "published content is protected"
+    },
+    {
+      "file": "c081-immigration-leads-landing-page-review.md",
+      "article": 1,
+      "content_id": "c081-immigration-leads-landing-page-review",
+      "reason": "published content is protected"
+    },
+    {
+      "file": "c082-dating-app-overseas-promotion.md",
+      "article": 1,
+      "content_id": "c082-dating-app-overseas-promotion",
+      "reason": "draft file already exists"
+    },
+    {
+      "file": "c083-mobile-game-user-acquisition-overseas.md",
+      "article": 1,
+      "content_id": "c083-mobile-game-user-acquisition-overseas",
+      "reason": "draft file already exists"
+    },
+    {
+      "file": "c084-finance-ads-landing-page.md",
+      "article": 1,
+      "content_id": "c084-finance-ads-landing-page",
+      "reason": "published content is protected"
+    },
+    {
+      "file": "c085-crypto-ads-compliance-boundary.md",
+      "article": 1,
+      "content_id": "c085-crypto-ads-compliance-boundary",
+      "reason": "published content is protected"
+    },
+    {
+      "file": "c086-high-risk-project-creative-review.md",
+      "article": 1,
+      "content_id": "c086-high-risk-project-creative-review",
+      "reason": "published content is protected"
+    },
+    {
+      "file": "c087-ad-account-setup-overseas.md",
+      "article": 1,
+      "content_id": "c087-ad-account-setup-overseas",
+      "reason": "draft file already exists"
+    },
+    {
+      "file": "c088-ad-creative-review-checklist.md",
+      "article": 1,
+      "content_id": "c088-ad-creative-review-checklist",
+      "reason": "draft file already exists"
+    },
+    {
+      "file": "c089-landing-page-review-before-ads.md",
+      "article": 1,
+      "content_id": "c089-landing-page-review-before-ads",
+      "reason": "draft file already exists"
+    },
+    {
+      "file": "c091-multilingual-landing-pages-overseas.md",
+      "article": 1,
+      "content_id": "c091-multilingual-landing-pages-overseas",
+      "reason": "published content is protected"
+    },
+    {
+      "file": "c092-google-search-ads-paths.md",
+      "article": 1,
+      "content_id": "c092-google-search-ads-paths",
+      "reason": "draft file already exists"
+    },
+    {
+      "file": "c093-facebook-lead-ads-fields.md",
+      "article": 1,
+      "content_id": "c093-facebook-lead-ads-fields",
+      "reason": "draft file already exists"
+    },
+    {
+      "file": "c094-tiktok-spark-ads-testing.md",
+      "article": 1,
+      "content_id": "c094-tiktok-spark-ads-testing",
+      "reason": "draft file already exists"
+    },
+    {
+      "file": "c095-ad-budget-testing-overseas.md",
+      "article": 1,
+      "content_id": "c095-ad-budget-testing-overseas",
+      "reason": "draft file already exists"
+    },
+    {
+      "file": "c096-ad-rejection-diagnosis.md",
+      "article": 1,
+      "content_id": "c096-ad-rejection-diagnosis",
+      "reason": "draft file already exists"
+    },
+    {
+      "file": "c097-ad-account-stability-checklist.md",
+      "article": 1,
+      "content_id": "c097-ad-account-stability-checklist",
+      "reason": "published content is protected"
+    },
+    {
+      "file": "c098-creative-localization-overseas.md",
+      "article": 1,
+      "content_id": "c098-creative-localization-overseas",
+      "reason": "published content is protected"
+    },
+    {
+      "file": "c099-cross-border-lead-quality.md",
+      "article": 1,
+      "content_id": "c099-cross-border-lead-quality",
+      "reason": "draft file already exists"
+    },
+    {
+      "file": "c100-consultation-conversion-path.md",
+      "article": 1,
+      "content_id": "c100-consultation-conversion-path",
+      "reason": "draft file already exists"
+    },
+    {
+      "file": "c101-overseas-landing-page-speed.md",
+      "article": 1,
+      "content_id": "c101-overseas-landing-page-speed",
+      "reason": "draft file already exists"
+    },
+    {
+      "file": "c102-google-ads-keyword-match.md",
+      "article": 1,
+      "content_id": "c102-google-ads-keyword-match",
+      "reason": "draft file already exists"
+    },
+    {
+      "file": "c103-meta-audience-testing-overseas.md",
+      "article": 1,
+      "content_id": "c103-meta-audience-testing-overseas",
+      "reason": "draft file already exists"
+    },
+    {
+      "file": "c104-tiktok-creative-fatigue.md",
+      "article": 1,
+      "content_id": "c104-tiktok-creative-fatigue",
+      "reason": "draft file already exists"
+    },
+    {
+      "file": "c105-form-leads-follow-up.md",
+      "article": 1,
+      "content_id": "c105-form-leads-follow-up",
+      "reason": "published content is protected"
+    },
+    {
+      "file": "c106-overseas-ad-consultation-prep.md",
+      "article": 1,
+      "content_id": "c106-overseas-ad-consultation-prep",
+      "reason": "draft file already exists"
     }
   ],
   "failed": []

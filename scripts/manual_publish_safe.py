@@ -121,6 +121,24 @@ def load_json(path: Path, default):
     return json.loads(path.read_text(encoding="utf-8-sig"))
 
 
+def load_daily_report_safe() -> tuple[dict, str]:
+    if not DAILY_REPORT_PATH.exists():
+        return {}, ""
+    raw = DAILY_REPORT_PATH.read_text(encoding="utf-8-sig", errors="replace")
+    try:
+        report = json.loads(raw)
+    except json.JSONDecodeError:
+        fail("daily_publish_report.json is invalid JSON")
+        lines = raw.splitlines()[-80:]
+        if lines:
+            print("[daily_publish_report.json last 80 lines]")
+            print("\n".join(lines))
+        return {}, raw
+    if not isinstance(report, dict):
+        return {}, raw
+    return report, raw
+
+
 def count_published() -> int:
     status = load_json(CONTENT_STATUS_PATH, {})
     return int(status.get("published", 0) or 0)
@@ -392,7 +410,29 @@ def restore_backup(backup_dir: Path) -> None:
 
 
 def read_daily_report() -> dict:
-    return load_json(DAILY_REPORT_PATH, {})
+    report, _raw = load_daily_report_safe()
+    return report
+
+
+def print_daily_report_summary(report: dict, raw: str) -> None:
+    if report:
+        print(f"daily_publish status: {report.get('status', '')}")
+        print(f"published_count: {report.get('published_count', 0)}")
+        print(f"total_published: {report.get('total_published', 0)}")
+        errors = report.get("errors") or []
+        if errors:
+            print("errors:")
+            for error in errors:
+                print(f"- {error}")
+        failed_checks = [item for item in report.get("post_publish_checks", []) if item.get("returncode")]
+        if failed_checks:
+            print("failed post_publish_checks:")
+            for check in failed_checks:
+                print(f"- {check.get('command')} returncode={check.get('returncode')}")
+        return
+    if raw:
+        fail("daily_publish_report.json is invalid JSON")
+        print("\n".join(raw.splitlines()[-80:]))
 
 
 def is_allowed_daily_failure(report: dict) -> bool:
@@ -418,9 +458,10 @@ def is_allowed_daily_failure(report: dict) -> bool:
 def run_daily_publish(limit: int, mode: str, verbose: bool) -> int:
     command = [PYTHON_EXE, "scripts/daily_publish.py", "--mode", mode, "--limit", str(limit)]
     completed = run(command, check=False, verbose=verbose)
-    report = read_daily_report()
+    report, raw_report = load_daily_report_safe()
     if completed.returncode == 0:
         return int(report.get("published_count", 0) or 0)
+    print_daily_report_summary(report, raw_report)
     if is_allowed_daily_failure(report):
         warn("daily_publish 的静态检查只有草稿复审旧问题，继续执行最终保护检查。")
         return int(report.get("published_count", 0) or 0)

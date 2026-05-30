@@ -43,11 +43,48 @@ POST_PUBLISH_CHECKS = [
     ["python", "scripts/check_static_site.py"],
     ["python", "scripts/check_sitemap_readiness.py"],
 ]
+MOJIBAKE_MARKERS = ("閿", "閵", "閻", "缁", "楠", "濞", "鐎", "閹", "鈧", "锟")
+
+
+def is_mojibake_text(text: str) -> bool:
+    if not isinstance(text, str):
+        return False
+    return any(marker in text for marker in MOJIBAKE_MARKERS)
+
+
+def clean_report_value(value):
+    if isinstance(value, str):
+        return "[mojibake text blocked]" if is_mojibake_text(value) else value
+    if isinstance(value, list):
+        return [clean_report_value(item) for item in value]
+    if isinstance(value, dict):
+        return {str(key): clean_report_value(item) for key, item in value.items()}
+    return value
 
 
 def write_json(path: Path, data) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n")
+
+
+def write_report_json(path: Path, report: dict) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    safe_report = clean_report_value(report)
+    total_published = int(report.get("total_published", 0) or 0)
+    try:
+        text = json.dumps(safe_report, ensure_ascii=False, indent=2) + "\n"
+        path.write_text(text, encoding="utf-8", newline="\n")
+        json.loads(path.read_text(encoding="utf-8"))
+    except Exception:
+        failure = {
+            "status": "failure",
+            "message": "daily_publish_report serialization failed",
+            "published_count": 0,
+            "total_published": total_published,
+            "errors": ["daily_publish_report serialization failed"],
+            "post_publish_checks": [],
+        }
+        path.write_text(json.dumps(failure, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n")
 
 
 def iso_now() -> str:
@@ -160,8 +197,8 @@ def run_post_publish_checks() -> list[dict]:
             {
                 "command": " ".join(command),
                 "returncode": completed.returncode,
-                "stdout": completed.stdout.strip(),
-                "stderr": completed.stderr.strip(),
+                "stdout": clean_report_value(completed.stdout.strip()),
+                "stderr": clean_report_value(completed.stderr.strip()),
             }
         )
         if completed.returncode != 0:
@@ -181,7 +218,8 @@ def report_paths(report: dict) -> tuple[Path, Path]:
 
 def write_report(report: dict) -> None:
     report_json_path, report_md_path = report_paths(report)
-    write_json(report_json_path, report)
+    report = clean_report_value(report)
+    write_report_json(report_json_path, report)
     report_md_path.parent.mkdir(parents=True, exist_ok=True)
     title = "# Daily Publish Dry-Run Report" if report.get("dry_run") else "# Daily Publish Report"
     rows = [
@@ -261,19 +299,24 @@ def main() -> int:
     selected, skipped = select_candidates(validated_candidates, limit, "aggressive" if args.mode == "growth" else args.mode)
     selected_ids = {item["content_id"] for item in selected}
 
-    selected_items = [
-        {
-            "content_id": item["content_id"],
-            "title": item["title"],
-            "target_url": item["target_url"],
-            "full_url": full_url(site_url, item["target_url"]),
-            "planned_publish_date": publish_date,
-            "risk_level": item["risk_level"],
-            "content_type": item["content_type"],
-            "internal_link_count": item["internal_link_count"],
-        }
-        for item in selected
-    ]
+    selected_items = []
+    for item in selected:
+        title = str(item.get("title", ""))
+        if is_mojibake_text(title):
+            errors.append(f"mojibake title detected: {item['content_id']}")
+            title = "[mojibake title blocked]"
+        selected_items.append(
+            {
+                "content_id": item["content_id"],
+                "title": title,
+                "target_url": item["target_url"],
+                "full_url": full_url(site_url, item["target_url"]),
+                "planned_publish_date": publish_date,
+                "risk_level": item["risk_level"],
+                "content_type": item["content_type"],
+                "internal_link_count": item["internal_link_count"],
+            }
+        )
 
     report = {
         "status": "success" if selected_items else "no_changes",

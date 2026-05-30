@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-30T19:30:55",
+  "generated_at": "2026-05-30T20:08:35",
   "batch_id": "batch-001",
   "dry_run": false,
   "config_source": "E:\\py9\\config.py",
@@ -12,20 +12,20 @@
   ],
   "selected": [
     {
-      "content_id": "c096-ad-rejection-diagnosis",
-      "target_url": "/blog/ad-rejection-diagnosis/",
-      "title": "广告被拒怎么诊断：素材、落地页、账户和地区限制排查"
+      "content_id": "c106-overseas-ad-consultation-prep",
+      "target_url": "/blog/overseas-ad-consultation-prep/",
+      "title": "海外广告咨询前要准备什么：地区、产品、页面、素材和预算"
     }
   ],
   "generated": [
     {
-      "content_id": "c096-ad-rejection-diagnosis",
-      "output_file": "data/deepseek-inbox/batch-001/c096-ad-rejection-diagnosis.md"
+      "content_id": "c106-overseas-ad-consultation-prep",
+      "output_file": "data/deepseek-inbox/batch-001/c106-overseas-ad-consultation-prep.md"
     }
   ],
   "skipped": [],
   "failed": [],
-  "available_output_count": 30,
+  "available_output_count": 40,
   "available_outputs": [
     "data/deepseek-inbox/batch-001/c001-ad-campaign-support-how-to-17e66750.md",
     "data/deepseek-inbox/batch-001/c004-crypto-promotion-exchange-acquisition-how-to-efd74e87.md",
@@ -56,7 +56,17 @@
     "data/deepseek-inbox/batch-001/c093-facebook-lead-ads-fields.md",
     "data/deepseek-inbox/batch-001/c094-tiktok-spark-ads-testing.md",
     "data/deepseek-inbox/batch-001/c095-ad-budget-testing-overseas.md",
-    "data/deepseek-inbox/batch-001/c096-ad-rejection-diagnosis.md"
+    "data/deepseek-inbox/batch-001/c096-ad-rejection-diagnosis.md",
+    "data/deepseek-inbox/batch-001/c097-ad-account-stability-checklist.md",
+    "data/deepseek-inbox/batch-001/c098-creative-localization-overseas.md",
+    "data/deepseek-inbox/batch-001/c099-cross-border-lead-quality.md",
+    "data/deepseek-inbox/batch-001/c100-consultation-conversion-path.md",
+    "data/deepseek-inbox/batch-001/c101-overseas-landing-page-speed.md",
+    "data/deepseek-inbox/batch-001/c102-google-ads-keyword-match.md",
+    "data/deepseek-inbox/batch-001/c103-meta-audience-testing-overseas.md",
+    "data/deepseek-inbox/batch-001/c104-tiktok-creative-fatigue.md",
+    "data/deepseek-inbox/batch-001/c105-form-leads-follow-up.md",
+    "data/deepseek-inbox/batch-001/c106-overseas-ad-consultation-prep.md"
   ],
   "combined_output": "E:\\sites\\9hwh\\data\\deepseek-inbox\\batch-001-deepseek-output.md",
   "run_import_review": {}

@@ -1,0 +1,178 @@
+[
+  {
+    "batch_id": "batch-003",
+    "content_id": "c096-ad-rejection-diagnosis",
+    "target_url": "/blog/ad-rejection-diagnosis/",
+    "title": "广告被拒怎么诊断：素材、落地页、账户和地区限制排查",
+    "h1": "广告被拒怎么诊断：素材、落地页、账户和地区限制排查",
+    "primary_keyword": "广告被拒诊断",
+    "secondary_keywords": [
+      "广告被拒",
+      "素材审核",
+      "落地页排查"
+    ],
+    "cluster_id": "ad-review",
+    "status": "planned",
+    "task_file": "data/deepseek-batches/batch-003/tasks/096-c096-ad-rejection-diagnosis.md"
+  },
+  {
+    "batch_id": "batch-003",
+    "content_id": "c097-ad-account-stability-checklist",
+    "target_url": "/blog/ad-account-stability-checklist/",
+    "title": "广告账户稳定性怎么评估：主体、页面、素材和投放节奏",
+    "h1": "广告账户稳定性怎么评估：主体、页面、素材和投放节奏",
+    "primary_keyword": "广告账户稳定性评估",
+    "secondary_keywords": [
+      "广告账户",
+      "稳定性",
+      "投放节奏"
+    ],
+    "cluster_id": "ad-account",
+    "status": "planned",
+    "task_file": "data/deepseek-batches/batch-003/tasks/097-c097-ad-account-stability-checklist.md"
+  },
+  {
+    "batch_id": "batch-003",
+    "content_id": "c098-creative-localization-overseas",
+    "target_url": "/blog/creative-localization-overseas/",
+    "title": "海外广告素材本地化怎么做：语言、利益点和页面一致性",
+    "h1": "海外广告素材本地化怎么做：语言、利益点和页面一致性",
+    "primary_keyword": "海外广告素材本地化",
+    "secondary_keywords": [
+      "素材本地化",
+      "海外广告",
+      "页面一致性"
+    ],
+    "cluster_id": "creative-review",
+    "status": "planned",
+    "task_file": "data/deepseek-batches/batch-003/tasks/098-c098-creative-localization-overseas.md"
+  },
+  {
+    "batch_id": "batch-003",
+    "content_id": "c099-cross-border-lead-quality",
+    "target_url": "/blog/cross-border-lead-quality/",
+    "title": "跨境线索质量怎么判断：来源、表单、预算和销售跟进",
+    "h1": "跨境线索质量怎么判断：来源、表单、预算和销售跟进",
+    "primary_keyword": "跨境线索质量判断",
+    "secondary_keywords": [
+      "跨境获客",
+      "线索质量",
+      "销售跟进"
+    ],
+    "cluster_id": "lead-generation",
+    "status": "planned",
+    "task_file": "data/deepseek-batches/batch-003/tasks/099-c099-cross-border-lead-quality.md"
+  },
+  {
+    "batch_id": "batch-003",
+    "content_id": "c100-consultation-conversion-path",
+    "target_url": "/blog/consultation-conversion-path/",
+    "title": "咨询转化路径怎么设计：广告、落地页、表单和人工跟进",
+    "h1": "咨询转化路径怎么设计：广告、落地页、表单和人工跟进",
+    "primary_keyword": "咨询转化路径设计",
+    "secondary_keywords": [
+      "咨询转化",
+      "落地页表单",
+      "人工跟进"
+    ],
+    "cluster_id": "conversion-path",
+    "status": "planned",
+    "task_file": "data/deepseek-batches/batch-003/tasks/100-c100-consultation-conversion-path.md"
+  },
+  {
+    "batch_id": "batch-003",
+    "content_id": "c101-overseas-landing-page-speed",
+    "target_url": "/blog/overseas-landing-page-speed/",
+    "title": "海外落地页速度怎么查：首屏加载、表单提交和广告质量",
+    "h1": "海外落地页速度怎么查：首屏加载、表单提交和广告质量",
+    "primary_keyword": "海外落地页速度检查",
+    "secondary_keywords": [
+      "落地页速度",
+      "广告质量",
+      "首屏加载"
+    ],
+    "cluster_id": "landing-page",
+    "status": "planned",
+    "task_file": "data/deepseek-batches/batch-003/tasks/101-c101-overseas-landing-page-speed.md"
+  },
+  {
+    "batch_id": "batch-003",
+    "content_id": "c102-google-ads-keyword-match",
+    "target_url": "/blog/google-ads-keyword-match/",
+    "title": "Google Ads关键词匹配怎么选：广泛、词组、完全和否词策略",
+    "h1": "Google Ads关键词匹配怎么选：广泛、词组、完全和否词策略",
+    "primary_keyword": "Google Ads关键词匹配",
+    "secondary_keywords": [
+      "关键词匹配",
+      "Google Ads",
+      "否词策略"
+    ],
+    "cluster_id": "google-ads",
+    "status": "planned",
+    "task_file": "data/deepseek-batches/batch-003/tasks/102-c102-google-ads-keyword-match.md"
+  },
+  {
+    "batch_id": "batch-003",
+    "content_id": "c103-meta-audience-testing-overseas",
+    "target_url": "/blog/meta-audience-testing-overseas/",
+    "title": "Meta海外受众测试怎么做：兴趣、类受众和再营销分层",
+    "h1": "Meta海外受众测试怎么做：兴趣、类受众和再营销分层",
+    "primary_keyword": "Meta海外受众测试",
+    "secondary_keywords": [
+      "Meta广告",
+      "受众测试",
+      "再营销"
+    ],
+    "cluster_id": "meta-ads",
+    "status": "planned",
+    "task_file": "data/deepseek-batches/batch-003/tasks/103-c103-meta-audience-testing-overseas.md"
+  },
+  {
+    "batch_id": "batch-003",
+    "content_id": "c104-tiktok-creative-fatigue",
+    "target_url": "/blog/tiktok-creative-fatigue/",
+    "title": "TikTok素材衰退怎么判断：点击率、转化率和换素材节奏",
+    "h1": "TikTok素材衰退怎么判断：点击率、转化率和换素材节奏",
+    "primary_keyword": "TikTok素材衰退判断",
+    "secondary_keywords": [
+      "TikTok素材",
+      "点击率",
+      "换素材"
+    ],
+    "cluster_id": "tiktok-ads",
+    "status": "planned",
+    "task_file": "data/deepseek-batches/batch-003/tasks/104-c104-tiktok-creative-fatigue.md"
+  },
+  {
+    "batch_id": "batch-003",
+    "content_id": "c105-form-leads-follow-up",
+    "target_url": "/blog/form-leads-follow-up/",
+    "title": "表单线索怎么跟进：字段筛选、响应时效和咨询质量",
+    "h1": "表单线索怎么跟进：字段筛选、响应时效和咨询质量",
+    "primary_keyword": "表单线索跟进",
+    "secondary_keywords": [
+      "表单线索",
+      "咨询质量",
+      "响应时效"
+    ],
+    "cluster_id": "lead-generation",
+    "status": "planned",
+    "task_file": "data/deepseek-batches/batch-003/tasks/105-c105-form-leads-follow-up.md"
+  },
+  {
+    "batch_id": "batch-003",
+    "content_id": "c106-overseas-ad-consultation-prep",
+    "target_url": "/blog/overseas-ad-consultation-prep/",
+    "title": "海外广告咨询前要准备什么：地区、产品、页面、素材和预算",
+    "h1": "海外广告咨询前要准备什么：地区、产品、页面、素材和预算",
+    "primary_keyword": "海外广告咨询准备",
+    "secondary_keywords": [
+      "广告咨询",
+      "投放准备",
+      "预算评估"
+    ],
+    "cluster_id": "consultation",
+    "status": "planned",
+    "task_file": "data/deepseek-batches/batch-003/tasks/106-c106-overseas-ad-consultation-prep.md"
+  }
+]

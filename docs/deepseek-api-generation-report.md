@@ -8,11 +8,11 @@
 - generated: 1
 - skipped: 0
 - failed: 0
-- available_output_count: 30
+- available_output_count: 40
 
 ## Generated
 
-- c096-ad-rejection-diagnosis -> data/deepseek-inbox/batch-001/c096-ad-rejection-diagnosis.md
+- c106-overseas-ad-consultation-prep -> data/deepseek-inbox/batch-001/c106-overseas-ad-consultation-prep.md
 
 ## Skipped
 
@@ -52,6 +52,16 @@
 - data/deepseek-inbox/batch-001/c094-tiktok-spark-ads-testing.md
 - data/deepseek-inbox/batch-001/c095-ad-budget-testing-overseas.md
 - data/deepseek-inbox/batch-001/c096-ad-rejection-diagnosis.md
+- data/deepseek-inbox/batch-001/c097-ad-account-stability-checklist.md
+- data/deepseek-inbox/batch-001/c098-creative-localization-overseas.md
+- data/deepseek-inbox/batch-001/c099-cross-border-lead-quality.md
+- data/deepseek-inbox/batch-001/c100-consultation-conversion-path.md
+- data/deepseek-inbox/batch-001/c101-overseas-landing-page-speed.md
+- data/deepseek-inbox/batch-001/c102-google-ads-keyword-match.md
+- data/deepseek-inbox/batch-001/c103-meta-audience-testing-overseas.md
+- data/deepseek-inbox/batch-001/c104-tiktok-creative-fatigue.md
+- data/deepseek-inbox/batch-001/c105-form-leads-follow-up.md
+- data/deepseek-inbox/batch-001/c106-overseas-ad-consultation-prep.md
 
 ## Combined Output
 

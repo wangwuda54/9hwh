@@ -105,6 +105,7 @@ def publish_candidate_count(limit: int, mode: str) -> int:
 
 
 def generate_available_count(limit: int) -> int:
+    generate_safe.configure_batch(generate_safe.resolve_batch_id("latest", limit, False))
     _tasks, available = generate_safe.find_tasks(limit, False)
     return available
 
@@ -115,7 +116,7 @@ def run_publish_dry_run(limit: int, mode: str, verbose: bool) -> int:
 
 
 def run_generate_dry_run(limit: int, expand_count: int, rebuild_batch: bool, verbose: bool) -> int:
-    command = [PYTHON_EXE, "scripts/manual_generate_safe.py", "--dry-run", "--limit", str(limit)]
+    command = [PYTHON_EXE, "scripts/manual_generate_safe.py", "--dry-run", "--limit", str(limit), "--batch", "latest"]
     if rebuild_batch:
         command.extend(["--rebuild-batch", "--expand-count", str(expand_count)])
     run_child(command, verbose)
@@ -123,7 +124,7 @@ def run_generate_dry_run(limit: int, expand_count: int, rebuild_batch: bool, ver
 
 
 def run_generate(limit: int, expand_count: int, rebuild_batch: bool, verbose: bool) -> None:
-    command = [PYTHON_EXE, "scripts/manual_generate_safe.py", "--limit", str(limit)]
+    command = [PYTHON_EXE, "scripts/manual_generate_safe.py", "--limit", str(limit), "--batch", "latest"]
     if rebuild_batch:
         command.extend(["--rebuild-batch", "--expand-count", str(expand_count)])
     if verbose:

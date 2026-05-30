@@ -4,6 +4,7 @@ import argparse
 import json
 import re
 import shutil
+import subprocess
 from datetime import datetime
 from pathlib import Path
 
@@ -405,7 +406,9 @@ class ExpandError(Exception):
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="9HWH safe task pool expander.")
     parser.add_argument("--target-new", type=int, default=30)
-    parser.add_argument("--batch", default="batch-001")
+    parser.add_argument("--batch", default="latest")
+    parser.add_argument("--max-batch-size", type=int, default=15)
+    parser.add_argument("--rebalance-batches", action="store_true")
     parser.add_argument("--dry-run", action="store_true")
     parser.add_argument("--verbose", action="store_true")
     return parser.parse_args()
@@ -421,6 +424,10 @@ def ok(message: str) -> None:
 
 def warn(message: str) -> None:
     print(f"[WARN] {message}")
+
+
+def info(message: str) -> None:
+    print(f"[INFO] {message}")
 
 
 def fail(message: str) -> None:
@@ -459,6 +466,51 @@ def batch_paths(batch_id: str) -> tuple[Path, Path, Path]:
     return batch_dir, batch_dir / f"{batch_id}-index.json", batch_dir / f"{batch_id}-tasks.md"
 
 
+def batch_number(batch_id: str) -> int:
+    match = re.match(r"batch-(\d+)$", batch_id)
+    return int(match.group(1)) if match else 0
+
+
+def existing_batch_ids() -> list[str]:
+    root = ROOT / "data" / "deepseek-batches"
+    ids = [path.name for path in root.glob("batch-*") if path.is_dir()]
+    return sorted(ids, key=batch_number)
+
+
+def next_batch_id(batch_id: str) -> str:
+    return f"batch-{batch_number(batch_id) + 1:03d}"
+
+
+def load_batch_index(batch_id: str) -> list[dict]:
+    _batch_dir, index_path, _tasks_path = batch_paths(batch_id)
+    return load_json(index_path, [])
+
+
+def resolve_append_batch(max_batch_size: int) -> str:
+    ids = existing_batch_ids() or ["batch-001"]
+    for batch_id in ids:
+        if batch_id == "batch-001":
+            continue
+        if len(load_batch_index(batch_id)) < max_batch_size:
+            return batch_id
+    return next_batch_id(ids[-1])
+
+
+def render_batch_tasks(batch_id: str, items: list[dict]) -> None:
+    _batch_dir, _index_path, tasks_path = batch_paths(batch_id)
+    sections = []
+    for item in items:
+        task_file = item.get("task_file")
+        if not task_file:
+            continue
+        path = ROOT / str(task_file)
+        if path.exists():
+            sections.append(path.read_text(encoding="utf-8-sig").rstrip())
+    header = "# DeepSeek batch writing tasks\n\n不要省略 front matter\n不要合并多篇文章\n\n"
+    tasks_path.parent.mkdir(parents=True, exist_ok=True)
+    tasks_path.write_text(header + "\n\n---\n\n".join(sections).rstrip() + "\n", encoding="utf-8", newline="\n")
+
+
 def create_backup(files: list[Path]) -> Path:
     stamp = datetime.now().strftime("%Y%m%d-%H%M%S")
     backup_dir = BACKUP_BASE / stamp
@@ -477,6 +529,101 @@ def restore_backup(backup_dir: Path, files: list[Path]) -> None:
             continue
         source.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(backup_file, source)
+
+
+def backup_tree(source: Path, backup_dir: Path) -> None:
+    target = backup_dir / rel(source)
+    if source.is_dir():
+        if target.exists():
+            shutil.rmtree(target)
+        shutil.copytree(source, target)
+    elif source.exists():
+        target.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(source, target)
+
+
+def create_rebalance_backup(batch_ids: list[str]) -> Path:
+    stamp = datetime.now().strftime("%Y%m%d-%H%M%S")
+    backup_dir = BACKUP_BASE / stamp
+    for batch_id in batch_ids:
+        batch_dir, _index_path, _tasks_path = batch_paths(batch_id)
+        backup_tree(batch_dir, backup_dir)
+    for source in [CONTENT_STATUS_PATH, CONTENT_QUEUE_PATH, PUBLISH_QUEUE_PATH]:
+        backup_tree(source, backup_dir)
+    return backup_dir
+
+
+def write_batch_index(batch_id: str, items: list[dict]) -> None:
+    _batch_dir, index_path, _tasks_path = batch_paths(batch_id)
+    for item in items:
+        item["batch_id"] = batch_id
+        number_match = CONTENT_ID_RE.match(str(item.get("content_id", "")))
+        number = int(number_match.group(1)) if number_match else len(items)
+        item["task_file"] = f"data/deepseek-batches/{batch_id}/tasks/{number:03d}-{item['content_id']}.md"
+    write_json(index_path, items)
+
+
+def rebalance_batches(max_batch_size: int, dry_run: bool) -> int:
+    before = (count_published(), count_blog_cards(), count_sitemap_blog_urls())
+    source = load_batch_index("batch-001")
+    if len(source) <= max_batch_size:
+        ok(f"batch-001 task count already <= {max_batch_size}")
+        return 0
+    chunks = [source[index : index + max_batch_size] for index in range(0, len(source), max_batch_size)]
+    batch_ids = [f"batch-{index + 1:03d}" for index in range(len(chunks))]
+    print(f"batch-001 will be split into: {', '.join(batch_ids)}")
+    if dry_run:
+        for batch_id, chunk in zip(batch_ids, chunks):
+            print(f"- {batch_id}: {len(chunk)} tasks")
+        final_check(before, None)
+        return 0
+
+    backup_dir = create_rebalance_backup(batch_ids)
+    ok(f"backup created at {rel(backup_dir)}")
+
+    for batch_id, chunk in zip(batch_ids, chunks):
+        batch_dir, _index_path, _tasks_path = batch_paths(batch_id)
+        tasks_dir = batch_dir / "tasks"
+        tasks_dir.mkdir(parents=True, exist_ok=True)
+        new_items = []
+        for item in chunk:
+            item = dict(item)
+            old_path = ROOT / str(item.get("task_file", ""))
+            number_match = CONTENT_ID_RE.match(str(item.get("content_id", "")))
+            number = int(number_match.group(1)) if number_match else len(new_items) + 1
+            new_task = tasks_dir / f"{number:03d}-{item['content_id']}.md"
+            if old_path.exists() and old_path.resolve() != new_task.resolve():
+                shutil.copy2(old_path, new_task)
+            elif new_task.exists():
+                pass
+            else:
+                new_task.write_text(task_markdown(item), encoding="utf-8", newline="\n")
+            item["batch_id"] = batch_id
+            item["task_file"] = rel(new_task)
+            new_items.append(item)
+        write_json(batch_paths(batch_id)[1], new_items)
+        render_batch_tasks(batch_id, new_items)
+        keep = {Path(str(item["task_file"])).name for item in new_items}
+        for path in tasks_dir.glob("*.md"):
+            if path.name not in keep:
+                path.unlink()
+
+    publish_queue = load_json(PUBLISH_QUEUE_PATH, [])
+    batch_by_id = {
+        item.get("content_id"): batch_id
+        for batch_id in batch_ids
+        for item in load_batch_index(batch_id)
+    }
+    for item in publish_queue:
+        content_id = item.get("content_id")
+        if content_id in batch_by_id:
+            item["batch"] = batch_by_id[content_id]
+    write_json(PUBLISH_QUEUE_PATH, publish_queue)
+    final_check(before, backup_dir)
+    completed = subprocess.run(["E:/python/python.exe", "scripts/check_static_site.py"], cwd=ROOT, text=True)
+    if completed.returncode != 0:
+        raise ExpandError("check_static_site.py failed after batch rebalance")
+    return 0
 
 
 def max_content_number(items: list[dict]) -> int:
@@ -557,7 +704,7 @@ def publish_queue_item(content_id: str, topic: dict) -> dict:
         "risk_level": topic["risk_level"],
         "publish_status": "pending",
         "planned_publish_date": "",
-        "batch": "batch-001",
+        "batch": "",
         "review_status": "",
         "internal_link_count": 0,
         "notes": "safe_expand pending generation and review",
@@ -581,6 +728,39 @@ def batch_index_item(batch_id: str, content_id: str, number: int, topic: dict) -
 
 
 def task_markdown(item: dict) -> str:
+    if "intent" not in item:
+        secondary_value = item.get("secondary_keywords", [])
+        secondary = ", ".join(secondary_value) if isinstance(secondary_value, list) else str(secondary_value)
+        return f"""# task: {item.get('content_id', '')}
+
+# DeepSeek writing task: {item.get('title', '')}
+
+## Page URL
+
+{item.get('target_url', '')}
+
+## Primary keyword
+
+{item.get('primary_keyword', '')}
+
+## Secondary keywords
+
+{secondary}
+
+## DeepSeek output front matter template
+
+```md
+---
+content_id: {item.get('content_id', '')}
+title: {item.get('title', '')}
+description: please write an 80-150 character page description
+target_url: {item.get('target_url', '')}
+primary_keyword: {item.get('primary_keyword', '')}
+secondary_keywords: {secondary}
+status: draft_received
+---
+```
+"""
     links = [
         link
         for link in [
@@ -711,8 +891,10 @@ def plan_new_tasks(target_new: int, batch_id: str) -> tuple[list[dict], list[dic
         if content_id in existing_ids or target_url in existing_urls:
             continue
         content_item = content_queue_item(content_id, next_number, topic)
+        publish_item = publish_queue_item(content_id, topic)
+        publish_item["batch"] = batch_id
         new_content.append(content_item)
-        new_publish.append(publish_queue_item(content_id, topic))
+        new_publish.append(publish_item)
         new_batch.append(batch_index_item(batch_id, content_id, next_number, topic))
         next_number += 1
         if len(new_content) >= target_new:
@@ -804,45 +986,55 @@ def final_check(
 def main() -> int:
     args = parse_args()
     if args.target_new < 0:
-        fail("target-new 不能小于 0")
+        fail("target-new must be non-negative")
+        return 1
+    if args.max_batch_size < 10:
+        fail("max-batch-size must be at least 10")
         return 1
 
-    print("9HWH 安全扩展任务池")
+    print("9HWH safe task pool expander")
     before = (count_published(), count_blog_cards(), count_sitemap_blog_urls())
-    print(f"当前 published：{before[0]}")
-    print(f"当前 /blog/ 卡片：{before[1]}")
-    print(f"当前 sitemap blog URL：{before[2]}")
+    print(f"current published: {before[0]}")
+    print(f"current /blog/ cards: {before[1]}")
+    print(f"current sitemap blog URLs: {before[2]}")
     print()
 
     try:
+        if args.rebalance_batches:
+            return rebalance_batches(args.max_batch_size, args.dry_run)
+
         if before[0] <= 0:
-            raise ExpandError("published <= 0，已停止。")
-        new_content, new_publish, new_batch = plan_new_tasks(args.target_new, args.batch)
-        print("[1/3] 查找可追加任务")
-        ok(f"计划追加：{len(new_content)} 篇")
+            raise ExpandError("published <= 0; stopped")
+        batch_id = resolve_append_batch(args.max_batch_size) if args.batch == "latest" else args.batch
+        if batch_id == "batch-001" and len(load_batch_index("batch-001")) >= args.max_batch_size:
+            batch_id = "batch-002"
+        new_content, new_publish, new_batch = plan_new_tasks(args.target_new, batch_id)
+        print("[1/3] find appendable tasks")
+        info(f"current expansion batch: {batch_id}")
+        ok(f"planned new tasks: {len(new_content)}")
         for item in new_content:
             print(f"- {item['content_id']} | {item['title']} | {item['target_url']}")
         print()
 
         if args.dry_run:
             print("[2/3] dry-run")
-            ok("没有写入文件")
+            ok("no files written")
             print()
-            print("[3/3] 保护检查")
+            print("[3/3] protection check")
             final_check(before, None)
             return 0
 
-        print("[2/3] 备份并写入")
-        _batch_dir, batch_index_path, batch_tasks_path = batch_paths(args.batch)
+        print("[2/3] backup and write")
+        _batch_dir, batch_index_path, batch_tasks_path = batch_paths(batch_id)
         backup_files = [*BACKUP_FILES, batch_index_path, batch_tasks_path]
         backup_dir = create_backup(backup_files)
-        ok(f"已备份到 {rel(backup_dir)}")
+        ok(f"backup created at {rel(backup_dir)}")
         if new_content:
-            write_expansion(args.batch, new_content, new_publish, new_batch, before[0])
-        ok("任务池追加完成")
+            write_expansion(batch_id, new_content, new_publish, new_batch, before[0])
+        ok("task pool expansion complete")
         print()
 
-        print("[3/3] 保护检查")
+        print("[3/3] protection check")
         final_check(before, backup_dir, new_batch, backup_files)
         return 0
     except ExpandError as exc:

@@ -1,7 +1,7 @@
 {
-  "draft_count": 82,
-  "pass_count": 70,
-  "warning_count": 12,
+  "draft_count": 92,
+  "pass_count": 76,
+  "warning_count": 16,
   "fail_count": 0,
   "articles": [
     {
@@ -682,6 +682,94 @@
       "issues": [],
       "warnings": [
         "missing topic internal link"
+      ]
+    },
+    {
+      "file": "c097-ad-account-stability-checklist.md",
+      "content_id": "c097-ad-account-stability-checklist",
+      "target_url": "/blog/ad-account-stability-checklist/",
+      "status": "pass",
+      "issues": [],
+      "warnings": []
+    },
+    {
+      "file": "c098-creative-localization-overseas.md",
+      "content_id": "c098-creative-localization-overseas",
+      "target_url": "/blog/creative-localization-overseas/",
+      "status": "pass",
+      "issues": [],
+      "warnings": []
+    },
+    {
+      "file": "c099-cross-border-lead-quality.md",
+      "content_id": "c099-cross-border-lead-quality",
+      "target_url": "/blog/cross-border-lead-quality/",
+      "status": "pass",
+      "issues": [],
+      "warnings": []
+    },
+    {
+      "file": "c100-consultation-conversion-path.md",
+      "content_id": "c100-consultation-conversion-path",
+      "target_url": "/blog/consultation-conversion-path/",
+      "status": "pass",
+      "issues": [],
+      "warnings": []
+    },
+    {
+      "file": "c101-overseas-landing-page-speed.md",
+      "content_id": "c101-overseas-landing-page-speed",
+      "target_url": "/blog/overseas-landing-page-speed/",
+      "status": "pass",
+      "issues": [],
+      "warnings": []
+    },
+    {
+      "file": "c102-google-ads-keyword-match.md",
+      "content_id": "c102-google-ads-keyword-match",
+      "target_url": "/blog/google-ads-keyword-match/",
+      "status": "warning",
+      "issues": [],
+      "warnings": [
+        "missing contact internal link"
+      ]
+    },
+    {
+      "file": "c103-meta-audience-testing-overseas.md",
+      "content_id": "c103-meta-audience-testing-overseas",
+      "target_url": "/blog/meta-audience-testing-overseas/",
+      "status": "warning",
+      "issues": [],
+      "warnings": [
+        "missing contact internal link"
+      ]
+    },
+    {
+      "file": "c104-tiktok-creative-fatigue.md",
+      "content_id": "c104-tiktok-creative-fatigue",
+      "target_url": "/blog/tiktok-creative-fatigue/",
+      "status": "warning",
+      "issues": [],
+      "warnings": [
+        "missing contact internal link"
+      ]
+    },
+    {
+      "file": "c105-form-leads-follow-up.md",
+      "content_id": "c105-form-leads-follow-up",
+      "target_url": "/blog/form-leads-follow-up/",
+      "status": "pass",
+      "issues": [],
+      "warnings": []
+    },
+    {
+      "file": "c106-overseas-ad-consultation-prep.md",
+      "content_id": "c106-overseas-ad-consultation-prep",
+      "target_url": "/blog/overseas-ad-consultation-prep/",
+      "status": "warning",
+      "issues": [],
+      "warnings": [
+        "missing platform or service internal link"
       ]
     }
   ]

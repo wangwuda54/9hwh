@@ -1,10 +1,10 @@
 {
-  "total_planned": 105,
-  "prompt_ready": 10,
+  "total_planned": 106,
+  "prompt_ready": 1,
   "writing": 0,
-  "draft_received": 13,
+  "draft_received": 20,
   "reviewed": 0,
-  "published": 69,
+  "published": 72,
   "paused": 0,
   "last_generated_at": "2026-05-30"
 }

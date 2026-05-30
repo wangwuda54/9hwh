@@ -2,154 +2,74 @@
   "status": "failure",
   "run_date": "2026-05-30",
   "date": "2026-05-30",
-  "mode": "aggressive",
-  "daily_limit": 7,
+  "mode": "normal",
+  "daily_limit": 3,
   "hard_limit": 10,
   "dry_run": false,
-  "reviewed_candidate_count": 7,
-  "selected_count": 7,
-  "published_count": 7,
-  "total_published": 69,
+  "reviewed_candidate_count": 3,
+  "selected_count": 3,
+  "published_count": 3,
+  "total_published": 72,
   "selected_items": [
     {
-      "content_id": "c091-multilingual-landing-pages-overseas",
-      "title": "多语言落地页怎么准备：地区话术、表单字段和咨询入口",
-      "target_url": "/blog/multilingual-landing-pages-overseas/",
-      "full_url": "https://www.9hwh.com/blog/multilingual-landing-pages-overseas/",
+      "content_id": "c097-ad-account-stability-checklist",
+      "title": "广告账户稳定性怎么评估：主体、页面、素材和投放节奏",
+      "target_url": "/blog/ad-account-stability-checklist/",
+      "full_url": "https://www.9hwh.com/blog/ad-account-stability-checklist/",
       "planned_publish_date": "2026-05-30",
       "risk_level": "low",
       "content_type": "topic_expansion",
       "internal_link_count": 5
     },
     {
-      "content_id": "c086-high-risk-project-creative-review",
-      "title": "高风险项目广告素材怎么审：卖点、承诺和页面一致性",
-      "target_url": "/blog/high-risk-project-creative-review/",
-      "full_url": "https://www.9hwh.com/blog/high-risk-project-creative-review/",
+      "content_id": "c098-creative-localization-overseas",
+      "title": "海外广告素材本地化怎么做：语言、利益点和页面一致性",
+      "target_url": "/blog/creative-localization-overseas/",
+      "full_url": "https://www.9hwh.com/blog/creative-localization-overseas/",
       "planned_publish_date": "2026-05-30",
-      "risk_level": "medium",
+      "risk_level": "low",
       "content_type": "topic_expansion",
       "internal_link_count": 5
     },
     {
-      "content_id": "c079-overseas-loan-leads-preparation",
-      "title": "海外贷款获客投放前怎么评估：地区、表单和落地页准备",
-      "target_url": "/blog/overseas-loan-leads-preparation/",
-      "full_url": "https://www.9hwh.com/blog/overseas-loan-leads-preparation/",
+      "content_id": "c105-form-leads-follow-up",
+      "title": "表单线索怎么跟进：字段筛选、响应时效和咨询质量",
+      "target_url": "/blog/form-leads-follow-up/",
+      "full_url": "https://www.9hwh.com/blog/form-leads-follow-up/",
       "planned_publish_date": "2026-05-30",
-      "risk_level": "medium",
-      "content_type": "topic_expansion",
-      "internal_link_count": 5
-    },
-    {
-      "content_id": "c080-insurance-leads-overseas-ad-checklist",
-      "title": "海外保险获客广告怎么准备：受众、资质和咨询转化路径",
-      "target_url": "/blog/insurance-leads-overseas-ad-checklist/",
-      "full_url": "https://www.9hwh.com/blog/insurance-leads-overseas-ad-checklist/",
-      "planned_publish_date": "2026-05-30",
-      "risk_level": "medium",
-      "content_type": "topic_expansion",
-      "internal_link_count": 5
-    },
-    {
-      "content_id": "c081-immigration-leads-landing-page-review",
-      "title": "海外移民获客落地页怎么审：承诺边界、表单和咨询链路",
-      "target_url": "/blog/immigration-leads-landing-page-review/",
-      "full_url": "https://www.9hwh.com/blog/immigration-leads-landing-page-review/",
-      "planned_publish_date": "2026-05-30",
-      "risk_level": "medium",
-      "content_type": "topic_expansion",
-      "internal_link_count": 5
-    },
-    {
-      "content_id": "c084-finance-ads-landing-page",
-      "title": "金融广告落地页怎么改：承诺表达、表单和审核反馈处理",
-      "target_url": "/blog/finance-ads-landing-page/",
-      "full_url": "https://www.9hwh.com/blog/finance-ads-landing-page/",
-      "planned_publish_date": "2026-05-30",
-      "risk_level": "medium",
-      "content_type": "topic_expansion",
-      "internal_link_count": 5
-    },
-    {
-      "content_id": "c085-crypto-ads-compliance-boundary",
-      "title": "虚拟币广告投放前怎么评估：地区限制、页面表达和风险边界",
-      "target_url": "/blog/crypto-ads-compliance-boundary/",
-      "full_url": "https://www.9hwh.com/blog/crypto-ads-compliance-boundary/",
-      "planned_publish_date": "2026-05-30",
-      "risk_level": "medium",
+      "risk_level": "low",
       "content_type": "topic_expansion",
       "internal_link_count": 5
     }
   ],
   "published_items": [
     {
-      "content_id": "c091-multilingual-landing-pages-overseas",
-      "title": "多语言落地页怎么准备：地区话术、表单字段和咨询入口",
-      "target_url": "/blog/multilingual-landing-pages-overseas/",
-      "full_url": "https://www.9hwh.com/blog/multilingual-landing-pages-overseas/",
+      "content_id": "c097-ad-account-stability-checklist",
+      "title": "广告账户稳定性怎么评估：主体、页面、素材和投放节奏",
+      "target_url": "/blog/ad-account-stability-checklist/",
+      "full_url": "https://www.9hwh.com/blog/ad-account-stability-checklist/",
       "planned_publish_date": "2026-05-30",
       "risk_level": "low",
       "content_type": "topic_expansion",
       "internal_link_count": 5
     },
     {
-      "content_id": "c086-high-risk-project-creative-review",
-      "title": "高风险项目广告素材怎么审：卖点、承诺和页面一致性",
-      "target_url": "/blog/high-risk-project-creative-review/",
-      "full_url": "https://www.9hwh.com/blog/high-risk-project-creative-review/",
+      "content_id": "c098-creative-localization-overseas",
+      "title": "海外广告素材本地化怎么做：语言、利益点和页面一致性",
+      "target_url": "/blog/creative-localization-overseas/",
+      "full_url": "https://www.9hwh.com/blog/creative-localization-overseas/",
       "planned_publish_date": "2026-05-30",
-      "risk_level": "medium",
+      "risk_level": "low",
       "content_type": "topic_expansion",
       "internal_link_count": 5
     },
     {
-      "content_id": "c079-overseas-loan-leads-preparation",
-      "title": "海外贷款获客投放前怎么评估：地区、表单和落地页准备",
-      "target_url": "/blog/overseas-loan-leads-preparation/",
-      "full_url": "https://www.9hwh.com/blog/overseas-loan-leads-preparation/",
+      "content_id": "c105-form-leads-follow-up",
+      "title": "表单线索怎么跟进：字段筛选、响应时效和咨询质量",
+      "target_url": "/blog/form-leads-follow-up/",
+      "full_url": "https://www.9hwh.com/blog/form-leads-follow-up/",
       "planned_publish_date": "2026-05-30",
-      "risk_level": "medium",
-      "content_type": "topic_expansion",
-      "internal_link_count": 5
-    },
-    {
-      "content_id": "c080-insurance-leads-overseas-ad-checklist",
-      "title": "海外保险获客广告怎么准备：受众、资质和咨询转化路径",
-      "target_url": "/blog/insurance-leads-overseas-ad-checklist/",
-      "full_url": "https://www.9hwh.com/blog/insurance-leads-overseas-ad-checklist/",
-      "planned_publish_date": "2026-05-30",
-      "risk_level": "medium",
-      "content_type": "topic_expansion",
-      "internal_link_count": 5
-    },
-    {
-      "content_id": "c081-immigration-leads-landing-page-review",
-      "title": "海外移民获客落地页怎么审：承诺边界、表单和咨询链路",
-      "target_url": "/blog/immigration-leads-landing-page-review/",
-      "full_url": "https://www.9hwh.com/blog/immigration-leads-landing-page-review/",
-      "planned_publish_date": "2026-05-30",
-      "risk_level": "medium",
-      "content_type": "topic_expansion",
-      "internal_link_count": 5
-    },
-    {
-      "content_id": "c084-finance-ads-landing-page",
-      "title": "金融广告落地页怎么改：承诺表达、表单和审核反馈处理",
-      "target_url": "/blog/finance-ads-landing-page/",
-      "full_url": "https://www.9hwh.com/blog/finance-ads-landing-page/",
-      "planned_publish_date": "2026-05-30",
-      "risk_level": "medium",
-      "content_type": "topic_expansion",
-      "internal_link_count": 5
-    },
-    {
-      "content_id": "c085-crypto-ads-compliance-boundary",
-      "title": "虚拟币广告投放前怎么评估：地区限制、页面表达和风险边界",
-      "target_url": "/blog/crypto-ads-compliance-boundary/",
-      "full_url": "https://www.9hwh.com/blog/crypto-ads-compliance-boundary/",
-      "planned_publish_date": "2026-05-30",
-      "risk_level": "medium",
+      "risk_level": "low",
       "content_type": "topic_expansion",
       "internal_link_count": 5
     }
@@ -162,17 +82,17 @@
     {
       "command": "python scripts/build_site.py",
       "returncode": 0,
-      "stdout": "[OK] Generated 133 indexed pages into E:\\sites\\9hwh\\site\\public",
+      "stdout": "[OK] Generated 136 indexed pages into E:\\sites\\9hwh\\site\\public",
       "stderr": ""
     },
     {
       "command": "python scripts/check_static_site.py",
       "returncode": 1,
-      "stdout": "[OK] sitemap checks completed\n[OK] robots checks completed\n[OK] HTML quality checks completed\n[OK] video page checks completed\n[OK] keyword asset checks completed\n[WARN] content_queue has more than 100 tasks: 105\n[WARN] blog page may show too many unfinished content cards\n[OK] content pipeline checks completed\n[FAIL] batch-001 task count must be 10-15, got 40\n[OK] DeepSeek batch checks completed\n[FAIL] 1 issue(s) found",
+      "stdout": "[OK] sitemap checks completed\n[OK] robots checks completed\n[OK] HTML quality checks completed\n[OK] video page checks completed\n[OK] keyword asset checks completed\n[WARN] content_queue has more than 100 tasks: 106\n[WARN] blog page may show too many unfinished content cards\n[OK] content pipeline checks completed\n[FAIL] batch-001 task count must be 10-15, got 41\n[FAIL] review_content_drafts.py failed\n[OK] DeepSeek batch checks completed\n[FAIL] 2 issue(s) found",
       "stderr": ""
     }
   ],
   "site_url": "https://www.9hwh.com",
   "message": "Post publish check failed: python scripts/check_static_site.py",
-  "generated_at": "2026-05-30T19:56:30+08:00"
+  "generated_at": "2026-05-30T20:08:38+08:00"
 }

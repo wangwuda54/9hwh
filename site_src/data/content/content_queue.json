@@ -3127,7 +3127,7 @@
       "广告账户稳定性评估"
     ],
     "page_type": "blog_article",
-    "status": "prompt_ready",
+    "status": "published",
     "priority": 97,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -3160,7 +3160,7 @@
       "海外广告素材本地化"
     ],
     "page_type": "blog_article",
-    "status": "prompt_ready",
+    "status": "published",
     "priority": 98,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -3180,10 +3180,10 @@
     "target_url": "/blog/cross-border-lead-quality/",
     "title": "跨境线索质量怎么判断：来源、表单、预算和销售跟进",
     "h1": "跨境线索质量怎么判断：来源、表单、预算和销售跟进",
-    "description": "跨境线索质量怎么判断：来源、表单、预算和销售跟进，围绕投放前评估、账户和素材准备、落地页承接、转化追踪与咨询判断，帮助项目方先把可执行条件梳理清楚。",
+    "description": "跨境线索质量会直接影响转化成本和销售效率。本文从来源、表单、预算和销售跟进四个维度，拆解判断线索质量的关键方法。",
     "intent": "lead_generation_question",
     "cluster_id": "lead-generation",
-    "primary_keyword": "跨境线索质量判断",
+    "primary_keyword": "跨境线索质量怎么判断",
     "secondary_keywords": [
       "跨境获客",
       "线索质量",
@@ -3193,7 +3193,7 @@
       "跨境线索质量判断"
     ],
     "page_type": "blog_article",
-    "status": "prompt_ready",
+    "status": "draft_received",
     "priority": 99,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -3213,10 +3213,10 @@
     "target_url": "/blog/consultation-conversion-path/",
     "title": "咨询转化路径怎么设计：广告、落地页、表单和人工跟进",
     "h1": "咨询转化路径怎么设计：广告、落地页、表单和人工跟进",
-    "description": "咨询转化路径怎么设计：广告、落地页、表单和人工跟进，围绕投放前评估、账户和素材准备、落地页承接、转化追踪与咨询判断，帮助项目方先把可执行条件梳理清楚。",
+    "description": "面向出海项目方，拆解咨询转化路径的核心环节：广告素材、落地页表单、人工跟进节奏和转化判断。",
     "intent": "conversion_question",
     "cluster_id": "conversion-path",
-    "primary_keyword": "咨询转化路径设计",
+    "primary_keyword": "咨询转化路径怎么设计",
     "secondary_keywords": [
       "咨询转化",
       "落地页表单",
@@ -3226,7 +3226,7 @@
       "咨询转化路径设计"
     ],
     "page_type": "blog_article",
-    "status": "prompt_ready",
+    "status": "draft_received",
     "priority": 100,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -3246,10 +3246,10 @@
     "target_url": "/blog/overseas-landing-page-speed/",
     "title": "海外落地页速度怎么查：首屏加载、表单提交和广告质量",
     "h1": "海外落地页速度怎么查：首屏加载、表单提交和广告质量",
-    "description": "海外落地页速度怎么查：首屏加载、表单提交和广告质量，围绕投放前评估、账户和素材准备、落地页承接、转化追踪与咨询判断，帮助项目方先把可执行条件梳理清楚。",
+    "description": "海外落地页速度会影响用户留存、表单提交和广告质量。本文拆解首屏加载、表单提交和页面体验检查方法。",
     "intent": "landing_page_question",
     "cluster_id": "landing-page",
-    "primary_keyword": "海外落地页速度检查",
+    "primary_keyword": "海外落地页速度怎么查",
     "secondary_keywords": [
       "落地页速度",
       "广告质量",
@@ -3259,7 +3259,7 @@
       "海外落地页速度检查"
     ],
     "page_type": "blog_article",
-    "status": "prompt_ready",
+    "status": "draft_received",
     "priority": 101,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -3292,7 +3292,7 @@
       "Google Ads关键词匹配"
     ],
     "page_type": "blog_article",
-    "status": "prompt_ready",
+    "status": "draft_received",
     "priority": 102,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -3326,7 +3326,7 @@
       "Meta海外受众测试"
     ],
     "page_type": "blog_article",
-    "status": "prompt_ready",
+    "status": "draft_received",
     "priority": 103,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -3360,7 +3360,7 @@
       "TikTok素材衰退判断"
     ],
     "page_type": "blog_article",
-    "status": "prompt_ready",
+    "status": "draft_received",
     "priority": 104,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -3394,7 +3394,7 @@
       "表单线索跟进"
     ],
     "page_type": "blog_article",
-    "status": "prompt_ready",
+    "status": "published",
     "priority": 105,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -3404,6 +3404,40 @@
       "/services/traffic-acquisition/",
       "/topics/",
       "/services/",
+      "/contact/"
+    ],
+    "risk_level": "low",
+    "notes": "安全扩展任务池追加任务；未生成、未审核、未发布。"
+  },
+  {
+    "content_id": "c106-overseas-ad-consultation-prep",
+    "target_url": "/blog/overseas-ad-consultation-prep/",
+    "title": "海外广告咨询前要准备什么：地区、产品、页面、素材和预算",
+    "h1": "海外广告咨询前要准备什么：地区、产品、页面、素材和预算",
+    "description": "海外广告咨询前要准备什么：地区、产品、页面、素材和预算，围绕投放前评估、账户和素材准备、落地页承接、转化追踪与咨询判断，帮助项目方先把可执行条件梳理清楚。",
+    "intent": "consultation_question",
+    "cluster_id": "consultation",
+    "primary_keyword": "海外广告咨询准备",
+    "secondary_keywords": [
+      "广告咨询",
+      "投放准备",
+      "预算评估"
+    ],
+    "source_keywords": [
+      "海外广告咨询准备"
+    ],
+    "page_type": "blog_article",
+    "status": "draft_received",
+    "priority": 106,
+    "word_count_target": 1800,
+    "deepseek_required": true,
+    "target_service": "/contact/",
+    "target_topic": "/services/",
+    "internal_links": [
+      "/contact/",
+      "/services/",
+      "/services/",
+      "/topics/",
       "/contact/"
     ],
     "risk_level": "low",
