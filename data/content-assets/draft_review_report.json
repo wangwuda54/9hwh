@@ -1,8 +1,8 @@
 {
-  "draft_count": 66,
-  "pass_count": 43,
-  "warning_count": 8,
-  "fail_count": 15,
+  "draft_count": 62,
+  "pass_count": 58,
+  "warning_count": 4,
+  "fail_count": 0,
   "articles": [
     {
       "file": "c001-ad-campaign-support-how-to-17e66750.md",
@@ -365,39 +365,12 @@
       "warnings": []
     },
     {
-      "file": "c046-google-promotion-promotion-588fc030.md",
-      "content_id": "c046-google-promotion-promotion-588fc030",
-      "target_url": "/blog/topics/promotion-588fc030/",
-      "status": "warning",
-      "issues": [],
-      "warnings": [
-        "less than 4 internal links",
-        "missing topic internal link",
-        "missing contact internal link"
-      ]
-    },
-    {
       "file": "c051-immigration-leads-fb-immigration-leads-b33be086.md",
       "content_id": "c051-immigration-leads-fb-immigration-leads-b33be086",
       "target_url": "/blog/topics/fb-immigration-leads-b33be086/",
       "status": "pass",
       "issues": [],
       "warnings": []
-    },
-    {
-      "file": "c052-immigration-leads-google-immigration-traffic-31aff535.md",
-      "content_id": "c052-immigration-leads-google-immigration-traffic-31aff535",
-      "target_url": "/blog/topics/google-immigration-traffic-31aff535/",
-      "status": "warning",
-      "issues": [],
-      "warnings": [
-        "less than 4 internal links",
-        "missing platform or service internal link",
-        "missing topic internal link",
-        "missing services/topics listing internal link",
-        "missing contact internal link",
-        "missing preferred topic link: /topics/immigration-leads/"
-      ]
     },
     {
       "file": "c053-insurance-leads-fb-insurance-leads-b01d5372.md",
@@ -408,18 +381,6 @@
       "warnings": []
     },
     {
-      "file": "c054-insurance-leads-google-insurance-traffic-7dc33881.md",
-      "content_id": "c054-insurance-leads-google-insurance-traffic-7dc33881",
-      "target_url": "/blog/topics/google-insurance-traffic-7dc33881/",
-      "status": "warning",
-      "issues": [],
-      "warnings": [
-        "less than 4 internal links",
-        "missing platform or service internal link",
-        "missing contact internal link"
-      ]
-    },
-    {
       "file": "c055-loan-leads-fb-loan-leads-60d3dc0c.md",
       "content_id": "c055-loan-leads-fb-loan-leads-60d3dc0c",
       "target_url": "/blog/topics/fb-loan-leads-60d3dc0c/",
@@ -428,168 +389,123 @@
       "warnings": []
     },
     {
-      "file": "c056-loan-leads-google-loan-traffic-ef51241c.md",
-      "content_id": "c056-loan-leads-google-loan-traffic-ef51241c",
-      "target_url": "/blog/topics/google-loan-traffic-ef51241c/",
-      "status": "warning",
-      "issues": [],
-      "warnings": [
-        "less than 4 internal links",
-        "missing platform or service internal link",
-        "missing topic internal link",
-        "missing services/topics listing internal link",
-        "missing contact internal link",
-        "missing preferred topic link: /topics/loan-leads/"
-      ]
-    },
-    {
       "file": "c061-traffic-acquisition-leads-quality-test.md",
       "content_id": "c061-traffic-acquisition-leads-quality-test",
       "target_url": "/blog/leads-quality-test/",
-      "status": "fail",
-      "issues": [
-        "content_id not found in content_queue"
-      ],
+      "status": "pass",
+      "issues": [],
       "warnings": []
     },
     {
       "file": "c062-media-buying-small-budget-test.md",
       "content_id": "c062-media-buying-small-budget-test",
       "target_url": "/blog/small-budget-media-buying-test/",
-      "status": "fail",
-      "issues": [
-        "content_id not found in content_queue"
-      ],
+      "status": "pass",
+      "issues": [],
       "warnings": []
     },
     {
       "file": "c063-overseas-promotion-landing-page.md",
       "content_id": "c063-overseas-promotion-landing-page",
       "target_url": "/blog/overseas-promotion-landing-page/",
-      "status": "fail",
-      "issues": [
-        "content_id not found in content_queue"
-      ],
+      "status": "pass",
+      "issues": [],
       "warnings": []
     },
     {
       "file": "c064-ad-campaign-support-material-test.md",
       "content_id": "c064-ad-campaign-support-material-test",
       "target_url": "/blog/ad-material-test/",
-      "status": "fail",
-      "issues": [
-        "content_id not found in content_queue"
-      ],
+      "status": "pass",
+      "issues": [],
       "warnings": []
     },
     {
       "file": "c065-fb-leads-form-setup.md",
       "content_id": "c065-fb-leads-form-setup",
       "target_url": "/blog/fb-leads-form-setup/",
-      "status": "fail",
-      "issues": [
-        "content_id not found in content_queue"
-      ],
+      "status": "pass",
+      "issues": [],
       "warnings": []
     },
     {
       "file": "c066-google-search-leads-keywords.md",
       "content_id": "c066-google-search-leads-keywords",
       "target_url": "/blog/google-search-leads-keywords/",
-      "status": "fail",
-      "issues": [
-        "content_id not found in content_queue"
-      ],
+      "status": "pass",
+      "issues": [],
       "warnings": []
     },
     {
       "file": "c067-tk-short-video-leads.md",
       "content_id": "c067-tk-short-video-leads",
       "target_url": "/blog/tk-short-video-leads/",
-      "status": "fail",
-      "issues": [
-        "content_id not found in content_queue"
-      ],
+      "status": "pass",
+      "issues": [],
       "warnings": []
     },
     {
       "file": "c068-game-user-acquisition-cost.md",
       "content_id": "c068-game-user-acquisition-cost",
       "target_url": "/blog/game-user-acquisition-cost/",
-      "status": "fail",
-      "issues": [
-        "content_id not found in content_queue"
-      ],
+      "status": "pass",
+      "issues": [],
       "warnings": []
     },
     {
       "file": "c069-dating-app-registration-flow.md",
       "content_id": "c069-dating-app-registration-flow",
       "target_url": "/blog/dating-app-registration-flow/",
-      "status": "fail",
-      "issues": [
-        "content_id not found in content_queue"
-      ],
+      "status": "pass",
+      "issues": [],
       "warnings": []
     },
     {
       "file": "c070-crypto-exchange-leads.md",
       "content_id": "c070-crypto-exchange-leads",
       "target_url": "/blog/crypto-exchange-leads/",
-      "status": "fail",
-      "issues": [
-        "content_id not found in content_queue"
-      ],
+      "status": "pass",
+      "issues": [],
       "warnings": []
     },
     {
       "file": "c071-loan-leads-page-copy.md",
       "content_id": "c071-loan-leads-page-copy",
       "target_url": "/blog/loan-leads-page-copy/",
-      "status": "fail",
-      "issues": [
-        "content_id not found in content_queue"
-      ],
+      "status": "pass",
+      "issues": [],
       "warnings": []
     },
     {
       "file": "c072-insurance-leads-follow-up.md",
       "content_id": "c072-insurance-leads-follow-up",
       "target_url": "/blog/insurance-leads-follow-up/",
-      "status": "fail",
-      "issues": [
-        "content_id not found in content_queue"
-      ],
+      "status": "pass",
+      "issues": [],
       "warnings": []
     },
     {
       "file": "c073-immigration-consultation-leads.md",
       "content_id": "c073-immigration-consultation-leads",
       "target_url": "/blog/immigration-consultation-leads/",
-      "status": "fail",
-      "issues": [
-        "content_id not found in content_queue"
-      ],
+      "status": "pass",
+      "issues": [],
       "warnings": []
     },
     {
       "file": "c074-online-work-leads-test.md",
       "content_id": "c074-online-work-leads-test",
       "target_url": "/blog/online-work-leads-test/",
-      "status": "fail",
-      "issues": [
-        "content_id not found in content_queue"
-      ],
+      "status": "pass",
+      "issues": [],
       "warnings": []
     },
     {
       "file": "c075-youtube-promotion-leads.md",
       "content_id": "c075-youtube-promotion-leads",
       "target_url": "/blog/youtube-promotion-leads/",
-      "status": "fail",
-      "issues": [
-        "content_id not found in content_queue"
-      ],
+      "status": "pass",
+      "issues": [],
       "warnings": []
     }
   ]

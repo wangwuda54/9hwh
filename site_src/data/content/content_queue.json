@@ -1,21 +1,22 @@
 [
   {
     "content_id": "c001-ad-campaign-support-how-to-17e66750",
-    "target_url": "/blog/how-to-17e66750/",
-    "title": "加密货币怎么做：推广路径、渠道判断和准备清单",
-    "h1": "加密货币怎么做：推广路径、渠道判断和准备清单",
+    "target_url": "/blog/crypto-promotion-how-to-17e66750/",
+    "title": "加密货币推广怎么做：渠道判断、投放准备和合规评估",
+    "h1": "加密货币推广怎么做：渠道判断、投放准备和合规评估",
     "intent": "long_tail_question",
     "cluster_id": "ad-campaign-support",
-    "primary_keyword": "加密货币怎么做",
+    "primary_keyword": "加密货币推广怎么做",
     "secondary_keywords": [
+      "加密货币推广",
       "加密货币",
-      "怎么做"
+      "推广怎么做"
     ],
     "source_keywords": [
-      "加密货币怎么做"
+      "加密货币推广怎么做"
     ],
     "page_type": "blog_article",
-    "status": "reviewed",
+    "status": "published",
     "priority": 1,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -46,7 +47,7 @@
       "理财怎么做"
     ],
     "page_type": "blog_article",
-    "status": "prompt_ready",
+    "status": "published",
     "priority": 2,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -77,7 +78,7 @@
       "虚拟币怎么做"
     ],
     "page_type": "blog_article",
-    "status": "reviewed",
+    "status": "published",
     "priority": 3,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -108,7 +109,7 @@
       "交易所拉新怎么做"
     ],
     "page_type": "blog_article",
-    "status": "reviewed",
+    "status": "published",
     "priority": 4,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -139,7 +140,7 @@
       "币圈引流怎么做"
     ],
     "page_type": "blog_article",
-    "status": "reviewed",
+    "status": "published",
     "priority": 5,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -170,7 +171,7 @@
       "虚拟币推广怎么做"
     ],
     "page_type": "blog_article",
-    "status": "reviewed",
+    "status": "published",
     "priority": 6,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -201,7 +202,7 @@
       "交友私聊怎么做"
     ],
     "page_type": "blog_article",
-    "status": "reviewed",
+    "status": "published",
     "priority": 7,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -232,7 +233,7 @@
       "交友聊天怎么做"
     ],
     "page_type": "blog_article",
-    "status": "reviewed",
+    "status": "published",
     "priority": 8,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -263,7 +264,7 @@
       "真人交友怎么做"
     ],
     "page_type": "blog_article",
-    "status": "prompt_ready",
+    "status": "published",
     "priority": 9,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -294,7 +295,7 @@
       "兼职怎么做"
     ],
     "page_type": "blog_article",
-    "status": "prompt_ready",
+    "status": "published",
     "priority": 10,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -325,7 +326,7 @@
       "网赚怎么做"
     ],
     "page_type": "blog_article",
-    "status": "prompt_ready",
+    "status": "published",
     "priority": 11,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -356,7 +357,7 @@
       "交友App注册怎么做"
     ],
     "page_type": "blog_article",
-    "status": "prompt_ready",
+    "status": "published",
     "priority": 12,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -387,7 +388,7 @@
       "交友引流怎么做"
     ],
     "page_type": "blog_article",
-    "status": "prompt_ready",
+    "status": "published",
     "priority": 13,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -418,7 +419,7 @@
       "保险怎么做"
     ],
     "page_type": "blog_article",
-    "status": "prompt_ready",
+    "status": "published",
     "priority": 14,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -449,7 +450,7 @@
       "游戏怎么做"
     ],
     "page_type": "blog_article",
-    "status": "prompt_ready",
+    "status": "published",
     "priority": 15,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -480,7 +481,7 @@
       "移民怎么做"
     ],
     "page_type": "blog_article",
-    "status": "prompt_ready",
+    "status": "published",
     "priority": 16,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -511,7 +512,7 @@
       "贷款怎么做"
     ],
     "page_type": "blog_article",
-    "status": "prompt_ready",
+    "status": "published",
     "priority": 17,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -542,7 +543,7 @@
       "加密货币费用"
     ],
     "page_type": "blog_article",
-    "status": "prompt_ready",
+    "status": "published",
     "priority": 18,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -573,7 +574,7 @@
       "理财费用"
     ],
     "page_type": "blog_article",
-    "status": "prompt_ready",
+    "status": "published",
     "priority": 19,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -604,7 +605,7 @@
       "虚拟币费用"
     ],
     "page_type": "blog_article",
-    "status": "prompt_ready",
+    "status": "published",
     "priority": 20,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -635,7 +636,7 @@
       "交易所拉新费用"
     ],
     "page_type": "blog_article",
-    "status": "planned",
+    "status": "published",
     "priority": 21,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -666,7 +667,7 @@
       "币圈引流费用"
     ],
     "page_type": "blog_article",
-    "status": "planned",
+    "status": "published",
     "priority": 22,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -697,7 +698,7 @@
       "虚拟币推广费用"
     ],
     "page_type": "blog_article",
-    "status": "planned",
+    "status": "published",
     "priority": 23,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -728,7 +729,7 @@
       "交友私聊费用"
     ],
     "page_type": "blog_article",
-    "status": "planned",
+    "status": "published",
     "priority": 24,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -759,7 +760,7 @@
       "交友聊天费用"
     ],
     "page_type": "blog_article",
-    "status": "planned",
+    "status": "published",
     "priority": 25,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -790,7 +791,7 @@
       "真人交友费用"
     ],
     "page_type": "blog_article",
-    "status": "planned",
+    "status": "published",
     "priority": 26,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -821,7 +822,7 @@
       "兼职费用"
     ],
     "page_type": "blog_article",
-    "status": "planned",
+    "status": "published",
     "priority": 27,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -852,7 +853,7 @@
       "网赚费用"
     ],
     "page_type": "blog_article",
-    "status": "planned",
+    "status": "published",
     "priority": 28,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -883,7 +884,7 @@
       "兼职价格"
     ],
     "page_type": "blog_article",
-    "status": "planned",
+    "status": "published",
     "priority": 29,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -914,7 +915,7 @@
       "网赚价格"
     ],
     "page_type": "blog_article",
-    "status": "planned",
+    "status": "published",
     "priority": 30,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -946,7 +947,7 @@
       "FB交友引流"
     ],
     "page_type": "topic_expansion",
-    "status": "planned",
+    "status": "published",
     "priority": 31,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -978,7 +979,7 @@
       "FB交友引流推广"
     ],
     "page_type": "topic_expansion",
-    "status": "planned",
+    "status": "published",
     "priority": 32,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -1010,7 +1011,7 @@
       "FB保险引流"
     ],
     "page_type": "topic_expansion",
-    "status": "planned",
+    "status": "published",
     "priority": 33,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -1042,7 +1043,7 @@
       "FB保险推广"
     ],
     "page_type": "topic_expansion",
-    "status": "planned",
+    "status": "published",
     "priority": 34,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -1073,7 +1074,7 @@
       "FB引流"
     ],
     "page_type": "topic_expansion",
-    "status": "planned",
+    "status": "published",
     "priority": 35,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -1105,7 +1106,7 @@
       "FB移民买量"
     ],
     "page_type": "topic_expansion",
-    "status": "planned",
+    "status": "published",
     "priority": 36,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -1137,7 +1138,7 @@
       "FB理财引流"
     ],
     "page_type": "topic_expansion",
-    "status": "planned",
+    "status": "published",
     "priority": 37,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -1169,7 +1170,7 @@
       "FB理财推广"
     ],
     "page_type": "topic_expansion",
-    "status": "planned",
+    "status": "published",
     "priority": 38,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -1201,7 +1202,7 @@
       "FB理财获客"
     ],
     "page_type": "topic_expansion",
-    "status": "planned",
+    "status": "published",
     "priority": 39,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -1233,7 +1234,7 @@
       "中东理财引流"
     ],
     "page_type": "topic_expansion",
-    "status": "planned",
+    "status": "published",
     "priority": 40,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -1265,7 +1266,7 @@
       "俄罗斯理财引流"
     ],
     "page_type": "topic_expansion",
-    "status": "planned",
+    "status": "published",
     "priority": 41,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -1297,7 +1298,7 @@
       "加拿大理财引流"
     ],
     "page_type": "topic_expansion",
-    "status": "planned",
+    "status": "published",
     "priority": 42,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -1329,7 +1330,7 @@
       "FB游戏推广"
     ],
     "page_type": "topic_expansion",
-    "status": "planned",
+    "status": "published",
     "priority": 43,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -1361,7 +1362,7 @@
       "谷歌游戏推广"
     ],
     "page_type": "topic_expansion",
-    "status": "planned",
+    "status": "published",
     "priority": 44,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -1406,7 +1407,9 @@
       "/contact/"
     ],
     "risk_level": "medium",
-    "notes": "内容任务，不等于公开页面；正文后续由 DeepSeek 生成，Codex 负责接入和检查。"
+    "notes": "内容任务，不等于公开页面；正文后续由 DeepSeek 生成，Codex 负责接入和检查。",
+    "internal_only": true,
+    "internal_only_reason": "Removed from DeepSeek batch-001 because google-promotion content_id conflicts with TK immigration ads topic and Google intent/internal links."
   },
   {
     "content_id": "c046-google-promotion-promotion-588fc030",
@@ -1425,7 +1428,7 @@
       "中东理财推广"
     ],
     "page_type": "topic_expansion",
-    "status": "draft_received",
+    "status": "planned",
     "priority": 46,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -1585,7 +1588,7 @@
       "FB移民获客"
     ],
     "page_type": "topic_expansion",
-    "status": "planned",
+    "status": "published",
     "priority": 51,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -1617,7 +1620,7 @@
       "谷歌移民引流"
     ],
     "page_type": "topic_expansion",
-    "status": "draft_received",
+    "status": "planned",
     "priority": 52,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -1649,7 +1652,7 @@
       "FB保险获客"
     ],
     "page_type": "topic_expansion",
-    "status": "planned",
+    "status": "published",
     "priority": 53,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -1681,7 +1684,7 @@
       "谷歌保险引流"
     ],
     "page_type": "topic_expansion",
-    "status": "draft_received",
+    "status": "planned",
     "priority": 54,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -1713,7 +1716,7 @@
       "FB贷款获客"
     ],
     "page_type": "topic_expansion",
-    "status": "planned",
+    "status": "published",
     "priority": 55,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -1745,7 +1748,7 @@
       "谷歌贷款引流"
     ],
     "page_type": "topic_expansion",
-    "status": "draft_received",
+    "status": "planned",
     "priority": 56,
     "word_count_target": 1800,
     "deepseek_required": true,
@@ -1882,6 +1885,523 @@
       "/contact/"
     ],
     "risk_level": "medium",
+    "notes": "内容任务，不等于公开页面；正文后续由 DeepSeek 生成，Codex 负责接入和检查。"
+  },
+  {
+    "content_id": "c061-traffic-acquisition-leads-quality-test",
+    "target_url": "/blog/leads-quality-test/",
+    "title": "线索质量怎么测试：渠道判断、表单承接和跟进节奏",
+    "h1": "线索质量怎么测试：渠道判断、表单承接和跟进节奏",
+    "description": "线索质量怎么测试：渠道判断、表单承接和跟进节奏，围绕真实搜索需求梳理推广准备、渠道判断、素材测试、落地页承接和咨询转化路径。",
+    "intent": "long_tail_question",
+    "cluster_id": "traffic-acquisition",
+    "primary_keyword": "线索质量怎么测试",
+    "secondary_keywords": [
+      "线索质量",
+      "获客测试",
+      "表单承接"
+    ],
+    "source_keywords": [
+      "获客",
+      "引流"
+    ],
+    "page_type": "blog_article",
+    "status": "published",
+    "priority": 61,
+    "word_count_target": 1800,
+    "deepseek_required": true,
+    "target_service": "/services/traffic-acquisition/",
+    "target_topic": "",
+    "internal_links": [
+      "/services/traffic-acquisition/",
+      "/services/",
+      "/topics/",
+      "/contact/"
+    ],
+    "risk_level": "low",
+    "notes": "内容任务，不等于公开页面；正文后续由 DeepSeek 生成，Codex 负责接入和检查。"
+  },
+  {
+    "content_id": "c062-media-buying-small-budget-test",
+    "target_url": "/blog/small-budget-media-buying-test/",
+    "title": "小预算买量怎么测：素材、渠道和转化路径准备",
+    "h1": "小预算买量怎么测：素材、渠道和转化路径准备",
+    "description": "小预算买量怎么测：素材、渠道和转化路径准备，围绕真实搜索需求梳理推广准备、渠道判断、素材测试、落地页承接和咨询转化路径。",
+    "intent": "long_tail_question",
+    "cluster_id": "media-buying",
+    "primary_keyword": "小预算买量怎么测",
+    "secondary_keywords": [
+      "小预算买量",
+      "买量测试",
+      "投流测试"
+    ],
+    "source_keywords": [
+      "买量",
+      "投流"
+    ],
+    "page_type": "blog_article",
+    "status": "published",
+    "priority": 62,
+    "word_count_target": 1800,
+    "deepseek_required": true,
+    "target_service": "/services/media-buying/",
+    "target_topic": "",
+    "internal_links": [
+      "/services/media-buying/",
+      "/services/",
+      "/topics/",
+      "/contact/"
+    ],
+    "risk_level": "low",
+    "notes": "内容任务，不等于公开页面；正文后续由 DeepSeek 生成，Codex 负责接入和检查。"
+  },
+  {
+    "content_id": "c063-overseas-promotion-landing-page",
+    "target_url": "/blog/overseas-promotion-landing-page/",
+    "title": "海外推广落地页怎么准备：内容、表单和咨询承接",
+    "h1": "海外推广落地页怎么准备：内容、表单和咨询承接",
+    "description": "海外推广落地页怎么准备：内容、表单和咨询承接，围绕真实搜索需求梳理推广准备、渠道判断、素材测试、落地页承接和咨询转化路径。",
+    "intent": "long_tail_question",
+    "cluster_id": "overseas-promotion",
+    "primary_keyword": "海外推广落地页怎么准备",
+    "secondary_keywords": [
+      "海外推广落地页",
+      "落地页承接",
+      "海外获客"
+    ],
+    "source_keywords": [
+      "海外推广",
+      "落地页"
+    ],
+    "page_type": "blog_article",
+    "status": "published",
+    "priority": 63,
+    "word_count_target": 1800,
+    "deepseek_required": true,
+    "target_service": "/services/overseas-promotion/",
+    "target_topic": "",
+    "internal_links": [
+      "/services/overseas-promotion/",
+      "/services/",
+      "/topics/",
+      "/contact/"
+    ],
+    "risk_level": "low",
+    "notes": "内容任务，不等于公开页面；正文后续由 DeepSeek 生成，Codex 负责接入和检查。"
+  },
+  {
+    "content_id": "c064-ad-campaign-support-material-test",
+    "target_url": "/blog/ad-material-test/",
+    "title": "广告素材怎么测试：角度、预算和反馈复盘方法",
+    "h1": "广告素材怎么测试：角度、预算和反馈复盘方法",
+    "description": "广告素材怎么测试：角度、预算和反馈复盘方法，围绕真实搜索需求梳理推广准备、渠道判断、素材测试、落地页承接和咨询转化路径。",
+    "intent": "long_tail_question",
+    "cluster_id": "ad-campaign-support",
+    "primary_keyword": "广告素材怎么测试",
+    "secondary_keywords": [
+      "广告素材测试",
+      "素材角度",
+      "投放反馈"
+    ],
+    "source_keywords": [
+      "广告投放",
+      "素材测试"
+    ],
+    "page_type": "blog_article",
+    "status": "published",
+    "priority": 64,
+    "word_count_target": 1800,
+    "deepseek_required": true,
+    "target_service": "/services/ad-campaign-support/",
+    "target_topic": "",
+    "internal_links": [
+      "/services/ad-campaign-support/",
+      "/services/",
+      "/topics/",
+      "/contact/"
+    ],
+    "risk_level": "low",
+    "notes": "内容任务，不等于公开页面；正文后续由 DeepSeek 生成，Codex 负责接入和检查。"
+  },
+  {
+    "content_id": "c065-fb-leads-form-setup",
+    "target_url": "/blog/fb-leads-form-setup/",
+    "title": "FB获客表单怎么设置：字段、线索质量和客服承接",
+    "h1": "FB获客表单怎么设置：字段、线索质量和客服承接",
+    "description": "FB获客表单怎么设置：字段、线索质量和客服承接，围绕真实搜索需求梳理推广准备、渠道判断、素材测试、落地页承接和咨询转化路径。",
+    "intent": "platform_question",
+    "cluster_id": "fb-promotion",
+    "primary_keyword": "FB获客表单怎么设置",
+    "secondary_keywords": [
+      "FB获客表单",
+      "FB线索",
+      "表单获客"
+    ],
+    "source_keywords": [
+      "FB",
+      "获客"
+    ],
+    "page_type": "blog_article",
+    "status": "published",
+    "priority": 65,
+    "word_count_target": 1800,
+    "deepseek_required": true,
+    "target_service": "",
+    "target_topic": "/platforms/fb/",
+    "internal_links": [
+      "/platforms/fb/",
+      "/services/",
+      "/topics/",
+      "/contact/"
+    ],
+    "risk_level": "low",
+    "notes": "内容任务，不等于公开页面；正文后续由 DeepSeek 生成，Codex 负责接入和检查。"
+  },
+  {
+    "content_id": "c066-google-search-leads-keywords",
+    "target_url": "/blog/google-search-leads-keywords/",
+    "title": "Google搜索获客关键词怎么选：意图、页面和转化追踪",
+    "h1": "Google搜索获客关键词怎么选：意图、页面和转化追踪",
+    "description": "Google搜索获客关键词怎么选：意图、页面和转化追踪，围绕真实搜索需求梳理推广准备、渠道判断、素材测试、落地页承接和咨询转化路径。",
+    "intent": "platform_question",
+    "cluster_id": "google-promotion",
+    "primary_keyword": "Google搜索获客关键词怎么选",
+    "secondary_keywords": [
+      "Google搜索获客",
+      "关键词选择",
+      "转化追踪"
+    ],
+    "source_keywords": [
+      "Google",
+      "搜索获客"
+    ],
+    "page_type": "blog_article",
+    "status": "published",
+    "priority": 66,
+    "word_count_target": 1800,
+    "deepseek_required": true,
+    "target_service": "",
+    "target_topic": "/platforms/google/",
+    "internal_links": [
+      "/platforms/google/",
+      "/services/",
+      "/topics/",
+      "/contact/"
+    ],
+    "risk_level": "low",
+    "notes": "内容任务，不等于公开页面；正文后续由 DeepSeek 生成，Codex 负责接入和检查。"
+  },
+  {
+    "content_id": "c067-tk-short-video-leads",
+    "target_url": "/blog/tk-short-video-leads/",
+    "title": "TK短视频获客怎么做：素材前三秒、落地页和表单路径",
+    "h1": "TK短视频获客怎么做：素材前三秒、落地页和表单路径",
+    "description": "TK短视频获客怎么做：素材前三秒、落地页和表单路径，围绕真实搜索需求梳理推广准备、渠道判断、素材测试、落地页承接和咨询转化路径。",
+    "intent": "platform_question",
+    "cluster_id": "tk-promotion",
+    "primary_keyword": "TK短视频获客怎么做",
+    "secondary_keywords": [
+      "TK短视频获客",
+      "TK推广",
+      "短视频素材"
+    ],
+    "source_keywords": [
+      "TK",
+      "短视频获客"
+    ],
+    "page_type": "blog_article",
+    "status": "published",
+    "priority": 67,
+    "word_count_target": 1800,
+    "deepseek_required": true,
+    "target_service": "",
+    "target_topic": "/platforms/tk/",
+    "internal_links": [
+      "/platforms/tk/",
+      "/services/",
+      "/topics/",
+      "/contact/"
+    ],
+    "risk_level": "low",
+    "notes": "内容任务，不等于公开页面；正文后续由 DeepSeek 生成，Codex 负责接入和检查。"
+  },
+  {
+    "content_id": "c068-game-user-acquisition-cost",
+    "target_url": "/blog/game-user-acquisition-cost/",
+    "title": "游戏获客成本怎么看：买量预算、注册质量和数据回传",
+    "h1": "游戏获客成本怎么看：买量预算、注册质量和数据回传",
+    "description": "游戏获客成本怎么看：买量预算、注册质量和数据回传，围绕真实搜索需求梳理推广准备、渠道判断、素材测试、落地页承接和咨询转化路径。",
+    "intent": "topic_expansion",
+    "cluster_id": "game-promotion",
+    "primary_keyword": "游戏获客成本怎么看",
+    "secondary_keywords": [
+      "游戏获客成本",
+      "游戏买量",
+      "注册质量"
+    ],
+    "source_keywords": [
+      "游戏",
+      "买量成本"
+    ],
+    "page_type": "blog_article",
+    "status": "published",
+    "priority": 68,
+    "word_count_target": 1800,
+    "deepseek_required": true,
+    "target_service": "/services/media-buying/",
+    "target_topic": "/topics/game-promotion/",
+    "internal_links": [
+      "/services/media-buying/",
+      "/topics/game-promotion/",
+      "/services/",
+      "/topics/",
+      "/contact/"
+    ],
+    "risk_level": "medium",
+    "notes": "内容任务，不等于公开页面；正文后续由 DeepSeek 生成，Codex 负责接入和检查。"
+  },
+  {
+    "content_id": "c069-dating-app-registration-flow",
+    "target_url": "/blog/dating-app-registration-flow/",
+    "title": "交友App注册路径怎么优化：素材、页面和注册质量",
+    "h1": "交友App注册路径怎么优化：素材、页面和注册质量",
+    "description": "交友App注册路径怎么优化：素材、页面和注册质量，围绕真实搜索需求梳理推广准备、渠道判断、素材测试、落地页承接和咨询转化路径。",
+    "intent": "topic_expansion",
+    "cluster_id": "dating-traffic",
+    "primary_keyword": "交友App注册路径怎么优化",
+    "secondary_keywords": [
+      "交友App注册",
+      "注册路径",
+      "交友获客"
+    ],
+    "source_keywords": [
+      "交友App注册",
+      "交友获客"
+    ],
+    "page_type": "blog_article",
+    "status": "published",
+    "priority": 69,
+    "word_count_target": 1800,
+    "deepseek_required": true,
+    "target_service": "/services/traffic-acquisition/",
+    "target_topic": "/topics/dating-traffic/",
+    "internal_links": [
+      "/services/traffic-acquisition/",
+      "/topics/dating-traffic/",
+      "/services/",
+      "/topics/",
+      "/contact/"
+    ],
+    "risk_level": "medium",
+    "notes": "内容任务，不等于公开页面；正文后续由 DeepSeek 生成，Codex 负责接入和检查。"
+  },
+  {
+    "content_id": "c070-crypto-exchange-leads",
+    "target_url": "/blog/crypto-exchange-leads/",
+    "title": "交易所获客怎么做：渠道选择、注册路径和用户质量",
+    "h1": "交易所获客怎么做：渠道选择、注册路径和用户质量",
+    "description": "交易所获客怎么做：渠道选择、注册路径和用户质量，围绕真实搜索需求梳理推广准备、渠道判断、素材测试、落地页承接和咨询转化路径。",
+    "intent": "topic_expansion",
+    "cluster_id": "crypto-promotion",
+    "primary_keyword": "交易所获客怎么做",
+    "secondary_keywords": [
+      "交易所获客",
+      "交易所拉新",
+      "虚拟币推广"
+    ],
+    "source_keywords": [
+      "交易所",
+      "虚拟币"
+    ],
+    "page_type": "blog_article",
+    "status": "published",
+    "priority": 70,
+    "word_count_target": 1800,
+    "deepseek_required": true,
+    "target_service": "/services/ad-campaign-support/",
+    "target_topic": "/topics/crypto-promotion/",
+    "internal_links": [
+      "/services/ad-campaign-support/",
+      "/topics/crypto-promotion/",
+      "/services/",
+      "/topics/",
+      "/contact/"
+    ],
+    "risk_level": "medium",
+    "notes": "内容任务，不等于公开页面；正文后续由 DeepSeek 生成，Codex 负责接入和检查。"
+  },
+  {
+    "content_id": "c071-loan-leads-page-copy",
+    "target_url": "/blog/loan-leads-page-copy/",
+    "title": "贷款获客页面怎么写：表单、信任信息和咨询路径",
+    "h1": "贷款获客页面怎么写：表单、信任信息和咨询路径",
+    "description": "贷款获客页面怎么写：表单、信任信息和咨询路径，围绕真实搜索需求梳理推广准备、渠道判断、素材测试、落地页承接和咨询转化路径。",
+    "intent": "topic_expansion",
+    "cluster_id": "loan-leads",
+    "primary_keyword": "贷款获客页面怎么写",
+    "secondary_keywords": [
+      "贷款获客",
+      "贷款页面",
+      "咨询路径"
+    ],
+    "source_keywords": [
+      "贷款",
+      "获客页面"
+    ],
+    "page_type": "blog_article",
+    "status": "published",
+    "priority": 71,
+    "word_count_target": 1800,
+    "deepseek_required": true,
+    "target_service": "/services/traffic-acquisition/",
+    "target_topic": "/topics/loan-leads/",
+    "internal_links": [
+      "/services/traffic-acquisition/",
+      "/topics/loan-leads/",
+      "/services/",
+      "/topics/",
+      "/contact/"
+    ],
+    "risk_level": "medium",
+    "notes": "内容任务，不等于公开页面；正文后续由 DeepSeek 生成，Codex 负责接入和检查。"
+  },
+  {
+    "content_id": "c072-insurance-leads-follow-up",
+    "target_url": "/blog/insurance-leads-follow-up/",
+    "title": "保险获客线索怎么跟进：表单字段、客服承接和质量判断",
+    "h1": "保险获客线索怎么跟进：表单字段、客服承接和质量判断",
+    "description": "保险获客线索怎么跟进：表单字段、客服承接和质量判断，围绕真实搜索需求梳理推广准备、渠道判断、素材测试、落地页承接和咨询转化路径。",
+    "intent": "topic_expansion",
+    "cluster_id": "insurance-leads",
+    "primary_keyword": "保险获客线索怎么跟进",
+    "secondary_keywords": [
+      "保险获客",
+      "线索跟进",
+      "表单字段"
+    ],
+    "source_keywords": [
+      "保险",
+      "线索跟进"
+    ],
+    "page_type": "blog_article",
+    "status": "published",
+    "priority": 72,
+    "word_count_target": 1800,
+    "deepseek_required": true,
+    "target_service": "/services/traffic-acquisition/",
+    "target_topic": "/topics/insurance-leads/",
+    "internal_links": [
+      "/services/traffic-acquisition/",
+      "/topics/insurance-leads/",
+      "/services/",
+      "/topics/",
+      "/contact/"
+    ],
+    "risk_level": "medium",
+    "notes": "内容任务，不等于公开页面；正文后续由 DeepSeek 生成，Codex 负责接入和检查。"
+  },
+  {
+    "content_id": "c073-immigration-consultation-leads",
+    "target_url": "/blog/immigration-consultation-leads/",
+    "title": "移民咨询获客怎么做：关键词、页面信任和预约路径",
+    "h1": "移民咨询获客怎么做：关键词、页面信任和预约路径",
+    "description": "移民咨询获客怎么做：关键词、页面信任和预约路径，围绕真实搜索需求梳理推广准备、渠道判断、素材测试、落地页承接和咨询转化路径。",
+    "intent": "topic_expansion",
+    "cluster_id": "immigration-leads",
+    "primary_keyword": "移民咨询获客怎么做",
+    "secondary_keywords": [
+      "移民咨询获客",
+      "移民线索",
+      "预约路径"
+    ],
+    "source_keywords": [
+      "移民",
+      "咨询获客"
+    ],
+    "page_type": "blog_article",
+    "status": "published",
+    "priority": 73,
+    "word_count_target": 1800,
+    "deepseek_required": true,
+    "target_service": "/services/traffic-acquisition/",
+    "target_topic": "/topics/immigration-leads/",
+    "internal_links": [
+      "/services/traffic-acquisition/",
+      "/topics/immigration-leads/",
+      "/services/",
+      "/topics/",
+      "/contact/"
+    ],
+    "risk_level": "medium",
+    "notes": "内容任务，不等于公开页面；正文后续由 DeepSeek 生成，Codex 负责接入和检查。"
+  },
+  {
+    "content_id": "c074-online-work-leads-test",
+    "target_url": "/blog/online-work-leads-test/",
+    "title": "兼职项目获客怎么测：人群、素材和报名质量",
+    "h1": "兼职项目获客怎么测：人群、素材和报名质量",
+    "description": "兼职项目获客怎么测：人群、素材和报名质量，围绕真实搜索需求梳理推广准备、渠道判断、素材测试、落地页承接和咨询转化路径。",
+    "intent": "topic_expansion",
+    "cluster_id": "online-work-leads",
+    "primary_keyword": "兼职项目获客怎么测",
+    "secondary_keywords": [
+      "兼职项目获客",
+      "报名质量",
+      "在线项目推广"
+    ],
+    "source_keywords": [
+      "兼职",
+      "在线项目"
+    ],
+    "page_type": "blog_article",
+    "status": "published",
+    "priority": 74,
+    "word_count_target": 1800,
+    "deepseek_required": true,
+    "target_service": "/services/media-buying/",
+    "target_topic": "/topics/online-work-leads/",
+    "internal_links": [
+      "/services/media-buying/",
+      "/topics/online-work-leads/",
+      "/services/",
+      "/topics/",
+      "/contact/"
+    ],
+    "risk_level": "medium",
+    "notes": "内容任务，不等于公开页面；正文后续由 DeepSeek 生成，Codex 负责接入和检查。"
+  },
+  {
+    "content_id": "c075-youtube-promotion-leads",
+    "target_url": "/blog/youtube-promotion-leads/",
+    "title": "YouTube推广获客怎么做：内容渠道、落地页和再营销准备",
+    "h1": "YouTube推广获客怎么做：内容渠道、落地页和再营销准备",
+    "description": "YouTube推广获客怎么做：内容渠道、落地页和再营销准备，围绕真实搜索需求梳理推广准备、渠道判断、素材测试、落地页承接和咨询转化路径。",
+    "intent": "channel_question",
+    "cluster_id": "overseas-promotion",
+    "primary_keyword": "YouTube推广获客怎么做",
+    "secondary_keywords": [
+      "YouTube推广",
+      "内容渠道",
+      "再营销"
+    ],
+    "source_keywords": [
+      "YouTube",
+      "推广获客"
+    ],
+    "page_type": "blog_article",
+    "status": "published",
+    "priority": 75,
+    "word_count_target": 1800,
+    "deepseek_required": true,
+    "target_service": "/services/overseas-promotion/",
+    "target_topic": "",
+    "internal_links": [
+      "/services/overseas-promotion/",
+      "/services/",
+      "/topics/",
+      "/contact/"
+    ],
+    "risk_level": "low",
     "notes": "内容任务，不等于公开页面；正文后续由 DeepSeek 生成，Codex 负责接入和检查。"
   }
 ]

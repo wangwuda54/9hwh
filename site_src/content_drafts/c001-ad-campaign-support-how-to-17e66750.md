@@ -5,8 +5,9 @@ description: 探讨加密货币推广的真实需求、适合项目类型、投�
 target_url: /blog/crypto-promotion-how-to-17e66750/
 primary_keyword: 加密货币推广怎么做
 secondary_keywords: 加密货币推广, 加密货币, 推广怎么做
-status: reviewed
+status: published
 ---
+
 ## 搜索意图判断
 
 当用户搜索“加密货币推广怎么做”时，背后通常对应几种真实需求：希望了解加密货币项目在海外主流广告平台（如 TK、FB、Google）的投放可行性；寻找能支持加密货币项目获客的推广渠道或服务方；评估自身项目的资质材料、页面表达和投放地区是否适合进入广告测试。这个关键词的搜索意图是获取方法、路径和实操建议，而非单纯获取资讯。

@@ -5,8 +5,9 @@ description: 虚拟币推广怎么做：推广路径、渠道判断和准备清�
 target_url: /blog/crypto-promotion-how-to-1b5b5379/
 primary_keyword: 虚拟币推广怎么做
 secondary_keywords: 虚拟币推广, 怎么做
-status: reviewed
+status: published
 ---
+
 ## 虚拟币推广怎么做？从选对渠道开始
 
 想做虚拟币推广的团队，最常问的几个问题：**虚拟币推广怎么做**才能有效获客？哪些渠道能过审？素材怎么准备不封号？预算打水漂怎么办？这些问题我们在服务过几十个币圈项目后，整理了一套可复用的判断逻辑和准备清单。
@@ -61,3 +62,4 @@ status: reviewed
 ## 继续了解
 
 - [相关服务](/services/ad-campaign-support/)
+

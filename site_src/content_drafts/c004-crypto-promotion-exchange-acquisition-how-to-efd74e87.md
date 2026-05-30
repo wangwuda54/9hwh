@@ -5,8 +5,9 @@ description: 了解交易所拉新的核心推广路径、渠道选择逻辑与�
 target_url: /blog/exchange-acquisition-how-to-efd74e87/
 primary_keyword: 交易所拉新怎么做
 secondary_keywords: 交易所拉新, 怎么做
-status: reviewed
+status: published
 ---
+
 ## 搜索意图判断
 
 当用户搜索“交易所拉新怎么做”时，核心需求通常集中在三点：一是了解有效的海外推广渠道，二是判断自身项目适合哪种拉新方式，三是获取可落地的准备工作清单。这不是一个理论问题，而是一个实操导向的决策咨询。

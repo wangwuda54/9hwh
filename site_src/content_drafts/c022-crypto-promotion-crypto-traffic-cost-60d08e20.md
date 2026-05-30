@@ -7,6 +7,7 @@ primary_keyword: 币圈引流费用
 secondary_keywords: 币圈引流, 费用
 status: published
 ---
+
 ## 币圈引流费用到底花在哪
 
 做币圈项目的人，问得最多的就是“币圈引流费用多少”。其实这个费用没有固定数字，因为它主要取决于你要获取什么类型的用户、用什么渠道、素材怎么做、落地页能不能接住流量。
@@ -73,4 +74,4 @@ status: published
 
 其他相关阅读：[海外广告投放技巧](/topics/)、[落地页优化指南](/services/)。
 
-如果需要继续梳理渠道和投放准备，可以先查看 [广告投放支持](/services/ad-campaign-support/)，再结合预算、素材和落地页做小范围测试。
+???????????????????????????? [????????](/services/ad-campaign-support/)?

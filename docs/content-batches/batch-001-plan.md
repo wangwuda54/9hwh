@@ -20,14 +20,14 @@
 
 | content_id | title | cluster | target_url |
 | --- | --- | --- | --- |
-| c013-traffic-acquisition-dating-traffic-how-to-a23563ce | 交友引流怎么做：推广路径、渠道判断和准备清单 | traffic-acquisition | /blog/dating-traffic-how-to-a23563ce/ |
-| c002-ad-campaign-support-how-to-f12343f8 | 理财怎么做：推广路径、渠道判断和准备清单 | ad-campaign-support | /blog/how-to-f12343f8/ |
-| c011-media-buying-online-work-how-to-60caf548 | 网赚怎么做：推广路径、渠道判断和准备清单 | media-buying | /blog/online-work-how-to-60caf548/ |
-| c005-crypto-promotion-crypto-traffic-how-to-a32df87d | 币圈引流怎么做：推广路径、渠道判断和准备清单 | crypto-promotion | /blog/crypto-traffic-how-to-a32df87d/ |
-| c008-dating-traffic-dating-how-to-e74a54f4 | 交友聊天怎么做：推广路径、渠道判断和准备清单 | dating-traffic | /blog/dating-how-to-e74a54f4/ |
-| c044-game-promotion-google-game-promotion-0d865324 | 谷歌游戏推广：海外推广与获客准备指南 | game-promotion | /blog/topics/google-game-promotion-0d865324/ |
-| c056-loan-leads-google-loan-traffic-ef51241c | 谷歌贷款引流：海外推广与获客准备指南 | loan-leads | /blog/topics/google-loan-traffic-ef51241c/ |
-| c054-insurance-leads-google-insurance-traffic-7dc33881 | 谷歌保险引流：海外推广与获客准备指南 | insurance-leads | /blog/topics/google-insurance-traffic-7dc33881/ |
-| c052-immigration-leads-google-immigration-traffic-31aff535 | 谷歌移民引流：海外推广与获客准备指南 | immigration-leads | /blog/topics/google-immigration-traffic-31aff535/ |
-| c032-fb-promotion-fb-dating-traffic-promotion-8c6d82f2 | FB交友引流推广：海外推广与获客准备指南 | fb-promotion | /blog/topics/fb-dating-traffic-promotion-8c6d82f2/ |
-| c046-google-promotion-promotion-588fc030 | 中东理财推广：海外推广与获客准备指南 | google-promotion | /blog/topics/promotion-588fc030/ |
+| c012-traffic-acquisition-dating-app-how-to-f56b0dad | 交友App注册怎么做：推广路径、渠道判断和准备清单 | traffic-acquisition | /blog/dating-app-how-to-f56b0dad/ |
+| c001-ad-campaign-support-how-to-17e66750 | 加密货币怎么做：推广路径、渠道判断和准备清单 | ad-campaign-support | /blog/how-to-17e66750/ |
+| c010-media-buying-part-time-how-to-5875d40e | 兼职怎么做：推广路径、渠道判断和准备清单 | media-buying | /blog/part-time-how-to-5875d40e/ |
+| c004-crypto-promotion-exchange-acquisition-how-to-efd74e87 | 交易所拉新怎么做：推广路径、渠道判断和准备清单 | crypto-promotion | /blog/exchange-acquisition-how-to-efd74e87/ |
+| c007-dating-traffic-dating-how-to-002063ad | 交友私聊怎么做：推广路径、渠道判断和准备清单 | dating-traffic | /blog/dating-how-to-002063ad/ |
+| c043-game-promotion-fb-game-promotion-eec369fd | FB游戏推广：海外推广与获客准备指南 | game-promotion | /blog/topics/fb-game-promotion-eec369fd/ |
+| c055-loan-leads-fb-loan-leads-60d3dc0c | FB贷款获客：海外推广与获客准备指南 | loan-leads | /blog/topics/fb-loan-leads-60d3dc0c/ |
+| c053-insurance-leads-fb-insurance-leads-b01d5372 | FB保险获客：海外推广与获客准备指南 | insurance-leads | /blog/topics/fb-insurance-leads-b01d5372/ |
+| c051-immigration-leads-fb-immigration-leads-b33be086 | FB移民获客：海外推广与获客准备指南 | immigration-leads | /blog/topics/fb-immigration-leads-b33be086/ |
+| c031-fb-promotion-fb-dating-traffic-5035e1c0 | FB交友引流：海外推广与获客准备指南 | fb-promotion | /blog/topics/fb-dating-traffic-5035e1c0/ |
+| c045-google-promotion-tk-immigration-ads-bcb960fd | TK移民投放：海外推广与获客准备指南 | google-promotion | /blog/topics/tk-immigration-ads-bcb960fd/ |
