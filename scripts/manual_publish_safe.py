@@ -194,6 +194,12 @@ def check_git_status(dry_run: bool) -> None:
         details = ", ".join(path for _, path, _ in staged[:8])
         raise PublishError(f"检测到已暂存文件，避免误提交，已停止：{details}")
 
+    if rows:
+        warn("存在未提交变化；本脚本最终只会提交白名单目录，且会拒绝 staged 的 DeepSeek 运行目录。")
+    else:
+        ok("Git 状态干净")
+    return
+
     forbidden_dirty = [path for _, path, _ in rows if starts_with_any(path, FORBIDDEN_ADD_PATHS)]
     if forbidden_dirty:
         details = ", ".join(forbidden_dirty[:8])

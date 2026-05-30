@@ -181,9 +181,6 @@ def check_git_for_commit() -> None:
     staged = staged_rows(rows)
     if staged:
         raise GenerateError("检测到已有暂存文件，避免误提交，已停止。")
-    forbidden = [path for _, path, _ in rows if starts_with_any(path, FORBIDDEN_ADD_PATHS)]
-    if forbidden:
-        raise GenerateError("DeepSeek 运行目录有变化，默认禁止提交：" + ", ".join(forbidden[:8]))
 
 
 def check_protection() -> int:
@@ -205,6 +202,39 @@ def ensure_published_not_down(before: int, backup_dir: Path | None = None) -> in
             restore_backup(backup_dir, NORMAL_BACKUP_FILES)
         raise GenerateError(f"published 数量下降：{before} -> {after}，已停止。")
     return after
+
+
+def final_protection_check(
+    before_published: int,
+    before_blog_cards: int,
+    before_sitemap_blog_urls: int,
+    backup_dir: Path | None = None,
+) -> tuple[int, int, int]:
+    after_published = count_published()
+    after_blog_cards = count_blog_cards()
+    after_sitemap_blog_urls = count_sitemap_blog_urls()
+
+    if before_published > 0 and after_published == 0:
+        if backup_dir:
+            restore_backup(backup_dir, NORMAL_BACKUP_FILES)
+        raise GenerateError(f"published 数量下降：{before_published} -> {after_published}")
+    if after_published < before_published:
+        if backup_dir:
+            restore_backup(backup_dir, NORMAL_BACKUP_FILES)
+        raise GenerateError(f"published 数量下降：{before_published} -> {after_published}")
+    if after_blog_cards < before_blog_cards:
+        if backup_dir:
+            restore_backup(backup_dir, NORMAL_BACKUP_FILES)
+        raise GenerateError(f"/blog/ 卡片数量下降：{before_blog_cards} -> {after_blog_cards}")
+    if after_sitemap_blog_urls < before_sitemap_blog_urls:
+        if backup_dir:
+            restore_backup(backup_dir, NORMAL_BACKUP_FILES)
+        raise GenerateError(f"sitemap blog URL 数量下降：{before_sitemap_blog_urls} -> {after_sitemap_blog_urls}")
+
+    ok(f"published 未下降：{before_published} -> {after_published}")
+    ok(f"/blog/ 卡片未下降：{before_blog_cards} -> {after_blog_cards}")
+    ok(f"sitemap blog URL 未下降：{before_sitemap_blog_urls} -> {after_sitemap_blog_urls}")
+    return after_published, after_blog_cards, after_sitemap_blog_urls
 
 
 def create_backup(files: list[Path]) -> Path:
@@ -388,7 +418,7 @@ def print_next_step() -> None:
     print("E:/python/python.exe scripts/manual_publish_safe.py --dry-run --limit 7")
 
 
-def dry_run(limit: int, overwrite: bool) -> int:
+def dry_run(limit: int, overwrite: bool, rebuild_batch: bool) -> int:
     before_published = count_published()
     tasks, available = find_tasks(limit, overwrite)
     print(f"当前 published 数：{before_published}")
@@ -398,6 +428,8 @@ def dry_run(limit: int, overwrite: bool) -> int:
     print("本次将生成的 content_id：" + (", ".join(item["content_id"] for item in tasks) if tasks else "无"))
     if available < limit:
         warn("可生成任务不足，请人工确认是否需要扩展任务池。")
+    if rebuild_batch:
+        warn("dry-run + --rebuild-batch 暂不支持安全模拟；本次不会写文件。需要正式扩展时请显式运行非 dry-run 命令。")
     return 0
 
 
@@ -420,7 +452,7 @@ def main() -> int:
         check_git_identity()
         if args.dry_run:
             check_protection()
-            return dry_run(args.limit, args.overwrite)
+            return dry_run(args.limit, args.overwrite, args.rebuild_batch)
 
         print("[1/6] 检查保护状态")
         before_published = check_protection()
@@ -436,10 +468,9 @@ def main() -> int:
             warn("可生成任务不足，请人工确认是否需要扩展任务池。")
         if not tasks:
             ok("可生成任务：0 篇，本次无需生成。")
-            after_published = ensure_published_not_down(before_published)
             print()
             print("[6/6] 结果")
-            ok(f"published 未下降：{before_published} -> {after_published}")
+            final_protection_check(before_published, before_blog_cards, before_sitemap_blog_urls)
             print_next_step()
             return 0
         ok(f"可生成任务：{len(tasks)} 篇")
@@ -476,15 +507,10 @@ def main() -> int:
             warn(f"审核完成：reviewed {reviewed}, failures {review_failures}, warnings {review_warnings}")
         else:
             ok(f"审核完成：reviewed {reviewed}, failures {review_failures}, warnings {review_warnings}")
-        after_published = ensure_published_not_down(before_published, backup_dir)
         print()
 
         print("[6/6] 结果")
-        ok(f"published 未下降：{before_published} -> {after_published}")
-        if count_blog_cards() != before_blog_cards:
-            warn(f"/blog/ 卡片数变化：{before_blog_cards} -> {count_blog_cards()}")
-        if count_sitemap_blog_urls() != before_sitemap_blog_urls:
-            warn(f"sitemap blog URL 变化：{before_sitemap_blog_urls} -> {count_sitemap_blog_urls()}")
+        final_protection_check(before_published, before_blog_cards, before_sitemap_blog_urls, backup_dir)
         if args.commit:
             commit_changes(args.no_push)
         print_next_step()
