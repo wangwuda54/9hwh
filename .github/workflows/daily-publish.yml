@@ -1,5 +1,8 @@
 name: Daily 9HWH publish
 
+# Daily schedule disabled.
+# Primary publishing flow is local manual publishing:
+# E:/python/python.exe e:/sites/9hwh/9hwh一键发布.py
 on:
   workflow_dispatch:
     inputs:
@@ -17,8 +20,6 @@ on:
         description: "Optional daily publish limit"
         required: false
         default: "7"
-  schedule:
-    - cron: "30 2 * * *"
 
 permissions:
   contents: write
