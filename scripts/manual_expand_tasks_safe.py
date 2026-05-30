@@ -20,6 +20,30 @@ BACKUP_BASE = ROOT / "data" / "content-assets" / "manual-expand-backups"
 
 BLOG_LOC_RE = re.compile(r"<loc>[^<]*/blog/[^<]*</loc>")
 CONTENT_ID_RE = re.compile(r"^c(\d+)")
+LINK_REPLACEMENTS = {
+    "/services/lead-generation/": "/services/traffic-acquisition/",
+    "/services/landing-page/": "/services/overseas-promotion/",
+    "/topics/fb-promotion/": "/platforms/fb/",
+    "/topics/finance-ads/": "/topics/finance-leads/",
+    "/topics/google-ads/": "/platforms/google/",
+    "/topics/ad-account/": "/services/ad-campaign-support/",
+    "/topics/ad-budget/": "/services/ad-campaign-support/",
+    "/topics/ad-review/": "/services/ad-campaign-support/",
+    "/topics/creative-review/": "/services/ad-campaign-support/",
+    "/topics/landing-page/": "/services/overseas-promotion/",
+    "/topics/tiktok-ads/": "/platforms/tk/",
+    "/topics/meta-ads/": "/platforms/fb/",
+    "/platforms/tiktok/": "/platforms/tk/",
+}
+EXISTING_TOPIC_BY_CLUSTER = {
+    "crypto-promotion": "/topics/crypto-promotion/",
+    "dating-traffic": "/topics/dating-traffic/",
+    "game-promotion": "/topics/game-promotion/",
+    "immigration-leads": "/topics/immigration-leads/",
+    "insurance-leads": "/topics/insurance-leads/",
+    "loan-leads": "/topics/loan-leads/",
+    "online-work-leads": "/topics/online-work-leads/",
+}
 
 BACKUP_FILES = [
     CONTENT_STATUS_PATH,
@@ -483,7 +507,15 @@ def make_description(topic: dict) -> str:
     )
 
 
+def normalize_site_link(link: str) -> str:
+    return LINK_REPLACEMENTS.get(str(link or "").strip(), str(link or "").strip())
+
+
 def content_queue_item(content_id: str, number: int, topic: dict) -> dict:
+    target_service = normalize_site_link(topic["target_service"])
+    target_topic = normalize_site_link(topic["target_topic"])
+    if not target_topic or target_topic == "/topics/" or target_topic.startswith("/platforms/"):
+        target_topic = EXISTING_TOPIC_BY_CLUSTER.get(str(topic.get("cluster_id", "")), "/topics/finance-leads/")
     return {
         "content_id": content_id,
         "target_url": f"/blog/{topic['slug']}/",
@@ -500,11 +532,11 @@ def content_queue_item(content_id: str, number: int, topic: dict) -> dict:
         "priority": number,
         "word_count_target": 1800,
         "deepseek_required": True,
-        "target_service": topic["target_service"],
-        "target_topic": topic["target_topic"],
+        "target_service": target_service,
+        "target_topic": target_topic,
         "internal_links": [
-            topic["target_service"],
-            topic["target_topic"],
+            target_service,
+            target_topic,
             "/services/",
             "/topics/",
             "/contact/",

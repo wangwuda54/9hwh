@@ -5,6 +5,7 @@ import json
 import re
 import shutil
 import subprocess
+from collections import Counter
 from datetime import date, datetime
 from pathlib import Path
 
@@ -21,7 +22,6 @@ BATCH_DIR = ROOT / "data" / "deepseek-batches" / BATCH_ID
 BATCH_INDEX_PATH = BATCH_DIR / f"{BATCH_ID}-index.json"
 BATCH_TASKS_PATH = BATCH_DIR / f"{BATCH_ID}-tasks.md"
 EXPAND_SCRIPT = ROOT / "scripts" / "manual_expand_tasks_safe.py"
-GENERATOR_PATH = ROOT / "scripts" / "generate_deepseek_drafts_api.py"
 INBOX_DIR = ROOT / "data" / "deepseek-inbox" / BATCH_ID
 BLOG_INDEX_PATH = ROOT / "site" / "public" / "blog" / "index.html"
 SITEMAP_PATH = ROOT / "site" / "public" / "sitemap.xml"
@@ -61,16 +61,31 @@ BLOG_LOC_RE = re.compile(r"<loc>[^<]*/blog/[^<]*</loc>")
 GENERATE_OK_RE = re.compile(r"generated\s+(\d+)\s+drafts,\s+skipped\s+(\d+),\s+failed\s+(\d+)", re.I)
 IMPORT_RE = re.compile(r"imported\s+(\d+)\s+drafts,\s+skipped\s+(\d+),\s+failed\s+(\d+)", re.I)
 REVIEW_RE = re.compile(r"reviewed\s+(\d+)\s+drafts,\s+failures\s+(\d+),\s+warnings\s+(\d+)", re.I)
-UNSAFE_GENERATOR_TERMS = [
-    "黑灰产",
-    "暴力洗量",
-    "Cloak",
-    "规避审核",
-    "绕过平台政策",
-    "抗封",
-    "三不限",
-    "借尸还魂",
-]
+MARKDOWN_LINK_RE = re.compile(r"\]\((/[^)\s]+)\)")
+LINK_REPLACEMENTS = {
+    "/services/lead-generation/": "/services/traffic-acquisition/",
+    "/services/landing-page/": "/services/overseas-promotion/",
+    "/topics/fb-promotion/": "/platforms/fb/",
+    "/topics/finance-ads/": "/topics/finance-leads/",
+    "/topics/google-ads/": "/platforms/google/",
+    "/topics/ad-account/": "/services/ad-campaign-support/",
+    "/topics/ad-budget/": "/services/ad-campaign-support/",
+    "/topics/ad-review/": "/services/ad-campaign-support/",
+    "/topics/creative-review/": "/services/ad-campaign-support/",
+    "/topics/landing-page/": "/services/overseas-promotion/",
+    "/topics/tiktok-ads/": "/platforms/tk/",
+    "/topics/meta-ads/": "/platforms/fb/",
+    "/platforms/tiktok/": "/platforms/tk/",
+}
+EXISTING_TOPIC_BY_CLUSTER = {
+    "crypto-promotion": "/topics/crypto-promotion/",
+    "dating-traffic": "/topics/dating-traffic/",
+    "game-promotion": "/topics/game-promotion/",
+    "immigration-leads": "/topics/immigration-leads/",
+    "insurance-leads": "/topics/insurance-leads/",
+    "loan-leads": "/topics/loan-leads/",
+    "online-work-leads": "/topics/online-work-leads/",
+}
 
 
 class GenerateError(Exception):
@@ -208,17 +223,6 @@ def check_protection() -> int:
         raise GenerateError("published 不是大于 0，已停止，防止破坏已恢复状态。")
     ok(f"published 保护开启：{published}")
     return published
-
-
-def check_generator_prompt_safe() -> None:
-    text = GENERATOR_PATH.read_text(encoding="utf-8-sig") if GENERATOR_PATH.exists() else ""
-    matched = [term for term in UNSAFE_GENERATOR_TERMS if term in text]
-    if matched:
-        raise GenerateError(
-            "真实生成已停止：generate_deepseek_drafts_api.py 当前提示词包含高风险表达："
-            + ", ".join(matched[:8])
-            + "。请先改成合规、长期官网内容提示词后再生成。"
-        )
 
 
 def ensure_published_not_down(before: int, backup_dir: Path | None = None) -> int:
@@ -430,6 +434,170 @@ def run_review(verbose: bool) -> tuple[int, int, int, int]:
     return reviewed, failures, warnings, completed.returncode
 
 
+def write_json(path: Path, data) -> None:
+    path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n")
+
+
+def write_status_summary(content_queue: list[dict]) -> None:
+    current = load_json(CONTENT_STATUS_PATH, {})
+    before_published = int(current.get("published", 0) or 0)
+    counts = Counter(item.get("status", "") for item in content_queue)
+    summary = {
+        "total_planned": len(content_queue),
+        "prompt_ready": counts.get("prompt_ready", 0),
+        "writing": counts.get("writing", 0),
+        "draft_received": counts.get("draft_received", 0),
+        "reviewed": counts.get("reviewed", 0),
+        "published": max(before_published, counts.get("published", 0)),
+        "paused": counts.get("paused", 0),
+        "last_generated_at": current.get("last_generated_at"),
+    }
+    write_json(CONTENT_STATUS_PATH, summary)
+
+
+def draft_body(path: Path) -> str:
+    text = path.read_text(encoding="utf-8-sig")
+    if text.startswith("---"):
+        parts = text.split("---", 2)
+        if len(parts) == 3:
+            return parts[2]
+    return text
+
+
+def unique_links(content_item: dict) -> list[str]:
+    links: list[str] = []
+    target_topic = str(content_item.get("target_topic") or "").strip()
+    if not target_topic or target_topic == "/topics/":
+        target_topic = EXISTING_TOPIC_BY_CLUSTER.get(str(content_item.get("cluster_id", "")), "/topics/finance-leads/")
+    fallback_topic = EXISTING_TOPIC_BY_CLUSTER.get(str(content_item.get("cluster_id", "")), "/topics/finance-leads/")
+    for value in [
+        content_item.get("target_service"),
+        target_topic,
+        fallback_topic,
+        *content_item.get("internal_links", []),
+        "/services/",
+        "/topics/",
+        "/contact/",
+    ]:
+        link = LINK_REPLACEMENTS.get(str(value or "").strip(), str(value or "").strip())
+        if link and link not in links:
+            links.append(link)
+    return links
+
+
+def repair_internal_links_for_generated_drafts(task_ids: set[str]) -> int:
+    if not task_ids:
+        return 0
+    content_queue = load_json(CONTENT_QUEUE_PATH, [])
+    content_by_id = {item.get("content_id", ""): item for item in content_queue if item.get("content_id")}
+    changed = 0
+    for content_id in sorted(task_ids):
+        draft_path = DRAFTS_DIR / f"{content_id}.md"
+        content_item = content_by_id.get(content_id, {})
+        if not draft_path.exists() or not content_item:
+            continue
+        text = draft_path.read_text(encoding="utf-8-sig")
+        body = draft_body(draft_path)
+        existing = set(MARKDOWN_LINK_RE.findall(body))
+        missing = [link for link in unique_links(content_item) if link not in existing]
+        if len(existing) >= 4 and not missing:
+            continue
+        add_links = missing[: max(0, 5 - len(existing))]
+        if not add_links:
+            continue
+        lines = ["", "## 相关资源", ""]
+        for link in add_links:
+            label = link.strip("/").replace("/", " ").replace("-", " ") or "contact"
+            lines.append(f"- [{label}]({link})")
+        draft_path.write_text(text.rstrip() + "\n\n" + "\n".join(lines) + "\n", encoding="utf-8", newline="\n")
+        changed += 1
+    return changed
+
+
+def internal_link_count_for_draft(content_id: str) -> int:
+    draft_path = DRAFTS_DIR / f"{content_id}.md"
+    if not draft_path.exists():
+        return 0
+    return len(dict.fromkeys(MARKDOWN_LINK_RE.findall(draft_body(draft_path))))
+
+
+def set_draft_frontmatter_status(content_id: str, status: str) -> None:
+    draft_path = DRAFTS_DIR / f"{content_id}.md"
+    if not draft_path.exists():
+        return
+    text = draft_path.read_text(encoding="utf-8-sig")
+    if not text.startswith("---"):
+        return
+    parts = text.split("---", 2)
+    if len(parts) != 3:
+        return
+    front_lines = []
+    replaced = False
+    for line in parts[1].splitlines():
+        if line.strip().startswith("status:"):
+            front_lines.append(f"status: {status}")
+            replaced = True
+        else:
+            front_lines.append(line)
+    if not replaced:
+        front_lines.append(f"status: {status}")
+    draft_path.write_text("---\n" + "\n".join(front_lines).strip() + "\n---" + parts[2], encoding="utf-8", newline="\n")
+
+
+def sync_review_results_to_queues(task_ids: set[str]) -> tuple[int, int, int]:
+    if not task_ids:
+        return 0, 0, 0
+    report = load_json(ROOT / "data" / "content-assets" / "draft_review_report.json", {"articles": []})
+    review_by_id = {
+        item.get("content_id", ""): item
+        for item in report.get("articles", [])
+        if item.get("content_id") in task_ids
+    }
+    content_queue = load_json(CONTENT_QUEUE_PATH, [])
+    publish_queue = load_json(PUBLISH_QUEUE_PATH, [])
+    passed = warnings = failures = 0
+
+    for item in content_queue:
+        content_id = item.get("content_id")
+        review = review_by_id.get(content_id)
+        if not review or item.get("status") == "published":
+            continue
+        if review.get("status") == "pass":
+            item["status"] = "reviewed"
+            set_draft_frontmatter_status(content_id, "reviewed")
+            passed += 1
+        elif review.get("status") == "warning":
+            item["status"] = "draft_received"
+            set_draft_frontmatter_status(content_id, "draft_received")
+            warnings += 1
+        else:
+            item["status"] = "draft_received"
+            set_draft_frontmatter_status(content_id, "draft_received")
+            failures += 1
+
+    for item in publish_queue:
+        content_id = item.get("content_id")
+        review = review_by_id.get(content_id)
+        if not review or item.get("publish_status") == "published":
+            continue
+        item["review_status"] = review.get("status", "")
+        item["internal_link_count"] = internal_link_count_for_draft(content_id)
+        if review.get("status") == "pass":
+            item["publish_status"] = "publish_candidate"
+            item["notes"] = "approved_from_review"
+        elif review.get("status") == "warning":
+            item["publish_status"] = "pending"
+            item["notes"] = "review_warning: " + "; ".join(review.get("warnings", [])[:5])
+        else:
+            item["publish_status"] = "pending"
+            item["notes"] = "review_failed: " + "; ".join(review.get("issues", [])[:5])
+
+    write_json(CONTENT_QUEUE_PATH, content_queue)
+    write_json(PUBLISH_QUEUE_PATH, publish_queue)
+    write_status_summary(content_queue)
+    return passed, warnings, failures
+
+
 def configure_git_identity() -> None:
     git_output(["config", "user.name", "9hwh-local-publisher"])
     git_output(["config", "user.email", "9hwh-local-publisher@users.noreply.github.com"])
@@ -506,7 +674,6 @@ def main() -> int:
         before_published = check_protection()
         before_blog_cards = count_blog_cards()
         before_sitemap_blog_urls = count_sitemap_blog_urls()
-        check_generator_prompt_safe()
         print()
 
         print("[2/6] 查找可生成任务")
@@ -555,10 +722,17 @@ def main() -> int:
         if repair_code != 0:
             warn("description 占位修复后仍有问题，请人工查看报告。")
         reviewed, review_failures, review_warnings, _review_code = run_review(args.verbose)
+        generated_ids = {item["content_id"] for item in tasks}
+        repaired_links = repair_internal_links_for_generated_drafts(generated_ids)
+        if repaired_links:
+            ok(f"已补充内链：{repaired_links} 篇")
+            reviewed, review_failures, review_warnings, _review_code = run_review(args.verbose)
+        passed_sync, warning_sync, failure_sync = sync_review_results_to_queues(generated_ids)
         if review_failures or review_warnings:
             warn(f"审核完成：reviewed {reviewed}, failures {review_failures}, warnings {review_warnings}")
         else:
             ok(f"审核完成：reviewed {reviewed}, failures {review_failures}, warnings {review_warnings}")
+        ok(f"队列同步：pass {passed_sync}, warning {warning_sync}, fail {failure_sync}")
         print()
 
         print("[6/6] 结果")

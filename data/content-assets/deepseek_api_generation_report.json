@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-27T09:06:36",
+  "generated_at": "2026-05-30T19:30:55",
   "batch_id": "batch-001",
   "dry_run": false,
   "config_source": "E:\\py9\\config.py",
@@ -12,81 +12,20 @@
   ],
   "selected": [
     {
-      "content_id": "c012-traffic-acquisition-dating-app-how-to-f56b0dad",
-      "target_url": "/blog/dating-app-how-to-f56b0dad/",
-      "title": "交友App注册怎么做：推广路径、渠道判断和准备清单"
-    },
-    {
-      "content_id": "c001-ad-campaign-support-how-to-17e66750",
-      "target_url": "/blog/crypto-promotion-how-to-17e66750/",
-      "title": "加密货币推广怎么做：渠道判断、投放准备和合规评估"
-    },
-    {
-      "content_id": "c010-media-buying-part-time-how-to-5875d40e",
-      "target_url": "/blog/part-time-how-to-5875d40e/",
-      "title": "兼职怎么做：推广路径、渠道判断和准备清单"
-    },
-    {
-      "content_id": "c004-crypto-promotion-exchange-acquisition-how-to-efd74e87",
-      "target_url": "/blog/exchange-acquisition-how-to-efd74e87/",
-      "title": "交易所拉新怎么做：推广路径、渠道判断和准备清单"
-    },
-    {
-      "content_id": "c007-dating-traffic-dating-how-to-002063ad",
-      "target_url": "/blog/dating-how-to-002063ad/",
-      "title": "交友私聊怎么做：推广路径、渠道判断和准备清单"
-    },
-    {
-      "content_id": "c043-game-promotion-fb-game-promotion-eec369fd",
-      "target_url": "/blog/topics/fb-game-promotion-eec369fd/",
-      "title": "FB游戏推广：海外推广与获客准备指南"
-    },
-    {
-      "content_id": "c055-loan-leads-fb-loan-leads-60d3dc0c",
-      "target_url": "/blog/topics/fb-loan-leads-60d3dc0c/",
-      "title": "FB贷款获客：海外推广与获客准备指南"
+      "content_id": "c096-ad-rejection-diagnosis",
+      "target_url": "/blog/ad-rejection-diagnosis/",
+      "title": "广告被拒怎么诊断：素材、落地页、账户和地区限制排查"
     }
   ],
-  "generated": [],
-  "skipped": [
+  "generated": [
     {
-      "content_id": "c012-traffic-acquisition-dating-app-how-to-f56b0dad",
-      "reason": "output file already exists; use --overwrite to replace or --resume to continue",
-      "output_file": "data/deepseek-inbox/batch-001/c012-traffic-acquisition-dating-app-how-to-f56b0dad.md"
-    },
-    {
-      "content_id": "c001-ad-campaign-support-how-to-17e66750",
-      "reason": "output file already exists; use --overwrite to replace or --resume to continue",
-      "output_file": "data/deepseek-inbox/batch-001/c001-ad-campaign-support-how-to-17e66750.md"
-    },
-    {
-      "content_id": "c010-media-buying-part-time-how-to-5875d40e",
-      "reason": "output file already exists; use --overwrite to replace or --resume to continue",
-      "output_file": "data/deepseek-inbox/batch-001/c010-media-buying-part-time-how-to-5875d40e.md"
-    },
-    {
-      "content_id": "c004-crypto-promotion-exchange-acquisition-how-to-efd74e87",
-      "reason": "output file already exists; use --overwrite to replace or --resume to continue",
-      "output_file": "data/deepseek-inbox/batch-001/c004-crypto-promotion-exchange-acquisition-how-to-efd74e87.md"
-    },
-    {
-      "content_id": "c007-dating-traffic-dating-how-to-002063ad",
-      "reason": "output file already exists; use --overwrite to replace or --resume to continue",
-      "output_file": "data/deepseek-inbox/batch-001/c007-dating-traffic-dating-how-to-002063ad.md"
-    },
-    {
-      "content_id": "c043-game-promotion-fb-game-promotion-eec369fd",
-      "reason": "output file already exists; use --overwrite to replace or --resume to continue",
-      "output_file": "data/deepseek-inbox/batch-001/c043-game-promotion-fb-game-promotion-eec369fd.md"
-    },
-    {
-      "content_id": "c055-loan-leads-fb-loan-leads-60d3dc0c",
-      "reason": "output file already exists; use --overwrite to replace or --resume to continue",
-      "output_file": "data/deepseek-inbox/batch-001/c055-loan-leads-fb-loan-leads-60d3dc0c.md"
+      "content_id": "c096-ad-rejection-diagnosis",
+      "output_file": "data/deepseek-inbox/batch-001/c096-ad-rejection-diagnosis.md"
     }
   ],
+  "skipped": [],
   "failed": [],
-  "available_output_count": 10,
+  "available_output_count": 30,
   "available_outputs": [
     "data/deepseek-inbox/batch-001/c001-ad-campaign-support-how-to-17e66750.md",
     "data/deepseek-inbox/batch-001/c004-crypto-promotion-exchange-acquisition-how-to-efd74e87.md",
@@ -97,11 +36,28 @@
     "data/deepseek-inbox/batch-001/c043-game-promotion-fb-game-promotion-eec369fd.md",
     "data/deepseek-inbox/batch-001/c051-immigration-leads-fb-immigration-leads-b33be086.md",
     "data/deepseek-inbox/batch-001/c053-insurance-leads-fb-insurance-leads-b01d5372.md",
-    "data/deepseek-inbox/batch-001/c055-loan-leads-fb-loan-leads-60d3dc0c.md"
+    "data/deepseek-inbox/batch-001/c055-loan-leads-fb-loan-leads-60d3dc0c.md",
+    "data/deepseek-inbox/batch-001/c076-google-ads-overseas-lead-generation.md",
+    "data/deepseek-inbox/batch-001/c077-meta-lead-forms-overseas.md",
+    "data/deepseek-inbox/batch-001/c078-tiktok-ads-overseas-testing.md",
+    "data/deepseek-inbox/batch-001/c079-overseas-loan-leads-preparation.md",
+    "data/deepseek-inbox/batch-001/c080-insurance-leads-overseas-ad-checklist.md",
+    "data/deepseek-inbox/batch-001/c081-immigration-leads-landing-page-review.md",
+    "data/deepseek-inbox/batch-001/c082-dating-app-overseas-promotion.md",
+    "data/deepseek-inbox/batch-001/c083-mobile-game-user-acquisition-overseas.md",
+    "data/deepseek-inbox/batch-001/c084-finance-ads-landing-page.md",
+    "data/deepseek-inbox/batch-001/c085-crypto-ads-compliance-boundary.md",
+    "data/deepseek-inbox/batch-001/c086-high-risk-project-creative-review.md",
+    "data/deepseek-inbox/batch-001/c087-ad-account-setup-overseas.md",
+    "data/deepseek-inbox/batch-001/c088-ad-creative-review-checklist.md",
+    "data/deepseek-inbox/batch-001/c089-landing-page-review-before-ads.md",
+    "data/deepseek-inbox/batch-001/c091-multilingual-landing-pages-overseas.md",
+    "data/deepseek-inbox/batch-001/c092-google-search-ads-paths.md",
+    "data/deepseek-inbox/batch-001/c093-facebook-lead-ads-fields.md",
+    "data/deepseek-inbox/batch-001/c094-tiktok-spark-ads-testing.md",
+    "data/deepseek-inbox/batch-001/c095-ad-budget-testing-overseas.md",
+    "data/deepseek-inbox/batch-001/c096-ad-rejection-diagnosis.md"
   ],
   "combined_output": "E:\\sites\\9hwh\\data\\deepseek-inbox\\batch-001-deepseek-output.md",
-  "run_import_review": {
-    "import_exit_code": 0,
-    "review_exit_code": 0
-  }
+  "run_import_review": {}
 }

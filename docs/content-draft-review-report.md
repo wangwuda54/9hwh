@@ -1,8 +1,8 @@
 # Content Draft Review Report
 
-- drafts: 62
-- pass: 58
-- warning: 4
+- drafts: 82
+- pass: 70
+- warning: 12
 - fail: 0
 
 | File | content_id | Result | Issues | Warnings |
@@ -69,3 +69,23 @@
 | c073-immigration-consultation-leads.md | c073-immigration-consultation-leads | pass | - | - |
 | c074-online-work-leads-test.md | c074-online-work-leads-test | pass | - | - |
 | c075-youtube-promotion-leads.md | c075-youtube-promotion-leads | pass | - | - |
+| c076-google-ads-overseas-lead-generation.md | c076-google-ads-overseas-lead-generation | warning | - | missing topic internal link |
+| c077-meta-lead-forms-overseas.md | c077-meta-lead-forms-overseas | warning | - | missing topic internal link |
+| c078-tiktok-ads-overseas-testing.md | c078-tiktok-ads-overseas-testing | warning | - | missing topic internal link |
+| c079-overseas-loan-leads-preparation.md | c079-overseas-loan-leads-preparation | pass | - | - |
+| c080-insurance-leads-overseas-ad-checklist.md | c080-insurance-leads-overseas-ad-checklist | pass | - | - |
+| c081-immigration-leads-landing-page-review.md | c081-immigration-leads-landing-page-review | pass | - | - |
+| c082-dating-app-overseas-promotion.md | c082-dating-app-overseas-promotion | pass | - | - |
+| c083-mobile-game-user-acquisition-overseas.md | c083-mobile-game-user-acquisition-overseas | pass | - | - |
+| c084-finance-ads-landing-page.md | c084-finance-ads-landing-page | pass | - | - |
+| c085-crypto-ads-compliance-boundary.md | c085-crypto-ads-compliance-boundary | pass | - | - |
+| c086-high-risk-project-creative-review.md | c086-high-risk-project-creative-review | pass | - | - |
+| c087-ad-account-setup-overseas.md | c087-ad-account-setup-overseas | pass | - | - |
+| c088-ad-creative-review-checklist.md | c088-ad-creative-review-checklist | pass | - | - |
+| c089-landing-page-review-before-ads.md | c089-landing-page-review-before-ads | pass | - | - |
+| c091-multilingual-landing-pages-overseas.md | c091-multilingual-landing-pages-overseas | pass | - | - |
+| c092-google-search-ads-paths.md | c092-google-search-ads-paths | warning | - | missing topic internal link |
+| c093-facebook-lead-ads-fields.md | c093-facebook-lead-ads-fields | warning | - | missing topic internal link |
+| c094-tiktok-spark-ads-testing.md | c094-tiktok-spark-ads-testing | warning | - | missing topic internal link |
+| c095-ad-budget-testing-overseas.md | c095-ad-budget-testing-overseas | warning | - | missing topic internal link |
+| c096-ad-rejection-diagnosis.md | c096-ad-rejection-diagnosis | warning | - | missing topic internal link |

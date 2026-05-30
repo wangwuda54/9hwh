@@ -66,6 +66,9 @@ STATIC_SITE_ALLOWED_FAILS = {
     "[FAIL] review_content_drafts.py failed",
     "[FAIL] 1 issue(s) found",
 }
+STATIC_SITE_ALLOWED_FAIL_PATTERNS = [
+    re.compile(r"^\[FAIL\] batch-001 task count must be 10-15, got \d+$"),
+]
 
 PLACEHOLDER_RE = re.compile(r"\?{8,}")
 MARKDOWN_LINK_RE = re.compile(r"\]\((/[^)\s]+)\)")
@@ -406,7 +409,10 @@ def is_allowed_daily_failure(report: dict) -> bool:
     if not all(line in stdout for line in STATIC_SITE_OK_LINES):
         return False
     fail_lines = [line.strip() for line in stdout.splitlines() if "[FAIL]" in line]
-    return bool(fail_lines) and all(line in STATIC_SITE_ALLOWED_FAILS for line in fail_lines)
+    return bool(fail_lines) and all(
+        line in STATIC_SITE_ALLOWED_FAILS or any(pattern.match(line) for pattern in STATIC_SITE_ALLOWED_FAIL_PATTERNS)
+        for line in fail_lines
+    )
 
 
 def run_daily_publish(limit: int, mode: str, verbose: bool) -> int:

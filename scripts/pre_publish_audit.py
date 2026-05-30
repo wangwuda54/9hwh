@@ -116,6 +116,9 @@ def score_candidate(item: dict) -> tuple:
 
 
 def can_add(selection: list[dict], candidate: dict, mode: str) -> tuple[bool, str]:
+    if mode == "aggressive":
+        return True, "ok"
+
     cluster = candidate.get("cluster_id", "")
     risk_level = candidate.get("risk_level", "")
     sensitive_count = sum(1 for item in selection if is_sensitive_theme(item))

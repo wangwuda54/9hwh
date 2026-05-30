@@ -1,11 +1,31 @@
 # Content Import Report
 
-- imported: 0
-- skipped: 40
+- imported: 20
+- skipped: 10
 - failed: 0
 
 ## Imported
 
+- c076-google-ads-overseas-lead-generation from c076-google-ads-overseas-lead-generation.md -> site_src/content_drafts/c076-google-ads-overseas-lead-generation.md
+- c077-meta-lead-forms-overseas from c077-meta-lead-forms-overseas.md -> site_src/content_drafts/c077-meta-lead-forms-overseas.md
+- c078-tiktok-ads-overseas-testing from c078-tiktok-ads-overseas-testing.md -> site_src/content_drafts/c078-tiktok-ads-overseas-testing.md
+- c079-overseas-loan-leads-preparation from c079-overseas-loan-leads-preparation.md -> site_src/content_drafts/c079-overseas-loan-leads-preparation.md
+- c080-insurance-leads-overseas-ad-checklist from c080-insurance-leads-overseas-ad-checklist.md -> site_src/content_drafts/c080-insurance-leads-overseas-ad-checklist.md
+- c081-immigration-leads-landing-page-review from c081-immigration-leads-landing-page-review.md -> site_src/content_drafts/c081-immigration-leads-landing-page-review.md
+- c082-dating-app-overseas-promotion from c082-dating-app-overseas-promotion.md -> site_src/content_drafts/c082-dating-app-overseas-promotion.md
+- c083-mobile-game-user-acquisition-overseas from c083-mobile-game-user-acquisition-overseas.md -> site_src/content_drafts/c083-mobile-game-user-acquisition-overseas.md
+- c084-finance-ads-landing-page from c084-finance-ads-landing-page.md -> site_src/content_drafts/c084-finance-ads-landing-page.md
+- c085-crypto-ads-compliance-boundary from c085-crypto-ads-compliance-boundary.md -> site_src/content_drafts/c085-crypto-ads-compliance-boundary.md
+- c086-high-risk-project-creative-review from c086-high-risk-project-creative-review.md -> site_src/content_drafts/c086-high-risk-project-creative-review.md
+- c087-ad-account-setup-overseas from c087-ad-account-setup-overseas.md -> site_src/content_drafts/c087-ad-account-setup-overseas.md
+- c088-ad-creative-review-checklist from c088-ad-creative-review-checklist.md -> site_src/content_drafts/c088-ad-creative-review-checklist.md
+- c089-landing-page-review-before-ads from c089-landing-page-review-before-ads.md -> site_src/content_drafts/c089-landing-page-review-before-ads.md
+- c091-multilingual-landing-pages-overseas from c091-multilingual-landing-pages-overseas.md -> site_src/content_drafts/c091-multilingual-landing-pages-overseas.md
+- c092-google-search-ads-paths from c092-google-search-ads-paths.md -> site_src/content_drafts/c092-google-search-ads-paths.md
+- c093-facebook-lead-ads-fields from c093-facebook-lead-ads-fields.md -> site_src/content_drafts/c093-facebook-lead-ads-fields.md
+- c094-tiktok-spark-ads-testing from c094-tiktok-spark-ads-testing.md -> site_src/content_drafts/c094-tiktok-spark-ads-testing.md
+- c095-ad-budget-testing-overseas from c095-ad-budget-testing-overseas.md -> site_src/content_drafts/c095-ad-budget-testing-overseas.md
+- c096-ad-rejection-diagnosis from c096-ad-rejection-diagnosis.md -> site_src/content_drafts/c096-ad-rejection-diagnosis.md
 
 ## Skipped
 
@@ -19,36 +39,6 @@
 - c051-immigration-leads-fb-immigration-leads-b33be086 from c051-immigration-leads-fb-immigration-leads-b33be086.md: published content is protected
 - c053-insurance-leads-fb-insurance-leads-b01d5372 from c053-insurance-leads-fb-insurance-leads-b01d5372.md: published content is protected
 - c055-loan-leads-fb-loan-leads-60d3dc0c from c055-loan-leads-fb-loan-leads-60d3dc0c.md: published content is protected
-- c003-ad-campaign-support-crypto-how-to-887db2f2 from c003-ad-campaign-support-crypto-how-to-887db2f2.md: published content is protected
-- c009-dating-traffic-dating-how-to-ad9ee1af from c009-dating-traffic-dating-how-to-ad9ee1af.md: published content is protected
-- c014-traffic-acquisition-insurance-how-to-1d0e89ba from c014-traffic-acquisition-insurance-how-to-1d0e89ba.md: published content is protected
-- c015-traffic-acquisition-game-how-to-ce12eefa from c015-traffic-acquisition-game-how-to-ce12eefa.md: published content is protected
-- c016-traffic-acquisition-immigration-how-to-38e8c4a4 from c016-traffic-acquisition-immigration-how-to-38e8c4a4.md: published content is protected
-- c017-traffic-acquisition-loan-how-to-ee56b631 from c017-traffic-acquisition-loan-how-to-ee56b631.md: published content is protected
-- c019-ad-campaign-support-cost-cafc4fef from c019-ad-campaign-support-cost-cafc4fef.md: published content is protected
-- c021-crypto-promotion-exchange-acquisition-cost-e9eee289 from c021-crypto-promotion-exchange-acquisition-cost-e9eee289.md: published content is protected
-- c022-crypto-promotion-crypto-traffic-cost-60d08e20 from c022-crypto-promotion-crypto-traffic-cost-60d08e20.md: published content is protected
-- c023-crypto-promotion-crypto-promotion-cost-8bd82714 from c023-crypto-promotion-crypto-promotion-cost-8bd82714.md: published content is protected
-- c024-dating-traffic-dating-cost-c02dc08c from c024-dating-traffic-dating-cost-c02dc08c.md: published content is protected
-- c025-dating-traffic-dating-cost-efaada52 from c025-dating-traffic-dating-cost-efaada52.md: published content is protected
-- c026-dating-traffic-dating-cost-5121c26c from c026-dating-traffic-dating-cost-5121c26c.md: published content is protected
-- c027-media-buying-part-time-cost-03f7eb1a from c027-media-buying-part-time-cost-03f7eb1a.md: published content is protected
-- c028-media-buying-online-work-cost-a08b89cf from c028-media-buying-online-work-cost-a08b89cf.md: published content is protected
-- c029-media-buying-part-time-price-ad6e38c9 from c029-media-buying-part-time-price-ad6e38c9.md: published content is protected
-- c030-media-buying-online-work-price-41007274 from c030-media-buying-online-work-price-41007274.md: published content is protected
-- c032-fb-promotion-fb-dating-traffic-promotion-8c6d82f2 from c032-fb-promotion-fb-dating-traffic-promotion-8c6d82f2.md: published content is protected
-- c033-fb-promotion-fb-insurance-traffic-13b27c41 from c033-fb-promotion-fb-insurance-traffic-13b27c41.md: published content is protected
-- c034-fb-promotion-fb-insurance-promotion-bab1f292 from c034-fb-promotion-fb-insurance-promotion-bab1f292.md: published content is protected
-- c035-fb-promotion-fb-traffic-7739c80e from c035-fb-promotion-fb-traffic-7739c80e.md: published content is protected
-- c036-fb-promotion-fb-immigration-media-buying-733005f8 from c036-fb-promotion-fb-immigration-media-buying-733005f8.md: published content is protected
-- c037-finance-leads-fb-traffic-a2c032e7 from c037-finance-leads-fb-traffic-a2c032e7.md: published content is protected
-- c038-finance-leads-fb-promotion-8f13c6c4 from c038-finance-leads-fb-promotion-8f13c6c4.md: published content is protected
-- c039-finance-leads-fb-leads-b109c740 from c039-finance-leads-fb-leads-b109c740.md: published content is protected
-- c040-finance-leads-traffic-b2c664e0 from c040-finance-leads-traffic-b2c664e0.md: published content is protected
-- c041-finance-leads-traffic-04318358 from c041-finance-leads-traffic-04318358.md: published content is protected
-- c042-finance-leads-traffic-e92e6ae0 from c042-finance-leads-traffic-e92e6ae0.md: published content is protected
-- c044-game-promotion-google-game-promotion-0d865324 from c044-game-promotion-google-game-promotion-0d865324.md: published content is protected
-- c073-immigration-consultation-leads from c073-immigration-consultation-leads.md: published content is protected
 
 ## Failed
 

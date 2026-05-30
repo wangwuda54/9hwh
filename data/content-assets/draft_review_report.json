@@ -1,7 +1,7 @@
 {
-  "draft_count": 62,
-  "pass_count": 58,
-  "warning_count": 4,
+  "draft_count": 82,
+  "pass_count": 70,
+  "warning_count": 12,
   "fail_count": 0,
   "articles": [
     {
@@ -507,6 +507,182 @@
       "status": "pass",
       "issues": [],
       "warnings": []
+    },
+    {
+      "file": "c076-google-ads-overseas-lead-generation.md",
+      "content_id": "c076-google-ads-overseas-lead-generation",
+      "target_url": "/blog/google-ads-overseas-lead-generation/",
+      "status": "warning",
+      "issues": [],
+      "warnings": [
+        "missing topic internal link"
+      ]
+    },
+    {
+      "file": "c077-meta-lead-forms-overseas.md",
+      "content_id": "c077-meta-lead-forms-overseas",
+      "target_url": "/blog/meta-lead-forms-overseas/",
+      "status": "warning",
+      "issues": [],
+      "warnings": [
+        "missing topic internal link"
+      ]
+    },
+    {
+      "file": "c078-tiktok-ads-overseas-testing.md",
+      "content_id": "c078-tiktok-ads-overseas-testing",
+      "target_url": "/blog/tiktok-ads-overseas-testing/",
+      "status": "warning",
+      "issues": [],
+      "warnings": [
+        "missing topic internal link"
+      ]
+    },
+    {
+      "file": "c079-overseas-loan-leads-preparation.md",
+      "content_id": "c079-overseas-loan-leads-preparation",
+      "target_url": "/blog/overseas-loan-leads-preparation/",
+      "status": "pass",
+      "issues": [],
+      "warnings": []
+    },
+    {
+      "file": "c080-insurance-leads-overseas-ad-checklist.md",
+      "content_id": "c080-insurance-leads-overseas-ad-checklist",
+      "target_url": "/blog/insurance-leads-overseas-ad-checklist/",
+      "status": "pass",
+      "issues": [],
+      "warnings": []
+    },
+    {
+      "file": "c081-immigration-leads-landing-page-review.md",
+      "content_id": "c081-immigration-leads-landing-page-review",
+      "target_url": "/blog/immigration-leads-landing-page-review/",
+      "status": "pass",
+      "issues": [],
+      "warnings": []
+    },
+    {
+      "file": "c082-dating-app-overseas-promotion.md",
+      "content_id": "c082-dating-app-overseas-promotion",
+      "target_url": "/blog/dating-app-overseas-promotion/",
+      "status": "pass",
+      "issues": [],
+      "warnings": []
+    },
+    {
+      "file": "c083-mobile-game-user-acquisition-overseas.md",
+      "content_id": "c083-mobile-game-user-acquisition-overseas",
+      "target_url": "/blog/mobile-game-user-acquisition-overseas/",
+      "status": "pass",
+      "issues": [],
+      "warnings": []
+    },
+    {
+      "file": "c084-finance-ads-landing-page.md",
+      "content_id": "c084-finance-ads-landing-page",
+      "target_url": "/blog/finance-ads-landing-page/",
+      "status": "pass",
+      "issues": [],
+      "warnings": []
+    },
+    {
+      "file": "c085-crypto-ads-compliance-boundary.md",
+      "content_id": "c085-crypto-ads-compliance-boundary",
+      "target_url": "/blog/crypto-ads-compliance-boundary/",
+      "status": "pass",
+      "issues": [],
+      "warnings": []
+    },
+    {
+      "file": "c086-high-risk-project-creative-review.md",
+      "content_id": "c086-high-risk-project-creative-review",
+      "target_url": "/blog/high-risk-project-creative-review/",
+      "status": "pass",
+      "issues": [],
+      "warnings": []
+    },
+    {
+      "file": "c087-ad-account-setup-overseas.md",
+      "content_id": "c087-ad-account-setup-overseas",
+      "target_url": "/blog/ad-account-setup-overseas/",
+      "status": "pass",
+      "issues": [],
+      "warnings": []
+    },
+    {
+      "file": "c088-ad-creative-review-checklist.md",
+      "content_id": "c088-ad-creative-review-checklist",
+      "target_url": "/blog/ad-creative-review-checklist/",
+      "status": "pass",
+      "issues": [],
+      "warnings": []
+    },
+    {
+      "file": "c089-landing-page-review-before-ads.md",
+      "content_id": "c089-landing-page-review-before-ads",
+      "target_url": "/blog/landing-page-review-before-ads/",
+      "status": "pass",
+      "issues": [],
+      "warnings": []
+    },
+    {
+      "file": "c091-multilingual-landing-pages-overseas.md",
+      "content_id": "c091-multilingual-landing-pages-overseas",
+      "target_url": "/blog/multilingual-landing-pages-overseas/",
+      "status": "pass",
+      "issues": [],
+      "warnings": []
+    },
+    {
+      "file": "c092-google-search-ads-paths.md",
+      "content_id": "c092-google-search-ads-paths",
+      "target_url": "/blog/google-search-ads-paths/",
+      "status": "warning",
+      "issues": [],
+      "warnings": [
+        "missing topic internal link"
+      ]
+    },
+    {
+      "file": "c093-facebook-lead-ads-fields.md",
+      "content_id": "c093-facebook-lead-ads-fields",
+      "target_url": "/blog/facebook-lead-ads-fields/",
+      "status": "warning",
+      "issues": [],
+      "warnings": [
+        "missing topic internal link"
+      ]
+    },
+    {
+      "file": "c094-tiktok-spark-ads-testing.md",
+      "content_id": "c094-tiktok-spark-ads-testing",
+      "target_url": "/blog/tiktok-spark-ads-testing/",
+      "status": "warning",
+      "issues": [],
+      "warnings": [
+        "missing topic internal link"
+      ]
+    },
+    {
+      "file": "c095-ad-budget-testing-overseas.md",
+      "content_id": "c095-ad-budget-testing-overseas",
+      "target_url": "/blog/ad-budget-testing-overseas/",
+      "status": "warning",
+      "issues": [],
+      "warnings": [
+        "missing topic internal link"
+      ]
+    },
+    {
+      "file": "c096-ad-rejection-diagnosis.md",
+      "content_id": "c096-ad-rejection-diagnosis",
+      "target_url": "/blog/ad-rejection-diagnosis/",
+      "status": "warning",
+      "issues": [],
+      "warnings": [
+        "missing topic internal link"
+      ]
     }
   ]
 }
