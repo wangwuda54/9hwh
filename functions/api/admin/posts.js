@@ -1,5 +1,6 @@
 const enc = new TextEncoder();
 const dec = new TextDecoder();
+const PUBLIC_DIR = 'site/public';
 
 export async function onRequestGet(context) {
   const auth = await requireAuth(context.request, context.env);
@@ -18,8 +19,8 @@ export async function onRequestPost(context) {
   const posts = [post, ...(store.posts || []).filter((x) => x.id !== post.id && x.slug !== post.slug)];
   const commits = [];
   if (action === 'publish') {
-    commits.push(await putFile(context.env, `posts/${post.slug}.html`, renderPost(post), `Publish post: ${post.slug}`));
-    commits.push(await putFile(context.env, 'blog/index.html', renderBlog(posts), 'Update blog index'));
+    commits.push(await putFile(context.env, `${PUBLIC_DIR}/posts/${post.slug}.html`, renderPost(post), `Publish post: ${post.slug}`));
+    commits.push(await putFile(context.env, `${PUBLIC_DIR}/blog/index.html`, renderBlog(posts), 'Update blog index'));
   }
   commits.push(await putFile(context.env, 'data/published-posts.json', JSON.stringify({ version: 1, updatedAt: now, posts }, null, 2) + '\n', action === 'publish' ? `Update publish store: ${post.slug}` : `Save draft: ${post.slug}`));
   return json({ post, posts, commits, publicUrl: action === 'publish' ? `/posts/${post.slug}.html` : null });
