@@ -1,0 +1,221 @@
+export async function onRequestGet() {
+  return new Response(ADMIN_HTML, {
+    status: 200,
+    headers: {
+      'Content-Type': 'text/html; charset=utf-8',
+      'Cache-Control': 'no-store'
+    }
+  });
+}
+
+const ADMIN_HTML = `<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>9HWH 发布后台</title>
+  <meta name="robots" content="noindex,nofollow">
+  <style>
+    :root { --bg:#f4f6fb; --card:#fff; --text:#111827; --muted:#64748b; --line:#e5e7eb; --brand:#111827; --ok:#166534; --danger:#b91c1c; }
+    * { box-sizing: border-box; }
+    body { margin:0; font-family: Arial, "Microsoft YaHei", sans-serif; background:var(--bg); color:var(--text); line-height:1.6; }
+    .shell { max-width:1180px; margin:0 auto; padding:28px; }
+    .panel { background:var(--card); border:1px solid var(--line); border-radius:18px; padding:22px; box-shadow:0 16px 40px rgba(15,23,42,.08); }
+    .login { max-width:460px; margin:12vh auto 0; }
+    .topbar { display:flex; justify-content:space-between; gap:16px; align-items:center; margin-bottom:22px; }
+    .brand strong { font-size:24px; }
+    .brand span, .hint, .small, .empty, p { color:var(--muted); }
+    .links { display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
+    a { color:var(--brand); font-weight:700; text-decoration:none; }
+    a:hover { text-decoration:underline; }
+    h1, h2 { margin:0 0 14px; line-height:1.2; }
+    label { display:block; font-weight:700; margin:14px 0 6px; }
+    input, textarea { width:100%; border:1px solid var(--line); border-radius:10px; padding:11px 12px; font:inherit; background:#fff; color:var(--text); outline:none; }
+    textarea { min-height:300px; resize:vertical; }
+    .summary { min-height:92px; }
+    button { border:0; border-radius:10px; padding:10px 14px; background:var(--brand); color:#fff; cursor:pointer; font:inherit; font-weight:700; }
+    button.secondary { background:#e5e7eb; color:var(--text); }
+    button.ghost { background:transparent; color:var(--text); border:1px solid var(--line); }
+    button:disabled { opacity:.55; cursor:not-allowed; }
+    .grid { display:grid; grid-template-columns:minmax(0,1.2fr) minmax(320px,.8fr); gap:20px; align-items:start; }
+    .row { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+    .actions { display:flex; gap:10px; flex-wrap:wrap; margin-top:16px; }
+    .status { min-height:24px; color:var(--muted); margin-top:14px; white-space:pre-wrap; }
+    .status.ok { color:var(--ok); }
+    .status.error { color:var(--danger); }
+    .hidden { display:none !important; }
+    .post-list { display:grid; gap:12px; }
+    .post-card { border:1px solid var(--line); border-radius:14px; padding:14px; background:#fff; }
+    .post-card h3 { margin:0 0 6px; font-size:17px; }
+    .badge { display:inline-flex; border-radius:999px; padding:2px 9px; background:#f1f5f9; color:var(--muted); font-size:12px; margin:4px 6px 8px 0; }
+    .badge.published { background:#dcfce7; color:#166534; }
+    .badge.draft { background:#fef3c7; color:#92400e; }
+    .empty { border:1px dashed var(--line); border-radius:14px; padding:18px; text-align:center; }
+    @media (max-width:860px) { .shell{padding:18px}.grid,.row{grid-template-columns:1fr}.topbar{align-items:flex-start;flex-direction:column} }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <section id="loginView" class="panel login hidden">
+      <h1>9HWH 发布后台</h1>
+      <p class="hint">输入后台账号密码登录。</p>
+      <form id="loginForm">
+        <label for="username">用户名</label>
+        <input id="username" autocomplete="username" required>
+        <label for="password">密码</label>
+        <input id="password" type="password" autocomplete="current-password" required>
+        <div class="actions"><button type="submit">登录</button></div>
+        <div id="loginStatus" class="status"></div>
+      </form>
+    </section>
+
+    <section id="adminView" class="hidden">
+      <div class="topbar">
+        <div class="brand"><strong>9HWH 发布后台</strong><br><span>通过 Cloudflare 后端安全发布，不在浏览器暴露 GitHub Token。</span></div>
+        <div class="links">
+          <a href="/" target="_blank" rel="noreferrer">打开首页</a>
+          <a href="/blog/" target="_blank" rel="noreferrer">打开发布列表</a>
+          <button id="reloadBtn" class="ghost" type="button">刷新内容</button>
+          <button id="logoutBtn" class="ghost" type="button">退出登录</button>
+        </div>
+      </div>
+
+      <div class="grid">
+        <section class="panel">
+          <h1 id="formTitle">新建发布内容</h1>
+          <p class="hint">正文按纯文本处理，后台会自动生成公开页面。</p>
+          <form id="postForm">
+            <input id="postId" type="hidden">
+            <div class="row">
+              <div>
+                <label for="slug">URL Slug</label>
+                <input id="slug" placeholder="overseas-promotion-guide" pattern="[a-z0-9](?:[a-z0-9-]{0,78}[a-z0-9])?" required>
+                <div class="small">发布后地址：/posts/&lt;slug&gt;.html</div>
+              </div>
+              <div>
+                <label for="tags">标签</label>
+                <input id="tags" placeholder="海外推广, 广告投放, 获客">
+              </div>
+            </div>
+            <label for="title">标题</label>
+            <input id="title" maxlength="120" required>
+            <label for="summary">摘要</label>
+            <textarea id="summary" class="summary" maxlength="220" required></textarea>
+            <label for="content">正文</label>
+            <textarea id="content" required></textarea>
+            <div class="actions">
+              <button id="saveBtn" class="secondary" type="button">保存草稿</button>
+              <button id="publishBtn" type="button">发布 / 更新发布</button>
+              <button id="resetBtn" class="ghost" type="button">清空表单</button>
+            </div>
+            <div id="formStatus" class="status"></div>
+          </form>
+        </section>
+        <aside class="panel">
+          <h2>内容列表</h2>
+          <p class="hint">点击编辑后可继续更新。</p>
+          <div id="postList" class="post-list"></div>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const state = { posts: [] };
+    const loginView = document.getElementById('loginView');
+    const adminView = document.getElementById('adminView');
+    const loginForm = document.getElementById('loginForm');
+    const loginStatus = document.getElementById('loginStatus');
+    const formStatus = document.getElementById('formStatus');
+    const postList = document.getElementById('postList');
+    const postForm = document.getElementById('postForm');
+    const postId = document.getElementById('postId');
+    const formTitle = document.getElementById('formTitle');
+    const fields = {
+      username: document.getElementById('username'), password: document.getElementById('password'),
+      slug: document.getElementById('slug'), title: document.getElementById('title'), summary: document.getElementById('summary'), content: document.getElementById('content'), tags: document.getElementById('tags')
+    };
+
+    document.addEventListener('DOMContentLoaded', boot);
+    loginForm.addEventListener('submit', login);
+    document.getElementById('logoutBtn').addEventListener('click', logout);
+    document.getElementById('reloadBtn').addEventListener('click', loadPosts);
+    document.getElementById('saveBtn').addEventListener('click', () => submitPost('save'));
+    document.getElementById('publishBtn').addEventListener('click', () => submitPost('publish'));
+    document.getElementById('resetBtn').addEventListener('click', resetForm);
+
+    async function boot() {
+      const session = await api('/api/admin/session', { method: 'GET' }, false);
+      if (session && session.authenticated) { showAdmin(); await loadPosts(); } else { showLogin(); }
+    }
+    async function login(event) {
+      event.preventDefault();
+      setStatus(loginStatus, '登录中...');
+      try {
+        await api('/api/admin/login', { method: 'POST', body: { username: fields.username.value.trim(), password: fields.password.value } });
+        fields.password.value = '';
+        showAdmin();
+        await loadPosts();
+      } catch (error) { setStatus(loginStatus, error.message, 'error'); }
+    }
+    async function logout() {
+      await api('/api/admin/logout', { method: 'POST' }, false);
+      state.posts = [];
+      showLogin();
+    }
+    async function loadPosts() {
+      setStatus(formStatus, '正在读取内容列表...');
+      try {
+        const data = await api('/api/admin/posts', { method: 'GET' });
+        state.posts = data.posts || [];
+        renderPosts();
+        setStatus(formStatus, '内容列表已更新。', 'ok');
+      } catch (error) {
+        setStatus(formStatus, error.message, 'error');
+        if (String(error.message).includes('未登录')) showLogin();
+      }
+    }
+    async function submitPost(action) {
+      if (!postForm.reportValidity()) return;
+      setButtons(true);
+      setStatus(formStatus, action === 'publish' ? '正在发布...' : '正在保存草稿...');
+      try {
+        const payload = { action, post: formPost() };
+        const data = await api('/api/admin/posts', { method: 'POST', body: payload });
+        state.posts = data.posts || [];
+        renderPosts();
+        editPost(data.post);
+        const url = data.publicUrl ? '\n公开地址：' + data.publicUrl : '';
+        setStatus(formStatus, '操作成功。' + url, 'ok');
+      } catch (error) { setStatus(formStatus, error.message, 'error'); }
+      finally { setButtons(false); }
+    }
+    function formPost() {
+      return { id: postId.value, slug: fields.slug.value, title: fields.title.value, summary: fields.summary.value, content: fields.content.value, tags: fields.tags.value };
+    }
+    function renderPosts() {
+      if (!state.posts.length) { postList.innerHTML = '<div class="empty">还没有内容。先在左侧新建一条。</div>'; return; }
+      postList.innerHTML = state.posts.map((p) => '<article class="post-card"><h3>' + esc(p.title) + '</h3><p>' + esc(p.summary) + '</p><div><span class="badge ' + (p.status === 'published' ? 'published' : 'draft') + '">' + (p.status === 'published' ? '已发布' : '草稿') + '</span><span class="badge">' + esc(p.slug) + '</span></div><button class="secondary" type="button" data-edit="' + esc(p.id) + '">编辑</button>' + (p.status === 'published' ? ' <a href="/posts/' + esc(p.slug) + '.html" target="_blank" rel="noreferrer">查看</a>' : '') + '</article>').join('');
+      postList.querySelectorAll('[data-edit]').forEach((btn) => btn.addEventListener('click', () => { const p = state.posts.find((x) => x.id === btn.dataset.edit); if (p) editPost(p); }));
+    }
+    function editPost(p) {
+      postId.value = p.id || ''; fields.slug.value = p.slug || ''; fields.title.value = p.title || ''; fields.summary.value = p.summary || ''; fields.content.value = p.content || ''; fields.tags.value = Array.isArray(p.tags) ? p.tags.join(', ') : '';
+      formTitle.textContent = '编辑：' + (p.title || p.slug);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    function resetForm() { postForm.reset(); postId.value = ''; formTitle.textContent = '新建发布内容'; setStatus(formStatus, ''); }
+    async function api(url, options = {}, strict = true) {
+      const response = await fetch(url, { method: options.method || 'GET', credentials: 'same-origin', headers: options.body ? { 'Content-Type': 'application/json' } : undefined, body: options.body ? JSON.stringify(options.body) : undefined });
+      const text = await response.text();
+      const data = text ? JSON.parse(text) : {};
+      if (!response.ok) { const err = new Error(data.message || '请求失败：HTTP ' + response.status); if (strict) throw err; return null; }
+      return data;
+    }
+    function showLogin() { adminView.classList.add('hidden'); loginView.classList.remove('hidden'); setStatus(loginStatus, ''); }
+    function showAdmin() { loginView.classList.add('hidden'); adminView.classList.remove('hidden'); }
+    function setStatus(el, msg, type = '') { el.textContent = msg || ''; el.className = ('status ' + type).trim(); }
+    function setButtons(disabled) { ['saveBtn','publishBtn','resetBtn','reloadBtn'].forEach((id) => document.getElementById(id).disabled = disabled); }
+    function esc(v) { return String(v || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+  </script>
+</body>
+</html>`;
