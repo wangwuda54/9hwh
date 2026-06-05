@@ -3,9 +3,11 @@ export async function onRequestPost(context) {
   const body = await readJson(context.request);
   const ok = String(body.username || '') === String(env.ADMIN_USERNAME || '') && String(body.password || '') === String(env.ADMIN_PASSWORD || '');
   if (!ok) return json({ authenticated: false, message: '用户名或密码错误。' }, 401);
-  const token = await sign({ user: body.username, exp: Math.floor(Date.now() / 1000) + 21600 }, String(env.SESSION_SECRET || ''));
-  return json({ authenticated: true }, 200, {
-    'Set-Cookie': `admin_session=${encodeURIComponent(token)}; Path=/; HttpOnly; Secure; SameSite=Strict; Max-Age=21600`
+
+  const maxAge = body.remember === true ? 2592000 : 21600;
+  const token = await sign({ user: body.username, exp: Math.floor(Date.now() / 1000) + maxAge }, String(env.SESSION_SECRET || ''));
+  return json({ authenticated: true, remember: body.remember === true }, 200, {
+    'Set-Cookie': `admin_session=${encodeURIComponent(token)}; Path=/; HttpOnly; Secure; SameSite=Strict; Max-Age=${maxAge}`
   });
 }
 
