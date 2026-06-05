@@ -85,12 +85,12 @@ const HTML = `<!doctype html>
   }
   async function login(e){
     e.preventDefault();msg(id('loginMsg'),'登录中...');
-    try{await api('/api/admin/login','POST',{username:id('username').value.trim(),password:id('password').value,remember:id('remember').checked});id('password').value='';showAdmin();await loadPosts()}catch(err){msg(id('loginMsg'),err.message,'error')}
+    try{await api('/api/admin/login','POST',{username:id('username').value.trim(),password:id('password').value,remember:id('remember').checked});id('password').value='';msg(id('loginMsg'),'登录成功。','ok');showAdmin();await loadPosts()}catch(err){msg(id('loginMsg'),err.message,'error')}
   }
   async function logout(){try{await api('/api/admin/logout','POST')}catch(e){} state.posts=[];renderPosts();showLogin()}
   async function loadPosts(){
     msg(id('formMsg'),'正在读取内容列表...');
-    try{var data=await api('/api/admin/posts','GET');state.posts=data.posts||[];renderPosts();msg(id('formMsg'),'内容列表已更新。','ok')}catch(err){msg(id('formMsg'),err.message,'error');if(String(err.message).indexOf('未登录')>=0)showLogin()}
+    try{var data=await api('/api/admin/posts','GET');state.posts=data.posts||[];renderPosts();msg(id('formMsg'),'内容列表已更新。','ok')}catch(err){msg(id('formMsg'),'已经进入后台，但内容列表读取失败：'+err.message+'\n如果这里提示未登录，请刷新页面或重新登录。','error')}
   }
   function postData(){return{id:id('postId').value,slug:id('slug').value,title:id('title').value,summary:id('summary').value,content:id('content').value,tags:id('tags').value}}
   async function submit(action){
