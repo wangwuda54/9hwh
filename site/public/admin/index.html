@@ -162,7 +162,7 @@
         <p class="muted">静态发布控制台</p>
       </div>
       <div class="actions">
-        <a class="button" href="/publish/" target="_blank" rel="noopener noreferrer">打开公开列表</a>
+        <a class="button" href="/blog/" target="_blank" rel="noopener noreferrer">打开公开列表</a>
         <button type="button" id="logout-button" hidden>退出登录</button>
       </div>
     </div>
@@ -216,7 +216,7 @@
           <button type="button" data-action="draft">保存草稿</button>
           <button class="danger" type="button" data-action="archive">下架</button>
           <button type="button" id="new-post">新建文章</button>
-          <a class="button" id="public-link" href="/publish/" target="_blank" rel="noopener noreferrer">打开公开链接</a>
+          <a class="button" id="public-link" href="/blog/" target="_blank" rel="noopener noreferrer">打开公开链接</a>
         </div>
         <div id="status-line" class="status"></div>
       </form>
@@ -309,7 +309,7 @@
     }
 
     function currentPublicUrl() {
-      return `/publish/${resolvedSlug()}/`;
+      return `/blog/${resolvedSlug()}/`;
     }
 
     function updatePublicLink() {
@@ -355,7 +355,7 @@
         button.className = "post-item";
         button.innerHTML = `
           <span class="post-title"><span>${post.title || "（未命名）"}</span><span class="badge">${statusLabel(post.status)}</span></span>
-          <span class="muted">/publish/${post.slug || ""}/</span>
+          <span class="muted">/blog/${slugify(post.slug) || ""}/</span>
         `;
         button.addEventListener("click", () => loadPost(post));
         fields.list.appendChild(button);

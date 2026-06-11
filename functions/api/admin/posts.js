@@ -293,7 +293,7 @@ async function handleWrite(request, env) {
   data.updatedAt = nowIso();
   await writeGitHubData(context, data, `admin publish: update ${DATA_PATH}`);
   const saved = index >= 0 ? posts[index] : posts[0];
-  const publicUrl = saved?.slug ? `/publish/${saved.slug}/` : "/publish/";
+  const publicUrl = saved?.slug ? `/blog/${saved.slug}/` : "/blog/";
   return jsonResponse({
     ok: true,
     post: saved,

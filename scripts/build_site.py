@@ -120,6 +120,15 @@ def clean_public() -> None:
             if rel.parts and rel.parts[0] in PRESERVED_PUBLIC_DIRS:
                 continue
             path.unlink()
+    for path in sorted(PUBLIC.rglob("*"), key=lambda item: len(item.parts), reverse=True):
+        if path.is_dir():
+            rel = path.relative_to(PUBLIC)
+            if rel.parts and rel.parts[0] in PRESERVED_PUBLIC_DIRS:
+                continue
+            try:
+                path.rmdir()
+            except OSError:
+                pass
 
 
 def is_placeholder(value: str) -> bool:
@@ -251,7 +260,7 @@ def extract_markdown_links(markdown: str) -> list[str]:
     return re.findall(r"\]\((/[^)\s]+)\)", markdown)
 
 
-def markdown_to_html(markdown: str) -> str:
+def markdown_to_html(markdown: str, loose_lists: bool = False) -> str:
     def inline_html(text: str) -> str:
         escaped = esc(text)
         escaped = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", escaped)
@@ -259,10 +268,13 @@ def markdown_to_html(markdown: str) -> str:
         return escaped
 
     def list_item_text(line: str) -> str | None:
-        for marker in ("- ", "* ", "• ", "· ", "、"):
+        markers = ("- ",)
+        if loose_lists:
+            markers = ("- ", "* ", "• ", "· ", "、")
+        for marker in markers:
             if line.startswith(marker):
                 return line[len(marker) :].strip()
-        if line.startswith('"') or line.startswith("“"):
+        if loose_lists and (line.startswith('"') or line.startswith("“")):
             return line[1:].strip()
         return None
 
@@ -312,8 +324,6 @@ def breadcrumb_items(path: str, title: str) -> list[dict]:
         name = title if index == len(parts) - 1 else part.replace("-", " ").title()
         if current == "/blog/topics/":
             current = "/topics/"
-        if current == "/publish/":
-            name = "发布内容"
         items.append({"name": name, "url": canonical(current)})
     return items
 
@@ -487,7 +497,7 @@ def admin_post_slug(post: dict) -> str:
 
 
 def admin_post_url(post: dict) -> str:
-    return "/publish/" + admin_post_slug(post) + "/"
+    return "/blog/" + admin_post_slug(post) + "/"
 
 
 def published_admin_posts(data: dict) -> list[dict]:
@@ -499,18 +509,21 @@ def published_admin_posts(data: dict) -> list[dict]:
     return sorted(posts, key=lambda post: str(post.get("publishedAt") or post.get("updatedAt") or post.get("createdAt") or ""), reverse=True)
 
 
-def admin_publish_cards_html(posts: list[dict]) -> str:
-    if not posts:
-        return (
-            '<article class="card"><h2>暂无发布内容</h2>'
-            "<p>后台发布的公开文章会显示在这里。你也可以先查看服务、平台、主题或通过 Telegram 咨询项目情况。</p>"
-            '<div class="button-row">'
-            '<a class="button button-primary" href="/services/">查看服务</a>'
-            '<a class="button button-secondary" href="/topics/">查看主题</a>'
-            f'<a class="button button-telegram" href="{TELEGRAM_URL}" target="_blank" rel="noopener noreferrer">Telegram 咨询</a>'
-            "</div></article>"
-        )
-    cards = [
+def check_admin_blog_url_conflicts(admin_posts: list[dict], published_drafts: list[tuple[dict, str]]) -> None:
+    existing = {task.get("target_url") for task, _ in published_drafts if task.get("target_url")}
+    duplicates = sorted({admin_post_url(post) for post in admin_posts if admin_post_url(post) in existing})
+    seen: set[str] = set()
+    for post in admin_posts:
+        url = admin_post_url(post)
+        if url in seen and url not in duplicates:
+            duplicates.append(url)
+        seen.add(url)
+    if duplicates:
+        raise SystemExit("[FAIL] duplicate blog URLs from admin_posts.json: " + ", ".join(sorted(duplicates)))
+
+
+def admin_article_cards(posts: list[dict]) -> list[dict]:
+    return [
         {
             "title": post.get("title", ""),
             "url": admin_post_url(post),
@@ -518,7 +531,6 @@ def admin_publish_cards_html(posts: list[dict]) -> str:
         }
         for post in posts
     ]
-    return card_grid(cards, 3)
 
 
 def admin_post_content(post: dict) -> str:
@@ -530,7 +542,7 @@ def admin_post_content(post: dict) -> str:
         parts.append(f'<p class="lead">{esc(summary)}</p>')
     if tag_html:
         parts.append(f'<div class="pill-list">{tag_html}</div>')
-    parts.append(markdown_to_html(body) if body else "<p>正文内容待补充。</p>")
+    parts.append(markdown_to_html(body, loose_lists=True) if body else "<p>正文内容待补充。</p>")
     parts.append("</article>")
     parts.append(
         cta_html(
@@ -623,8 +635,8 @@ def aggregate_published_articles(published_drafts: list[tuple[dict, str]]) -> di
     return grouped
 
 
-def blog_article_cards_html(published_drafts: list[tuple[dict, str]]) -> str:
-    cards = []
+def blog_article_cards_html(published_drafts: list[tuple[dict, str]], admin_posts: list[dict] | None = None) -> str:
+    cards = admin_article_cards(admin_posts or [])
     for task, _ in published_drafts:
         cards.append({"title": task["title"], "url": task["target_url"], "summary": task.get("description", task.get("intent", ""))})
     if not cards:
@@ -1134,6 +1146,7 @@ def build() -> None:
     published_aggregates = aggregate_published_articles(published_drafts)
     admin_posts_data = load_admin_posts()
     admin_posts = published_admin_posts(admin_posts_data)
+    check_admin_blog_url_conflicts(admin_posts, published_drafts)
     videos = merge_video_topics(load_videos(), load_video_topics())
     published_videos = [item for item in videos if item.get("status") == "published"]
 
@@ -1210,32 +1223,15 @@ def build() -> None:
     )
     emit("/markets/", pages["markets"], listing_content(pages["markets"], [], market_extra), site, nav, global_schemas, records, "pages.json:markets", "markets")
 
-    blog_extra = blog_article_cards_html(published_drafts)
+    blog_extra = blog_article_cards_html(published_drafts, admin_posts)
     emit("/blog/", pages["blog"], listing_content(pages["blog"], [], blog_extra), site, nav, global_schemas, records, "pages.json:blog", "blog")
 
-    publish_page = {
-        "title": "发布内容 | 9HWH",
-        "h1": "发布内容",
-        "description": "9HWH 后台发布的公开内容列表。",
-        "eyebrow": "发布内容",
-    }
-    emit(
-        "/publish/",
-        publish_page,
-        listing_content(publish_page, [], admin_publish_cards_html(admin_posts)),
-        site,
-        nav,
-        global_schemas,
-        records,
-        "admin_posts.json:index",
-        "admin_publish_index",
-    )
     for post in admin_posts:
         post_page = {
             "title": post["title"] + " | 9HWH",
             "h1": post["title"],
             "description": post.get("summary") or post["title"],
-            "eyebrow": "发布内容",
+            "eyebrow": "内容中心",
         }
         emit(
             admin_post_url(post),
