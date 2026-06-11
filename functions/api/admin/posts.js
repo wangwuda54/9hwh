@@ -2,17 +2,96 @@ const DATA_PATH = "site_src/data/admin_posts.json";
 const DEFAULT_REPO = "wangwuda54/9hwh";
 const DEFAULT_BRANCH = "main";
 const VALID_STATUSES = new Set(["draft", "published", "archived"]);
+const SESSION_COOKIE = "admin_session";
 
 const jsonHeaders = {
   "content-type": "application/json; charset=utf-8",
   "cache-control": "no-store",
 };
 
-function jsonResponse(data, status = 200) {
+function jsonResponse(data, status = 200, headers = {}) {
   return new Response(JSON.stringify(data), {
     status,
-    headers: jsonHeaders,
+    headers: { ...jsonHeaders, ...headers },
   });
+}
+
+function base64UrlEncode(value) {
+  const bytes = typeof value === "string" ? new TextEncoder().encode(value) : value;
+  let binary = "";
+  for (const byte of bytes) {
+    binary += String.fromCharCode(byte);
+  }
+  return btoa(binary).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/g, "");
+}
+
+function base64UrlDecode(value) {
+  const base64 = value.replace(/-/g, "+").replace(/_/g, "/").padEnd(Math.ceil(value.length / 4) * 4, "=");
+  const binary = atob(base64);
+  return Uint8Array.from(binary, (char) => char.charCodeAt(0));
+}
+
+function safeEqual(a, b) {
+  if (a.length !== b.length) {
+    return false;
+  }
+  let diff = 0;
+  for (let index = 0; index < a.length; index += 1) {
+    diff |= a.charCodeAt(index) ^ b.charCodeAt(index);
+  }
+  return diff === 0;
+}
+
+async function signValue(value, secret) {
+  const key = await crypto.subtle.importKey(
+    "raw",
+    new TextEncoder().encode(secret),
+    { name: "HMAC", hash: "SHA-256" },
+    false,
+    ["sign"]
+  );
+  const signature = await crypto.subtle.sign("HMAC", key, new TextEncoder().encode(value));
+  return base64UrlEncode(new Uint8Array(signature));
+}
+
+function readCookie(request, name) {
+  const cookie = request.headers.get("cookie") || "";
+  for (const part of cookie.split(";")) {
+    const [key, ...rest] = part.trim().split("=");
+    if (key === name) {
+      return rest.join("=");
+    }
+  }
+  return "";
+}
+
+async function verifySession(request, env) {
+  if (!env.SESSION_SECRET) {
+    return false;
+  }
+  const token = readCookie(request, SESSION_COOKIE);
+  const [payloadPart, signaturePart] = token.split(".");
+  if (!payloadPart || !signaturePart) {
+    return false;
+  }
+  const expected = await signValue(payloadPart, env.SESSION_SECRET);
+  if (!safeEqual(signaturePart, expected)) {
+    return false;
+  }
+  try {
+    const payload = JSON.parse(new TextDecoder().decode(base64UrlDecode(payloadPart)));
+    return Boolean(payload.exp && payload.exp > Math.floor(Date.now() / 1000));
+  } catch {
+    return false;
+  }
+}
+
+async function requireAuth(request, env) {
+  const authenticated = await verifySession(request, env);
+  if (!authenticated) {
+    return jsonResponse({ error: "unauthorized" }, 401);
+  }
+  return null;
 }
 
 function nowIso() {
@@ -217,20 +296,26 @@ async function handleWrite(request, env) {
     ok: true,
     post: saved,
     publicUrl,
-    message: `已保存到 GitHub。等待 Cloudflare 自动部署完成后，访问 ${publicUrl}。`,
+    message: `Saved to GitHub. After Cloudflare finishes automatic deployment, visit ${publicUrl}.`,
   });
 }
 
 export async function onRequest(context) {
   try {
     const method = context.request.method.toUpperCase();
+    if (!["GET", "POST", "PUT"].includes(method)) {
+      return jsonResponse({ error: "method not allowed" }, 405);
+    }
+
+    const authError = await requireAuth(context.request, context.env);
+    if (authError) {
+      return authError;
+    }
+
     if (method === "GET") {
       return handleGet(context.env);
     }
-    if (method === "POST" || method === "PUT") {
-      return handleWrite(context.request, context.env);
-    }
-    return jsonResponse({ error: "method not allowed" }, 405);
+    return handleWrite(context.request, context.env);
   } catch (error) {
     return jsonResponse({ error: error.message || "admin api failed" }, 500);
   }

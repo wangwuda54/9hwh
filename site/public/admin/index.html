@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>9HWH 发布后台</title>
+  <title>9HWH Admin</title>
   <style>
     :root {
       color-scheme: light;
@@ -39,7 +39,7 @@
       min-height: 68px;
       gap: 16px;
     }
-    h1, h2, h3, p { margin-top: 0; }
+    h1, h2, p { margin-top: 0; }
     h1 { margin-bottom: 0; font-size: 22px; }
     h2 { font-size: 18px; }
     main.shell {
@@ -47,6 +47,10 @@
       grid-template-columns: minmax(0, 1fr) 360px;
       gap: 20px;
       padding: 22px 0 40px;
+    }
+    .login-shell {
+      width: min(420px, calc(100% - 32px));
+      margin: 48px auto;
     }
     .panel {
       background: var(--panel);
@@ -138,12 +142,7 @@
       white-space: nowrap;
     }
     .muted { color: var(--muted); }
-    .links {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-top: 12px;
-    }
+    [hidden] { display: none !important; }
     @media (max-width: 900px) {
       main.shell { grid-template-columns: 1fr; }
       .row { grid-template-columns: 1fr; }
@@ -154,25 +153,42 @@
   <header>
     <div class="shell topbar">
       <div>
-        <h1>9HWH 发布后台</h1>
-        <p class="muted">静态文章保存到 GitHub，Cloudflare Pages 自动构建公开页。</p>
+        <h1>9HWH Admin</h1>
+        <p class="muted">Static publishing console</p>
       </div>
-      <a class="button" href="/publish/" target="_blank" rel="noopener noreferrer">打开公开列表</a>
+      <div class="actions">
+        <a class="button" href="/publish/" target="_blank" rel="noopener noreferrer">Open public list</a>
+        <button type="button" id="logout-button" hidden>Logout</button>
+      </div>
     </div>
   </header>
 
-  <main class="shell">
+  <section id="login-view" class="login-shell">
+    <form id="login-form" class="panel">
+      <h2>Login</h2>
+      <label for="username">Username</label>
+      <input id="username" autocomplete="username" required>
+      <label for="password">Password</label>
+      <input id="password" type="password" autocomplete="current-password" required>
+      <div class="actions">
+        <button class="primary" type="submit">Login</button>
+      </div>
+      <div id="login-status" class="status"></div>
+    </form>
+  </section>
+
+  <main id="admin-view" class="shell" hidden>
     <section class="panel">
-      <h2>文章编辑</h2>
+      <h2>Post Editor</h2>
       <form id="editor">
         <input type="hidden" id="post-id">
         <div class="row">
           <div>
-            <label for="title">标题</label>
+            <label for="title">Title</label>
             <input id="title" required>
           </div>
           <div>
-            <label for="status">状态</label>
+            <label for="status">Status</label>
             <select id="status">
               <option value="draft">draft</option>
               <option value="published">published</option>
@@ -182,27 +198,27 @@
         </div>
         <label for="slug">Slug</label>
         <input id="slug" placeholder="test-post">
-        <label for="summary">摘要</label>
-        <input id="summary" placeholder="这是后台发布测试">
-        <label for="tags">标签，英文逗号分隔</label>
-        <input id="tags" placeholder="测试, 发布">
-        <label for="content">正文</label>
-        <textarea id="content" placeholder="支持段落、## 标题、### 小标题、- 列表"></textarea>
+        <label for="summary">Summary</label>
+        <input id="summary" placeholder="Short public summary">
+        <label for="tags">Tags, comma separated</label>
+        <input id="tags" placeholder="test, publish">
+        <label for="content">Content</label>
+        <textarea id="content" placeholder="Supports paragraphs, ## headings, ### headings, and - list items"></textarea>
 
         <div class="actions">
-          <button class="primary" type="button" data-action="publish">发布/更新发布</button>
-          <button type="button" data-action="draft">保存草稿</button>
-          <button class="danger" type="button" data-action="archive">下架</button>
-          <button type="button" id="new-post">新建文章</button>
-          <a class="button" id="public-link" href="/publish/" target="_blank" rel="noopener noreferrer">打开公开链接</a>
+          <button class="primary" type="button" data-action="publish">Publish / Update</button>
+          <button type="button" data-action="draft">Save Draft</button>
+          <button class="danger" type="button" data-action="archive">Archive</button>
+          <button type="button" id="new-post">New Post</button>
+          <a class="button" id="public-link" href="/publish/" target="_blank" rel="noopener noreferrer">Open Public Link</a>
         </div>
         <div id="status-line" class="status"></div>
       </form>
     </section>
 
     <aside class="panel">
-      <h2>内容列表</h2>
-      <button type="button" id="refresh">刷新列表</button>
+      <h2>Posts</h2>
+      <button type="button" id="refresh">Refresh</button>
       <div id="post-list" class="post-list"></div>
     </aside>
   </main>
@@ -210,6 +226,15 @@
   <script>
     const api = "/api/admin/posts";
     const state = { posts: [], current: null };
+    const views = {
+      login: document.querySelector("#login-view"),
+      admin: document.querySelector("#admin-view"),
+      logout: document.querySelector("#logout-button"),
+      loginForm: document.querySelector("#login-form"),
+      loginStatus: document.querySelector("#login-status"),
+      username: document.querySelector("#username"),
+      password: document.querySelector("#password"),
+    };
     const fields = {
       id: document.querySelector("#post-id"),
       title: document.querySelector("#title"),
@@ -223,9 +248,24 @@
       publicLink: document.querySelector("#public-link"),
     };
 
-    function setStatus(message, type = "") {
-      fields.line.textContent = message;
-      fields.line.className = `status ${type}`;
+    function setStatus(element, message, type = "") {
+      element.textContent = message;
+      element.className = `status ${type}`;
+    }
+
+    function showLogin(message = "") {
+      views.login.hidden = false;
+      views.admin.hidden = true;
+      views.logout.hidden = true;
+      setStatus(views.loginStatus, message);
+      views.username.focus();
+    }
+
+    async function showAdmin() {
+      views.login.hidden = true;
+      views.admin.hidden = false;
+      views.logout.hidden = false;
+      await refresh();
     }
 
     function slugify(value) {
@@ -257,7 +297,7 @@
       fields.content.value = "";
       fields.status.value = "draft";
       updatePublicLink();
-      setStatus("");
+      setStatus(fields.line, "");
       fields.title.focus();
     }
 
@@ -271,13 +311,13 @@
       fields.content.value = post.content || "";
       fields.status.value = post.status || "draft";
       updatePublicLink();
-      setStatus(`已载入：${post.title}`);
+      setStatus(fields.line, `Loaded: ${post.title}`);
     }
 
     function renderList() {
       fields.list.innerHTML = "";
       if (!state.posts.length) {
-        fields.list.innerHTML = '<p class="muted">暂无文章。</p>';
+        fields.list.innerHTML = '<p class="muted">No posts yet.</p>';
         return;
       }
       for (const post of state.posts) {
@@ -285,7 +325,7 @@
         button.type = "button";
         button.className = "post-item";
         button.innerHTML = `
-          <span class="post-title"><span>${post.title || "(未命名)"}</span><span class="badge">${post.status || "draft"}</span></span>
+          <span class="post-title"><span>${post.title || "(untitled)"}</span><span class="badge">${post.status || "draft"}</span></span>
           <span class="muted">/publish/${post.slug || ""}/</span>
         `;
         button.addEventListener("click", () => loadPost(post));
@@ -294,15 +334,22 @@
     }
 
     async function refresh() {
-      setStatus("正在读取内容列表...");
-      const response = await fetch(api, { headers: { accept: "application/json" } });
+      setStatus(fields.line, "Loading posts...");
+      const response = await fetch(api, {
+        credentials: "same-origin",
+        headers: { accept: "application/json" },
+      });
       const data = await response.json();
+      if (response.status === 401) {
+        showLogin("Please login again.");
+        return;
+      }
       if (!response.ok) {
-        throw new Error(data.error || "读取失败");
+        throw new Error(data.error || "Failed to load posts");
       }
       state.posts = data.posts || [];
       renderList();
-      setStatus("内容列表已更新。", "ok");
+      setStatus(fields.line, "Post list updated.", "ok");
     }
 
     function payload(action) {
@@ -319,43 +366,91 @@
     }
 
     async function save(action) {
-      setStatus("正在保存到 GitHub...");
+      setStatus(fields.line, "Saving to GitHub...");
       document.querySelectorAll("button").forEach((button) => { button.disabled = true; });
       try {
         const response = await fetch(api, {
           method: "POST",
+          credentials: "same-origin",
           headers: { "content-type": "application/json", accept: "application/json" },
           body: JSON.stringify(payload(action)),
         });
         const data = await response.json();
-        if (!response.ok) {
-          throw new Error(data.error || "保存失败");
+        if (response.status === 401) {
+          showLogin("Please login again.");
+          return;
         }
-        const successMessage = data.message || `已保存到 GitHub。等待 Cloudflare 自动部署完成后，访问 ${currentPublicUrl()}。`;
+        if (!response.ok) {
+          throw new Error(data.error || "Failed to save");
+        }
+        const successMessage = data.message || `Saved to GitHub. After Cloudflare finishes automatic deployment, visit ${currentPublicUrl()}.`;
         if (data.post) {
           loadPost(data.post);
         }
         await refresh();
-        setStatus(successMessage, "ok");
+        setStatus(fields.line, successMessage, "ok");
       } catch (error) {
-        setStatus(error.message, "error");
+        setStatus(fields.line, error.message, "error");
       } finally {
         document.querySelectorAll("button").forEach((button) => { button.disabled = false; });
       }
     }
 
+    async function checkSession() {
+      const response = await fetch("/api/admin/session", {
+        credentials: "same-origin",
+        headers: { accept: "application/json" },
+      });
+      const data = await response.json().catch(() => ({ authenticated: false }));
+      if (data.authenticated) {
+        await showAdmin();
+      } else {
+        showLogin();
+      }
+    }
+
+    views.loginForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      setStatus(views.loginStatus, "Logging in...");
+      const response = await fetch("/api/admin/login", {
+        method: "POST",
+        credentials: "same-origin",
+        headers: { "content-type": "application/json", accept: "application/json" },
+        body: JSON.stringify({
+          username: views.username.value,
+          password: views.password.value,
+        }),
+      });
+      const data = await response.json().catch(() => ({}));
+      if (!response.ok || !data.authenticated) {
+        setStatus(views.loginStatus, data.error || "Login failed", "error");
+        return;
+      }
+      views.password.value = "";
+      await showAdmin();
+    });
+
+    views.logout.addEventListener("click", async () => {
+      await fetch("/api/admin/logout", {
+        method: "POST",
+        credentials: "same-origin",
+        headers: { accept: "application/json" },
+      });
+      showLogin("Logged out.");
+    });
+
     document.querySelectorAll("[data-action]").forEach((button) => {
       button.addEventListener("click", () => save(button.dataset.action));
     });
     document.querySelector("#new-post").addEventListener("click", clearEditor);
-    document.querySelector("#refresh").addEventListener("click", () => refresh().catch((error) => setStatus(error.message, "error")));
+    document.querySelector("#refresh").addEventListener("click", () => refresh().catch((error) => setStatus(fields.line, error.message, "error")));
     fields.title.addEventListener("input", () => {
       if (!fields.slug.value) fields.slug.value = slugify(fields.title.value);
       updatePublicLink();
     });
     fields.slug.addEventListener("input", updatePublicLink);
 
-    refresh().catch((error) => setStatus(error.message, "error"));
+    checkSession().catch(() => showLogin());
   </script>
 </body>
 </html>
