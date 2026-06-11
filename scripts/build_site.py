@@ -20,6 +20,8 @@ KEYWORD_DATA = DATA / "keywords"
 CONTENT_DATA = DATA / "content"
 DRAFTS = SRC / "content_drafts"
 SEO_DATA = ROOT / "data" / "seo"
+ADMIN_SOURCE = ROOT / "admin"
+ROUTES_SOURCE = ROOT / "_routes.json"
 
 BASE_URL = "https://www.9hwh.com"
 TELEGRAM_URL = "https://tg.9hwh.com/"
@@ -441,6 +443,58 @@ def load_content_queue() -> list[dict]:
     if not path.exists():
         return []
     return json.loads(path.read_text(encoding="utf-8"))
+
+
+def load_admin_posts() -> dict:
+    path = DATA / "admin_posts.json"
+    if not path.exists():
+        return {"version": 1, "updatedAt": "", "posts": []}
+    data = json.loads(path.read_text(encoding="utf-8"))
+    posts = data.get("posts", [])
+    if not isinstance(posts, list):
+        posts = []
+    return {"version": 1, "updatedAt": data.get("updatedAt", ""), "posts": posts}
+
+
+def admin_post_url(post: dict) -> str:
+    return "/publish/" + str(post.get("slug", "")).strip("/") + "/"
+
+
+def published_admin_posts(data: dict) -> list[dict]:
+    posts = [
+        post
+        for post in data.get("posts", [])
+        if post.get("status") == "published" and str(post.get("slug", "")).strip() and str(post.get("title", "")).strip()
+    ]
+    return sorted(posts, key=lambda post: str(post.get("publishedAt") or post.get("updatedAt") or post.get("createdAt") or ""), reverse=True)
+
+
+def admin_publish_cards_html(posts: list[dict]) -> str:
+    if not posts:
+        return '<article class="card"><h2>发布内容</h2><p>后台发布内容会在这里展示。</p></article>'
+    cards = [
+        {
+            "title": post.get("title", ""),
+            "url": admin_post_url(post),
+            "summary": post.get("summary", ""),
+        }
+        for post in posts
+    ]
+    return card_grid(cards, 3)
+
+
+def admin_post_content(post: dict) -> str:
+    tag_html = "".join(f'<span class="pill">{esc(tag)}</span>' for tag in post.get("tags", []) if tag)
+    summary = post.get("summary", "")
+    body = post.get("content", "")
+    parts = ['<article class="card">']
+    if summary:
+        parts.append(f'<p class="lead">{esc(summary)}</p>')
+    if tag_html:
+        parts.append(f'<div class="pill-list">{tag_html}</div>')
+    parts.append(markdown_to_html(body) if body else "<p>正文内容待补充。</p>")
+    parts.append("</article>")
+    return "".join(parts)
 
 
 def load_videos() -> list[dict]:
@@ -979,6 +1033,17 @@ def write_cloudflare_pages_files() -> None:
     redirects = "\n".join(legacy_redirect_lines())
     write_file("_headers", headers)
     write_file("_redirects", redirects)
+    if ROUTES_SOURCE.exists():
+        write_file("_routes.json", ROUTES_SOURCE.read_text(encoding="utf-8").strip() + "\n")
+
+
+def copy_admin_assets() -> None:
+    if not ADMIN_SOURCE.exists():
+        return
+    target = PUBLIC / "admin"
+    if target.exists():
+        shutil.rmtree(target)
+    shutil.copytree(ADMIN_SOURCE, target)
 
 
 def write_inventory(records: list[dict]) -> None:
@@ -1021,6 +1086,8 @@ def build() -> None:
     content_queue = load_content_queue()
     published_drafts = load_publishable_drafts(content_queue)
     published_aggregates = aggregate_published_articles(published_drafts)
+    admin_posts_data = load_admin_posts()
+    admin_posts = published_admin_posts(admin_posts_data)
     videos = merge_video_topics(load_videos(), load_video_topics())
     published_videos = [item for item in videos if item.get("status") == "published"]
 
@@ -1028,6 +1095,7 @@ def build() -> None:
     css_target = PUBLIC / "assets" / "css" / "styles.css"
     css_target.parent.mkdir(parents=True, exist_ok=True)
     shutil.copyfile(SRC / "assets" / "css" / "styles.css", css_target)
+    copy_admin_assets()
 
     records: list[dict] = []
     global_schemas = []
@@ -1098,6 +1166,42 @@ def build() -> None:
 
     blog_extra = blog_article_cards_html(published_drafts)
     emit("/blog/", pages["blog"], listing_content(pages["blog"], [], blog_extra), site, nav, global_schemas, records, "pages.json:blog", "blog")
+
+    publish_page = {
+        "title": "发布内容 | 9HWH",
+        "h1": "发布内容",
+        "description": "9HWH 后台发布的公开内容列表。",
+        "eyebrow": "发布内容",
+    }
+    emit(
+        "/publish/",
+        publish_page,
+        listing_content(publish_page, [], admin_publish_cards_html(admin_posts)),
+        site,
+        nav,
+        global_schemas,
+        records,
+        "admin_posts.json:index",
+        "admin_publish_index",
+    )
+    for post in admin_posts:
+        post_page = {
+            "title": post["title"] + " | 9HWH",
+            "h1": post["title"],
+            "description": post.get("summary") or post["title"],
+            "eyebrow": "发布内容",
+        }
+        emit(
+            admin_post_url(post),
+            post_page,
+            listing_content(post_page, [], admin_post_content(post)),
+            site,
+            nav,
+            global_schemas,
+            records,
+            f"admin_posts.json:{post.get('id', post.get('slug', ''))}",
+            "admin_publish_post",
+        )
 
     video_listing_page = {
         "title": "视频案例 | 9HWH",

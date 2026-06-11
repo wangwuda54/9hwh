@@ -23,6 +23,7 @@
 | https://www.9hwh.com/topics/online-work-leads/ | topics.json:online-work-leads | site/public/topics/online-work-leads/index.html | topic | yes | yes | 网赚推广与兼职获客 | 网赚与兼职获客主题页，覆盖在线项目推广、兼职获客、注册拉新、咨询承接和预算测试。 |
 | https://www.9hwh.com/markets/ | pages.json:markets | site/public/markets/index.html | markets | yes | yes | 海外市场方向 | 9HWH | 说明不同国家和地区的推广判断、平台适配差异、语言素材和落地页准备。 |
 | https://www.9hwh.com/blog/ | pages.json:blog | site/public/blog/index.html | blog | yes | yes | 内容中心 | 9HWH | 这里持续更新海外推广、引流获客、广告投放、渠道选择和项目准备等实用内容，方便你快速查看与参考。 |
+| https://www.9hwh.com/publish/ | admin_posts.json:index | site/public/publish/index.html | admin_publish_index | yes | yes | 发布内容 | 9HWH | 9HWH 后台发布的公开内容列表。 |
 | https://www.9hwh.com/v/ | videos.json:index | site/public/v/index.html | video_listing | yes | yes | 视频案例 | 9HWH | 查看 9HWH 视频案例页面，用于了解短视频素材、AI 视频生成、推广页面和 Google 搜索承接页面的组合方式。 |
 | https://www.9hwh.com/blog/crypto-promotion-how-to-17e66750/ | content_queue:c001-ad-campaign-support-how-to-17e66750 | site/public/blog/crypto-promotion-how-to-17e66750/index.html | blog_article | yes | yes | 加密货币推广怎么做：渠道判断、投放准备和合规评估 | 探讨加密货币推广的真实需求、适合项目类型、投放前准备和渠道建议。本文帮助出海团队梳理推广思路，了解投放前评估，并提供合作前的咨询准备建议。 |
 | https://www.9hwh.com/blog/how-to-f12343f8/ | content_queue:c002-ad-campaign-support-how-to-f12343f8 | site/public/blog/how-to-f12343f8/index.html | blog_article | yes | yes | 理财怎么做：推广路径、渠道判断和准备清单 | 理财怎么做：推广路径、渠道判断和准备清单，围绕真实搜索需求梳理推广准备、渠道判断、素材测试、落地页承接和咨询转化路径。 |
