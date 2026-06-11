@@ -75,7 +75,7 @@ export async function onRequest(context) {
     const password = String(payload.password || "");
     const valid = safeEqual(username, ADMIN_USERNAME) && safeEqual(password, ADMIN_PASSWORD);
     if (!valid) {
-      return jsonResponse({ error: "invalid username or password" }, 401);
+      return jsonResponse({ error: "用户名或密码错误" }, 401);
     }
 
     const token = await createSession(username, SESSION_SECRET);

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>9HWH Admin</title>
+  <title>9HWH 发布后台</title>
   <style>
     :root {
       color-scheme: light;
@@ -153,25 +153,25 @@
   <header>
     <div class="shell topbar">
       <div>
-        <h1>9HWH Admin</h1>
-        <p class="muted">Static publishing console</p>
+        <h1>9HWH 发布后台</h1>
+        <p class="muted">静态发布控制台</p>
       </div>
       <div class="actions">
-        <a class="button" href="/publish/" target="_blank" rel="noopener noreferrer">Open public list</a>
-        <button type="button" id="logout-button" hidden>Logout</button>
+        <a class="button" href="/publish/" target="_blank" rel="noopener noreferrer">打开公开列表</a>
+        <button type="button" id="logout-button" hidden>退出登录</button>
       </div>
     </div>
   </header>
 
   <section id="login-view" class="login-shell">
     <form id="login-form" class="panel">
-      <h2>Login</h2>
-      <label for="username">Username</label>
+      <h2>登录</h2>
+      <label for="username">用户名</label>
       <input id="username" autocomplete="username" required>
-      <label for="password">Password</label>
+      <label for="password">密码</label>
       <input id="password" type="password" autocomplete="current-password" required>
       <div class="actions">
-        <button class="primary" type="submit">Login</button>
+        <button class="primary" type="submit">登录</button>
       </div>
       <div id="login-status" class="status"></div>
     </form>
@@ -179,16 +179,16 @@
 
   <main id="admin-view" class="shell" hidden>
     <section class="panel">
-      <h2>Post Editor</h2>
+      <h2>文章编辑</h2>
       <form id="editor">
         <input type="hidden" id="post-id">
         <div class="row">
           <div>
-            <label for="title">Title</label>
+            <label for="title">标题</label>
             <input id="title" required>
           </div>
           <div>
-            <label for="status">Status</label>
+            <label for="status">状态</label>
             <select id="status">
               <option value="draft">draft</option>
               <option value="published">published</option>
@@ -198,27 +198,27 @@
         </div>
         <label for="slug">Slug</label>
         <input id="slug" placeholder="test-post">
-        <label for="summary">Summary</label>
-        <input id="summary" placeholder="Short public summary">
-        <label for="tags">Tags, comma separated</label>
-        <input id="tags" placeholder="test, publish">
-        <label for="content">Content</label>
-        <textarea id="content" placeholder="Supports paragraphs, ## headings, ### headings, and - list items"></textarea>
+        <label for="summary">摘要</label>
+        <input id="summary" placeholder="请输入文章摘要">
+        <label for="tags">标签，英文逗号分隔</label>
+        <input id="tags" placeholder="测试, 发布">
+        <label for="content">正文</label>
+        <textarea id="content" placeholder="支持普通段落、## 二级标题、### 三级标题、- 列表"></textarea>
 
         <div class="actions">
-          <button class="primary" type="button" data-action="publish">Publish / Update</button>
-          <button type="button" data-action="draft">Save Draft</button>
-          <button class="danger" type="button" data-action="archive">Archive</button>
-          <button type="button" id="new-post">New Post</button>
-          <a class="button" id="public-link" href="/publish/" target="_blank" rel="noopener noreferrer">Open Public Link</a>
+          <button class="primary" type="button" data-action="publish">发布 / 更新</button>
+          <button type="button" data-action="draft">保存草稿</button>
+          <button class="danger" type="button" data-action="archive">下架</button>
+          <button type="button" id="new-post">新建文章</button>
+          <a class="button" id="public-link" href="/publish/" target="_blank" rel="noopener noreferrer">打开公开链接</a>
         </div>
         <div id="status-line" class="status"></div>
       </form>
     </section>
 
     <aside class="panel">
-      <h2>Posts</h2>
-      <button type="button" id="refresh">Refresh</button>
+      <h2>内容列表</h2>
+      <button type="button" id="refresh">刷新列表</button>
       <div id="post-list" class="post-list"></div>
     </aside>
   </main>
@@ -311,13 +311,13 @@
       fields.content.value = post.content || "";
       fields.status.value = post.status || "draft";
       updatePublicLink();
-      setStatus(fields.line, `Loaded: ${post.title}`);
+      setStatus(fields.line, `已载入：${post.title}`);
     }
 
     function renderList() {
       fields.list.innerHTML = "";
       if (!state.posts.length) {
-        fields.list.innerHTML = '<p class="muted">No posts yet.</p>';
+        fields.list.innerHTML = '<p class="muted">暂无文章。</p>';
         return;
       }
       for (const post of state.posts) {
@@ -334,22 +334,22 @@
     }
 
     async function refresh() {
-      setStatus(fields.line, "Loading posts...");
+      setStatus(fields.line, "正在加载文章列表...");
       const response = await fetch(api, {
         credentials: "same-origin",
         headers: { accept: "application/json" },
       });
       const data = await response.json();
       if (response.status === 401) {
-        showLogin("Please login again.");
+        showLogin("请重新登录。");
         return;
       }
       if (!response.ok) {
-        throw new Error(data.error || "Failed to load posts");
+        throw new Error(data.error || "读取文章失败");
       }
       state.posts = data.posts || [];
       renderList();
-      setStatus(fields.line, "Post list updated.", "ok");
+      setStatus(fields.line, "文章列表已更新。", "ok");
     }
 
     function payload(action) {
@@ -366,7 +366,7 @@
     }
 
     async function save(action) {
-      setStatus(fields.line, "Saving to GitHub...");
+      setStatus(fields.line, "正在保存到 GitHub...");
       document.querySelectorAll("button").forEach((button) => { button.disabled = true; });
       try {
         const response = await fetch(api, {
@@ -377,13 +377,13 @@
         });
         const data = await response.json();
         if (response.status === 401) {
-          showLogin("Please login again.");
+          showLogin("请重新登录。");
           return;
         }
         if (!response.ok) {
-          throw new Error(data.error || "Failed to save");
+          throw new Error(data.error || "保存失败");
         }
-        const successMessage = data.message || `Saved to GitHub. After Cloudflare finishes automatic deployment, visit ${currentPublicUrl()}.`;
+        const successMessage = data.message || `已保存到 GitHub。等待 Cloudflare 自动部署完成后，访问 ${currentPublicUrl()}。`;
         if (data.post) {
           loadPost(data.post);
         }
@@ -411,7 +411,7 @@
 
     views.loginForm.addEventListener("submit", async (event) => {
       event.preventDefault();
-      setStatus(views.loginStatus, "Logging in...");
+      setStatus(views.loginStatus, "正在登录...");
       const response = await fetch("/api/admin/login", {
         method: "POST",
         credentials: "same-origin",
@@ -423,7 +423,7 @@
       });
       const data = await response.json().catch(() => ({}));
       if (!response.ok || !data.authenticated) {
-        setStatus(views.loginStatus, data.error || "Login failed", "error");
+        setStatus(views.loginStatus, data.error || "登录失败", "error");
         return;
       }
       views.password.value = "";
@@ -436,7 +436,7 @@
         credentials: "same-origin",
         headers: { accept: "application/json" },
       });
-      showLogin("Logged out.");
+      showLogin("已退出登录。");
     });
 
     document.querySelectorAll("[data-action]").forEach((button) => {

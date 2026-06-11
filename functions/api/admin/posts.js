@@ -296,7 +296,7 @@ async function handleWrite(request, env) {
     ok: true,
     post: saved,
     publicUrl,
-    message: `Saved to GitHub. After Cloudflare finishes automatic deployment, visit ${publicUrl}.`,
+    message: `已保存到 GitHub。等待 Cloudflare 自动部署完成后，访问 ${publicUrl}。`,
   });
 }
 
