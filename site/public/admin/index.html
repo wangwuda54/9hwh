@@ -190,9 +190,9 @@
           <div>
             <label for="status">状态</label>
             <select id="status">
-              <option value="draft">draft</option>
-              <option value="published">published</option>
-              <option value="archived">archived</option>
+              <option value="draft">草稿</option>
+              <option value="published">已发布</option>
+              <option value="archived">已下架</option>
             </select>
           </div>
         </div>
@@ -251,6 +251,15 @@
     function setStatus(element, message, type = "") {
       element.textContent = message;
       element.className = `status ${type}`;
+    }
+
+    function statusLabel(status) {
+      const labels = {
+        draft: "草稿",
+        published: "已发布",
+        archived: "已下架",
+      };
+      return labels[status] || "草稿";
     }
 
     function showLogin(message = "") {
@@ -325,7 +334,7 @@
         button.type = "button";
         button.className = "post-item";
         button.innerHTML = `
-          <span class="post-title"><span>${post.title || "(untitled)"}</span><span class="badge">${post.status || "draft"}</span></span>
+          <span class="post-title"><span>${post.title || "（未命名）"}</span><span class="badge">${statusLabel(post.status)}</span></span>
           <span class="muted">/publish/${post.slug || ""}/</span>
         `;
         button.addEventListener("click", () => loadPost(post));
