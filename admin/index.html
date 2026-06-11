@@ -142,6 +142,11 @@
       white-space: nowrap;
     }
     .muted { color: var(--muted); }
+    .field-help {
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
     [hidden] { display: none !important; }
     @media (max-width: 900px) {
       main.shell { grid-template-columns: 1fr; }
@@ -198,6 +203,7 @@
         </div>
         <label for="slug">Slug</label>
         <input id="slug" placeholder="test-post">
+        <p class="field-help">建议使用英文短链接，例如 japan-dating-traffic-promotion。</p>
         <label for="summary">摘要</label>
         <input id="summary" placeholder="请输入文章摘要">
         <label for="tags">标签，英文逗号分隔</label>
@@ -287,9 +293,23 @@
         .slice(0, 80);
     }
 
+    function timestampSlug() {
+      const now = new Date();
+      const pad = (value) => String(value).padStart(2, "0");
+      return [
+        "post",
+        now.getFullYear(),
+        pad(now.getMonth() + 1),
+        pad(now.getDate()),
+      ].join("") + "-" + [pad(now.getHours()), pad(now.getMinutes()), pad(now.getSeconds())].join("");
+    }
+
+    function resolvedSlug() {
+      return slugify(fields.slug.value) || slugify(fields.title.value) || timestampSlug();
+    }
+
     function currentPublicUrl() {
-      const slug = slugify(fields.slug.value || fields.title.value);
-      return slug ? `/publish/${slug}/` : "/publish/";
+      return `/publish/${resolvedSlug()}/`;
     }
 
     function updatePublicLink() {
@@ -366,7 +386,7 @@
         action,
         id: fields.id.value || undefined,
         title: fields.title.value,
-        slug: fields.slug.value || slugify(fields.title.value),
+        slug: resolvedSlug(),
         summary: fields.summary.value,
         content: fields.content.value,
         tags: fields.tags.value,
@@ -454,10 +474,13 @@
     document.querySelector("#new-post").addEventListener("click", clearEditor);
     document.querySelector("#refresh").addEventListener("click", () => refresh().catch((error) => setStatus(fields.line, error.message, "error")));
     fields.title.addEventListener("input", () => {
-      if (!fields.slug.value) fields.slug.value = slugify(fields.title.value);
+      if (!fields.slug.value) fields.slug.value = slugify(fields.title.value) || timestampSlug();
       updatePublicLink();
     });
-    fields.slug.addEventListener("input", updatePublicLink);
+    fields.slug.addEventListener("input", () => {
+      fields.slug.value = slugify(fields.slug.value);
+      updatePublicLink();
+    });
 
     checkSession().catch(() => showLogin());
   </script>

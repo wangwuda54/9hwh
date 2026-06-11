@@ -98,6 +98,11 @@ function nowIso() {
   return new Date().toISOString();
 }
 
+function timestampSlug(date = new Date()) {
+  const pad = (value) => String(value).padStart(2, "0");
+  return `post-${date.getUTCFullYear()}${pad(date.getUTCMonth() + 1)}${pad(date.getUTCDate())}-${pad(date.getUTCHours())}${pad(date.getUTCMinutes())}${pad(date.getUTCSeconds())}`;
+}
+
 function slugify(value) {
   return String(value || "")
     .trim()
@@ -221,12 +226,9 @@ async function writeGitHubData(context, data, message) {
 function postFromPayload(payload, existing) {
   const timestamp = nowIso();
   const title = String(payload.title || existing?.title || "").trim();
-  const slug = slugify(payload.slug || existing?.slug || title);
+  const slug = slugify(payload.slug || existing?.slug) || slugify(title) || timestampSlug();
   if (!title) {
     throw new Error("title is required");
-  }
-  if (!slug) {
-    throw new Error("slug is required");
   }
 
   const requestedStatus = payload.status || existing?.status || "draft";

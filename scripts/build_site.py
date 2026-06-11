@@ -258,6 +258,14 @@ def markdown_to_html(markdown: str) -> str:
         escaped = re.sub(r"\[(.+?)\]\((/[^)\s]+)\)", r'<a href="\2">\1</a>', escaped)
         return escaped
 
+    def list_item_text(line: str) -> str | None:
+        for marker in ("- ", "* ", "• ", "· ", "、"):
+            if line.startswith(marker):
+                return line[len(marker) :].strip()
+        if line.startswith('"') or line.startswith("“"):
+            return line[1:].strip()
+        return None
+
     blocks = []
     in_list = False
     for raw in markdown.splitlines():
@@ -277,11 +285,11 @@ def markdown_to_html(markdown: str) -> str:
                 blocks.append("</ul>")
                 in_list = False
             blocks.append(f"<h2>{inline_html(line[3:])}</h2>")
-        elif line.startswith("- "):
+        elif list_item_text(line) is not None:
             if not in_list:
                 blocks.append("<ul>")
                 in_list = True
-            blocks.append(f"<li>{inline_html(line[2:])}</li>")
+            blocks.append(f"<li>{inline_html(list_item_text(line) or '')}</li>")
         else:
             if in_list:
                 blocks.append("</ul>")
@@ -304,6 +312,8 @@ def breadcrumb_items(path: str, title: str) -> list[dict]:
         name = title if index == len(parts) - 1 else part.replace("-", " ").title()
         if current == "/blog/topics/":
             current = "/topics/"
+        if current == "/publish/":
+            name = "发布内容"
         items.append({"name": name, "url": canonical(current)})
     return items
 
@@ -456,22 +466,50 @@ def load_admin_posts() -> dict:
     return {"version": 1, "updatedAt": data.get("updatedAt", ""), "posts": posts}
 
 
+def admin_slugify(value: object) -> str:
+    text = str(value or "").strip().lower()
+    text = re.sub(r"['\"]", "", text)
+    text = re.sub(r"[^a-z0-9]+", "-", text)
+    return text.strip("-")[:80]
+
+
+def admin_timestamp_slug(post: dict) -> str:
+    source = str(post.get("publishedAt") or post.get("updatedAt") or post.get("createdAt") or "")
+    match = re.match(r"(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})", source)
+    if match:
+        year, month, day, hour, minute, second = match.groups()
+        return f"post-{year}{month}{day}-{hour}{minute}{second}"
+    return "post-00000000-000000"
+
+
+def admin_post_slug(post: dict) -> str:
+    return admin_slugify(post.get("slug")) or admin_slugify(post.get("title")) or admin_timestamp_slug(post)
+
+
 def admin_post_url(post: dict) -> str:
-    return "/publish/" + str(post.get("slug", "")).strip("/") + "/"
+    return "/publish/" + admin_post_slug(post) + "/"
 
 
 def published_admin_posts(data: dict) -> list[dict]:
     posts = [
         post
         for post in data.get("posts", [])
-        if post.get("status") == "published" and str(post.get("slug", "")).strip() and str(post.get("title", "")).strip()
+        if post.get("status") == "published" and admin_post_slug(post) and str(post.get("title", "")).strip()
     ]
     return sorted(posts, key=lambda post: str(post.get("publishedAt") or post.get("updatedAt") or post.get("createdAt") or ""), reverse=True)
 
 
 def admin_publish_cards_html(posts: list[dict]) -> str:
     if not posts:
-        return '<article class="card"><h2>发布内容</h2><p>后台发布内容会在这里展示。</p></article>'
+        return (
+            '<article class="card"><h2>暂无发布内容</h2>'
+            "<p>后台发布的公开文章会显示在这里。你也可以先查看服务、平台、主题或通过 Telegram 咨询项目情况。</p>"
+            '<div class="button-row">'
+            '<a class="button button-primary" href="/services/">查看服务</a>'
+            '<a class="button button-secondary" href="/topics/">查看主题</a>'
+            f'<a class="button button-telegram" href="{TELEGRAM_URL}" target="_blank" rel="noopener noreferrer">Telegram 咨询</a>'
+            "</div></article>"
+        )
     cards = [
         {
             "title": post.get("title", ""),
@@ -494,6 +532,14 @@ def admin_post_content(post: dict) -> str:
         parts.append(f'<div class="pill-list">{tag_html}</div>')
     parts.append(markdown_to_html(body) if body else "<p>正文内容待补充。</p>")
     parts.append("</article>")
+    parts.append(
+        cta_html(
+            "想测试这个推广方向？",
+            "可以通过 Telegram 先说明项目类型、目标地区、预算范围、现有素材和落地页情况，我们会一起判断适合从哪个渠道开始测试。",
+            "Telegram 咨询",
+            TELEGRAM_URL,
+        )
+    )
     return "".join(parts)
 
 
