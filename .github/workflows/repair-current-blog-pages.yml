@@ -6,6 +6,12 @@ on:
       - main
     paths:
       - .github/workflows/repair-current-blog-pages.yml
+  pull_request:
+    branches:
+      - main
+    types:
+      - opened
+      - synchronize
   workflow_dispatch:
 
 permissions:
