@@ -22,6 +22,7 @@ VIDEO_TOPICS_DATA = DATA / "video_topics.json"
 DEEPSEEK_TASKS = ROOT / "data" / "deepseek-tasks"
 BATCH_001 = ROOT / "data" / "deepseek-batches" / "batch-001"
 DRAFTS = ROOT / "site_src" / "content_drafts"
+ADMIN_POSTS = DATA / "admin_posts.json"
 BASE_URL = "https://www.9hwh.com"
 FAILURES: list[str] = []
 WARNINGS: list[str] = []
@@ -156,6 +157,22 @@ def published_video_paths() -> set[str]:
     return {"/v/" + item.get("slug", "") + "/" for item in load_video_records() if item.get("status") == "published" and item.get("slug")}
 
 
+def published_admin_post_paths() -> set[str]:
+    if not ADMIN_POSTS.exists():
+        return set()
+    data = json.loads(ADMIN_POSTS.read_text(encoding="utf-8-sig"))
+    paths = set()
+    for post in data.get("posts", []):
+        if post.get("status") != "published":
+            continue
+        slug = str(post.get("slug", "")).strip().lower()
+        slug = re.sub(r"['\"]", "", slug)
+        slug = re.sub(r"[^a-z0-9]+", "-", slug).strip("-")[:80]
+        if slug and str(post.get("title", "")).strip():
+            paths.add(f"/blog/{slug}/")
+    return paths
+
+
 def check_html(sitemap: set[str]) -> None:
     non_indexable_pages = {"404.html", "services/legacy/index.html"}
     for path in PUBLIC.rglob("*.html"):
@@ -163,6 +180,10 @@ def check_html(sitemap: set[str]) -> None:
         text = path.read_text(encoding="utf-8")
         parser = LinkParser()
         parser.feed(text)
+        if rel.startswith("admin/"):
+            if 'content="noindex,nofollow"' not in text:
+                fail(f"{rel} missing noindex,nofollow")
+            continue
         expected_url = file_to_url(path)
         indexable = rel not in non_indexable_pages
         if not parser.title:
@@ -437,6 +458,7 @@ def check_keyword_assets(sitemap: set[str]) -> None:
         "/privacy/",
     }
     known_pages.update(published_video_paths())
+    known_pages.update(published_admin_post_paths())
     queue_path = CONTENT_DATA / "content_queue.json"
     published_article_paths = set()
     if queue_path.exists():

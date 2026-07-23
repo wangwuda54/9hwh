@@ -522,6 +522,36 @@ def check_admin_blog_url_conflicts(admin_posts: list[dict], published_drafts: li
         raise SystemExit("[FAIL] duplicate blog URLs from admin_posts.json: " + ", ".join(sorted(duplicates)))
 
 
+def check_existing_blog_sitemap_sources(
+    admin_posts: list[dict], published_drafts: list[tuple[dict, str]]
+) -> None:
+    sitemap_path = PUBLIC / "sitemap.xml"
+    if not sitemap_path.exists():
+        return
+
+    known_urls = {"/blog/"}
+    known_urls.update(admin_post_url(post) for post in admin_posts)
+    known_urls.update(
+        task.get("target_url", "")
+        for task, _ in published_drafts
+        if task.get("target_url", "").startswith("/blog/")
+    )
+    sitemap_urls = re.findall(
+        rf"<loc>{re.escape(BASE_URL)}([^<]+)</loc>",
+        sitemap_path.read_text(encoding="utf-8"),
+    )
+    missing_sources = sorted(
+        url for url in sitemap_urls if url.startswith("/blog/") and url not in known_urls
+    )
+    if missing_sources:
+        preview = ", ".join(missing_sources[:10])
+        if len(missing_sources) > 10:
+            preview += ", ..."
+        raise SystemExit(
+            f"[FAIL] existing sitemap has {len(missing_sources)} blog URL(s) with no content source: {preview}"
+        )
+
+
 def admin_article_cards(posts: list[dict]) -> list[dict]:
     return [
         {
@@ -1147,6 +1177,7 @@ def build() -> None:
     admin_posts_data = load_admin_posts()
     admin_posts = published_admin_posts(admin_posts_data)
     check_admin_blog_url_conflicts(admin_posts, published_drafts)
+    check_existing_blog_sitemap_sources(admin_posts, published_drafts)
     videos = merge_video_topics(load_videos(), load_video_topics())
     published_videos = [item for item in videos if item.get("status") == "published"]
 

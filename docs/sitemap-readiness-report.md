@@ -4,7 +4,7 @@
 - sitemap_exists: True
 - robots_exists: True
 - robots_has_sitemap: True
-- sitemap_url_count: 136
+- sitemap_url_count: 1641
 - published_queue_url_count: 72
 - only_published_content_in_sitemap: True
 
