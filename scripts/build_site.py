@@ -22,6 +22,8 @@ DRAFTS = SRC / "content_drafts"
 SEO_DATA = ROOT / "data" / "seo"
 ADMIN_SOURCE = ROOT / "admin"
 ROUTES_SOURCE = ROOT / "_routes.json"
+ADMIN_POSTS_DIR = DATA / "admin_posts"
+LEGACY_ADMIN_POSTS = DATA / "admin_posts.json"
 
 BASE_URL = "https://www.9hwh.com"
 TELEGRAM_URL = "https://tg.9hwh.com/"
@@ -33,6 +35,7 @@ PRESERVED_PUBLIC_DIRS = {"videos", "thumbnails"}
 DEFAULT_CTA_TITLE = "想确认你的项目适合怎么跑？"
 DEFAULT_CTA_TEXT = "可以通过 Telegram 联系 9HWH，先简单说明项目类型、目标地区、预算范围和现有素材情况，我们会一起判断适合从哪个渠道开始测试。"
 TOPIC_DEFAULT_ARTICLE_NOTE = "相关内容将逐步更新，你也可以先通过 Telegram 说一下项目情况。"
+BLOG_PAGE_SIZE = 30
 
 
 def load_json(name: str):
@@ -317,6 +320,11 @@ def breadcrumb_items(path: str, title: str) -> list[dict]:
     items = [{"name": "首页", "url": canonical("/")}]
     if path == "/":
         return items
+    if re.fullmatch(r"/blog/page/\d+/", path):
+        return items + [
+            {"name": "内容中心", "url": canonical("/blog/")},
+            {"name": title, "url": canonical(path)},
+        ]
     parts = [part for part in path.strip("/").split("/") if part and not part.endswith(".html")]
     current = ""
     for index, part in enumerate(parts):
@@ -466,10 +474,30 @@ def load_content_queue() -> list[dict]:
 
 
 def load_admin_posts() -> dict:
-    path = DATA / "admin_posts.json"
-    if not path.exists():
-        return {"version": 1, "updatedAt": "", "posts": []}
-    data = json.loads(path.read_text(encoding="utf-8"))
+    if ADMIN_POSTS_DIR.exists():
+        posts = []
+        seen: set[str] = set()
+        for path in sorted(ADMIN_POSTS_DIR.rglob("*.json")):
+            post = json.loads(path.read_text(encoding="utf-8-sig"))
+            if not isinstance(post, dict):
+                raise SystemExit(f"[FAIL] admin post must be a JSON object: {path.relative_to(ROOT)}")
+            slug = admin_slugify(post.get("slug"))
+            if not slug:
+                raise SystemExit(f"[FAIL] admin post missing slug: {path.relative_to(ROOT)}")
+            expected = ADMIN_POSTS_DIR / slug[0] / f"{slug}.json"
+            if path != expected:
+                raise SystemExit(
+                    f"[FAIL] admin post path mismatch: {path.relative_to(ROOT)} != {expected.relative_to(ROOT)}"
+                )
+            if slug in seen:
+                raise SystemExit(f"[FAIL] duplicate admin post slug: {slug}")
+            seen.add(slug)
+            posts.append(post)
+        return {"version": 2, "updatedAt": "", "posts": posts}
+
+    if not LEGACY_ADMIN_POSTS.exists():
+        return {"version": 2, "updatedAt": "", "posts": []}
+    data = json.loads(LEGACY_ADMIN_POSTS.read_text(encoding="utf-8"))
     posts = data.get("posts", [])
     if not isinstance(posts, list):
         posts = []
@@ -519,7 +547,7 @@ def check_admin_blog_url_conflicts(admin_posts: list[dict], published_drafts: li
             duplicates.append(url)
         seen.add(url)
     if duplicates:
-        raise SystemExit("[FAIL] duplicate blog URLs from admin_posts.json: " + ", ".join(sorted(duplicates)))
+        raise SystemExit("[FAIL] duplicate blog URLs from admin post files: " + ", ".join(sorted(duplicates)))
 
 
 def check_existing_blog_sitemap_sources(
@@ -536,6 +564,9 @@ def check_existing_blog_sitemap_sources(
         for task, _ in published_drafts
         if task.get("target_url", "").startswith("/blog/")
     )
+    article_count = len(admin_posts) + len(published_drafts)
+    page_count = max(1, (article_count + BLOG_PAGE_SIZE - 1) // BLOG_PAGE_SIZE)
+    known_urls.update(f"/blog/page/{page}/" for page in range(2, page_count + 1))
     sitemap_urls = re.findall(
         rf"<loc>{re.escape(BASE_URL)}([^<]+)</loc>",
         sitemap_path.read_text(encoding="utf-8"),
@@ -665,13 +696,30 @@ def aggregate_published_articles(published_drafts: list[tuple[dict, str]]) -> di
     return grouped
 
 
-def blog_article_cards_html(published_drafts: list[tuple[dict, str]], admin_posts: list[dict] | None = None) -> str:
+def blog_article_cards(published_drafts: list[tuple[dict, str]], admin_posts: list[dict] | None = None) -> list[dict]:
     cards = admin_article_cards(admin_posts or [])
     for task, _ in published_drafts:
         cards.append({"title": task["title"], "url": task["target_url"], "summary": task.get("description", task.get("intent", ""))})
+    return cards
+
+
+def blog_article_cards_html(cards: list[dict]) -> str:
     if not cards:
         return '<article class="card"><h2>内容中心</h2><p>公开内容将逐步更新。</p></article>'
     return card_grid(cards, 3)
+
+
+def blog_pagination_html(current_page: int, page_count: int) -> str:
+    if page_count <= 1:
+        return ""
+    links = []
+    if current_page > 1:
+        previous_url = "/blog/" if current_page == 2 else f"/blog/page/{current_page - 1}/"
+        links.append(f'<a class="button button-secondary" href="{previous_url}">上一页</a>')
+    links.append(f'<span class="pill">第 {current_page} / {page_count} 页</span>')
+    if current_page < page_count:
+        links.append(f'<a class="button button-secondary" href="/blog/page/{current_page + 1}/">下一页</a>')
+    return '<nav class="button-row" aria-label="内容分页">' + "".join(links) + "</nav>"
 
 
 def topic_article_block(published_articles: list[dict] | None) -> tuple[str, str]:
@@ -1254,8 +1302,28 @@ def build() -> None:
     )
     emit("/markets/", pages["markets"], listing_content(pages["markets"], [], market_extra), site, nav, global_schemas, records, "pages.json:markets", "markets")
 
-    blog_extra = blog_article_cards_html(published_drafts, admin_posts)
-    emit("/blog/", pages["blog"], listing_content(pages["blog"], [], blog_extra), site, nav, global_schemas, records, "pages.json:blog", "blog")
+    blog_cards = blog_article_cards(published_drafts, admin_posts)
+    blog_page_count = max(1, (len(blog_cards) + BLOG_PAGE_SIZE - 1) // BLOG_PAGE_SIZE)
+    for page_number in range(1, blog_page_count + 1):
+        start = (page_number - 1) * BLOG_PAGE_SIZE
+        page_cards = blog_cards[start : start + BLOG_PAGE_SIZE]
+        page_path = "/blog/" if page_number == 1 else f"/blog/page/{page_number}/"
+        blog_page = pages["blog"].copy()
+        if page_number > 1:
+            blog_page["title"] = f"内容中心第 {page_number} 页 | 9HWH"
+            blog_page["h1"] = f"内容中心 - 第 {page_number} 页"
+        blog_extra = blog_article_cards_html(page_cards) + blog_pagination_html(page_number, blog_page_count)
+        emit(
+            page_path,
+            blog_page,
+            listing_content(blog_page, [], blog_extra),
+            site,
+            nav,
+            global_schemas,
+            records,
+            "pages.json:blog" if page_number == 1 else f"pages.json:blog-page-{page_number}",
+            "blog" if page_number == 1 else "blog_pagination",
+        )
 
     for post in admin_posts:
         post_page = {
@@ -1272,7 +1340,7 @@ def build() -> None:
             nav,
             global_schemas,
             records,
-            f"admin_posts.json:{post.get('id', post.get('slug', ''))}",
+            f"admin_posts/{admin_post_slug(post)[0]}/{admin_post_slug(post)}.json:{post.get('id', post.get('slug', ''))}",
             "admin_publish_post",
         )
 

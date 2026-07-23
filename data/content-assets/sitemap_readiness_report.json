@@ -4,7 +4,7 @@
   "robots_exists": true,
   "robots_has_sitemap": true,
   "expected_sitemap_url": "https://www.9hwh.com/sitemap.xml",
-  "sitemap_url_count": 1641,
+  "sitemap_url_count": 1693,
   "queue_url_count": 106,
   "published_queue_url_count": 72,
   "queue_urls_in_sitemap": [

@@ -321,6 +321,7 @@
 
     function clearEditor() {
       state.current = null;
+      fields.slug.disabled = false;
       fields.id.value = "";
       fields.title.value = "";
       fields.slug.value = "";
@@ -335,6 +336,7 @@
 
     function loadPost(post) {
       state.current = post;
+      fields.slug.disabled = true;
       fields.id.value = post.id || "";
       fields.title.value = post.title || "";
       fields.slug.value = post.slug || "";
@@ -344,6 +346,23 @@
       fields.status.value = post.status || "draft";
       updatePublicLink();
       setStatus(fields.line, `已载入：${post.title}`);
+    }
+
+    async function loadPostBySlug(slug) {
+      setStatus(fields.line, "正在加载文章正文...");
+      const response = await fetch(`${api}?slug=${encodeURIComponent(slug)}`, {
+        credentials: "same-origin",
+        headers: { accept: "application/json" },
+      });
+      const data = await response.json();
+      if (response.status === 401) {
+        showLogin("请重新登录。");
+        return;
+      }
+      if (!response.ok || !data.post) {
+        throw new Error(data.error || "读取文章正文失败");
+      }
+      loadPost(data.post);
     }
 
     function renderList() {
@@ -360,7 +379,9 @@
           <span class="post-title"><span>${post.title || "（未命名）"}</span><span class="badge">${statusLabel(post.status)}</span></span>
           <span class="muted">/blog/${slugify(post.slug) || ""}/</span>
         `;
-        button.addEventListener("click", () => loadPost(post));
+        button.addEventListener("click", () => {
+          loadPostBySlug(post.slug).catch((error) => setStatus(fields.line, error.message, "error"));
+        });
         fields.list.appendChild(button);
       }
     }

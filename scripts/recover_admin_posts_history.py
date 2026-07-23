@@ -5,8 +5,11 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-ADMIN_POSTS = ROOT / "site_src" / "data" / "admin_posts.json"
+DATA = ROOT / "site_src" / "data"
+POSTS_DIR = DATA / "admin_posts"
+CATALOG_PATH = DATA / "admin_posts_catalog.json"
 ADMIN_POSTS_GIT_PATH = "site_src/data/admin_posts.json"
+CATALOG_FIELDS = ("id", "slug", "title", "status", "updatedAt", "publishedAt")
 
 
 def git(*args: str) -> str:
@@ -54,13 +57,8 @@ def main() -> int:
     parser.add_argument("--write", action="store_true", help="Write the recovered union to admin_posts.json")
     args = parser.parse_args()
 
-    current = json.loads(ADMIN_POSTS.read_text(encoding="utf-8"))
     recovered, commit_count = recover_posts(args.ref)
-    current_slugs = {
-        str(post.get("slug", "")).strip().lower()
-        for post in current.get("posts", [])
-        if str(post.get("slug", "")).strip()
-    }
+    current_slugs = {path.stem for path in POSTS_DIR.rglob("*.json")} if POSTS_DIR.exists() else set()
     recovered_slugs = {
         str(post.get("slug", "")).strip().lower()
         for post in recovered.get("posts", [])
@@ -73,13 +71,23 @@ def main() -> int:
     print(f"restored_posts={len(recovered_slugs - current_slugs)}")
 
     if args.write:
-        ADMIN_POSTS.write_text(
-            json.dumps(recovered, ensure_ascii=False, indent=2) + "\n",
-            encoding="utf-8",
-        )
-        print(f"[OK] wrote {ADMIN_POSTS}")
+        for post in recovered.get("posts", []):
+            slug = str(post.get("slug", "")).strip().lower()
+            target = POSTS_DIR / slug[0] / f"{slug}.json"
+            target.parent.mkdir(parents=True, exist_ok=True)
+            target.write_text(json.dumps(post, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        catalog = {
+            "version": 2,
+            "updatedAt": recovered.get("updatedAt", ""),
+            "posts": [
+                {field: post.get(field, "") for field in CATALOG_FIELDS}
+                for post in recovered.get("posts", [])
+            ],
+        }
+        CATALOG_PATH.write_text(json.dumps(catalog, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        print(f"[OK] wrote {len(recovered_slugs)} post files and {CATALOG_PATH}")
     else:
-        print("[DRY RUN] pass --write to update admin_posts.json")
+        print("[DRY RUN] pass --write to restore per-post files")
     return 0
 
 

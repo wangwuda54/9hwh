@@ -22,7 +22,8 @@ VIDEO_TOPICS_DATA = DATA / "video_topics.json"
 DEEPSEEK_TASKS = ROOT / "data" / "deepseek-tasks"
 BATCH_001 = ROOT / "data" / "deepseek-batches" / "batch-001"
 DRAFTS = ROOT / "site_src" / "content_drafts"
-ADMIN_POSTS = DATA / "admin_posts.json"
+ADMIN_POSTS_DIR = DATA / "admin_posts"
+LEGACY_ADMIN_POSTS = DATA / "admin_posts.json"
 BASE_URL = "https://www.9hwh.com"
 FAILURES: list[str] = []
 WARNINGS: list[str] = []
@@ -158,11 +159,18 @@ def published_video_paths() -> set[str]:
 
 
 def published_admin_post_paths() -> set[str]:
-    if not ADMIN_POSTS.exists():
-        return set()
-    data = json.loads(ADMIN_POSTS.read_text(encoding="utf-8-sig"))
+    if ADMIN_POSTS_DIR.exists():
+        posts = [
+            json.loads(path.read_text(encoding="utf-8-sig"))
+            for path in sorted(ADMIN_POSTS_DIR.rglob("*.json"))
+        ]
+    elif LEGACY_ADMIN_POSTS.exists():
+        data = json.loads(LEGACY_ADMIN_POSTS.read_text(encoding="utf-8-sig"))
+        posts = data.get("posts", [])
+    else:
+        posts = []
     paths = set()
-    for post in data.get("posts", []):
+    for post in posts:
         if post.get("status") != "published":
             continue
         slug = str(post.get("slug", "")).strip().lower()
@@ -470,7 +478,8 @@ def check_keyword_assets(sitemap: set[str]) -> None:
         }
     for url in sitemap:
         path = url.replace(BASE_URL, "")
-        if path not in cluster_targets and path not in known_pages and path not in published_article_paths:
+        is_blog_pagination = bool(re.fullmatch(r"/blog/page/\d+/", path))
+        if path not in cluster_targets and path not in known_pages and path not in published_article_paths and not is_blog_pagination:
             fail(f"sitemap URL has no cluster or page type note: {url}")
 
     sensitive = rules.get("sensitive_internal_categories", [])

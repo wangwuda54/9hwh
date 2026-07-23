@@ -1,4 +1,5 @@
-const DATA_PATH = "site_src/data/admin_posts.json";
+const POSTS_DIR = "site_src/data/admin_posts";
+const CATALOG_PATH = "site_src/data/admin_posts_catalog.json";
 const DEFAULT_REPO = "wangwuda54/9hwh";
 const DEFAULT_BRANCH = "main";
 const VALID_STATUSES = new Set(["draft", "published", "archived"]);
@@ -130,6 +131,7 @@ function normalizeData(data) {
     updatedAt: data?.updatedAt || "",
     posts: posts.map((post) => ({
       id: String(post.id || ""),
+      keyword: String(post.keyword || ""),
       slug: String(post.slug || ""),
       title: String(post.title || ""),
       summary: String(post.summary || ""),
@@ -161,66 +163,108 @@ function githubHeaders(token) {
   };
 }
 
-function githubFileUrl(repo) {
-  return `https://api.github.com/repos/${repo}/contents/${DATA_PATH}`;
+function githubApiUrl(repo, path) {
+  return `https://api.github.com/repos/${repo}/${path.replace(/^\/+/, "")}`;
 }
 
-function decodeBase64(value) {
-  return decodeURIComponent(
-    Array.from(Uint8Array.from(atob(value), (char) => char.charCodeAt(0)))
-      .map((byte) => `%${byte.toString(16).padStart(2, "0")}`)
-      .join("")
-  );
+function encodedRepoPath(path) {
+  return path.split("/").map((part) => encodeURIComponent(part)).join("/");
 }
 
-function encodeBase64(value) {
-  const bytes = new TextEncoder().encode(value);
-  let binary = "";
-  for (const byte of bytes) {
-    binary += String.fromCharCode(byte);
-  }
-  return btoa(binary);
+function postPath(slug) {
+  return `${POSTS_DIR}/${slug[0]}/${slug}.json`;
 }
 
-async function readGitHubData(env) {
-  const { repo, branch, token } = githubConfig(env);
-  if (!token) {
-    throw new Error("missing GITHUB_TOKEN");
-  }
-
-  const url = `${githubFileUrl(repo)}?ref=${encodeURIComponent(branch)}`;
-  const response = await fetch(url, { headers: githubHeaders(token) });
-  if (response.status === 404) {
-    return { repo, branch, token, sha: null, data: normalizeData({}) };
-  }
-  if (!response.ok) {
-    throw new Error(`GitHub read failed: ${response.status}`);
-  }
-
-  const file = await response.json();
-  const text = decodeBase64(String(file.content || "").replace(/\s/g, ""));
-  return { repo, branch, token, sha: file.sha, data: normalizeData(JSON.parse(text)) };
-}
-
-async function writeGitHubData(context, data, message) {
-  const body = {
-    message,
-    branch: context.branch,
-    content: encodeBase64(JSON.stringify(data, null, 2) + "\n"),
+function catalogPost(post) {
+  return {
+    id: post.id,
+    slug: post.slug,
+    title: post.title,
+    status: post.status,
+    updatedAt: post.updatedAt,
+    publishedAt: post.publishedAt,
   };
-  if (context.sha) {
-    body.sha = context.sha;
-  }
+}
 
-  const response = await fetch(githubFileUrl(context.repo), {
-    method: "PUT",
-    headers: githubHeaders(context.token),
-    body: JSON.stringify(body),
+function normalizeCatalog(data) {
+  const normalized = normalizeData(data);
+  return {
+    version: 2,
+    updatedAt: normalized.updatedAt,
+    posts: normalized.posts.map(catalogPost),
+  };
+}
+
+async function githubJson(config, path, options = {}) {
+  const response = await fetch(githubApiUrl(config.repo, path), {
+    ...options,
+    headers: { ...githubHeaders(config.token), ...(options.headers || {}) },
   });
   if (!response.ok) {
-    throw new Error(`GitHub write failed: ${response.status}`);
+    const error = new Error(`GitHub request failed: ${response.status}`);
+    error.status = response.status;
+    throw error;
   }
   return response.json();
+}
+
+async function branchHead(config) {
+  const ref = await githubJson(config, `git/ref/heads/${encodeURIComponent(config.branch)}`);
+  return ref.object.sha;
+}
+
+async function readTextFile(config, path, ref, missingValue = null) {
+  const url = `${githubApiUrl(config.repo, `contents/${encodedRepoPath(path)}`)}?ref=${encodeURIComponent(ref)}`;
+  const response = await fetch(url, {
+    headers: { ...githubHeaders(config.token), accept: "application/vnd.github.raw+json" },
+  });
+  if (response.status === 404) {
+    return missingValue;
+  }
+  if (!response.ok) {
+    throw new Error(`GitHub raw read failed: ${response.status}`);
+  }
+  const text = await response.text();
+  if (!text.trim()) {
+    throw new Error(`GitHub returned empty content for ${path}`);
+  }
+  return text;
+}
+
+async function readCatalog(config, ref) {
+  const text = await readTextFile(config, CATALOG_PATH, ref, "");
+  return text ? normalizeCatalog(JSON.parse(text)) : normalizeCatalog({});
+}
+
+async function commitFiles(config, expectedHead, fileMap, message) {
+  const currentHead = await branchHead(config);
+  if (currentHead !== expectedHead) {
+    const error = new Error("main branch changed; refresh and retry");
+    error.status = 409;
+    throw error;
+  }
+  const parentCommit = await githubJson(config, `git/commits/${expectedHead}`);
+  const tree = [];
+  for (const [path, content] of Object.entries(fileMap)) {
+    const blob = await githubJson(config, "git/blobs", {
+      method: "POST",
+      body: JSON.stringify({ content, encoding: "utf-8" }),
+    });
+    tree.push({ path, mode: "100644", type: "blob", sha: blob.sha });
+  }
+  const nextTree = await githubJson(config, "git/trees", {
+    method: "POST",
+    body: JSON.stringify({ base_tree: parentCommit.tree.sha, tree }),
+  });
+  const nextCommit = await githubJson(config, "git/commits", {
+    method: "POST",
+    body: JSON.stringify({ message, tree: nextTree.sha, parents: [expectedHead] }),
+  });
+  await githubJson(config, `git/refs/heads/${encodeURIComponent(config.branch)}`, {
+    method: "PATCH",
+    body: JSON.stringify({ sha: nextCommit.sha, force: false }),
+  });
+  return nextCommit;
 }
 
 function postFromPayload(payload, existing) {
@@ -249,26 +293,55 @@ function postFromPayload(payload, existing) {
   };
 }
 
-async function handleGet(env) {
-  const context = await readGitHubData(env);
-  const posts = [...context.data.posts].sort((a, b) => String(b.updatedAt).localeCompare(String(a.updatedAt)));
-  return jsonResponse({ ...context.data, posts });
+async function handleGet(request, env) {
+  const config = githubConfig(env);
+  if (!config.token) {
+    throw new Error("missing GITHUB_TOKEN");
+  }
+  const head = await branchHead(config);
+  const requestedSlug = slugify(new URL(request.url).searchParams.get("slug") || "");
+  if (requestedSlug) {
+    const text = await readTextFile(config, postPath(requestedSlug), head, null);
+    if (text === null) {
+      return jsonResponse({ error: "post not found" }, 404);
+    }
+    const post = normalizeData({ posts: [JSON.parse(text)] }).posts[0];
+    return jsonResponse({ post });
+  }
+  const data = await readCatalog(config, head);
+  const posts = [...data.posts].sort((a, b) => String(b.updatedAt).localeCompare(String(a.updatedAt)));
+  return jsonResponse({ ...data, posts });
 }
 
 async function handleWrite(request, env) {
   const payload = await request.json().catch(() => ({}));
   const action = String(payload.action || "save");
-  const context = await readGitHubData(env);
-  const data = context.data;
+  const config = githubConfig(env);
+  if (!config.token) {
+    throw new Error("missing GITHUB_TOKEN");
+  }
+  const head = await branchHead(config);
+  const data = await readCatalog(config, head);
   const posts = data.posts;
   const index = posts.findIndex((post) => post.id === payload.id || (payload.slug && post.slug === payload.slug));
-  const existing = index >= 0 ? posts[index] : null;
+  const existingMetadata = index >= 0 ? posts[index] : null;
+  let existing = null;
+  if (existingMetadata) {
+    const text = await readTextFile(config, postPath(existingMetadata.slug), head, null);
+    if (text === null) {
+      throw new Error(`post file missing: ${existingMetadata.slug}`);
+    }
+    existing = normalizeData({ posts: [JSON.parse(text)] }).posts[0];
+  }
+
+  let saved;
 
   if (action === "archive") {
     if (!existing) {
       return jsonResponse({ error: "post not found" }, 404);
     }
-    posts[index] = { ...existing, status: "archived", updatedAt: nowIso() };
+    saved = { ...existing, status: "archived", updatedAt: nowIso() };
+    posts[index] = catalogPost(saved);
   } else {
     const nextPayload = { ...payload };
     if (action === "publish") {
@@ -278,21 +351,32 @@ async function handleWrite(request, env) {
     }
 
     const nextPost = postFromPayload(nextPayload, existing);
+    if (existing && nextPost.slug !== existing.slug) {
+      return jsonResponse({ error: "published slug is immutable; create a new post instead" }, 409);
+    }
     const duplicate = posts.find((post) => post.slug === nextPost.slug && post.id !== nextPost.id);
     if (duplicate) {
       return jsonResponse({ error: "slug already exists" }, 409);
     }
 
     if (index >= 0) {
-      posts[index] = nextPost;
+      posts[index] = catalogPost(nextPost);
     } else {
-      posts.unshift(nextPost);
+      posts.unshift(catalogPost(nextPost));
     }
+    saved = nextPost;
   }
 
   data.updatedAt = nowIso();
-  await writeGitHubData(context, data, `admin publish: update ${DATA_PATH}`);
-  const saved = index >= 0 ? posts[index] : posts[0];
+  await commitFiles(
+    config,
+    head,
+    {
+      [postPath(saved.slug)]: JSON.stringify(saved, null, 2) + "\n",
+      [CATALOG_PATH]: JSON.stringify(data, null, 2) + "\n",
+    },
+    `admin publish: update ${postPath(saved.slug)}`
+  );
   const publicUrl = saved?.slug ? `/blog/${saved.slug}/` : "/blog/";
   return jsonResponse({
     ok: true,
@@ -315,10 +399,11 @@ export async function onRequest(context) {
     }
 
     if (method === "GET") {
-      return handleGet(context.env);
+      return handleGet(context.request, context.env);
     }
     return handleWrite(context.request, context.env);
   } catch (error) {
-    return jsonResponse({ error: error.message || "admin api failed" }, 500);
+    const status = Number(error.status) === 409 ? 409 : 500;
+    return jsonResponse({ error: error.message || "admin api failed" }, status);
   }
 }
